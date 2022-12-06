@@ -1,6 +1,6 @@
 # Robinhood Clone 
 <div align='center'>
- <image src="https://giphy.com/gifs/JtBZm3Getg3dqxK0zP" width="240" height="130" >
+ <image src="https://media4.giphy.com/media/JtBZm3Getg3dqxK0zP/giphy.gif?cid=82a1493becd4fffkc9ws08dgk3umot6xjmrjvtryzdjrxnuk&rid=giphy.gif&ct=g" width="240" height="130" >
 </div>
 
 
