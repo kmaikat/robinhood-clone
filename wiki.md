@@ -47,7 +47,7 @@
 - Assest/Stock Search: CRUD
     + All user can search stock via stock symbol
     + Tbd
--Bonus Feature:  Tbd
+- Bonus Feature:  Tbd
  
 ## User Stories
 
