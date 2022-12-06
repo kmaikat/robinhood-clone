@@ -21,5 +21,7 @@
 3.
 
 ## Connect with the devs
-
-
+ 1. Efrain Saldana
+ 2. Ha Nguyen
+ 3. Joonil Kim
+ 4. Katherine Mai
