@@ -7,7 +7,9 @@
 1. [About](https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#about-the-project)
 2. [Technology Used](https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#technologies-used)
 3. [Features](https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#features)
+4. [User Stories](https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#user-stories)
 4. [Connect with the devs](https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#connect-with-the-devs)
+ 
 
 
 
@@ -46,6 +48,8 @@
     + All user can search stock via stock symbol
     + Tbd
 -Bonus Feature:  Tbd
+ 
+## User Stories
 
 ## Connect with the devs
  1. Efrain Saldana
