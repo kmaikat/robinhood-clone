@@ -24,7 +24,7 @@
  
 
 ## Features (draft)
-- Dashboard/Portfolio : CRUD
+- User Portfolio : CRUD
     + Create: Login user can buy Stock
     + Read: Login user can view the stock that they purchased in portfolio
     + Update: Login user can buy or sell stock and value will be update
@@ -34,16 +34,12 @@
     + Read: Login user can view watchlist and stocks from watchlist
     + Update: Login user can add/ remove stock from watchlist and change the name of watch list
     + Delete: Login user can delete the watchlist(s) that they created
-- Transaction: CRUD
-    + Create: store buy and sell transaction
+- User Transaction:
     + Read: Login user can view all their transactions
-    + Update: Login user can not update their transactions
-    + Delete: Login user can not delete their transactions
-- Asset/Stock Detail: CRUD
-    + Create:  tbd
+
+- Asset/Stock Detail: 
     + Read: All user can view stock detail
-    + Update : tbd
-    + Delete:tbd
+
 - Assest/Stock Search: CRUD
     + All user can search stock via stock symbol
     + Tbd
