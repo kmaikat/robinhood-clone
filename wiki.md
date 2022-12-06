@@ -4,12 +4,12 @@
 </div>
  
  Table of Contents
- 1. (About)[https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#about-the-project]
- 2. (Tech Stack)[https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#tech-stack]
- 3. (Features)[https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#features]
-  1. v
-  2. v
- 4. (Connect with the devs)[https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#connect-with-the-devs]
+- (About)[https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#about-the-project]
+- (Tech Stack)[https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#tech-stack]
+- (Features)[https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#features]
+  - v
+  - v
+- (Connect with the devs)[https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#connect-with-the-devs]
 
 
 
