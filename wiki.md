@@ -16,7 +16,7 @@
 ## Tech stack
 ### Languages 
 ### Frameworks 
- <img src="{[BadgeURLHere](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)}" />
+ <img src="https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white" />
 
  
 
