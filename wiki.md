@@ -7,7 +7,9 @@
 
 ## About the project
 
-## Tools
+## Table of Contents
+ 
+## Tech stack
 
 ## Features
 1.
@@ -15,3 +17,5 @@
 3.
 
 ## Connect with the devs
+
+
