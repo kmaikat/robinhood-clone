@@ -14,6 +14,10 @@
 ## About the project
  
 ## Tech stack
+### Languages 
+### Frameworks 
+ ![docker]({(https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)})
+ 
 
 ## Features (draft)
 - Dashboard/Portfolio : CRUD
