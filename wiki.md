@@ -5,7 +5,7 @@
  
 ## Table of Contents
 1. [About](https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#about-the-project)
-2. [Tech Stack](https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#tech-stack)
+2. [Technology Used](https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#technologies-used)
 3. [Features](https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#features)
 4. [Connect with the devs](https://github.com/kmaikat/robinhood-clone/blob/main/wiki.md#connect-with-the-devs)
 
