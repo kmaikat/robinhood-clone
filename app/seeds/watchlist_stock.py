@@ -31,8 +31,8 @@ def seed_watchlist_stocks():
 def undo_watchlist_stocks():
     if environment == "production":
         db.session.execute(
-            f"TRUNCATE table {SCHEMA}.assets RESTART IDENTITY CASCADE;")
+            f"TRUNCATE table {SCHEMA}.watchlist_stocks RESTART IDENTITY CASCADE;")
     else:
-        db.session.execute("DELETE FROM assets")
+        db.session.execute("DELETE FROM watchlist_stocks")
 
     db.session.commit()
