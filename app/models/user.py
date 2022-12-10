@@ -1,9 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from sqlalchemy import func
 from datetime import datetime
-
 
 
 class User(db.Model, UserMixin):
@@ -21,6 +19,10 @@ class User(db.Model, UserMixin):
     buying_power = db.Column(db.Float, default=0.00)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    assets = db.relationship("Asset",
+                             back_populates="user",
+                             cascade="all, delete-orphan")
 
     @property
     def password(self):
