@@ -25,6 +25,10 @@ class User(db.Model, UserMixin):
                              back_populates=add_prefix_for_prod("user"),
                              cascade="all, delete-orphan")
 
+    watchlists = db.relationship(add_prefix_for_prod("WatchList"),
+                             back_populates=add_prefix_for_prod("user"),
+                             cascade="all, delete-orphan")
+
     @property
     def password(self):
         return self.hashed_password
