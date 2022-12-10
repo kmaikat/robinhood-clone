@@ -34,6 +34,12 @@ Migrate(app, db)
 # Application Security
 CORS(app)
 
+# @app.route("/")
+# def index():
+#     steve = User.query.get(1)
+#     print([stock.name for stock in steve.assets])
+#     return "Testing"
+
 
 # Since we are deploying with Docker and Flask,
 # we won't be using a buildpack when we deploy to Heroku.

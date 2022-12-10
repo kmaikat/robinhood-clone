@@ -2,6 +2,7 @@ from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from datetime import datetime
+from .assets import Asset
 
 
 class User(db.Model, UserMixin):
@@ -20,8 +21,8 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    assets = db.relationship("Asset",
-                             back_populates="user",
+    assets = db.relationship(add_prefix_for_prod("Asset"),
+                             back_populates=add_prefix_for_prod("user"),
                              cascade="all, delete-orphan")
 
     @property
