@@ -36,7 +36,6 @@ ul {
     text-align: inherit;
     text-decoration: inherit;
     vertical-align: inherit;
-    font-family: 'Montserrat', sans-serif;
 }
 
 ul {
@@ -67,4 +66,8 @@ textarea {
 button,
 input[type="submit"] {
     cursor: pointer;
+}
+
+html {
+    font-size: 62.5%;
 }
