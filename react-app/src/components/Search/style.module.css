@@ -1,0 +1,32 @@
+.searchBar {
+    width: 300px;
+    border: 1px solid #c8c8c8;
+    padding: 1rem;
+    border-radius: 4px;
+}
+
+.resultItem {
+    cursor: pointer;
+    background-color: white;
+    transition: background-color 0.2s ease;
+    padding: 4px 1rem;
+}
+
+.resultItem:hover {
+    background-color: #c8c8c8;
+}
+
+.searchResult {
+    position: absolute;
+    list-style: none;
+    background-color: white;
+    border: 1px solid darkgray;
+    width: 300px;
+    padding: 0;
+    top: 50px;
+    z-index: 99;
+}
+
+.searchContainer {
+    position: relative;
+}
