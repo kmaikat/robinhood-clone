@@ -8,9 +8,6 @@ from ..forms import WatchListForm
 
 watchlist_routes =  Blueprint('watchlists', __name__)
 
-# def get_login_userid():
-#     user = User.query.get() 
-
 
 @watchlist_routes.route('/')
 @login_required
@@ -20,6 +17,8 @@ def all_watchlists():
     """
     watchlists = WatchList.query.all()
     return {'watchlists': [watchlist.to_dict() for watchlist in watchlists]}
+
+#create watchlist 
 
 @watchlist_routes.route('/', methods=['POST'])
 @login_required
@@ -42,17 +41,66 @@ def create_watchlist():
     if form.errors: 
         return {'error': form.errors}
 
-
-@watchlist_routes.route('/<int:user_id>')
+#update watchlist
+@watchlist_routes.route('/<int:watchlist_id>', methods=['PUT'])
 @login_required
-def user_watchlists(user_id): 
+def update_watchlist(watchlist_id): 
     current_user_info = current_user.to_dict()
     current_user_id = current_user_info['id']
-    if current_user_id != user_id: 
-        return {'error': 'user_id does not match'}
+    update_watchlist = WatchList.query.get(watchlist_id)
+    if update_watchlist: 
+        if update_watchlist.user_id == current_user_id:
+            data = request.get_json()
+            update_watchlist.name = data['name']
+            db.session.commit()
+            return update_watchlist.to_dict()
+        else: 
+            return {'error': {
+                'message': 'Forbidden', 
+                'statusCode': 403
+            }}
+    else: 
+        return {'error': {
+            'message': 'Can not find watchlist',
+            'statusCode': 404
+        }}
+
+#delete watchlist
+@watchlist_routes.route('/<int:watchlist_id>', methods=['DELETE'])
+@login_required
+def delete_watchlist(watchlist_id): 
+    current_user_info = current_user.to_dict()
+    current_user_id = current_user_info['id']
+    delete_watchlist = WatchList.query.get(watchlist_id)
+    if delete_watchlist: 
+        if delete_watchlist.user_id == current_user_id:
+            db.session.delete(delete_watchlist)
+            db.session.commit()
+            return {'message': 'Successfully delete'}
+        else: 
+            return {'error': {
+                'message': 'Forbidden', 
+                'statusCode': 403
+            }}
+    else: 
+        return {'error': {
+            'message': 'Can not find watchlist',
+            'statusCode': 404
+        }}
+
+#add stock to watchlist 
+
+
+
+
+@watchlist_routes.route('/current')
+@login_required
+def user_watchlists(): 
+    current_user_info = current_user.to_dict()
+    current_user_id = current_user_info['id']
     """
     Query for all user_watchlists and returns them in a list of user_watchlist dictionaries
     """
-    user_watchlists = WatchList.query.filter(WatchList.user_id == user_id).all()
+    user_watchlists = WatchList.query.filter(WatchList.user_id == current_user_id ).all()
     print(user_watchlists)
     return {'watchlists': [watchlist.to_dict() for watchlist in user_watchlists]}
