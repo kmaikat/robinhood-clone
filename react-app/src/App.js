@@ -34,17 +34,18 @@ function App() {
         <Route path="/invest">
           <LandingPageNavbar />
           Invest
+          <div style={{ height: "10000px" }}>Temporary heigh test</div>
         </Route>
         <Route path="/crypto">
           <LandingPageNavbar />
           crypto
         </Route>
         <Route path="/learn">
-          <LandingPageNavbar/>
+          <LandingPageNavbar />
           learn
         </Route>
         <Route path="/snacks">
-          <LandingPageNavbar/>
+          <LandingPageNavbar />
           snacks
         </Route>
         <Route path='/login' exact={true}>
@@ -60,8 +61,9 @@ function App() {
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
-          <LandingPageNavbar/>
+          <LandingPageNavbar />
           <h1>My Home Page</h1>
+          <div style={{ height: "10000px" }}>Temporary heigh test</div>
         </Route>
       </Switch>
     </BrowserRouter>
