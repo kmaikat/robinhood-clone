@@ -1,0 +1,102 @@
+.landing-page {
+    display: flex;
+    padding: 0 2.4rem;
+    height: 6.4rem;
+    align-items: center;
+    font-size: 2.2rem;
+    position: sticky;
+    top: 0px;
+    z-index: 2;
+}
+
+.landing-page-white {
+    --landing-page-background-color: white;
+    --landing-page-accent-color: black;
+    --landing-page-navlink-color: black;
+    --landing-page-navlink-hover-color: #00C805;
+    border-bottom: .18rem var(--landing-page-accent-color) solid;
+    background-color: var(--landing-page-background-color)
+}
+
+.landing-page-green {
+    --landing-page-background-color: #002615;
+    --landing-page-accent-color: #c3f53c;
+    --landing-page-navlink-color: white;
+    --landing-page-navlink-hover-color: #c3f53c;
+    background-color: var(--landing-page-background-color);
+    color: var(--landing-page-accent-color);
+    border-bottom: .18rem var(--landing-page-accent-color) solid;
+}
+
+.landing-page-logo {
+    display: flex;
+    align-items: center;
+}
+
+.landing-page-logo-text {
+    font-weight: 300;
+    font-stretch: extra-condensed;
+    transform: scale(1, 1.25);
+}
+
+.landing-page-logo>.fa-rocket {
+    display: flex;
+    align-items: center;
+    font-size: 2.5rem;
+    font-weight: light;
+    padding-right: 2.4rem;
+    padding-left: .8rem;
+}
+
+.landing-page-navlink-actions-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.9rem;
+    color: var(--landing-page-navlink-color);
+    padding-left: 2.4rem;
+    border-left: .18rem var(--landing-page-accent-color) solid;
+    height: calc(100% + 1px);
+    width: 100%;
+}
+
+.landing-page-navlinks {
+    display: flex;
+    align-items: center;
+    width: 50%;
+    column-gap: 2.4rem;
+}
+
+.landing-page-navlink {
+    cursor: pointer;
+}
+
+.landing-page-navlink:hover {
+    color: var(--landing-page-navlink-hover-color)
+}
+
+.landing-page-white .landing-page-navlink:hover {
+    translate: 0 -.125rem;
+}
+
+.landing-page-actions {
+    display: flex;
+    align-items: center;
+    column-gap: 1.4rem;
+}
+
+#landing-page-login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: var(--landing-page-accent-color);
+    color: var(--landing-page-accent-color)
+}
+
+#landing-page-signup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: var(--landing-page-accent-color);
+    background-color: var(--landing-page-accent-color);
+    color: var(--landing-page-background-color)
+}

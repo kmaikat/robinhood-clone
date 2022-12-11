@@ -7,14 +7,17 @@ import NavBar from './components/NavBar';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import UsersList from './components/UsersList';
 import User from './components/User';
+import LandingPageNavbar from './components/LandingPageNavbar';
 import { authenticate } from './store/session';
+import "./stylesheets/reset.css";
+import "./stylesheets/global.css";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    (async() => {
+    (async () => {
       await dispatch(authenticate());
       setLoaded(true);
     })();
@@ -26,8 +29,25 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavBar />
+      {/* <NavBar /> */}
       <Switch>
+        <Route path="/invest">
+          <LandingPageNavbar />
+          Invest
+          {/* <div style={{ height: "10000px" }}>Temporary navbar test</div> */}
+        </Route>
+        <Route path="/crypto">
+          <LandingPageNavbar />
+          crypto
+        </Route>
+        <Route path="/learn">
+          <LandingPageNavbar />
+          learn
+        </Route>
+        <Route path="/snacks">
+          <LandingPageNavbar />
+          snacks
+        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -35,13 +55,15 @@ function App() {
           <SignUpForm />
         </Route>
         <ProtectedRoute path='/users' exact={true} >
-          <UsersList/>
+          <UsersList />
         </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
         <Route path='/' exact={true} >
+          <LandingPageNavbar />
           <h1>My Home Page</h1>
+          {/* <div style={{ height: "10000px" }}>Temporary navbar test</div> */}
         </Route>
       </Switch>
     </BrowserRouter>
