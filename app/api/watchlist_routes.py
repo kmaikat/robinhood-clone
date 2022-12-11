@@ -35,7 +35,7 @@ def create_watchlist():
             )
             db.session.add(new_watchlist)
             db.session.commit()
-            return new_watchlist.to_dict()
+            return new_watchlist.to_dict(), 201
         except Exception:
             return {'error': 'there is an error in form.validate()'}
     if form.errors: 
@@ -53,17 +53,17 @@ def update_watchlist(watchlist_id):
             data = request.get_json()
             update_watchlist.name = data['name']
             db.session.commit()
-            return update_watchlist.to_dict()
+            return update_watchlist.to_dict(), 200
         else: 
             return {'error': {
                 'message': 'Forbidden', 
                 'statusCode': 403
-            }}
+            }}, 403
     else: 
         return {'error': {
             'message': 'Can not find watchlist',
             'statusCode': 404
-        }}
+        }}, 404
 
 #delete watchlist
 @watchlist_routes.route('/<int:watchlist_id>', methods=['DELETE'])
@@ -81,12 +81,12 @@ def delete_watchlist(watchlist_id):
             return {'error': {
                 'message': 'Forbidden', 
                 'statusCode': 403
-            }}
+            }}, 403
     else: 
         return {'error': {
             'message': 'Can not find watchlist',
             'statusCode': 404
-        }}
+        }}, 404
 
 #add stock to watchlist 
 @watchlist_routes.route('/<int:watchlist_id>/stocks', methods=['POST'])
@@ -111,15 +111,13 @@ def add_stock(watchlist_id):
         
     if form.validate():
         symbol = form.data['symbol']
-        if len(watchlist.watchlist_stocks) > 0: 
-            for stock in watchlist.watchlist_stocks: 
-                if stock.stock_symbol == symbol: 
-                    return {
-                        'error': {
-                            'message': 'Stock already exist', 
-                            'statusCode': 403
-                        }
-                    }
+        if symbol in [w.stock_symbol for w in watchlist.watchlist_stocks]:
+            return {
+                'error': {
+                    'message': 'Stock already exist', 
+                    'statusCode': 403
+                }
+            }, 403
         try: 
             new_stock = WatchList_Stock(
                 watchlist_id = watchlist_id,
@@ -127,7 +125,7 @@ def add_stock(watchlist_id):
             )
             db.session.add(new_stock)
             db.session.commit()
-            return new_stock.to_dict()
+            return new_stock.to_dict(), 200
         except Exception:
             return {'error': 'there is an error in form.validate()'}
     if form.errors: 
@@ -144,13 +142,13 @@ def delete_stock(stock_id):
         return {'error': {
             'message': 'Can not find watchlist',
             'statusCode': 404
-        }}
+        }}, 404
     watchlist = WatchList.query.get(delete_stock.watchlist_id) 
     if watchlist.user_id != current_user_id: 
         return {'error': {
                 'message': 'Forbidden', 
                 'statusCode': 403
-        }}
+        }}, 403
     db.session.delete(delete_stock)
     db.session.commit()
     return {'message': 'Successfully delete stock'}
