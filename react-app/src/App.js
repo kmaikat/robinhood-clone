@@ -34,7 +34,7 @@ function App() {
         <Route path="/invest">
           <LandingPageNavbar />
           Invest
-          <div style={{ height: "10000px" }}>Temporary heigh test</div>
+          {/* <div style={{ height: "10000px" }}>Temporary navbar test</div> */}
         </Route>
         <Route path="/crypto">
           <LandingPageNavbar />
@@ -63,7 +63,7 @@ function App() {
         <Route path='/' exact={true} >
           <LandingPageNavbar />
           <h1>My Home Page</h1>
-          <div style={{ height: "10000px" }}>Temporary heigh test</div>
+          {/* <div style={{ height: "10000px" }}>Temporary navbar test</div> */}
         </Route>
       </Switch>
     </BrowserRouter>

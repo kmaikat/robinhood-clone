@@ -3,6 +3,8 @@ body {
     box-sizing: border-box;
     font-size: 1.4rem;
     position: relative;
+
+    --rockethood-green: #00C805;
 }
 
 button {

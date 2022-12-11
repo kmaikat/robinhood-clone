@@ -1,0 +1,110 @@
+.login-page {
+    display: flex;
+    height: 100vh;
+}
+
+.login-page-left {
+    height: 100%;
+    width: 50%;
+}
+
+.login-page-left>img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.login-page-right {
+    display: flex;
+    align-items: center;
+    min-width: 47.2rem
+}
+
+.login-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 5.2rem;
+    height: 48rem;
+    width: 100%;
+}
+
+#login-title {
+    font-size: 2.2rem;
+    font-weight: 500;
+    justify-self: flex-start;
+    margin-bottom: 3.6rem;
+}
+
+#login-form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2.4rem;
+    width: 100%;
+}
+
+.login-form-input {
+    display: flex;
+    flex-direction: column;
+}
+
+#login-form label {
+    margin-bottom: .8rem;
+}
+
+#login-form input {
+    border: 1px solid #e3e9ed;
+    line-height: 2rem;
+    padding: .65rem 1.2rem;
+    border-radius: .4rem;
+    transition: border-color 225ms ease-in-out;
+}
+
+#login-form input:hover {
+    border-color: black;
+}
+
+#login-form input:focus-within {
+    border-color: var(--rockethood-green);
+}
+
+
+#login-submit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    background-color: black;
+    border: none;
+    color: white;
+    padding: 0 4rem;
+    min-width: 12rem;
+    max-width: 42rem;
+    width: 31%;
+    margin-top: 1.2rem;
+    margin-bottom: 4rem;
+}
+
+#create-an-account {
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+#create-an-account:hover {
+    font-weight: 600;
+    color: var(--rockethood-green);
+    cursor: pointer;
+    user-select: none;
+}
+
+#login-demo-user {
+    font-weight: 600;
+    text-decoration: underline;
+}
+
+#login-demo-user:hover {
+    font-weight: 600;
+    color: var(--rockethood-green);
+    cursor: pointer;
+    user-select: none;
+}
