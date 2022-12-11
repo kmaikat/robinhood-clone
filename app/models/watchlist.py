@@ -19,3 +19,11 @@ class WatchList(db.Model):
     watchlist_stocks = db.relationship(add_prefix_for_prod("WatchList_Stock"),
                              back_populates=add_prefix_for_prod("watchlist"),
                              cascade="all, delete-orphan")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'user_id': self.user_id, 
+            'watchlist_stocks': [stock.to_dict() for stock in self.watchlist_stocks]
+        }
