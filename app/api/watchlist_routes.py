@@ -1,7 +1,7 @@
 from flask import Flask, Blueprint, request
 from flask_login import login_required, current_user
-from ..models import db, WatchList 
-from ..forms import WatchListForm
+from ..models import db, WatchList, WatchList_Stock 
+from ..forms import WatchListForm, AddStockForm
 
 
 
@@ -89,7 +89,71 @@ def delete_watchlist(watchlist_id):
         }}
 
 #add stock to watchlist 
+@watchlist_routes.route('/<int:watchlist_id>/stocks', methods=['POST'])
+@login_required
+def add_stock(watchlist_id):
+    current_user_info = current_user.to_dict()
+    current_user_id = current_user_info['id']
+    watchlist = WatchList.query.get(watchlist_id)
+    if not watchlist: 
+        return {'error': {
+            'message': 'Can not find watchlist',
+            'statusCode': 404
+        }}
+    if watchlist.user_id != current_user_id: 
+        return {'error': {
+                'message': 'Forbidden', 
+                'statusCode': 403
+            }}
+    form = AddStockForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+   
+        
+    if form.validate():
+        symbol = form.data['symbol']
+        if len(watchlist.watchlist_stocks) > 0: 
+            for stock in watchlist.watchlist_stocks: 
+                if stock.stock_symbol == symbol: 
+                    return {
+                        'error': {
+                            'message': 'Stock already exist', 
+                            'statusCode': 403
+                        }
+                    }
+        try: 
+            new_stock = WatchList_Stock(
+                watchlist_id = watchlist_id,
+                stock_symbol = form.data['symbol']
+            )
+            db.session.add(new_stock)
+            db.session.commit()
+            return new_stock.to_dict()
+        except Exception:
+            return {'error': 'there is an error in form.validate()'}
+    if form.errors: 
+        return {'error': form.errors}
 
+#remove stock to watchlist 
+@watchlist_routes.route('/stocks/<int:stock_id>', methods=['DELETE'])
+@login_required
+def delete_stock(stock_id): 
+    current_user_info = current_user.to_dict()
+    current_user_id = current_user_info['id']
+    delete_stock = WatchList_Stock.query.get(stock_id)
+    if not delete_stock: 
+        return {'error': {
+            'message': 'Can not find watchlist',
+            'statusCode': 404
+        }}
+    watchlist = WatchList.query.get(delete_stock.watchlist_id) 
+    if watchlist.user_id != current_user_id: 
+        return {'error': {
+                'message': 'Forbidden', 
+                'statusCode': 403
+        }}
+    db.session.delete(delete_stock)
+    db.session.commit()
+    return {'message': 'Successfully delete stock'}
 
 
 
