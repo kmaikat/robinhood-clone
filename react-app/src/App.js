@@ -9,6 +9,7 @@ import UsersList from './components/UsersList';
 import User from './components/User';
 import LandingPageNavbar from './components/LandingPageNavbar';
 import { authenticate } from './store/session';
+import ChartTest from './components/ChartTest';
 import "./stylesheets/reset.css";
 import "./stylesheets/global.css";
 
@@ -60,6 +61,9 @@ function App() {
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
+        <Route path='/charttest'>
+          <ChartTest />
+        </Route>
         <Route path='/' exact={true} >
           <LandingPageNavbar />
           <h1>My Home Page</h1>

@@ -1,0 +1,18 @@
+.term-list {
+    display: flex;
+    list-style: none;
+    border-bottom: 1px solid #c8c8c8;
+    padding: 0;
+}
+
+.term-list > li {
+    margin-right: 1rem;
+    cursor: pointer;
+    padding-bottom: 0.5rem;
+}
+
+/* chart tooltip styling */
+div.apexcharts-xaxistooltip-bottom, div.apexcharts-xaxistooltip-bottom:before, div.apexcharts-xaxistooltip-bottom:after {
+    border: none;
+    background-color: transparent;
+}
