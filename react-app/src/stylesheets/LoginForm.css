@@ -57,7 +57,7 @@
     line-height: 2rem;
     padding: .65rem 1.2rem;
     border-radius: .4rem;
-    transition: border-color 225ms ease-in-out;
+    transition: border-color 200ms ease-in-out;
 }
 
 #login-form input:hover {

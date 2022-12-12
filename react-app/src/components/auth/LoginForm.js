@@ -20,6 +20,16 @@ const LoginForm = () => {
     }
   };
 
+  const demoLogin = async (e) => {
+    const email = "demo@aa.io";
+    const password = "password";
+    e.preventDefault();
+    const data = await dispatch(login(email, password));
+    if (data) {
+      setErrors(data);
+    }
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -69,7 +79,7 @@ const LoginForm = () => {
             <button type='submit' id="login-submit">Login</button>
           </form>
           <Link to="/sign-up" ><p id="login-create-account">Not on Rockethood? <span id="create-an-account">Create an account</span></p></Link>
-          <p>Don't feel like doing that? <span id="login-demo-user">Log in as Demo User </span></p>
+          <p>Don't feel like doing that? <span id="login-demo-user" onClick={demoLogin}>Log in as Demo User </span></p>
         </div>
       </div>
     </div>
