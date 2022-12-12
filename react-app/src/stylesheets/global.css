@@ -9,6 +9,8 @@ body {
     --rockethood-darker-green: #005f32;
     --rockethood-lime-green: #c3f53c;
     --rockethood-disclosure-green: #00c704;
+    --rockethood-form-lightgray: #b1b5b8;
+    --rockethood-sell-red: #FF6600;
 }
 
 button {

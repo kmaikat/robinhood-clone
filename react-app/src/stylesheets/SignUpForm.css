@@ -2,6 +2,7 @@
     --signup-padding: 0 6.4rem;
     display: flex;
     height: 100vh;
+    overflow-y: scroll;
 }
 
 .signup-page-left {
@@ -11,6 +12,7 @@
     height: 100%;
     width: 50%;
     background-color: var(--rockethood-darker-green);
+    overflow: hidden;
 }
 
 .signup-page-left-top {
@@ -22,11 +24,12 @@
 #signup-logo {
     color: #88b2a2;
     font-size: 2.1rem;
-    margin-top: 4rem;
-    margin-bottom: 8rem;
+    margin-top: 2.5vh;
+    margin-bottom: 5vh;
     transform: none;
     line-height: 2rem;
     height: 4.8rem;
+    user-select: none;
 }
 
 #signup-title {
@@ -34,7 +37,7 @@
     font-size: 7.75rem;
     line-height: 8.7rem;
     letter-spacing: -.15rem;
-    margin-bottom: 4.8rem;
+    margin-bottom: 5vh;
 }
 
 #signup-support-text {
@@ -46,4 +49,206 @@
     color: var(--rockethood-disclosure-green);
     padding: 3rem 6.4rem;
     font-size: 1.45rem
+}
+
+.signup-page-right {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 50%;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+#signup-id-warning {
+    font-size: 2.1rem;
+    margin-bottom: 4.8rem;
+}
+
+.signup-form-heading{
+    font-size: 2.1rem;
+    margin-bottom: 4.8rem;
+}
+
+#signup-form {
+    display: flex;
+    flex-direction: column;
+    padding: 16rem 6.4rem 4.8rem 6.4rem;
+    height: 90vh;
+    overflow-y: scroll;
+    width: 100%;
+    gap: 2.4rem;
+}
+
+#signup-form input {
+    border: 1px solid #bdc0c3;
+    color: #525252;
+    line-height: 3rem;
+    padding: 1.6rem 1.2rem;
+    transition: border-color 200ms ease-in-out;
+    font-size: 2.2rem;
+    width: 100%;
+}
+
+.signup-names {
+    display: flex;
+    gap: 2.4rem;
+}
+
+#signup-form input:hover {
+    border-color: black;
+}
+
+#signup-form input:focus {
+    color: black;
+    border-color: black;
+}
+
+#signup-form input.error-input {
+    border-color: var(--rockethood-sell-red)
+}
+
+.error-label {
+    color: var(--rockethood-sell-red)
+}
+
+#signup-login-container {
+    margin-top: 4rem;
+}
+
+#signup-already {
+    font-size: 1.4rem;
+}
+
+#signup-login {
+    color: black;
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-decoration: underline;
+    user-select: none;
+}
+
+#signup-login:hover {
+    color: var(--rockethood-green);
+}
+
+.signup-bottom {
+    display: flex;
+    flex-direction: column;
+    height: 11.6rem;
+    justify-content: space-between;
+}
+
+#signup-progress-bar-container {
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+
+#signup-progress-bar-1 {
+    height: .4rem;
+    background-color: black;
+    width: 20%;
+    animation: progress-bar-fill-part-1 1s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes progress-bar-fill-part-1 {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 20%;
+    }
+}
+
+#signup-progress-bar-2 {
+    height: .4rem;
+    background-color: black;
+    width: 20%;
+    animation: progress-bar-fill-part-2 1s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes progress-bar-fill-part-2 {
+    from {
+        width: 20%;
+    }
+
+    to {
+        width: 80%;
+    }
+}
+
+#signup-progress-bar-3 {
+    height: .4rem;
+    background-color: black;
+    width: 100%;
+    animation: progress-bar-fill-part-3 1s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes progress-bar-fill-part-3 {
+    from {
+        width: 80%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+.signup-button-container {
+    display: flex;
+    height: 100%;
+    padding: 3.6rem 2.4rem;
+    justify-content: end;
+    overflow: hidden;
+    background-color: white;
+}
+
+.signup-button {
+    align-self: end;
+}
+
+.signup-button-bottom {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#signup-spinner {
+    border: .5rem solid white;
+    border-top: .5rem solid var(--rockethood-green);
+    border-radius: 100%;
+    width: 2.5rem;
+    aspect-ratio: 1/1;
+    animation: loader .65s ease-in-out infinite;
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+@media screen and (max-width: 1200px) {
+    .signup-names {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-height: 1000px) {
+    #signup-title {
+        font-size: 5rem;
+        line-height: 6.4rem;
+    }
+
 }

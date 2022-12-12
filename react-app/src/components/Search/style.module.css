@@ -8,7 +8,7 @@
     transition: all 0.2s ease;
 }
 
-.searchBar:hover {
+.searchBar:hover, .searchBar:focus {
     background-color: #e3e3e3;
     border: 1px solid #afafaf;
 }

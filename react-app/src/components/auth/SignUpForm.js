@@ -1,18 +1,77 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import signupImage from "../../assets/signup.png";
 import "../../stylesheets/SignUpForm.css";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [signupStage, setSignupStage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [bank, setBank] = useState("");
+  const [lastFour, setLastFour] = useState("");
+  const [accountNickname, setAccountNickname] = useState("");
+  const [buyingPower, setBuyingPower] = useState("");
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  const phase1Check = async (e) => {
+    const errors = {};
+    e.preventDefault();
+    if (firstName.length > 0 === false) errors.firstName = "Please enter your first name.";
+    if (lastName.length > 0 === false) errors.lastName = "Please enter your last name.";
+    if (email.length > 0 === false) errors.email = "Please enter your email.";
+    if (password.length > 0 === false) errors.password = "Please enter your password.";
+    if (repeatPassword.length > 0 === false) errors.repeatPassword = "Please retype your password.";
+    else if (repeatPassword !== password) errors.repeatPassword = "Passwords must match!";
+
+    if (Object.keys(errors).length > 0) {
+      setErrors(errors);
+      console.log(errors);
+      return;
+    }
+
+    setLoading(true);
+    const response = await fetch(`/api/users/${email}`);
+    setTimeout(() => setLoading(false), 250);
+
+    if (response.status === 409) {
+      errors.email = "Email already in use.";
+      setErrors(errors);
+      return;
+    }
+
+    setErrors(errors);
+    setSignupStage(2);
+  };
+
+  const phase2Check = async (e) => {
+    const errors = {};
+    e.preventDefault();
+    if (bank.length > 0 === false) errors.bank = "Please enter your bank information.";
+    if (!lastFour || lastFour < 0) errors.lastFour = "Please enter the last four of your bank account.";
+    if (accountNickname.length > 0 === false) errors.accountNickname = "Please enter a nickname for your account.";
+    if (!buyingPower || buyingPower < 0) errors.buyingPower = "Please enter a number in USD";
+
+    if (Object.keys(errors).length > 0) {
+      setErrors(errors);
+      console.log(errors);
+      return;
+    }
+
+    setLoading(true);
+    const data = await dispatch(signUp(firstName, lastName, email, password, buyingPower));
+    setLoading(false);
+    setErrors(errors);
+    setSignupStage(3);
+  };
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -22,6 +81,15 @@ const SignUpForm = () => {
         setErrors(data);
       }
     }
+  };
+
+  const spinner = <div id="signup-spinner"></div>;
+
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
   };
 
   const updateUsername = (e) => {
@@ -40,6 +108,23 @@ const SignUpForm = () => {
     setRepeatPassword(e.target.value);
   };
 
+  const updateBank = (e) => {
+    setBank(e.target.value);
+  };
+
+  const updateLastFour = (e) => {
+    const value = e.target.value.slice(0, e.target.maxLength);
+    setLastFour(value);
+  };
+
+  const updateAccountNickname = (e) => {
+    setAccountNickname(e.target.value);
+  };
+
+  const updateBuyingPower = (e) => {
+    setBuyingPower(Number(e.target.value));
+  };
+
   if (user) {
     return <Redirect to='/' />;
   }
@@ -52,7 +137,7 @@ const SignUpForm = () => {
             <p className="landing-page-logo-text">Rockethood</p>
             <i className="fa-solid fa-rocket"></i>
           </div>
-          <h1 id="signup-title">Invest with zero commission fees</h1>
+          <p id="signup-title">Invest with zero commission fees</p>
           <p id="signup-support-text">Plus, request 24/7 live support from the app</p>
         </div>
 
@@ -62,51 +147,148 @@ const SignUpForm = () => {
         </div>
       </div>
       <div className='signup-page-right'>
-        <form onSubmit={onSignUp}>
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
+        {signupStage === 1 &&
+          <form id="signup-form">
+            <p id="signup-id-warning" className='signup-form-heading'>Enter your first and last name as they appear on your government ID.</p>
+            <div className='signup-names'>
+              <div>
+                <input
+                  type="text"
+                  name="firstName"
+                  onChange={updateFirstName}
+                  value={firstName}
+                  className={errors.firstName ? "error-input" : null}
+                  placeholder="First Name"
+                />
+                <p className="error-label">
+                  {errors.firstName}
+                </p>
+              </div>
+              <div>
+                <input
+                  type="text"
+                  name="lastName"
+                  onChange={updateLastName}
+                  value={lastName}
+                  className={errors.lastName ? "error-input" : null}
+                  placeholder="Last Name"
+                />
+                <p className="error-label">
+                  {errors.lastName}
+                </p>
+              </div>
+            </div>
+            <div>
+              <input
+                type='text'
+                name='email'
+                onChange={updateEmail}
+                value={email}
+                className={errors.email ? "error-input" : null}
+                placeholder="Email"
+              ></input>
+              <p className="error-label">
+                {errors.email}
+              </p>
+            </div>
+            <div>
+              <input
+                type='password'
+                name='password'
+                onChange={updatePassword}
+                value={password}
+                className={errors.password ? "error-input" : null}
+                placeholder="Password"
+              ></input>
+              <p className="error-label">
+                {errors.password}
+              </p>
+            </div>
+            <div>
+              <input
+                type='password'
+                name='repeat_password'
+                onChange={updateRepeatPassword}
+                value={repeatPassword}
+                required={true}
+                className={errors.repeatPassword ? "error-input" : null}
+                placeholder="Repeat Password"
+              />
+              <p className="error-label">
+                {errors.repeatPassword}
+              </p>
+            </div>
+            <div id="signup-login-container">
+              <p id="signup-already">Already have an account?</p>
+              <Link to="/login"><p id="signup-login">Log in instead</p></Link>
+            </div>
+          </form>}
+        {signupStage === 2 &&
+          <form id="signup-form">
+            <p className='signup-form-heading'>Let's get your account funded!</p>
+            <div>
+              <input
+                type="text"
+                className={errors.bank ? "error-input" : null}
+                value={bank}
+                onChange={updateBank}
+                placeholder='Bank'
+              />
+              <p className="error-label">
+                {errors.bank}
+              </p>
+            </div>
+            <div>
+              <input
+                type="number"
+                className={errors.lastFour ? "error-input" : null}
+                placeholder="Last 4 of your bank account"
+                maxLength={4}
+                onChange={updateLastFour}
+                value={lastFour}
+              />
+              <p className="error-label">
+                {errors.lastFour}
+              </p>
+            </div>
+            <div>
+              <input
+                type="text"
+                className={errors.accountNickname ? "error-input" : null}
+                placeholder="Account nickname"
+                onChange={updateAccountNickname}
+                value={accountNickname}
+              />
+              <p className="error-label">
+                {errors.accountNickname}
+              </p>
+            </div>
+            <div>
+              <input
+                type="number"
+                className={errors.buyingPower ? "error-input" : null}
+                placeholder="How much would you like to get started with?"
+                onChange={updateBuyingPower}
+                value={buyingPower}
+              />
+              <p className="error-label">
+                {errors.buyingPower}
+              </p>
+            </div>
+          </form>}
+        <div className='signup-bottom'>
+          <div id="signup-progress-bar-container">
+            <div id={`signup-progress-bar-${signupStage}`}>
+            </div>
           </div>
-          <div>
-            <label>User Name</label>
-            <input
-              type='text'
-              name='username'
-              onChange={updateUsername}
-              value={username}
-            ></input>
+          <div className='signup-button-container'>
+            <div className="signup-button">
+              {signupStage === 1 && <button className='signup-button-bottom' onClick={phase1Check}>{loading ? spinner : "Next"}</button>}
+              {signupStage === 2 && <button className='signup-button-bottom' onClick={phase2Check}>{loading ? spinner : "Complete Sign up"}</button>}
+              {signupStage === 3 && <button className='signup-button-bottom'>{spinner}</button>}
+            </div>
           </div>
-          <div>
-            <label>Email</label>
-            <input
-              type='text'
-              name='email'
-              onChange={updateEmail}
-              value={email}
-            ></input>
-          </div>
-          <div>
-            <label>Password</label>
-            <input
-              type='password'
-              name='password'
-              onChange={updatePassword}
-              value={password}
-            ></input>
-          </div>
-          <div>
-            <label>Repeat Password</label>
-            <input
-              type='password'
-              name='repeat_password'
-              onChange={updateRepeatPassword}
-              value={repeatPassword}
-              required={true}
-            ></input>
-          </div>
-          <button type='submit'>Sign Up</button>
-        </form>
+        </div>
       </div>
     </div>
   );

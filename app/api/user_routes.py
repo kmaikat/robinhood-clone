@@ -23,3 +23,15 @@ def user(id):
     """
     user = User.query.get(id)
     return user.to_dict()
+
+
+@user_routes.route("/<email>")
+def findEmail(email):
+    """
+    Query for an email from the db to see if it is being used already
+    """
+    user = bool(User.query.filter(User.email.ilike(email)).all())
+    if user:
+        return jsonify(user), 409
+    else:
+        return jsonify(user), 200
