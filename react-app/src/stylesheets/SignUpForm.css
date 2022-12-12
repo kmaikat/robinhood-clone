@@ -2,6 +2,7 @@
     --signup-padding: 0 6.4rem;
     display: flex;
     height: 100vh;
+    overflow-y: scroll;
 }
 
 .signup-page-left {
@@ -23,8 +24,8 @@
 #signup-logo {
     color: #88b2a2;
     font-size: 2.1rem;
-    margin-top: 4rem;
-    margin-bottom: 8rem;
+    margin-top: 2.5vh;
+    margin-bottom: 5vh;
     transform: none;
     line-height: 2rem;
     height: 4.8rem;
@@ -36,7 +37,7 @@
     font-size: 7.75rem;
     line-height: 8.7rem;
     letter-spacing: -.15rem;
-    margin-bottom: 4.8rem;
+    margin-bottom: 5vh;
 }
 
 #signup-support-text {
@@ -65,14 +66,71 @@
 }
 
 #signup-form {
+    display: flex;
+    flex-direction: column;
     padding: 16rem 6.4rem 4.8rem 6.4rem;
     height: 90vh;
+    overflow-y: scroll;
+    width: 100%;
+    gap: 2.4rem;
+}
+
+#signup-form input {
+    border: 1px solid #bdc0c3;
+    color: #525252;
+    line-height: 3rem;
+    padding: 1.6rem 1.2rem;
+    transition: border-color 200ms ease-in-out;
+    font-size: 2.2rem;
+    width: 100%;
+}
+
+.signup-names {
+    display: flex;
+    gap: 2.4rem;
+}
+
+#signup-form input:hover {
+    border-color: black;
+}
+
+#signup-form input:focus {
+    color: black;
+    border-color: black;
+}
+
+#signup-form input.error-input {
+    border-color: var(--rockethood-sell-red)
+}
+
+.error-label {
+    color: var(--rockethood-sell-red)
+}
+
+#signup-login-container {
+    margin-top: 4rem;
+}
+
+#signup-already {
+    font-size: 1.4rem;
+}
+
+#signup-login {
+    color: black;
+    font-weight: 600;
+    font-size: 1.5rem;
+    text-decoration: underline;
+    user-select: none;
+}
+
+#signup-login:hover {
+    color: var(--rockethood-green);
 }
 
 .signup-bottom {
     display: flex;
     flex-direction: column;
-    height: 10vh;
+    height: 11.6rem;
     justify-content: space-between;
 }
 
@@ -140,6 +198,8 @@
     height: 100%;
     padding: 3.6rem 2.4rem;
     justify-content: end;
+    overflow: hidden;
+    background-color: white;
 }
 
 .signup-button {
@@ -171,4 +231,19 @@
     100% {
         transform: rotate(360deg);
     }
+}
+
+
+@media screen and (max-width: 1200px) {
+    .signup-names {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-height: 1000px) {
+    #signup-title {
+        font-size: 5rem;
+        line-height: 6.4rem;
+    }
+
 }

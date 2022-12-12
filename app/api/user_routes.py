@@ -29,6 +29,6 @@ def user(id):
 def findEmail(email):
     user = bool(User.query.filter(User.email.ilike(email)).all())
     if user:
-        return jsonify(user), 200
+        return jsonify(user), 409
     else:
-        return jsonify(user), 404
+        return jsonify(user), 200
