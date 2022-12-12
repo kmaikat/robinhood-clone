@@ -12,6 +12,7 @@ import { authenticate } from './store/session';
 import ChartTest from './components/ChartTest';
 import "./stylesheets/reset.css";
 import "./stylesheets/global.css";
+import WatchList from './components/WatchList';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -68,6 +69,9 @@ function App() {
           <LandingPageNavbar />
           <h1>My Home Page</h1>
           {/* <div style={{ height: "10000px" }}>Temporary navbar test</div> */}
+        </Route>
+        <Route path='/watchlists' exact={true} >
+          <WatchList/>
         </Route>
       </Switch>
     </BrowserRouter>
