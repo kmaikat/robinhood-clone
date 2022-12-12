@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
-import loginImage from "../../assets/login.jpg";
+import loginImage from "../../assets/login.png";
 import "../../stylesheets/LoginForm.css";
 
 const LoginForm = () => {

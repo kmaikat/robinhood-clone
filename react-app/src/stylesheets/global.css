@@ -5,6 +5,10 @@ body {
     position: relative;
 
     --rockethood-green: #00C805;
+    --rockethood-darkest-green: #002615;
+    --rockethood-darker-green: #005f32;
+    --rockethood-lime-green: #c3f53c;
+    --rockethood-disclosure-green: #00c704;
 }
 
 button {
