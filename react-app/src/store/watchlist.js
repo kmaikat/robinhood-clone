@@ -60,28 +60,32 @@ export const fetchUserWatchlists = () => async dispatch => {
 }
 
 export const createWatchlist = (watchlist) => async dispatch => {
-    const { name } = watchlist; 
-    const response = await fetch(`/api/watchlists/`, {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json'
-        }, 
-        body: JSON.stringify({name})
-    })
+    try {
+        const response = await fetch(`/api/watchlists/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: watchlist })
+        });
 
-    if (response.ok) {
-        const data = await response.json()
-        dispatch(addWatchlist(data));
-        return response
-    } else if (response.status < 500) {
-        const data = await response.json()
-        if (data.errors) {
-            return data.errors
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(addWatchlist(data));
+            return response;
+        
+        } else {
+            const data = await response.json();
+            if (data) {
+                throw data.error.name;
+            } else {
+                throw ['An error occurred. Please try again.'];
+            }
         }
-    } else {
-        return ['An error occured.Please try again.']
+    } catch (err) {
+        throw err
     }
-}
+};
 
 const watchlistReducer = (state = {}, action) => {
     switch (action.type) {
@@ -95,7 +99,11 @@ const watchlistReducer = (state = {}, action) => {
                      }),
                     {}
                     ),
-                };
+            };
+        case ADD_WATCHLIST:
+            let newState = { ...state };
+            newState.watchlists[action.watchlist.id] = action.watchlist;
+            return newState;
         default: 
             return state
     }

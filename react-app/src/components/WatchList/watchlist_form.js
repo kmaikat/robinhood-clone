@@ -6,7 +6,6 @@ const NewWatchList = ({openForm, setOpenForm}) => {
     const [name, setName] = useState('');
     const [validationError, setValidationError] = useState('');
     const dispatch = useDispatch();
-    const setOpenForm = props.setOpenForm
     const handleSubmit = async (e) => {
         e.preventDefault();
         setValidationError([]);
@@ -20,16 +19,15 @@ const NewWatchList = ({openForm, setOpenForm}) => {
             )
         }
     
-        dispatch(watchlistAction.createWatchlist(name))
-            .then((res) => { const data = res; })
-            .catch(async (res) => {
-                const data = await res.json(); 
-                if (data.errors) {
-                    setValidationError(data.errors.message)
-                } else { 
-                    setValidationError(data[0])
+        const response = await dispatch(watchlistAction.createWatchlist(name))
+            .catch(async (err) => {
+                setValidationError(err[0])
+                if (err.response) {
+                    const data = await err.response.json();
                 }
-            })
+            });
+        setName('');
+        setOpenForm(false)
 
     }
 
@@ -39,6 +37,9 @@ const NewWatchList = ({openForm, setOpenForm}) => {
     return (
         <div className='newform-container'>
             <form onSubmit={handleSubmit}>
+                <div>
+                    {validationError && <li>{validationError}</li>}
+                </div>
                 <div className='newform-content'>
                     <div>icon</div>
                     <div className='newform-info'>
@@ -46,14 +47,15 @@ const NewWatchList = ({openForm, setOpenForm}) => {
                             <input
                                 type='text'
                                 value={name}
-                                onChange={(e) => setName = e.target.value}
+                                onChange={(e) => setName(e.target.value)}
                                 placeholder='List Name'
+                                required
                             />
                         </label>
                     </div>
                     <div className='newform-button'>
-                        <button type='submit'>Create List</button>
                         <button onClick={handleCancelButton}>Cancel</button>
+                        <button type='submit'>Create List</button>
                     </div>
                 </div>
             </form>
