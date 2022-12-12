@@ -1,16 +1,25 @@
 .searchBar {
-    width: 400px;
+    width: 370px;
+    margin-left: 30px;
     height: 40px;
-    border: 1px solid #c8c8c8;
+    /* border: 1px solid #c8c8c8; */
     padding: 1rem;
     border-radius: 4px;
     z-index: 99;
-    transition: all 0.2s ease;
+    /* transition: all 0.2s ease; */
 }
 
-.searchBar:hover, .searchBar:focus {
+/* .searchBar:hover, .searchBar:focus {
     background-color: #e3e3e3;
     border: 1px solid #afafaf;
+} */
+
+.iconContainer {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
 }
 
 .resultItem {
@@ -32,6 +41,7 @@
     width: 400px;
     padding: 0;
     top: 38px;
+    left: -1px;
     z-index: 98;
 }
 
@@ -42,6 +52,17 @@
 
 .searchContainer {
     position: relative;
+    width: 400px;
+    border: 1px solid #c8c8c8;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.searchContainer:hover {
+    -webkit-box-shadow: 0px 0px 30px 10px rgba(200,200,200,0.67);
+    -moz-box-shadow: 0px 0px 30px 10px rgba(200,200,200,0.67);
+    box-shadow: 0px 0px 30px 10px rgba(200,200,200,0.67);
+    border-color: #ffffff;
 }
 
 .symbolContainer {
