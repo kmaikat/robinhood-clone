@@ -34,14 +34,12 @@ const WatchList = () => {
     // console.log(openForm)
     return (
         <div className='watchlist-container'>
-            <div className='watchlist-header'>
-                <div>
-                    <div>Lists</div>
+            <header>
+                <div className='watchlist-header'>
+                    <span>Lists</span>
+                    <button className='btn-open' onClick={createWatchlist}>+</button>
                 </div>
-                <div>
-                    <button onClick={createWatchlist}>+</button>
-                </div>
-            </div>
+            </header>
             {openForm && <NewWatchList openForm={openForm} setOpenForm={setOpenForm} />}
             <div className='watchlist-lists'>
                 {watchlists && watchlists.map(

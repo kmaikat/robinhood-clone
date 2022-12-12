@@ -1,0 +1,17 @@
+.watchlist-container {
+    margin: 20px;   
+}
+
+.watchlist-header {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    padding: 4px 24px 0px;
+    height: 52px;
+}
+
+
+.btn-open {
+    background: none;
+    border: transparent;
+}
