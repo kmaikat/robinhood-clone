@@ -11,7 +11,17 @@ function AccountButton() {
         const onClick = (e) => {
             console.log(ref.current, e.target);
             if (ref.current && ref.current.contains(e.target) === false) {
-                setShowAccount(false);
+                const menu = document.querySelector("#app-nav-bar-account-submenu");
+                menu.animate(
+                    [
+                        { opacity: "100%" },
+                        { opacity: "0%" }
+                    ], {
+                    duration: 125,
+                    fill: "forwards"
+                }
+                );
+                setTimeout(() => setShowAccount(false), 125);
             }
         };
 

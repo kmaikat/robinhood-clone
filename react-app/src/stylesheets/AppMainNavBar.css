@@ -12,7 +12,7 @@
 }
 
 #app-nav-bar-logo {
-    font-size: 2.5rem;
+    font-size: 3rem;
 }
 
 #app-nav-bar-logo:hover {
@@ -41,4 +41,36 @@
     position: absolute;
     height: 100px;
     background-color: blue;
+    animation: submenu-opacity 200ms ease-in-out forwards;
+}
+
+
+
+@keyframes submenu-opacity {
+    from {
+        opacity: 0%;
+    }
+
+    t0 {
+        opacity: 100%;
+    }
+}
+
+#app-nav-bar-account-submenu-closing {
+    position: absolute;
+    height: 100px;
+    background-color: blue;
+    animation: submenu-opacity-closing 200ms ease-in-out forwards;
+}
+
+
+
+@keyframes submenu-opacity-closing {
+    from {
+        opacity: 100%;
+    }
+
+    t0 {
+        opacity: 0%;
+    }
 }
