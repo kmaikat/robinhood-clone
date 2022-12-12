@@ -13,7 +13,8 @@ import ChartTest from './components/ChartTest';
 import "./stylesheets/reset.css";
 import "./stylesheets/global.css";
 import WatchList from './components/WatchList';
-
+import SymbolNews from './components/News/SymbolNews';
+import AppHome from './components/AppHome';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -71,9 +72,15 @@ function App() {
           {/* <div style={{ height: "10000px" }}>Temporary navbar test</div> */}
         </Route>
         <Route path='/watchlists' exact={true} >
-          <WatchList/>
+          <WatchList />
+        </Route>
+        <Route path='/stocks/:symbol' >
+          <SymbolNews />
         </Route>
       </Switch>
+      <ProtectedRoute path="/app" exact>
+        <AppHome />
+      </ProtectedRoute>
     </BrowserRouter>
   );
 }

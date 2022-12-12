@@ -108,3 +108,22 @@
     cursor: pointer;
     user-select: none;
 }
+
+#login-failed-text {
+    color: var(--rockethood-sell-red);
+    animation: shake-login-text .05s 3;
+}
+
+#login-form .login-failed-input {
+    border-color: var(--rockethood-sell-red);
+}
+
+@keyframes shake-login-text {
+    0% {
+        transform: translate(.3rem);
+    }
+
+    100% {
+        transform: translate(-.3rem);
+    }
+}
