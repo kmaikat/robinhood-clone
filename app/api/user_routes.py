@@ -27,6 +27,9 @@ def user(id):
 
 @user_routes.route("/<email>")
 def findEmail(email):
+    """
+    Query for an email from the db to see if it is being used already
+    """
     user = bool(User.query.filter(User.email.ilike(email)).all())
     if user:
         return jsonify(user), 409
