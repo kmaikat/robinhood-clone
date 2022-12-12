@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
 import signupImage from "../../assets/signup.png";
 import "../../stylesheets/SignUpForm.css";
@@ -115,6 +115,10 @@ const SignUpForm = () => {
             required={true}
             placeholder="Repeat Password"
           ></input>
+          <div id="signup-login-container">
+            <p id="signup-already">Already have an account?</p>
+            <Link to="/login"><p id="signup-login">Log in instead</p></Link>
+          </div>
         </form>
         <div className='signup-bottom'>
           <div id="signup-progress-bar-container">
