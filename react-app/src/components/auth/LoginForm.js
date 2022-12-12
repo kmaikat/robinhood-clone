@@ -14,10 +14,25 @@ const LoginForm = () => {
 
   const onLogin = async (e) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      setTimeout(() => {
+        setErrors({});
+        const errors = {};
+        errors.login = "Please fill out all fields";
+        setErrors(errors);
+      }, 1);
+      return;
+    }
+
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setErrors({});
+      const errors = {};
+      errors.login = "Invalid Credentials";
+      setErrors(errors);
     }
+
   };
 
   const demoLogin = async (e) => {
@@ -61,6 +76,7 @@ const LoginForm = () => {
               <input
                 name='email'
                 type='text'
+                className={errors.login ? "login-failed-input" : null}
                 placeholder='Email'
                 value={email}
                 onChange={updateEmail}
@@ -71,11 +87,13 @@ const LoginForm = () => {
               <input
                 name='password'
                 type='password'
+                className={errors.login ? "login-failed-input" : null}
                 placeholder='Password'
                 value={password}
                 onChange={updatePassword}
               />
             </div>
+            {errors.login && <p id="login-failed-text">{errors.login}</p>}
             <button type='submit' id="login-submit">Login</button>
           </form>
           <Link to="/sign-up" ><p id="login-create-account">Not on Rockethood? <span id="create-an-account">Create an account</span></p></Link>
