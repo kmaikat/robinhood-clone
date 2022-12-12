@@ -1,8 +1,16 @@
 .searchBar {
-    width: 300px;
+    width: 400px;
+    height: 40px;
     border: 1px solid #c8c8c8;
     padding: 1rem;
     border-radius: 4px;
+    z-index: 99;
+    transition: all 0.2s ease;
+}
+
+.searchBar:hover {
+    background-color: #e3e3e3;
+    border: 1px solid #afafaf;
 }
 
 .resultItem {
@@ -20,13 +28,34 @@
     position: absolute;
     list-style: none;
     background-color: white;
-    border: 1px solid darkgray;
-    width: 300px;
+    border: 1px solid #c8c8c8;
+    width: 400px;
     padding: 0;
-    top: 50px;
-    z-index: 99;
+    top: 38px;
+    z-index: 98;
+}
+
+.searchResult > li {
+    display: flex;
+    width: 100%;
 }
 
 .searchContainer {
     position: relative;
+}
+
+.symbolContainer {
+    width: 100px;
+}
+
+.companyContainer {
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.searchKeyword {
+    color: #ec5e2a;
+    font-weight: 600;
 }
