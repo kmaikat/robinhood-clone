@@ -4,10 +4,12 @@ const SET_STARTING_PRICE = 'startingPrice/SET'
 const SET_TERM = 'term/SET'
 const SET_IS_HOVERING = 'isHovering/SET'
 
-export const setCurrentPrice = price => ({
-    type: SET_CURRENT_PRICE,
-    price
-})
+export const setCurrentPrice = price => {
+    return {
+        type: SET_CURRENT_PRICE,
+        price
+    }
+}
 
 export const setStartingPrice = price => ({
     type: SET_STARTING_PRICE,
