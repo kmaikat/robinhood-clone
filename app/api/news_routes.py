@@ -17,6 +17,7 @@ def get_all_news():
     data = r.json()
     return data
 
+# add article to likes
 
 @news_routes.route("<string:ticker>")
 def get_news_by_ticker(ticker):
