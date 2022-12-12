@@ -7,10 +7,14 @@ import "../../stylesheets/SignUpForm.css";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatPassword, setRepeatPassword] = useState('');
+  const [buyingPower, setBuyingPower] = useState(0.00);
+  const [signupStage, setSignupStage] = useState(1);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -22,6 +26,15 @@ const SignUpForm = () => {
         setErrors(data);
       }
     }
+  };
+
+  const spinner = <div id="signup-spinner"></div>;
+
+  const updateFirstName = (e) => {
+    setFirstName(e.target.value);
+  };
+  const updateLastName = (e) => {
+    setLastName(e.target.value);
   };
 
   const updateUsername = (e) => {
@@ -52,7 +65,7 @@ const SignUpForm = () => {
             <p className="landing-page-logo-text">Rockethood</p>
             <i className="fa-solid fa-rocket"></i>
           </div>
-          <h1 id="signup-title">Invest with zero commission fees</h1>
+          <p id="signup-title">Invest with zero commission fees</p>
           <p id="signup-support-text">Plus, request 24/7 live support from the app</p>
         </div>
 
@@ -62,51 +75,63 @@ const SignUpForm = () => {
         </div>
       </div>
       <div className='signup-page-right'>
-        <form onSubmit={onSignUp}>
-          <div>
-            {errors.map((error, ind) => (
-              <div key={ind}>{error}</div>
-            ))}
-          </div>
-          <div>
-            <label>User Name</label>
+        <form onSubmit={onSignUp} id="signup-form">
+          <p id="signup-id-warning">Enter your first and last name as they appear on your government ID.</p>
+          <div className='signup-names'>
             <input
-              type='text'
-              name='username'
-              onChange={updateUsername}
-              value={username}
-            ></input>
-          </div>
-          <div>
-            <label>Email</label>
+              type="text"
+              name="firstName"
+              onChange={updateFirstName}
+              value={firstName}
+              placeholder="First Name"
+            />
             <input
-              type='text'
-              name='email'
-              onChange={updateEmail}
-              value={email}
-            ></input>
+              type="text"
+              name="lastName"
+              onChange={updateLastName}
+              value={lastName}
+              placeholder="Last Name"
+            />
           </div>
-          <div>
-            <label>Password</label>
-            <input
-              type='password'
-              name='password'
-              onChange={updatePassword}
-              value={password}
-            ></input>
-          </div>
-          <div>
-            <label>Repeat Password</label>
-            <input
-              type='password'
-              name='repeat_password'
-              onChange={updateRepeatPassword}
-              value={repeatPassword}
-              required={true}
-            ></input>
-          </div>
-          <button type='submit'>Sign Up</button>
+          <input
+            type='text'
+            name='email'
+            onChange={updateEmail}
+            value={email}
+            placeholder="Email"
+          ></input>
+          <input
+            type='password'
+            name='password'
+            onChange={updatePassword}
+            value={password}
+            placeholder="Password"
+          ></input>
+          <input
+            type='password'
+            name='repeat_password'
+            onChange={updateRepeatPassword}
+            value={repeatPassword}
+            required={true}
+            placeholder="Repeat Password"
+          ></input>
         </form>
+        <div className='signup-bottom'>
+          <div id="signup-progress-bar-container">
+            <div id={`signup-progress-bar-${signupStage}`}>
+            </div>
+          </div>
+          <div className='signup-button-container'>
+            <div className="signup-button">
+              {signupStage === 1 && <button className='signup-button-bottom' onClick={() => setSignupStage(2)}>Next</button>}
+              {signupStage === 2 && <button className='signup-button-bottom' onClick={(e) => {
+                setSignupStage(3);
+                onSignUp(e);
+              }}>Complete Sign up</button>}
+              {signupStage === 3 && <button className='signup-button-bottom'>{spinner}</button>}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
