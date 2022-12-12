@@ -99,6 +99,14 @@
     border-color: black;
 }
 
+.error-input {
+    border-color: var(--rockethood-sell-red)
+}
+
+.error-label {
+    color: var(--rockethood-sell-red)
+}
+
 #signup-login-container {
     margin-top: 4rem;
 }

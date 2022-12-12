@@ -78,43 +78,75 @@ const SignUpForm = () => {
         <form onSubmit={onSignUp} id="signup-form">
           <p id="signup-id-warning">Enter your first and last name as they appear on your government ID.</p>
           <div className='signup-names'>
-            <input
-              type="text"
-              name="firstName"
-              onChange={updateFirstName}
-              value={firstName}
-              placeholder="First Name"
-            />
-            <input
-              type="text"
-              name="lastName"
-              onChange={updateLastName}
-              value={lastName}
-              placeholder="Last Name"
-            />
+            <div>
+              <input
+                type="text"
+                name="firstName"
+                onChange={updateFirstName}
+                value={firstName}
+                className={errors[firstName] ? "error-input" : null}
+                placeholder="First Name"
+              />
+              <p className="error-label">
+                {errors[firstName]}
+              </p>
+            </div>
+            <div>
+              <input
+                type="text"
+                name="lastName"
+                onChange={updateLastName}
+                value={lastName}
+                className={errors[lastName] ? "error-input" : null}
+                placeholder="Last Name"
+              />
+              <p className="error-label">
+                {errors[lastName]}
+              </p>
+            </div>
           </div>
-          <input
-            type='text'
-            name='email'
-            onChange={updateEmail}
-            value={email}
-            placeholder="Email"
-          ></input>
-          <input
-            type='password'
-            name='password'
-            onChange={updatePassword}
-            value={password}
-            placeholder="Password"
-          ></input>
-          <input
-            type='password'
-            name='repeat_password'
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-            placeholder="Repeat Password"
-          ></input>
+          <div>
+            <input
+              type='text'
+              name='email'
+              onChange={updateEmail}
+              value={email}
+              className={errors[email] ? "error-input" : null}
+              placeholder="Email"
+            ></input>
+            <p className="error-label">
+                {errors[email]}
+            </p>
+          </div>
+          <div>
+            <input
+              type='password'
+              name='password'
+              onChange={updatePassword}
+              value={password}
+              className={errors[password] ? "error-input" : null}
+              placeholder="Password"
+            ></input>
+            <p className="error-label">
+                {errors[password]}
+            </p>
+          </div>
+          <div>
+            <input
+              type='password'
+              name='repeat_password'
+              onChange={updateRepeatPassword}
+              value={repeatPassword}
+              required={true}
+              className={errors[repeatPassword] ? "error-input" : null}
+              placeholder="Repeat Password"
+            />
+            <p className="error-label">
+                {errors[repeatPassword]}
+            </p>
+          </div>
+
+
           <div id="signup-login-container">
             <p id="signup-already">Already have an account?</p>
             <Link to="/login"><p id="signup-login">Log in instead</p></Link>
