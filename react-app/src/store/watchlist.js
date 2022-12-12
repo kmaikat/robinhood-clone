@@ -1,4 +1,4 @@
-import { csrfFetch } from './csrf';
+// import { csrfFetch } from './csrf';
 //action types 
 const LOAD_WATCHLISTS = "watchlist/loadWatchlists";
 const ADD_WATCHLIST = "watchlist/addWatchlist"; 
@@ -53,49 +53,50 @@ export const fetchUserWatchlists = () => async dispatch => {
     const response = await fetch(`api/watchlists/current`); 
    
     if (response.ok) {
-        const watchlists = await response.json();
-        dispatch(loadWatchlists(watchlists)); 
+        const data = await response.json();
+        dispatch(loadWatchlists(data.watchlists)); 
         return response
     }
     
 }
 
-export const createWatchlist = (watchlist) => async dispatch => {
-    const { name } = watchlist; 
-    const response = await csrfFetch(`/api/watchlists/`, {
-        method: 'POST', 
-        headers: {
-            'Content-Type': 'application/json'
-        }, 
-        body: JSON.stringify({name})
-    })
+// export const createWatchlist = (watchlist) => async dispatch => {
+//     const { name } = watchlist; 
+//     const response = await csrfFetch(`/api/watchlists/`, {
+//         method: 'POST', 
+//         headers: {
+//             'Content-Type': 'application/json'
+//         }, 
+//         body: JSON.stringify({name})
+//     })
 
-    if (response.ok) {
-        const data = await response.json()
-        dispatch(addWatchlist(data));
-        return response
-    } else if (response.status < 500) {
-        const data = await response.json()
-        if (data.errors) {
-            return data.errors
-        }
-    } else {
-        return ['An error occured.Please try again.']
-    }
-}
+//     if (response.ok) {
+//         const data = await response.json()
+//         dispatch(addWatchlist(data));
+//         return response
+//     } else if (response.status < 500) {
+//         const data = await response.json()
+//         if (data.errors) {
+//             return data.errors
+//         }
+//     } else {
+//         return ['An error occured.Please try again.']
+//     }
+// }
 
-
-export const watchlistReducer = (state={}, action) => {
+export const watchlistReducer = (state = {}, action) => {
     switch (action.type) {
-        case LOAD_WATCHLISTS: 
+        case LOAD_WATCHLISTS:
             return {
-                ...state, 
-                watchlists: action.watchlists.reduct((acc, watchlist) => {
-                    acc[watchlist.id] = watchlist;
-                    return acc
-                }, {})
-            }
-        
+                ...state,
+                watchlists: action.watchlists.reduce(
+                    (watchlistsById, watchlist) => ({
+                        ...watchlistsById,
+                        [watchlist.id]: watchlist,
+                     }),
+                    {}
+                    ),
+                };
         default: 
             return state
     }
