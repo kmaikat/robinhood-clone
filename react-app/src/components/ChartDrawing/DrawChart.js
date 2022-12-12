@@ -10,9 +10,10 @@ const DrawChart = () => {
     const [isLoaded, setIsLoaded] = useState(false)
     const [allData, setAllData] = useState({})
     const [color, setColor] = useState('#5ac53b')
-    // const [term, setTerm] = useState('5Y')
     const [isRealtime, setIsRealtime] = useState(false)
     const { symbol, name } = useSelector(state => state.ticker)
+    // const [isTooltip, setIsTooltip] = useState(true)
+    const [range, setRange] = useState(0)
     const term = useSelector(state => state.price.term)
     const terms = ['1D', '1W', '1M', '3M', 'YTD', '1Y', '5Y']
     const selected = {
@@ -21,6 +22,30 @@ const DrawChart = () => {
         fontWeight: 500
     }
     const dispatch = useDispatch()
+    let realtimeId
+
+    const setCategories = () => {
+        const offsetEST = 18000000
+        const todayDateEST = new Date(new Date().getTime() - offsetEST).toISOString().split('T')[0]
+
+        const res = []
+
+        let hour = 9
+        let minute = 30
+
+        while(hour < 17){
+            res.push(`${todayDateEST} ${('0' + hour).slice(-2)}:${('0' + minute).slice(-2)}`)
+            if(minute < 55) minute += 5
+            else {
+                minute = 0
+                hour++
+            }
+
+            if(hour >= 16 && minute > 0) hour++
+        }
+
+        return res
+    }
 
     const getData = async () => {
         const { data, categories } = ['3M', 'YTD', '1Y', '5Y'].includes(term) ? await getDailyPrices(symbol, term) : await getMinutelyPrices(symbol, term)
@@ -30,7 +55,12 @@ const DrawChart = () => {
 
     const getOneDayData = async () => {
         const { data, categories, realtime } = await getOneDayPrices(symbol)
-        setChart(data, categories)
+        if(realtime){
+            const rtCategories = setCategories()
+            rtCategories[categories.length - 1] = categories[categories.length - 1]
+
+            setChart([...data, ...Array(rtCategories.length - data.length).fill(null)], rtCategories)
+        }else setChart(data, categories)
         setIsRealtime(realtime)
         setIsLoaded(true)
     }
@@ -43,19 +73,27 @@ const DrawChart = () => {
             }],
             categories
         })
-        dispatch(setCurrentPrice(data[data.length - 1] || -1))
+        setRange(categories.length)
+        dispatch(setCurrentPrice(data.reduce((p, c) => c || p)))
         dispatch(setStartingPrice(data[0]))
-        setColor(data[0] < data[data.length - 1] ? '#5ac53b' : '#ec5e2a')
+        setColor(data[0] < data.reduce((p, c) => c || p) ? '#5ac53b' : '#ec5e2a')
     }
 
     useEffect(() => {
-        if(isRealtime) setTimeout(async () => {await getOneDayData()}, 60000)
+        if(isRealtime && term === '1D') realtimeId = setTimeout(async () => {
+            await getOneDayData()
+        }, 60000)
     }, [isRealtime, allData])
 
     useEffect(() => {
         setIsLoaded(false)
 
-        term === '1D' ? getOneDayData() : getData()
+        if(term === '1D') getOneDayData()
+        else {
+            clearTimeout(realtimeId)
+            getData()
+        }
+
 
     }, [term, symbol])
 
@@ -69,6 +107,7 @@ const DrawChart = () => {
                         series={allData.series}
                         options={{
                             chart: {
+                                id: 'stock-chart',
                                 animations: { enabled: false },
                                 type: 'line',
                                 height: 300,
@@ -76,18 +115,23 @@ const DrawChart = () => {
                                 zoom: { enabled: false },
                                 events: {
                                     mouseMove: (e, chartContext, config) => {
-                                        dispatch(setCurrentPrice(allData.series[0].data[config.dataPointIndex] || allData.series[0].data[allData.series[0].data.length - 1]))
+                                        if(config.dataPointIndex >= 0){
+                                            // setIsTooltip(!!allData.series[0].data[config.dataPointIndex])
+                                            dispatch(setCurrentPrice(allData.series[0].data.slice(0, config.dataPointIndex + 1).reduce((p, c) => c || p) || allData.series[0].data[allData.series[0].data.length - 1]))
+                                        }
                                         dispatch(setIsHovering(true))
                                     },
                                     mouseLeave: () => {
-                                        dispatch(setCurrentPrice(allData.series[0].data[allData.series[0].data.length - 1]))
+                                        dispatch(setCurrentPrice(allData.series[0].data.reduce((p, c) => c || p)))
                                         dispatch(setIsHovering(false))
+                                        // setIsTooltip(true)
                                     }
                                 },
                                 toolbar: { show: false },
                                 // sparkline: { enabled: true }
                             },
                             colors: [color],
+                            width: '100%',
                             xaxis: {
                                 categories: allData.categories,
                                 position: 'top',
@@ -98,8 +142,11 @@ const DrawChart = () => {
                                 tooltip: {
                                     offsetY: 20,
                                 },
+                                range,
                             },
-                            yaxis: { labels: { show: false }},
+                            yaxis: {
+                                labels: { show: false },
+                            },
                             grid: { show: false },
                             stroke: {
                                 width: 1.5,
@@ -108,6 +155,7 @@ const DrawChart = () => {
                                 show: false,
                             },
                             tooltip: {
+                                // enabled: isTooltip,
                                 enabled: true,
                                 items: { display: 'none' },
                                 x: { show: false },

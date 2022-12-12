@@ -50,39 +50,40 @@ const Search = () => {
 
   return (
       <div className={styles.searchContainer}>
-      <input
-        type='text'
-        onChange={searchInput}
-        onBlur={clearSearch}
-        onFocus={() => {if(searchRes.length || keyword.length) setShowSearchRes(true)}}
-        value={keyword}
-        className={styles.searchBar}
-      />
-      {
-        showSearchRes &&
-        <ul
-          className={styles.searchResult}
-          onMouseEnter={() => setIsHoveringOnSearchRes(true)}
-          onMouseLeave={() => setIsHoveringOnSearchRes(false)}
-        >
-          {
-          !!searchRes.length ?
-            searchRes.map(res =>
-              <li
-                  className={styles.resultItem}
-                  key={res.symbol}
-                  onClick={() => {
-                    dispatch(setSymbol(res.symbol, res.name))
-                    setIsHoveringOnSearchRes(false)
-                    setKeyword('')
-                    setSearchRes([])
-                  }}
-              >
-                <div className={styles.symbolContainer}>{searchResStyling(res.symbol, keyword)}</div>
-                <div className={styles.companyContainer}>{searchResStyling(res.name, keyword)}</div>
-              </li>) :
-              <li>no search result</li>
-          }
+        <input
+          type='text'
+          onChange={searchInput}
+          onBlur={clearSearch}
+          onFocus={() => {if(searchRes.length || keyword.length) setShowSearchRes(true)}}
+          value={keyword}
+          className={styles.searchBar}
+        />
+        <div className={styles.iconContainer}><i className="fa-solid fa-magnifying-glass fa-lg"></i></div>
+        {
+          showSearchRes &&
+          <ul
+            className={styles.searchResult}
+            onMouseEnter={() => setIsHoveringOnSearchRes(true)}
+            onMouseLeave={() => setIsHoveringOnSearchRes(false)}
+          >
+            {
+            !!searchRes.length ?
+              searchRes.map(res =>
+                <li
+                    className={styles.resultItem}
+                    key={res.symbol}
+                    onClick={() => {
+                      dispatch(setSymbol(res.symbol, res.name))
+                      setIsHoveringOnSearchRes(false)
+                      setKeyword('')
+                      setSearchRes([])
+                    }}
+                >
+                  <div className={styles.symbolContainer}>{searchResStyling(res.symbol, keyword)}</div>
+                  <div className={styles.companyContainer}>{searchResStyling(res.name, keyword)}</div>
+                </li>) :
+                <li>no search result</li>
+            }
           { !isSearchLoaded && <li>Loading...</li> }
         </ul>
       }
