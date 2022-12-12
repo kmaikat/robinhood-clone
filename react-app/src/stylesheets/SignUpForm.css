@@ -11,6 +11,7 @@
     height: 100%;
     width: 50%;
     background-color: var(--rockethood-darker-green);
+    overflow: hidden;
 }
 
 .signup-page-left-top {
@@ -47,4 +48,123 @@
     color: var(--rockethood-disclosure-green);
     padding: 3rem 6.4rem;
     font-size: 1.45rem
+}
+
+.signup-page-right {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 50%;
+    overflow: hidden;
+    justify-content: space-between;
+}
+
+
+#signup-form {
+    padding: 16rem 6.4rem 4.8rem 6.4rem;
+    height: 90vh;
+}
+
+.signup-bottom {
+    display: flex;
+    flex-direction: column;
+    height: 10vh;
+    justify-content: space-between;
+}
+
+#signup-progress-bar-container {
+    width: 100%;
+    border-bottom: 1px solid black;
+}
+
+#signup-progress-bar-1 {
+    height: .4rem;
+    background-color: black;
+    width: 20%;
+    animation: progress-bar-fill-part-1 1s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes progress-bar-fill-part-1 {
+    from {
+        width: 0%;
+    }
+
+    to {
+        width: 20%;
+    }
+}
+
+#signup-progress-bar-2 {
+    height: .4rem;
+    background-color: black;
+    width: 20%;
+    animation: progress-bar-fill-part-2 1s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes progress-bar-fill-part-2 {
+    from {
+        width: 20%;
+    }
+
+    to {
+        width: 80%;
+    }
+}
+
+#signup-progress-bar-3 {
+    height: .4rem;
+    background-color: black;
+    width: 100%;
+    animation: progress-bar-fill-part-3 1s ease-in-out;
+    animation-fill-mode: forwards;
+}
+
+@keyframes progress-bar-fill-part-3 {
+    from {
+        width: 80%;
+    }
+
+    to {
+        width: 100%;
+    }
+}
+
+.signup-button-container {
+    display: flex;
+    height: 100%;
+    padding: 3.6rem 2.4rem;
+    justify-content: end;
+}
+
+.signup-button {
+    align-self: end;
+}
+
+.signup-button-bottom {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#signup-spinner {
+    border: .5rem solid white;
+    border-top: .5rem solid var(--rockethood-green);
+    border-radius: 100%;
+    width: 2.5rem;
+    aspect-ratio: 1/1;
+    animation: loader .65s ease-in-out infinite;
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
