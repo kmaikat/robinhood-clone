@@ -1,23 +1,48 @@
 import * as watchlistAction from '../../store/watchlist'; 
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import NewWatchList from './watchlist_form';
 const WatchList = () => {
     const dispatch = useDispatch(); 
     const data = useSelector(state => state.watchlists)
-    // console.log(Object.values(watchlists.watchlists))
-    const watchlists = Object.values(data.watchlists)
+    
+   
+    const [openForm, setOpenForm] = useState(false)
 
     useEffect(() => {
         dispatch(watchlistAction.fetchUserWatchlists())
     }, [dispatch])
+    const createWatchlist = () => {
+        console.log('im running')
+        setOpenForm(true);
+    }
+    if (!data.watchlists) {
+        return (
+            <div>
+                <div>
+                    <div>Lists</div>
+                </div>
+                <div>
+                    <button>+</button>
+                </div>
+            </div>
+        )
+    } 
+    const watchlists = Object.values(data.watchlists)
+    console.log(openForm)
     return (
         <div>
             <div>
-                <div>Lists</div>
-                <div>Plus button</div>
+                <div>
+                    <div>Lists</div>
+                </div>
+                <div>
+                    <button onClick={createWatchlist}>+</button>
+                </div>
             </div>
+            {openForm && <NewWatchList props={openForm} />}
             <div>
-                {watchlists.length > 0 && watchlists.map(
+                {watchlists && watchlists.map(
                     watchlist => (
                         <div>
                             {watchlist.name}
