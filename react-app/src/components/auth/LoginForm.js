@@ -14,14 +14,25 @@ const LoginForm = () => {
 
   const onLogin = async (e) => {
     e.preventDefault();
+
+    if (!email || !password) {
+      setTimeout(() => {
+        setErrors({});
+        const errors = {};
+        errors.login = "Please fill out all fields";
+        setErrors(errors);
+      }, 1);
+      return;
+    }
+
     const data = await dispatch(login(email, password));
-    const errors = {};
-    setErrors(errors);
     if (data) {
+      setErrors({});
       const errors = {};
-      errors.login = "Please try again";
+      errors.login = "Invalid Credentials";
       setErrors(errors);
     }
+
   };
 
   const demoLogin = async (e) => {
@@ -48,7 +59,6 @@ const LoginForm = () => {
 
   return (
     <div className='login-page'>
-      {console.log(errors.login)}
       <div className='login-page-left'>
         <img src={loginImage} alt="people together on rockethood" />
       </div>
