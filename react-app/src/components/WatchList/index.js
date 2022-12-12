@@ -42,7 +42,7 @@ const WatchList = () => {
                     <button onClick={createWatchlist}>+</button>
                 </div>
             </div>
-            {openForm && <NewWatchList props={setOpenForm} />}
+            {openForm && <NewWatchList openForm={openForm} setOpenForm={setOpenForm} />}
             <div className='watchlist-lists'>
                 {watchlists && watchlists.map(
                     watchlist => (

@@ -2,7 +2,7 @@ import * as watchlistAction from '../../store/watchlist';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-const NewWatchList = (props) => {
+const NewWatchList = ({openForm, setOpenForm}) => {
     const [name, setName] = useState('');
     const [validationError, setValidationError] = useState('');
     const dispatch = useDispatch();
@@ -34,8 +34,7 @@ const NewWatchList = (props) => {
     }
 
     const handleCancelButton = (e) => {
-        e.preventDefault();
-        setOpenForm(false);
+        openForm === false ? setOpenForm(true):setOpenForm(false)
     }    
     return (
         <div className='newform-container'>
