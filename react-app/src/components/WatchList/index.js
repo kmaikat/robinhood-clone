@@ -2,18 +2,17 @@ import * as watchlistAction from '../../store/watchlist';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import NewWatchList from './watchlist_form';
+import './index.css';
 const WatchList = () => {
     const dispatch = useDispatch(); 
-    const data = useSelector(state => state.watchlists)
-    
-   
-    const [openForm, setOpenForm] = useState(false)
+    const data = useSelector(state => state.watchlists);
+    const [openForm, setOpenForm] = useState(false);
+    const [openStock, setOpenStock] = useState(false);
 
     useEffect(() => {
         dispatch(watchlistAction.fetchUserWatchlists())
     }, [dispatch])
     const createWatchlist = () => {
-        console.log('im running')
         setOpenForm(true);
     }
     if (!data.watchlists) {
@@ -31,7 +30,10 @@ const WatchList = () => {
         )
     } 
     const watchlists = Object.values(data.watchlists)
-    // console.log(openForm)
+    const handleClickBtn = (e) => {
+        e.stopPropagation()
+        openStock === false ? setOpenStock(true):setOpenStock(false)
+    }
     return (
         <div className='watchlist-container'>
             <header>
@@ -46,35 +48,41 @@ const WatchList = () => {
                     watchlist => (
                         <div className='watchlist-content'>
                             <div className='watchlist-content-header'>
-                                <div>
-                                    icon
+                                <div className='watchlist-wrapper-head'>
+                                    <div className='icon'>
+                                        💡
+                                    </div>
+                                    <div className='watchlist-name'>
+                                        {watchlist.name}
+                                    </div>
                                 </div>
-                                <div className='watchlist-name'>
-                                    {watchlist.name}
-                                </div>
                                 <div>
-                                    <button>+</button>
+                                    <div className='btn-openstock' onClick={handleClickBtn}>
+                                        {openStock ? <span>V</span> : <span>Λ</span>}
+                                    </div>
                                 </div>
                             </div>
-                            <div className='watchlist-stocks-container'>
-                                {watchlist.watchlist_stocks.length > 0 && 
-                                    watchlist.watchlist_stocks.map(stock => (
-                                        <div className='watchlist-stocks-content'>
-                                            <div className='watchlist-stocksymbol'>
-                                                {stock.stock_symbol}
+                            {openStock &&
+                                <div className='watchlist-stocks-container'>
+                                    {watchlist.watchlist_stocks.length > 0 &&
+                                        watchlist.watchlist_stocks.map(stock => (
+                                            <div className='watchlist-stocks-content'>
+                                                <div className='watchlist-stocksymbol'>
+                                                    {stock.stock_symbol}
+                                                </div>
+                                                <div className='watchlist-minigraph'>
+                                                    Graph here
+                                                </div>
+                                                <div className='watchlist-stockprice'>
+                                                    <div>stock price</div>
+                                                    <div>stock change</div>
+                                                </div>
                                             </div>
-                                            <div className='watchlist-minigraph'>
-                                                Graph here
-                                            </div>
-                                            <div className='watchlist-stockprice'>
-                                                <div>stock price</div>
-                                                <div>stock change</div>
-                                            </div>
-                                        </div>
                                     
-                                    ))
-                                }
-                            </div>
+                                        ))
+                                    }
+                                </div>
+                            }
                         </div>
                     )
                 )}
