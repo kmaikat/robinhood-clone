@@ -151,7 +151,7 @@ const SignUpForm = () => {
           <form id="signup-form">
             <p id="signup-id-warning" className='signup-form-heading'>Enter your first and last name as they appear on your government ID.</p>
             <div className='signup-names'>
-              <div>
+              <div className='signup-names-inner'>
                 <input
                   type="text"
                   name="firstName"
@@ -164,7 +164,7 @@ const SignUpForm = () => {
                   {errors.firstName}
                 </p>
               </div>
-              <div>
+              <div className='signup-names-inner'>
                 <input
                   type="text"
                   name="lastName"
