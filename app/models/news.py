@@ -10,8 +10,10 @@ class News(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     like = db.Column(db.Boolean, nullable=False)
-    user_id = db.Column(db.Integer, db.ForeignKey(
-        add_prefix_for_prod('users.id')), nullable=False)
+    user_id = db.Column(db.Integer,
+                        db.ForeignKey(
+                            add_prefix_for_prod('users.id')
+                        ), nullable=False)
     title = db.Column(db.String, nullable=False)
     source = db.Column(db.String, nullable=False)
     image = db.Column(db.String, nullable=False)
