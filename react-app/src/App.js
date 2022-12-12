@@ -13,7 +13,7 @@ import ChartTest from './components/ChartTest';
 import "./stylesheets/reset.css";
 import "./stylesheets/global.css";
 import WatchList from './components/WatchList';
-
+import SymbolNews from './components/News/SymbolNews';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -72,6 +72,9 @@ function App() {
         </Route>
         <Route path='/watchlists' exact={true} >
           <WatchList/>
+        </Route>
+        <Route path='/stocks/:symbol' >
+          <SymbolNews/>
         </Route>
       </Switch>
     </BrowserRouter>
