@@ -15,6 +15,7 @@ const SignUpForm = () => {
   const [repeatPassword, setRepeatPassword] = useState('');
   const [buyingPower, setBuyingPower] = useState(0.00);
   const [signupStage, setSignupStage] = useState(1);
+  const [loading, setLoading] = useState(false);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
@@ -26,13 +27,25 @@ const SignUpForm = () => {
     if (email.length > 0 === false) errors.email = "Please enter your email.";
     if (password.length > 0 === false) errors.password = "Please enter your password.";
     if (repeatPassword.length > 0 === false) errors.repeatPassword = "Please retype your password.";
+    else if (repeatPassword !== password) errors.repeatPassword = "Passwords must match!";
 
     if (Object.keys(errors).length > 0) {
       setErrors(errors);
-      console.log(errors)
+      console.log(errors);
       return;
     }
 
+    setLoading(true);
+    const response = await fetch(`/api/users/${email}`);
+    setTimeout(()=> setLoading(false), 250)
+
+    if (response.status === 409) {
+      errors.email = "Email already in use.";
+      setErrors(errors);
+      return;
+    }
+
+    setErrors(errors);
     setSignupStage(2);
   };
 
@@ -77,7 +90,6 @@ const SignUpForm = () => {
 
   return (
     <div className='signup-page'>
-      {console.log(errors)}
       <div className='signup-page-left'>
         <div className='signup-page-left-top'>
           <div className="landing-page-logo" id="signup-logo">
@@ -164,8 +176,6 @@ const SignUpForm = () => {
               {errors.repeatPassword}
             </p>
           </div>
-
-
           <div id="signup-login-container">
             <p id="signup-already">Already have an account?</p>
             <Link to="/login"><p id="signup-login">Log in instead</p></Link>
@@ -178,7 +188,7 @@ const SignUpForm = () => {
           </div>
           <div className='signup-button-container'>
             <div className="signup-button">
-              {signupStage === 1 && <button className='signup-button-bottom' onClick={phase1Check}>Next</button>}
+              {signupStage === 1 && <button className='signup-button-bottom' onClick={phase1Check}>{loading ? spinner : "Next"}</button>}
               {signupStage === 2 && <button className='signup-button-bottom' onClick={(e) => {
                 setSignupStage(3);
                 onSignUp(e);
