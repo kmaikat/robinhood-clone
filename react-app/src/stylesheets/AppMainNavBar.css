@@ -31,46 +31,89 @@
     border: none;
     width: 10px;
     min-width: min-content;
+    padding: .6rem 0;
 }
 
 #account-button:hover {
-    color: var(--rockethood-green)
+    color: var(--rockethood-green);
+}
+
+/* #account-button:focus-within {
+    color: var(--rockethood-green);
+    border-bottom: 2px var(--rockethood-green) solid;
+} */
+
+#account-button.account-button-hold {
+    color: var(--rockethood-green);
+    border-bottom: 2px var(--rockethood-green) solid;
 }
 
 #app-nav-bar-account-submenu {
     position: absolute;
-    height: 100px;
-    background-color: blue;
+    width: 30rem;
+    right: 2.4rem;
+    line-height: 2rem;
+    font-size: 1.5rem;
+    border: 1px solid var(--rockethood-border-lightgray);
+    border-radius: .8rem;
+    background-color: white;
     animation: submenu-opacity 200ms ease-in-out forwards;
+    font-weight: 600;
+    box-shadow: 0px -12px 24px rgba(0,0,0,0.02), 0px 12px 24px rgba(0,0,0,0.02);
 }
-
-
 
 @keyframes submenu-opacity {
     from {
         opacity: 0%;
     }
 
-    t0 {
+    to {
         opacity: 100%;
     }
 }
 
-#app-nav-bar-account-submenu-closing {
-    position: absolute;
-    height: 100px;
-    background-color: blue;
-    animation: submenu-opacity-closing 200ms ease-in-out forwards;
+#submenu-account-information {
+    padding: 0 2.4rem;
+    padding-top: 1.8rem;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--rockethood-border-lightgray);
 }
 
+#submenu-profile-container {
+    padding: 0 2.4rem;
+    display: flex;
+    border-bottom: 1px solid var(--rockethood-border-lightgray);
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+    align-items: center;
+    gap: 1.2rem;
+}
 
+#submenu-profile-container:hover {
+    cursor: pointer;
+    background-color: var(--rockethood-border-lightgray);
+    user-select: none;
+}
 
-@keyframes submenu-opacity-closing {
-    from {
-        opacity: 100%;
-    }
+#submenu-profile-container .fa-face-smile {
+    font-size: 1.6rem;
+}
 
-    t0 {
-        opacity: 0%;
-    }
+#submenu-logout-container {
+    padding: 0 2.4rem;
+    display: flex;
+    padding-top: 1.2rem;
+    padding-bottom: 1.2rem;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+#submenu-logout-container:hover {
+    cursor: pointer;
+    background-color: var(--rockethood-border-lightgray);
+    user-select: none;
+}
+
+#submenu-profile-container .fa-arrow-right-from-bracket {
+    font-size: 1.6rem;
 }

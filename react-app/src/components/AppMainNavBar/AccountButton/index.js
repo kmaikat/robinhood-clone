@@ -1,10 +1,15 @@
 import React, { useEffect, useReducer, useRef, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { logout } from "../../../store/session";
+import LogoutButton from "../../auth/LogoutButton";
 import AccountModal from "../../Modals/AccountModal";
 
 function AccountButton() {
     const [showAccount, setShowAccount] = useState(false);
     const ref = useRef(null);
-
+    const dispatch = useDispatch();
+    const user = useSelector(state => state.session.user);
     useEffect(() => {
         if (!showAccount) return;
 
@@ -26,19 +31,30 @@ function AccountButton() {
         };
 
         document.addEventListener("click", onClick);
-
         return () => document.removeEventListener("click", onClick);
     }, [showAccount]);
+
+
     return (
         <div id="account-button-container">
-            <button onClick={() => setShowAccount(true)} id="account-button">Account</button>
+            <button onClick={() => setShowAccount(true)} id="account-button" className={showAccount ? "account-button-hold" : ""}>Account</button>
             {showAccount &&
                 <div ref={ref} id="app-nav-bar-account-submenu">
-                    This do be lit tho
+                    <div id="submenu-account-information">
+                        {user.username || user.email}
+                    </div>
+                    <Link to="/profile"><div id="submenu-profile-container">
+                        <i className="fa-solid fa-face-smile" />
+                        <p>Profile</p>
+                    </div></Link>
+                    <div id="submenu-logout-container" onClick={async (e) => await dispatch(logout())}>
+                        <i className="fa-solid fa-arrow-right-from-bracket" />
+                        <p> Log Out </p>
+                    </div>
                 </div>
             }
-        </div>
+        </div >
     );
 }
 
-export default AccountButton;
+export default AccountButton;;;
