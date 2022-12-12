@@ -3,15 +3,17 @@ import { useEffect, useState } from 'react'
 // import { getDailyPrices, getMinutelyPrices, getOneDayPrices, labelFormatter } from '../../util/util'
 import { getDailyPrices, getMinutelyPrices, getOneDayPrices, labelFormatter } from '../../util/util2'
 import { useSelector, useDispatch } from 'react-redux'
-import { setPrice } from '../../store/price'
+import { setCurrentPrice, setStartingPrice, setTerm, setIsHovering } from '../../store/price'
+import styles from './chart.module.css'
 
 const DrawChart = () => {
     const [isLoaded, setIsLoaded] = useState(false)
     const [allData, setAllData] = useState({})
     const [color, setColor] = useState('#5ac53b')
-    const [term, setTerm] = useState('5Y')
+    // const [term, setTerm] = useState('5Y')
     const [isRealtime, setIsRealtime] = useState(false)
     const { symbol, name } = useSelector(state => state.ticker)
+    const term = useSelector(state => state.price.term)
     const terms = ['1D', '1W', '1M', '3M', 'YTD', '1Y', '5Y']
     const selected = {
         borderBottom: `2px solid ${color}`,
@@ -41,7 +43,8 @@ const DrawChart = () => {
             }],
             categories
         })
-        dispatch(setPrice(data[data.length - 1] || -1))
+        dispatch(setCurrentPrice(data[data.length - 1] || -1))
+        dispatch(setStartingPrice(data[0]))
         setColor(data[0] < data[data.length - 1] ? '#5ac53b' : '#ec5e2a')
     }
 
@@ -68,22 +71,32 @@ const DrawChart = () => {
                             chart: {
                                 animations: { enabled: false },
                                 type: 'line',
+                                height: 300,
+                                parentHeightOffset: 0,
                                 zoom: { enabled: false },
                                 events: {
-                                    mouseMove: (e, chartContext, config) => { dispatch(setPrice(allData.series[0].data[config.dataPointIndex] || allData.series[0].data[allData.series[0].data.length - 1])) },
-                                    mouseLeave: () => { dispatch(setPrice(allData.series[0].data[allData.series[0].data.length - 1])) }
+                                    mouseMove: (e, chartContext, config) => {
+                                        dispatch(setCurrentPrice(allData.series[0].data[config.dataPointIndex] || allData.series[0].data[allData.series[0].data.length - 1]))
+                                        dispatch(setIsHovering(true))
+                                    },
+                                    mouseLeave: () => {
+                                        dispatch(setCurrentPrice(allData.series[0].data[allData.series[0].data.length - 1]))
+                                        dispatch(setIsHovering(false))
+                                    }
                                 },
-                                toolbar: { show: false }
+                                toolbar: { show: false },
+                                // sparkline: { enabled: true }
                             },
                             colors: [color],
                             xaxis: {
                                 categories: allData.categories,
+                                position: 'top',
                                 labels: {
                                     show: false,
                                     formatter: (value) => labelFormatter(value)
                                 },
                                 tooltip: {
-                                    offsetY: -320,
+                                    offsetY: 20,
                                 },
                             },
                             yaxis: { labels: { show: false }},
@@ -100,12 +113,12 @@ const DrawChart = () => {
                                 x: { show: false },
                             },
                         }}
-                        height={350}
+                        height={300}
                     />
                 </div>
-                <ul className='term-list'>
+                <ul className={styles.termList}>
                     {
-                        terms.map(t => <li style={t === term ? selected : {}} key={t} onClick={() => setTerm(t)}>{t}</li>)
+                        terms.map(t => <li style={t === term ? selected : {}} key={t} onClick={() => dispatch(setTerm(t))}>{t}</li>)
                     }
                 </ul>
             </>
