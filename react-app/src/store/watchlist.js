@@ -1,4 +1,3 @@
-// import { csrfFetch } from './csrf';
 //action types 
 const LOAD_WATCHLISTS = "watchlist/loadWatchlists";
 const ADD_WATCHLIST = "watchlist/addWatchlist"; 
@@ -62,7 +61,7 @@ export const fetchUserWatchlists = () => async dispatch => {
 
 export const createWatchlist = (watchlist) => async dispatch => {
     const { name } = watchlist; 
-    const response = await csrfFetch(`/api/watchlists/`, {
+    const response = await fetch(`/api/watchlists/`, {
         method: 'POST', 
         headers: {
             'Content-Type': 'application/json'
@@ -84,7 +83,7 @@ export const createWatchlist = (watchlist) => async dispatch => {
     }
 }
 
-export const watchlistReducer = (state = {}, action) => {
+const watchlistReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD_WATCHLISTS:
             return {
@@ -101,3 +100,5 @@ export const watchlistReducer = (state = {}, action) => {
             return state
     }
 }
+
+export default watchlistReducer;
