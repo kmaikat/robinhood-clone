@@ -99,7 +99,7 @@
     border-color: black;
 }
 
-.error-input {
+#signup-form input.error-input {
     border-color: var(--rockethood-sell-red)
 }
 

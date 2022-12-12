@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect, Link } from 'react-router-dom';
 import { signUp } from '../../store/session';
@@ -17,6 +17,24 @@ const SignUpForm = () => {
   const [signupStage, setSignupStage] = useState(1);
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
+
+  const phase1Check = async (e) => {
+    const errors = {};
+    e.preventDefault();
+    if (firstName.length > 0 === false) errors.firstName = "Please enter your first name.";
+    if (lastName.length > 0 === false) errors.lastName = "Please enter your last name.";
+    if (email.length > 0 === false) errors.email = "Please enter your email.";
+    if (password.length > 0 === false) errors.password = "Please enter your password.";
+    if (repeatPassword.length > 0 === false) errors.repeatPassword = "Please retype your password.";
+
+    if (Object.keys(errors).length > 0) {
+      setErrors(errors);
+      console.log(errors)
+      return;
+    }
+
+    setSignupStage(2);
+  };
 
   const onSignUp = async (e) => {
     e.preventDefault();
@@ -59,6 +77,7 @@ const SignUpForm = () => {
 
   return (
     <div className='signup-page'>
+      {console.log(errors)}
       <div className='signup-page-left'>
         <div className='signup-page-left-top'>
           <div className="landing-page-logo" id="signup-logo">
@@ -84,11 +103,11 @@ const SignUpForm = () => {
                 name="firstName"
                 onChange={updateFirstName}
                 value={firstName}
-                className={errors[firstName] ? "error-input" : null}
+                className={errors.firstName ? "error-input" : null}
                 placeholder="First Name"
               />
               <p className="error-label">
-                {errors[firstName]}
+                {errors.firstName}
               </p>
             </div>
             <div>
@@ -97,11 +116,11 @@ const SignUpForm = () => {
                 name="lastName"
                 onChange={updateLastName}
                 value={lastName}
-                className={errors[lastName] ? "error-input" : null}
+                className={errors.lastName ? "error-input" : null}
                 placeholder="Last Name"
               />
               <p className="error-label">
-                {errors[lastName]}
+                {errors.lastName}
               </p>
             </div>
           </div>
@@ -111,11 +130,11 @@ const SignUpForm = () => {
               name='email'
               onChange={updateEmail}
               value={email}
-              className={errors[email] ? "error-input" : null}
+              className={errors.email ? "error-input" : null}
               placeholder="Email"
             ></input>
             <p className="error-label">
-                {errors[email]}
+              {errors.email}
             </p>
           </div>
           <div>
@@ -124,11 +143,11 @@ const SignUpForm = () => {
               name='password'
               onChange={updatePassword}
               value={password}
-              className={errors[password] ? "error-input" : null}
+              className={errors.password ? "error-input" : null}
               placeholder="Password"
             ></input>
             <p className="error-label">
-                {errors[password]}
+              {errors.password}
             </p>
           </div>
           <div>
@@ -138,11 +157,11 @@ const SignUpForm = () => {
               onChange={updateRepeatPassword}
               value={repeatPassword}
               required={true}
-              className={errors[repeatPassword] ? "error-input" : null}
+              className={errors.repeatPassword ? "error-input" : null}
               placeholder="Repeat Password"
             />
             <p className="error-label">
-                {errors[repeatPassword]}
+              {errors.repeatPassword}
             </p>
           </div>
 
@@ -159,7 +178,7 @@ const SignUpForm = () => {
           </div>
           <div className='signup-button-container'>
             <div className="signup-button">
-              {signupStage === 1 && <button className='signup-button-bottom' onClick={() => setSignupStage(2)}>Next</button>}
+              {signupStage === 1 && <button className='signup-button-bottom' onClick={phase1Check}>Next</button>}
               {signupStage === 2 && <button className='signup-button-bottom' onClick={(e) => {
                 setSignupStage(3);
                 onSignUp(e);
