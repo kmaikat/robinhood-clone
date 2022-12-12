@@ -15,6 +15,7 @@ import "./stylesheets/global.css";
 import WatchList from './components/WatchList';
 import SymbolNews from './components/News/SymbolNews';
 import AppHome from './components/AppHome';
+import AppMainNavBar from './components/AppMainNavBar/AppMainNavBar';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -79,7 +80,9 @@ function App() {
         </Route>
       </Switch>
       <ProtectedRoute path="/app" exact>
+        <AppMainNavBar />
         <AppHome />
+          <div style={{ height: "10000px" }}>Temporary navbar test</div>
       </ProtectedRoute>
     </BrowserRouter>
   );

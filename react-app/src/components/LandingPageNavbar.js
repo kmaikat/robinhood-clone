@@ -1,10 +1,16 @@
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { NavLink, useLocation, Redirect } from "react-router-dom";
 import "../stylesheets/LandingPageNavbar.css";
 const LandingPageNavbar = () => {
     const location = useLocation();
     const current_url = location.pathname;
-    console.log(current_url);
+    const user = useSelector(state => state.session.user);
+
+    if (user) {
+        return <Redirect to='/app' />;
+    }
+
     return (
         <div className={`landing-page ${current_url === "/" ? "landing-page-green" : "landing-page-white"}`}>
             <NavLink exact to="/">

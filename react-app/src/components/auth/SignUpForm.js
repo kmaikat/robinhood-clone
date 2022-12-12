@@ -126,7 +126,7 @@ const SignUpForm = () => {
   };
 
   if (user) {
-    return <Redirect to='/' />;
+    return <Redirect to='/app' />;
   }
 
   return (
