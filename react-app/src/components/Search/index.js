@@ -58,7 +58,7 @@ const Search = () => {
           value={keyword}
           className={styles.searchBar}
         />
-        <div className={styles.iconContainer}><i class="fa-solid fa-magnifying-glass fa-lg"></i></div>
+        <div className={styles.iconContainer}><i className="fa-solid fa-magnifying-glass fa-lg"></i></div>
         {
           showSearchRes &&
           <ul
