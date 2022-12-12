@@ -2,11 +2,11 @@ import * as watchlistAction from '../../store/watchlist';
 import { useDispatch } from 'react-redux';
 import { useState } from 'react';
 
-const NewWatchList = (openForm) => {
+const NewWatchList = (props) => {
     const [name, setName] = useState('');
     const [validationError, setValidationError] = useState('');
     const dispatch = useDispatch();
-
+    const setOpenForm = props.setOpenForm
     const handleSubmit = async (e) => {
         e.preventDefault();
         setValidationError([]);
@@ -34,14 +34,15 @@ const NewWatchList = (openForm) => {
     }
 
     const handleCancelButton = (e) => {
-        e.preventDefault()
+        e.preventDefault();
+        setOpenForm(false);
     }    
     return (
-        <div>
+        <div className='newform-container'>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className='newform-content'>
                     <div>icon</div>
-                    <div>
+                    <div className='newform-info'>
                         <label>
                             <input
                                 type='text'
@@ -51,7 +52,7 @@ const NewWatchList = (openForm) => {
                             />
                         </label>
                     </div>
-                    <div>
+                    <div className='newform-button'>
                         <button type='submit'>Create List</button>
                         <button onClick={handleCancelButton}>Cancel</button>
                     </div>

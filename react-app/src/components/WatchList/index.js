@@ -18,21 +18,23 @@ const WatchList = () => {
     }
     if (!data.watchlists) {
         return (
-            <div>
-                <div>
-                    <div>Lists</div>
-                </div>
-                <div>
-                    <button>+</button>
+            <div className='watchlist-container'>
+                <div className='watchlist-header'>
+                    <div>
+                        <div>Lists</div>
+                    </div>
+                    <div>
+                        <button>+</button>
+                    </div>
                 </div>
             </div>
         )
     } 
     const watchlists = Object.values(data.watchlists)
-    console.log(openForm)
+    // console.log(openForm)
     return (
-        <div>
-            <div>
+        <div className='watchlist-container'>
+            <div className='watchlist-header'>
                 <div>
                     <div>Lists</div>
                 </div>
@@ -40,18 +42,38 @@ const WatchList = () => {
                     <button onClick={createWatchlist}>+</button>
                 </div>
             </div>
-            {openForm && <NewWatchList props={openForm} />}
-            <div>
+            {openForm && <NewWatchList props={setOpenForm} />}
+            <div className='watchlist-lists'>
                 {watchlists && watchlists.map(
                     watchlist => (
-                        <div>
-                            {watchlist.name}
-                            <div>
+                        <div className='watchlist-content'>
+                            <div className='watchlist-content-header'>
+                                <div>
+                                    icon
+                                </div>
+                                <div className='watchlist-name'>
+                                    {watchlist.name}
+                                </div>
+                                <div>
+                                    <button>+</button>
+                                </div>
+                            </div>
+                            <div className='watchlist-stocks-container'>
                                 {watchlist.watchlist_stocks.length > 0 && 
                                     watchlist.watchlist_stocks.map(stock => (
-                                        <div>
-                                            {stock.stock_symbol}
+                                        <div className='watchlist-stocks-content'>
+                                            <div className='watchlist-stocksymbol'>
+                                                {stock.stock_symbol}
+                                            </div>
+                                            <div className='watchlist-minigraph'>
+                                                Graph here
+                                            </div>
+                                            <div className='watchlist-stockprice'>
+                                                <div>stock price</div>
+                                                <div>stock change</div>
+                                            </div>
                                         </div>
+                                    
                                     ))
                                 }
                             </div>
