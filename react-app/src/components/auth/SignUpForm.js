@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
-import "../../stylesheets/SignUpForm.css"
+import signupImage from "../../assets/signup.png";
+import "../../stylesheets/SignUpForm.css";
 
 const SignUpForm = () => {
   const [errors, setErrors] = useState([]);
@@ -46,7 +47,19 @@ const SignUpForm = () => {
   return (
     <div className='signup-page'>
       <div className='signup-page-left'>
+        <div className='signup-page-left-top'>
+          <div className="landing-page-logo" id="signup-logo">
+            <p className="landing-page-logo-text">Rockethood</p>
+            <i className="fa-solid fa-rocket"></i>
+          </div>
+          <h1 id="signup-title">Invest with zero commission fees</h1>
+          <p id="signup-support-text">Plus, request 24/7 live support from the app</p>
+        </div>
 
+        <div className='signup-page-left-bottom'>
+          <img src={signupImage} id="signup-image" />
+          <p id="signup-disclosure">Stocks, options, and ETFs are not offered through Rockethood Financial. Crypto is not offered through Rockethood Crypto. Rockethood is not a real company. Please do not treat this app as a real banking app.</p>
+        </div>
       </div>
       <div className='signup-page-right'>
         <form onSubmit={onSignUp}>
