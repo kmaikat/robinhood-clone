@@ -1,0 +1,44 @@
+#app-nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 6.4rem;
+    background-color: white;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+    padding: 0 2.4rem;
+}
+
+#app-nav-bar-logo {
+    font-size: 2.5rem;
+}
+
+#app-nav-bar-logo:hover {
+    color: var(--rockethood-green)
+}
+
+#account-button-container {
+    width: min-content;
+}
+
+#account-button {
+    position: relative;
+    height: min-content;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    width: 10px;
+    min-width: min-content;
+}
+
+#account-button:hover {
+    color: var(--rockethood-green)
+}
+
+#app-nav-bar-account-submenu {
+    position: absolute;
+    height: 100px;
+    background-color: blue;
+}
