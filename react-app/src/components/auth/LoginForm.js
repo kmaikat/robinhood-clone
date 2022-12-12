@@ -15,8 +15,12 @@ const LoginForm = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
+    const errors = {};
+    setErrors(errors);
     if (data) {
-      setErrors(data);
+      const errors = {};
+      errors.login = "Please try again";
+      setErrors(errors);
     }
   };
 
@@ -44,6 +48,7 @@ const LoginForm = () => {
 
   return (
     <div className='login-page'>
+      {console.log(errors.login)}
       <div className='login-page-left'>
         <img src={loginImage} alt="people together on rockethood" />
       </div>
@@ -61,6 +66,7 @@ const LoginForm = () => {
               <input
                 name='email'
                 type='text'
+                className={errors.login ? "login-failed-input" : null}
                 placeholder='Email'
                 value={email}
                 onChange={updateEmail}
@@ -71,11 +77,13 @@ const LoginForm = () => {
               <input
                 name='password'
                 type='password'
+                className={errors.login ? "login-failed-input" : null}
                 placeholder='Password'
                 value={password}
                 onChange={updatePassword}
               />
             </div>
+            {errors.login && <p id="login-failed-text">{errors.login}</p>}
             <button type='submit' id="login-submit">Login</button>
           </form>
           <Link to="/sign-up" ><p id="login-create-account">Not on Rockethood? <span id="create-an-account">Create an account</span></p></Link>
