@@ -21,6 +21,7 @@ const AllNews = () => {
                                 <div id="all-news-source-container">
                                     <div id="all-news-source">
                                         {article.source}
+                                        <i class="fa-regular fa-heart" id="like-heart"></i>
                                     </div>
                                 </div>
                                 <div id="all-news-bottom-half">

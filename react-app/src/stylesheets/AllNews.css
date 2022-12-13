@@ -81,4 +81,10 @@
 
 #all-news-source{
     font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+}
+
+#like-heart{
+    font-size: 1.5rem;
 }
