@@ -5,8 +5,11 @@ import AllNews from "./News/AllNews";
 
 const AppHome = () => {
     return (
+        <>
+        <AppMainNavBar />
         <div className="app-home">
         </div>
+        </>
     );
 };
 
