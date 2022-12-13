@@ -8,11 +8,18 @@
     width: 100%;
     z-index: 2;
     padding: 0 2.4rem;
-    grid-template-columns: 1fr minmax(auto, 141.6rem) 1fr;
+    grid-template-columns: 1fr minmax(auto, 102.4rem) 1fr;
+}
+
+@media screen and (min-width: 1200px) {
+    #app-nav-bar {
+        padding: 0 4.8rem
+    }
 }
 
 #app-nav-bar-logo {
     font-size: 3rem;
+    justify-self: self-start;
 }
 
 #app-nav-bar-logo:hover {
