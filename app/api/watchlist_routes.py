@@ -48,6 +48,7 @@ def update_watchlist(watchlist_id):
     current_user_info = current_user.to_dict()
     current_user_id = current_user_info['id']
     update_watchlist = WatchList.query.get(watchlist_id)
+    print('backend running')
     if update_watchlist: 
         if update_watchlist.user_id == current_user_id:
             data = request.get_json()

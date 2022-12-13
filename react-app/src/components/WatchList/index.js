@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import NewWatchList from './watchlist_form';
 import './index.css';
+import UpdateButton from './Update/UpdateButton';
 
 const WatchList = () => {
     const dispatch = useDispatch(); 
@@ -64,9 +65,12 @@ const WatchList = () => {
                                         {watchlist.name}
                                     </div>
                                 </div>
-                                <div>
-                                    <div className='btn-openstock' onClick={handleClickBtn(i)}>
-                                        {openings[i] ? <span>V</span> : <span>Λ</span>}
+                                <div className='watchlist-btn-container'>
+                                    <UpdateButton i={i} watchlist={watchlist} />
+                                    <div>
+                                        <button className='btn-openstock' onClick={handleClickBtn(i)}>
+                                            {openings[i] ? <span>V</span> : <span>Λ</span>}
+                                        </button>
                                     </div>
                                 </div>
                             </div>
