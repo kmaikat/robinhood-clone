@@ -3,15 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import NewWatchList from './watchlist_form';
 import './index.css';
+
 const WatchList = () => {
     const dispatch = useDispatch(); 
     const data = useSelector(state => state.watchlists);
     const [openForm, setOpenForm] = useState(false);
-    const [openStock, setOpenStock] = useState(false);
+    const [openings, setOpenings] = useState({});
 
     useEffect(() => {
         dispatch(watchlistAction.fetchUserWatchlists())
-    }, [dispatch])
+    }, [dispatch]);
+
     const createWatchlist = () => {
         setOpenForm(true);
     }
@@ -29,11 +31,17 @@ const WatchList = () => {
             </div>
         )
     } 
-    const watchlists = Object.values(data.watchlists)
-    const handleClickBtn = (e) => {
-        e.stopPropagation()
-        openStock === false ? setOpenStock(true):setOpenStock(false)
-    }
+
+    const watchlists = Object.values(data.watchlists);
+
+    const handleClickBtn = (i) => () => {
+        const newOpenings = {
+            ...openings,
+            [i]: !openings[i]
+        };
+        setOpenings(newOpenings);
+    };
+
     return (
         <div className='watchlist-container'>
             <header>
@@ -45,7 +53,7 @@ const WatchList = () => {
             {openForm && <NewWatchList openForm={openForm} setOpenForm={setOpenForm} />}
             <div className='watchlist-lists'>
                 {watchlists && watchlists.map(
-                    watchlist => (
+                    (watchlist, i) => (
                         <div className='watchlist-content'>
                             <div className='watchlist-content-header'>
                                 <div className='watchlist-wrapper-head'>
@@ -57,12 +65,12 @@ const WatchList = () => {
                                     </div>
                                 </div>
                                 <div>
-                                    <div className='btn-openstock' onClick={handleClickBtn}>
-                                        {openStock ? <span>V</span> : <span>Λ</span>}
+                                    <div className='btn-openstock' onClick={handleClickBtn(i)}>
+                                        {openings[i] ? <span>V</span> : <span>Λ</span>}
                                     </div>
                                 </div>
                             </div>
-                            {openStock &&
+                            {openings[i] &&
                                 <div className='watchlist-stocks-container'>
                                     {watchlist.watchlist_stocks.length > 0 &&
                                         watchlist.watchlist_stocks.map(stock => (
