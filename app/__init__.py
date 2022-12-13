@@ -10,6 +10,7 @@ from .api.auth_routes import auth_routes
 from .api.news_routes import news_routes
 from .api.stock_routes import stock_routes
 from .api.watchlist_routes import watchlist_routes
+from .api.file_upload_routes import file_upload_sample_routes # sample route for test
 
 from .seeds import seed_commands
 from .config import Config
@@ -34,6 +35,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(news_routes, url_prefix='/api/news')
 app.register_blueprint(stock_routes, url_prefix='/api/stock')
+app.register_blueprint(file_upload_sample_routes, url_prefix='/api/file') # sample route for test
 
 app.register_blueprint(watchlist_routes, url_prefix='/api/watchlists')
 
