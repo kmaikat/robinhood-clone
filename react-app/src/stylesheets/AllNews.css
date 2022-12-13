@@ -65,7 +65,8 @@
 }
 
 #all-news-source-container {
-    margin-bottom: 1.2rem
+    margin-bottom: 1.2rem;
+    position: relative;
 }
 
 #all-news-bottom-half {
@@ -81,4 +82,19 @@
 
 #all-news-source{
     font-weight: 600;
+    display: flex;
+    justify-content: space-between;
+}
+
+#news-not-saved{
+    font-size: 1.7rem;
+}
+#news-saved{
+    font-size: 1.7rem;
+}
+
+.fa-heart{
+    position: absolute;
+    right: 0;
+    z-index: 5;
 }

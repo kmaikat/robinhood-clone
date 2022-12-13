@@ -2,20 +2,25 @@ from flask import Blueprint, request, Response, jsonify
 from sqlalchemy import case
 from app.models import StockSymbol
 from random import choice
+from flask_login import login_required
 import requests
 import os
 
 stock_routes = Blueprint('stock', __name__)
 
+
 @stock_routes.route('/')
 def index():
     return 'hello world'
 
+
 @stock_routes.route('/search/<string:keyword>')
 def search_symbols(keyword):
-    result = [{'symbol': item.stock_symbol, 'name': item.company} for item in StockSymbol.query.filter(StockSymbol.stock_symbol.like(f'%{keyword}%') | StockSymbol.company.like(f'%{keyword}%')).order_by(case((StockSymbol.stock_symbol.startswith(keyword), 0), (StockSymbol.company.startswith(keyword), 1), else_=2)).limit(7)]
+    result = [{'symbol': item.stock_symbol, 'name': item.company} for item in StockSymbol.query.filter(StockSymbol.stock_symbol.like(f'%{keyword}%') | StockSymbol.company.like(
+        f'%{keyword}%')).order_by(case((StockSymbol.stock_symbol.startswith(keyword), 0), (StockSymbol.company.startswith(keyword), 1), else_=2)).limit(7)]
 
     return jsonify(result)
+
 
 @stock_routes.route('/get-data/<string:symbol>')
 def get_data(symbol):
@@ -32,3 +37,39 @@ def get_key():
     apikey = choice(os.environ.get('STOCK_API_KEYS').split(','))
 
     return {'apikey': apikey}
+
+
+@stock_routes.route("/company-information/<string:ticker>")
+@login_required
+def company_information(ticker):
+    apikey = choice(os.environ.get('STOCK_API_KEYS').split(','))
+    url = f"https://www.alphavantage.co/query?function=OVERVIEW&symbol={ticker}&apikey={apikey}"
+    data = requests.get(url).json()
+
+    while ("Note" in data):
+        url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={choice(apikey)}&tickers={ticker}&sort=LATEST'
+        r = requests.get(url)
+        print("KEY FAILED: Trying Again")
+        data = r.json()
+
+    company_info = {
+        "about": {
+            "Address": data["Address"],
+            "Description": data["Description"],
+            "Industry": data["Industry"],
+            "Exchange": data["Exchange"],
+            "Name" : data["Name"]
+        },
+        "statistics": {
+            "PERatio": data["PERatio"],
+            "MarketCap": data["MarketCapitalization"],
+            "DividendYield": data["DividendYield"],
+            "YearHigh": data["52WeekHigh"],
+            "YearLow": data["52WeekLow"],
+            "AnalystTargetPrice": data["AnalystTargetPrice"],
+            "Sector": data["Sector"],
+            "Symbol": data["Symbol"]
+        }
+    }
+
+    return jsonify(company_info)
