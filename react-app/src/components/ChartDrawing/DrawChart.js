@@ -53,11 +53,32 @@ const DrawChart = () => {
         setIsLoaded(true)
     }
 
+    const getIdx = () => {
+        const offset = 18000000
+        const estTime = new Date(new Date().getTime() - offset).toISOString().replace('T', ' ')
+        const [hour, minute] = estTime.split(' ')[1].split(':')
+        let idx = 0
+        let time = 9 * 60 + 30
+        while(time < hour * 60 + minute * 1){
+            idx++
+            time += 5
+        }
+
+        return {idx, hour, minute, estTime}
+    }
+
     const getOneDayData = async () => {
         const { data, categories, realtime } = await getOneDayPrices(symbol)
         if(realtime){
             const rtCategories = setCategories()
-            rtCategories[categories.length - 1] = categories[categories.length - 1]
+            if(categories.length)
+                rtCategories[categories.length - 1] = categories[categories.length - 1]
+            else {
+                const { idx, estTime } = getIdx()
+                for(let i = 1; i <= idx; i++)
+                    data.push(data[0])
+                rtCategories[idx] = estTime
+            }
 
             setChart([...data, ...Array(rtCategories.length - data.length).fill(null)], rtCategories)
         }else setChart(data, categories)
@@ -76,7 +97,7 @@ const DrawChart = () => {
         setRange(categories.length)
         dispatch(setCurrentPrice(data.reduce((p, c) => c || p)))
         dispatch(setStartingPrice(data[0]))
-        setColor(data[0] < data.reduce((p, c) => c || p) ? '#5ac53b' : '#ec5e2a')
+        setColor(data[0] <= data.reduce((p, c) => c || p) ? '#5ac53b' : '#ec5e2a')
     }
 
     useEffect(() => {

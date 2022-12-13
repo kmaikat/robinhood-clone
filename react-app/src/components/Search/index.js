@@ -55,7 +55,7 @@ const Search = () => {
           type='text'
           onChange={searchInput}
           onBlur={clearSearch}
-          onFocus={() => {if(searchRes.length || keyword.length) setShowSearchRes(true)}}
+          onFocus={() => {setShowSearchRes(!!(searchRes.length || keyword.length))}}
           value={keyword}
           className={styles.searchBar}
         />

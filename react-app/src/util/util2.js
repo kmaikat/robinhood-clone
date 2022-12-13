@@ -183,12 +183,14 @@ export const getOneDayPrices = async (ticker, miniSize = false) => {
     const result = { data: [], categories: [], realtime }
     const offset = jsonData.chart.result[0].meta.currentTradingPeriod.regular.gmtoffset
 
-    categories.forEach((t, i) => {
-        if((!(miniSize ? t % 600 : t % 300) || i === categories.length - 1) && data[i]) {
-            result.data.push(data[i])
-            result.categories.push(new Date((t + offset) * 1000).toISOString().replace('T', ' '))
-        }
-    })
+    if(!!categories)
+        categories.forEach((t, i) => {
+            if((!(miniSize ? t % 600 : t % 300) || i === categories.length - 1) && data[i]) {
+                result.data.push(data[i])
+                result.categories.push(new Date((t + offset) * 1000).toISOString().replace('T', ' '))
+            }
+        })
+    else result.data.push(jsonData.chart.result[0].meta.regularMarketPrice)
 
     return result
 }
