@@ -15,6 +15,8 @@ import "./stylesheets/global.css";
 import WatchList from './components/WatchList';
 import SymbolNews from './components/News/SymbolNews';
 import AppHome from './components/AppHome';
+import AppMainNavBar from './components/AppMainNavBar/AppMainNavBar';
+import StockShowcase from './components/StockShowcase';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -32,12 +34,10 @@ function App() {
 
   return (
     <BrowserRouter>
-      {/* <NavBar /> */}
       <Switch>
         <Route path="/invest">
           <LandingPageNavbar />
           Invest
-          {/* <div style={{ height: "10000px" }}>Temporary navbar test</div> */}
         </Route>
         <Route path="/crypto">
           <LandingPageNavbar />
@@ -69,17 +69,19 @@ function App() {
         <Route path='/' exact={true} >
           <LandingPageNavbar />
           <h1>My Home Page</h1>
-          {/* <div style={{ height: "10000px" }}>Temporary navbar test</div> */}
         </Route>
         <Route path='/watchlists' exact={true} >
           <WatchList />
         </Route>
         <Route path='/stocks/:symbol' >
-          <SymbolNews />
+          <StockShowcase />
         </Route>
       </Switch>
       <ProtectedRoute path="/app" exact>
         <AppHome />
+      </ProtectedRoute>
+      <ProtectedRoute path="/profile" exact>
+        <AppMainNavBar />
       </ProtectedRoute>
     </BrowserRouter>
   );
