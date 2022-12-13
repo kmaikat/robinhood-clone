@@ -29,7 +29,7 @@ const AllNews = () => {
                                             {article.title}
                                         </div>
                                         <ul id="all-news-ticker-container">
-                                            {article.tickers?.map(ticker => <li key={ticker}>{ticker}</li>)}
+                                            {article.tickers.slice(0,3)?.map(ticker => <li key={ticker}>{ticker}</li>)}
                                         </ul>
                                     </div>
                                     <div>

@@ -1,13 +1,27 @@
 import "../stylesheets/StockShowcase.css";
 import AppMainNavBar from "./AppMainNavBar/AppMainNavBar";
+import ChartDrawing from "./ChartDrawing";
 import SymbolNews from "./News/SymbolNews";
 
 function StockShowcase() {
     return (
         <>
             <AppMainNavBar />
-            <div>
-                <SymbolNews />
+            <div className="app-home-container">
+                <div className="app-home">
+                    <div className="app-home-left">
+                        {/* <AllNews /> */}
+                        <div id="app-home-chart-container">
+                            <ChartDrawing />
+                        </div>
+                        <div className="app-home-news-container">
+                            <SymbolNews />
+                        </div>
+                    </div>
+                    <div className="app-home-right">
+
+                    </div>
+                </div>
             </div>
         </>
     );
