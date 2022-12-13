@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Modal } from "../Modals/Modal";
-import UpdateWatchlistForm from "./Update/watchlist_updateForm";
+import { Modal } from "../../Modals/Modal";
+import UpdateWatchlistForm from "./watchlist_updateForm";
 
 const UpdateFormModal = ({watchlist}) => {
     const [showModal, setShowModal] = useState(false); 

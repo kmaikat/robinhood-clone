@@ -4,6 +4,8 @@ import { useEffect, useState } from 'react';
 import NewWatchList from './watchlist_form';
 import './index.css';
 import UpdateButton from './Update/UpdateButton';
+import SmallChart from '../SmallChart';
+import StockPrice from './StockPrice';
 
 const WatchList = () => {
     const dispatch = useDispatch(); 
@@ -83,11 +85,12 @@ const WatchList = () => {
                                                     {stock.stock_symbol}
                                                 </div>
                                                 <div className='watchlist-minigraph'>
-                                                    Graph here
+                                                    <SmallChart symbol={stock.stock_symbol}/>
                                                 </div>
                                                 <div className='watchlist-stockprice'>
-                                                    <div>stock price</div>
-                                                    <div>stock change</div>
+                                                    <div>
+                                                        <StockPrice symbol={stock.stock_symbol} />
+                                                    </div>
                                                 </div>
                                             </div>
                                     
