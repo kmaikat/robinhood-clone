@@ -19,8 +19,11 @@
     width: 25%;
     height: 100%;
     overflow-y: scroll;
-    margin-left: 2.4rem;
     scrollbar-width: none;
+}
+
+#app-home-chart-container{
+    padding: 0 2.4rem
 }
 
 .app-home-right::-webkit-scrollbar {

@@ -13,7 +13,12 @@ const AppHome = () => {
                 <div className="app-home">
                     <div className="app-home-left">
                         {/* <AllNews /> */}
-                        <ChartDrawing />
+                        <div id="app-home-chart-container">
+                            <ChartDrawing />
+                        </div>
+                        <div className="app-home-news-container">
+                            <AllNews />
+                        </div>
                     </div>
                     <div className="app-home-right">
                         <WatchList />
