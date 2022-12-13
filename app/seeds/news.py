@@ -15,13 +15,13 @@ def seed_news():
             'ticker': 'GOOGL'
         },
         {
-            'like': False,
-            'user_id': 1,
-            'article_link': 'https://www.ft.com/content/8cd27d16-c996-4dc7-86af-ed6f40ff361c',
-            'title': 'Apple to end employee gagging clauses after activist campaign',
-            'source': 'Financial Times',
-            'image': 'https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fc13a5b78-eed1-4da0-8b42-fdb0643062ad.jpg?dpr=2&fit=scale-down&quality=medium&source=next&width=700',
-            'ticker': 'AAPL'
+            "like": False,
+            "user_id": 1,
+            "article_link": "https://www.ft.com/content/8cd27d16-c996-4dc7-86af-ed6f40ff361c",
+            "title": "Apple to end employee gagging clauses after activist campaign",
+            "source": "Financial Times",
+            "image": "https://www.ft.com/__origami/service/image/v2/images/raw/https%3A%2F%2Fd1e00ek4ebabms.cloudfront.net%2Fproduction%2Fc13a5b78-eed1-4da0-8b42-fdb0643062ad.jpg?dpr=2&fit=scale-down&quality=medium&source=next&width=700",
+            "ticker": "AAPL"
         },
         {
             'like': True,

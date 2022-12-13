@@ -23,3 +23,12 @@ class News(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     user = db.relationship('User', back_populates='news')
+
+    def to_dict(self):
+        return {
+            "title": self.title,
+            "source": self.source,
+            "image": self.image,
+            "ticker": self.ticker,
+            "article_link": self.article_link,
+        }
