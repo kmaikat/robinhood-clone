@@ -21,6 +21,7 @@
 
 #account-button-container {
     width: min-content;
+    justify-self: flex-end;
 }
 
 #account-button {
