@@ -112,21 +112,37 @@ export const updateWatchlist = (watchlist) => async dispatch => {
     }
 }
 
-export const deleteWatchlist = (watchlistId) => async dispatch => {
-    try {
-        const response = await fetch(`/api/<int:watchlist_id>`, {
-            method: 'DELETE'
-        });
+// export const deleteWatchlist = (watchlistId) => async dispatch => {
+//     try {
+//         const response = await fetch(`/api/<int:watchlist_id>`, {
+//             method: 'DELETE'
+//         });
 
-        if (response.ok) {
-            dispatch(removeWatchlist(watchlistId));
-        } else {
-            const data = await response.json();
-            if (data) {
-                throw data.error.message;
-            }
-        }
+//         if (response.ok) {
+//             dispatch(removeWatchlist(watchlistId));
+//         } else {
+//             const data = await response.json();
+//             if (data) {
+//                 throw data.error.message;
+//             }
+//         }
         
+//     } catch (err) {
+//         throw err;
+//     }
+// }
+
+// export const addStockToWatchlist = (stock) => async dispatch => {
+//     try {
+
+//     } catch (err) {
+//         throw err;
+//     }
+// }
+
+export const deleteStockFromWatchlist = (stock) => async dispatch => {
+    try {
+
     } catch (err) {
         throw err;
     }
