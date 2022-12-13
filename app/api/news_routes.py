@@ -1,4 +1,4 @@
-from flask import Flask, Blueprint, jsonify
+from flask import Flask, Blueprint, jsonify, request
 from flask_login import login_required, current_user
 from app.models import News, db
 from ..forms import AddArticleForm
@@ -57,19 +57,32 @@ def get_news_by_ticker(ticker):
     print(article_data[:25])
     return jsonify(article_data[:25])
 
-@news_routes.route("/liked", method=["POST"])
+
+@news_routes.route("/liked", methods=["GET"])
+@login_required
+def get_article_like():
+    liked = News.query.filter(News.like == 1).filter(
+        News.user_id == current_user.id).all()
+    return jsonify([news.to_dict() for news in liked]), 200
+
+
+@news_routes.route("/liked", methods=["POST"])
+@login_required
 def add_article_like():
     add_article_form = AddArticleForm()
-
-    # sending to the database 
+    add_article_form['csrf_token'].data = request.cookies['csrf_token']
+    # sending to the database
     if add_article_form.validate_on_submit():
         new_liked_article = News(
-            like = True,
-            user_id = add_article_form.data['user_id'],
-            title = add_article_form.data['title'],
-            source = add_article_form.data['source'],
-            image = add_article_form.data['image'],
-            article_link = add_article_form.data['article_link']
+            like=True,
+            user_id=add_article_form.data['user_id'],
+            title=add_article_form.data['title'],
+            source=add_article_form.data['source'],
+            image=add_article_form.data['image'],
+            article_link=add_article_form.data['article_link']
         )
         db.session.add(new_liked_article)
         db.session.commit()
+        return jsonify(new_liked_article.to_dict())
+    else:
+        return jsonify("hello")
