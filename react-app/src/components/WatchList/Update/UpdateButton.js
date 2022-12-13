@@ -15,7 +15,7 @@ const UpdateButton = ({watchlist,i}) => {
     return (
         <div className="update-btn-main">
             <button className='btn-update' onClick={handleClickBtn(i)}>
-                Edit
+                <i className="fa-solid fa-ellipsis"></i>
             </button>
             {open[i] && 
                 <div>
