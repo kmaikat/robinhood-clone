@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "../../stylesheets/AllNews.css";
+import "../../stylesheets/SymbolNews.css";
 
 const SymbolNews = () => {
     const [articles, setArticles] = useState([]);
@@ -17,29 +18,22 @@ const SymbolNews = () => {
             {articles.map(article => {
                 return (
                     <a href={article.url} target="_blank" rel="noopener noreferrer" >
-                        <div id="all-news-container">
-                            <div id="all-news-inner-container">
-                                <div id="all-news-source-container">
+                        <div id="stock-news-container">
+                            <div id="stock-news-inner-container">
+                                <div id="stock-news-source-container">
                                     <div id="all-news-source">
                                         {article.source}
                                     </div>
-                                </div>
-                                <div id="all-news-bottom-half">
-                                    <div id="all-news-title-and-tickers">
-                                        <div id="all-news-article-title">
-                                            {article.title}
-                                        </div>
-                                        <ul id="all-news-ticker-container">
-                                            {article.tickers.slice(0,3)?.map(ticker => <li key={ticker}>{ticker}</li>)}
-                                        </ul>
-                                    </div>
-                                    <div>
-                                        <div>
-                                            <div className="news-image-container">
-                                                <img src={article.image} />
+                                    <div id="all-news-bottom-half">
+                                        <div id="all-news-title-and-tickers">
+                                            <div id="all-news-article-title">
+                                                {article.title}
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                <div className="stock-news-image-container">
+                                    <img src={article.image} />
                                 </div>
                             </div>
                         </div>
