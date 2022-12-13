@@ -8,8 +8,10 @@ const SymbolNews = () => {
     const { symbol } = useParams();
 
     useEffect(() => {
+        setArticles([])
         fetch(`/api/news/${symbol}`).then(r => r.json()).then(r => setArticles(r));
-    }, []);
+    }, [symbol]);
+
     return (
         <div className="news-container">
             <div id="news-heading-container">
