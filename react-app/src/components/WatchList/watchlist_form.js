@@ -41,21 +41,25 @@ const NewWatchList = ({openForm, setOpenForm}) => {
                     {validationError && <li>{validationError}</li>}
                 </div>
                 <div className='newform-content'>
-                    <div>icon</div>
-                    <div className='newform-info'>
-                        <label>
-                            <input
-                                type='text'
-                                value={name}
-                                onChange={(e) => setName(e.target.value)}
-                                placeholder='List Name'
-                                required
-                            />
-                        </label>
+                    <div className='newform-content-head'>
+                        <div className='newform-icon'>💡</div>
+                        <div className='newform-info-wrapper'>
+                            <div className='newform-info'>
+                                <label>
+                                    <input
+                                        type='text'
+                                        value={name}
+                                        onChange={(e) => setName(e.target.value)}
+                                        placeholder='List Name'
+                                        required
+                                    />
+                                </label>
+                            </div>
+                        </div>
                     </div>
                     <div className='newform-button'>
-                        <button onClick={handleCancelButton}>Cancel</button>
-                        <button type='submit'>Create List</button>
+                        <button className='btn-cancel-form'onClick={handleCancelButton}>Cancel</button>
+                        <button className='btn-submit'type='submit'>Create List</button>  
                     </div>
                 </div>
             </form>

@@ -1,31 +1,100 @@
 .watchlist-container {
-    margin: 20px;   
+    margin: 20px;  
+    height: 100%; 
+    width: 280px;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
 }
-
+header {
+    box-sizing: border-box;
+    border-bottom: 1px solid #cccccc;
+    width: 280px;
+}
 .watchlist-header {
     display: flex;
     align-items: center;
-    /* justify-content: space-between; */
-    padding: 4px 24px 0px;
     height: 52px;
 }
+.watchlist-header > div {
+    padding: 4px 24px 0px;
+    flex-grow: 2;
+}
+
+.newform-content {
+    height: 92px;
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+    
+}
+.newform-content-head {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    padding: 4px 10px 0px;
+}
+.newform-icon {
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+    height: 36px;
+    width: 36px;
+}
+.newform-info-wrapper {
+    flex-grow: 2;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+    height: 36px;
+    margin: 4px;
+}
+.newform-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 10px;
+}
+.btn-submit {
+    background-color: #00C805;
+    height: 36px;
+    /* width: 80px; */
+    padding: 4px 15px;
+    /* text-align: center; */
+}
+.btn-cancel-form {
+    border:1px solid #00C805; 
+    color: #00C805;
+    height: 36px;
+    text-align: center;
+    margin-right: 10px;
+}
+.newform-info {
+    padding: 8px;
+}
 
 
-.btn-open {
+.btn-open, .btn-openstock{
     background: none;
     border: transparent;
+    min-width: 0;
+}
+.btn-openstock{
+    padding: 12px;
+}
+.watchlist-lists {
+    margin: 10px;
 }
 
-.watchlist-wrapper-head{ 
-    display: flex;
-    flex-direction: row;
-}
 .watchlist-content-header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    padding: 4px 24px 0px;
     height: 52px;
+    width: 100%;
+}
+.watchlist-wrapper-head{ 
+    flex-grow: 2;
+    display: flex;
+    flex-direction: row;
+    padding: 0px 15px 0px;
+    
 }
 
 .watchlist-name {
@@ -34,8 +103,8 @@
 
 .icon {
     display: block;
-    height: 20px;
-    width: 20px;
+    height: 28px;
+    width: 28px;
     box-sizing: border-box;
     border: 1px solid #cccccc;
     border-radius: 3px;
