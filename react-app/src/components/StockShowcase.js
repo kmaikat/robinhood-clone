@@ -8,14 +8,25 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Transactions from "./Transactions";
 
+function stringToFormat(marketCap) {
+    const usDollar = Intl.NumberFormat("en-US");
+    marketCap = usDollar.format(marketCap);
+    console.log(marketCap.length);
+    if (marketCap.length <= 7) return marketCap;
+    if (marketCap.length <= 11) return `${marketCap.split(",")[0] + "." + marketCap.split(",")[1].slice(0, 2)}M`;
+    if (marketCap.length <= 15) return `${marketCap.split(",")[0] + "." + marketCap.split(",")[1].slice(0, 2)}B`;
+    if (marketCap.length <= 19) return `${marketCap.split(",")[0] + "." + marketCap.split(",")[1].slice(0, 2)}T`;
+}
+
 function StockShowcase() {
     const { symbol } = useParams();
     const dispatch = useDispatch();
     const [isError, setIsError] = useState(true);
     const [companyInfo, setCompanyInfo] = useState({ "about": {}, "statistics": {} });
     const [companyInfoLoaded, setCompanyInfoLoaded] = useState(false);
-
     const { about: company, statistics: stats } = companyInfo;
+    const usDollar = Intl.NumberFormat("en-US");
+
     useEffect(() => {
         fetch(`/api/stock/search/${symbol}`)
             .then(res => res.json())
@@ -43,7 +54,6 @@ function StockShowcase() {
             <div className="app-home-container">
                 <div className="app-stocks">
                     <div className="app-home-left">
-                        {/* <AllNews /> */}
                         <div id="stock-home-chart-container">
                             {!isError && <ChartDrawing />}
                         </div>
@@ -98,7 +108,8 @@ function StockShowcase() {
                                         Market Cap
                                     </h3>
                                     <p className="stock-showcase-grid-info">
-                                        {companyInfoLoaded && stats.MarketCap || "—"}
+                                        {companyInfoLoaded && stringToFormat(stats.MarketCap) || "—"}
+                                        {companyInfoLoaded && console.log(stringToFormat(stats.MarketCap))}
                                     </p>
                                 </div>
                                 <div>
@@ -124,7 +135,7 @@ function StockShowcase() {
                                         Analyst Target Price
                                     </h3>
                                     <p className="stock-showcase-grid-info">
-                                        {companyInfoLoaded && stats.AnalystTargetPrice || "—"}
+                                        {companyInfoLoaded && "$" + usDollar.format(stats.AnalystTargetPrice) || "—"}
                                     </p>
                                 </div>
 
@@ -142,7 +153,7 @@ function StockShowcase() {
                                         Year high
                                     </h3>
                                     <p className="stock-showcase-grid-info">
-                                        {companyInfoLoaded && stats.YearHigh || "—"}
+                                        {companyInfoLoaded && "$" + usDollar.format(stats.YearHigh) || "—"}
                                     </p>
                                 </div>
 
@@ -151,7 +162,7 @@ function StockShowcase() {
                                         Year Low
                                     </h3>
                                     <p className="stock-showcase-grid-info">
-                                        {companyInfoLoaded && stats.YearLow || "—"}
+                                        {companyInfoLoaded && "$" + usDollar.format(Number(stats.YearLow)) || "—"}
                                     </p>
                                 </div>
 
