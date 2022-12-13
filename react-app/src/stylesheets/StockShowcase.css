@@ -43,3 +43,9 @@
     font-size: 1.35rem;
     font-weight: 650;
 }
+
+.app-stock-news-container {
+    width: 100%;
+    /* display: flex; */
+    padding-bottom: 3.6rem;
+}

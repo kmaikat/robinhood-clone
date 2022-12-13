@@ -12,7 +12,7 @@ function stringToFormat(marketCap) {
     const usDollar = Intl.NumberFormat("en-US");
     marketCap = usDollar.format(marketCap);
     console.log(marketCap.length);
-    if (marketCap.length <= 7) return marketCap;
+    if (marketCap.length <= 7) return "$" + marketCap;
     if (marketCap.length <= 11) return `${marketCap.split(",")[0] + "." + marketCap.split(",")[1].slice(0, 2)}M`;
     if (marketCap.length <= 15) return `${marketCap.split(",")[0] + "." + marketCap.split(",")[1].slice(0, 2)}B`;
     if (marketCap.length <= 19) return `${marketCap.split(",")[0] + "." + marketCap.split(",")[1].slice(0, 2)}T`;
@@ -176,7 +176,7 @@ function StockShowcase() {
                                 </div>
                             </div>
                         </div>
-                        <div className="app-home-news-container">
+                        <div className="app-stock-news-container">
                             <SymbolNews />
                         </div>
                     </div>
