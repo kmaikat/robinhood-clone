@@ -46,7 +46,7 @@ const WatchList = () => {
         <div className='watchlist-container'>
             <header>
                 <div className='watchlist-header'>
-                    <span>Lists</span>
+                    <div>Lists</div>
                     <button className='btn-open' onClick={createWatchlist}>+</button>
                 </div>
             </header>
