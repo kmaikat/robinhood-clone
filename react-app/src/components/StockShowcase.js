@@ -8,7 +8,7 @@ function StockShowcase() {
         <>
             <AppMainNavBar />
             <div className="app-home-container">
-                <div className="app-home">
+                <div className="app-stocks">
                     <div className="app-home-left">
                         {/* <AllNews /> */}
                         <div id="app-home-chart-container">
