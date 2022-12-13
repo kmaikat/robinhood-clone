@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { setSymbol } from '../../store/ticker'
+import { Link } from 'react-router-dom'
 import styles from './style.module.css'
 
 const Search = () => {
@@ -69,19 +70,21 @@ const Search = () => {
             {
             !!searchRes.length ?
               searchRes.map(res =>
-                <li
-                    className={styles.resultItem}
-                    key={res.symbol}
-                    onClick={() => {
-                      dispatch(setSymbol(res.symbol, res.name))
-                      setIsHoveringOnSearchRes(false)
-                      setKeyword('')
-                      setSearchRes([])
-                    }}
-                >
-                  <div className={styles.symbolContainer}>{searchResStyling(res.symbol, keyword)}</div>
-                  <div className={styles.companyContainer}>{searchResStyling(res.name, keyword)}</div>
-                </li>) :
+                <Link to={`/stocks/${res.symbol}`}>
+                  <li
+                      className={styles.resultItem}
+                      key={res.symbol}
+                      onClick={() => {
+                        dispatch(setSymbol(res.symbol, res.name))
+                        setIsHoveringOnSearchRes(false)
+                        setKeyword('')
+                        setSearchRes([])
+                      }}
+                  >
+                    <div className={styles.symbolContainer}>{searchResStyling(res.symbol, keyword)}</div>
+                    <div className={styles.companyContainer}>{searchResStyling(res.name, keyword)}</div>
+                  </li>
+                </Link>) :
                 <li>no search result</li>
             }
           { !isSearchLoaded && <li>Loading...</li> }
