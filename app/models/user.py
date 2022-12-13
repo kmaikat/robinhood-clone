@@ -1,9 +1,18 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.datastructures import FileStorage
 from flask_login import UserMixin
 from datetime import datetime
 from .assets import Asset
 
+import os
+import boto3
+
+s3 = boto3.client(
+    's3',
+    aws_access_key_id = os.environ.get('S3_KEY'),
+    aws_secret_access_key = os.environ.get('S3_SECRET')
+)
 
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
@@ -18,6 +27,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     buying_power = db.Column(db.Float, default=0.00)
+    image_url = db.Column(db.String, nullable=True, unique=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -51,3 +61,21 @@ class User(db.Model, UserMixin):
             'email': self.email,
             "buyingPower": self.buying_power
         }
+
+    def upload_profile(self, file: FileStorage) -> str:
+        filename = 'profile-image/' + self.email + '.' + file.filename.split('.')[-1]
+
+        s3.upload_fileobj(
+            file,
+            os.environ.get('S3_BUCKET'),
+            filename,
+            ExtraArgs = {
+                "ContentType": file.content_type
+            }
+        )
+
+        self.image_url = f"{os.environ.get('S3_LOCATION')}/{filename}"
+        db.session.commit()
+
+
+        return self.image_url
