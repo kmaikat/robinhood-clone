@@ -1,7 +1,6 @@
 #app-nav-bar {
-    display: flex;
+    display: grid;
     align-items: center;
-    justify-content: space-between;
     height: 6.4rem;
     background-color: white;
     position: sticky;
@@ -9,6 +8,7 @@
     width: 100%;
     z-index: 2;
     padding: 0 2.4rem;
+    grid-template-columns: 1fr minmax(141.6rem, auto) 1fr;
 }
 
 #app-nav-bar-logo {
