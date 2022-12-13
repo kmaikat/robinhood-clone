@@ -4,10 +4,12 @@ import "../../stylesheets/AllNews.css"
 
 const AllNews = () => {
     const [articles, setArticles] = useState([])
-    const [isActive, setActive] = useState("false")
+    const [isLiked, setIsLiked] = useState(false)
 
-    const handleToggle = () => {
-        setActive(!isActive)
+    const handleToggle = (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+        setIsLiked(!isLiked)
     }
 
     useEffect(() => {
@@ -26,10 +28,7 @@ const AllNews = () => {
                                 <div id="all-news-source-container">
                                     <div id="all-news-source">
                                         {article.source}
-                                        <button onClick={handleToggle}>
-                                            <i class="fa-solid fa-heart"></i>
-                                            <i class="fa-regular fa-heart" id="like-heart"></i>
-                                        </button>
+                                        {isLiked ? <i className="fa-solid fa-bookmark" id="news-saved" onClick={handleToggle}/> : <i className="fa-regular fa-bookmark" id="news-not-saved" onClick={handleToggle}/>}
                                     </div>
                                 </div>
                                 <div id="all-news-bottom-half">
@@ -38,7 +37,7 @@ const AllNews = () => {
                                             {article.title}
                                         </div>
                                         <ul id="all-news-ticker-container">
-                                            {article.tickers.slice(0,3)?.map(ticker => <li key={ticker}>{ticker}</li>)}
+                                            {article.tickers.slice(0, 3)?.map(ticker => <li key={ticker}>{ticker}</li>)}
                                         </ul>
                                     </div>
                                     <div>
