@@ -89,44 +89,63 @@ export const createWatchlist = (watchlist) => async dispatch => {
 
 export const updateWatchlist = (watchlist) => async dispatch => {
     try {
-        const response = await fetch(`/api/<int:watchlist_id>`, {
+        const response = await fetch(`/api/watchlists/${watchlist.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ name: watchlist })
+            body: JSON.stringify({ name: watchlist.name })
         }); 
 
         if (response.ok) {
             const data = await response.json();
             dispatch(editWatchlist(data));
+            console.log('response is running')
             return response;
         } else {
+            console.log('something wrongggggg')
             const data = await response.json();
             if (data) {
                 throw data.error.message;
             }
         }
     } catch (err) {
+        console.log('catched error')
         throw err
     }
 }
 
-export const deleteWatchlist = (watchlistId) => async dispatch => {
-    try {
-        const response = await fetch(`/api/<int:watchlist_id>`, {
-            method: 'DELETE'
-        });
+// export const deleteWatchlist = (watchlistId) => async dispatch => {
+//     try {
+//         const response = await fetch(`/api/<int:watchlist_id>`, {
+//             method: 'DELETE'
+//         });
 
-        if (response.ok) {
-            dispatch(removeWatchlist(watchlistId));
-        } else {
-            const data = await response.json();
-            if (data) {
-                throw data.error.message;
-            }
-        }
+//         if (response.ok) {
+//             dispatch(removeWatchlist(watchlistId));
+//         } else {
+//             const data = await response.json();
+//             if (data) {
+//                 throw data.error.message;
+//             }
+//         }
         
+//     } catch (err) {
+//         throw err;
+//     }
+// }
+
+// export const addStockToWatchlist = (stock) => async dispatch => {
+//     try {
+
+//     } catch (err) {
+//         throw err;
+//     }
+// }
+
+export const deleteStockFromWatchlist = (stock) => async dispatch => {
+    try {
+
     } catch (err) {
         throw err;
     }
@@ -134,6 +153,7 @@ export const deleteWatchlist = (watchlistId) => async dispatch => {
 
 
 const watchlistReducer = (state = {}, action) => {
+    let newState;
     switch (action.type) {
         case LOAD_WATCHLISTS:
             return {
@@ -147,9 +167,16 @@ const watchlistReducer = (state = {}, action) => {
                     ),
             };
         case ADD_WATCHLIST:
-            let newState = { ...state };
+            newState = { ...state };
             newState.watchlists[action.watchlist.id] = action.watchlist;
             return newState;
+        
+        case EDIT_WATCHLIST:
+            newState = { ...state };
+            const watchlist = action.watchlist;
+            newState.watchlists[watchlist.id] = watchlist;
+            return newState;
+        
         default: 
             return state
     }

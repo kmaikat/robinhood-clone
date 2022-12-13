@@ -1,14 +1,14 @@
 .watchlist-container {
-    margin: 20px;  
+    /* margin: 20px;   */
     height: 100%; 
-    width: 280px;
+    width: 100%;
     box-sizing: border-box;
     border: 1px solid #cccccc;
 }
 header {
     box-sizing: border-box;
     border-bottom: 1px solid #cccccc;
-    width: 280px;
+    width: 100%;
 }
 .watchlist-header {
     display: flex;
@@ -69,8 +69,15 @@ header {
     padding: 8px;
 }
 
-
-.btn-open, .btn-openstock{
+.watchlist-btn-container {
+    width: 200px;
+}
+.update-btn-main {
+    width: 150px;
+    display: flex;
+    justify-content: flex-end;
+}
+.btn-open, .btn-openstock, .btn-update, .btn-edit, .btn-close{
     background: none;
     border: transparent;
     min-width: 0;
