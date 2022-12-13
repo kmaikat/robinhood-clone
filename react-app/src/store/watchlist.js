@@ -87,6 +87,52 @@ export const createWatchlist = (watchlist) => async dispatch => {
     }
 };
 
+export const updateWatchlist = (watchlist) => async dispatch => {
+    try {
+        const response = await fetch(`/api/<int:watchlist_id>`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: watchlist })
+        }); 
+
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(editWatchlist(data));
+            return response;
+        } else {
+            const data = await response.json();
+            if (data) {
+                throw data.error.message;
+            }
+        }
+    } catch (err) {
+        throw err
+    }
+}
+
+export const deleteWatchlist = (watchlistId) => async dispatch => {
+    try {
+        const response = await fetch(`/api/<int:watchlist_id>`, {
+            method: 'DELETE'
+        });
+
+        if (response.ok) {
+            dispatch(removeWatchlist(watchlistId));
+        } else {
+            const data = await response.json();
+            if (data) {
+                throw data.error.message;
+            }
+        }
+        
+    } catch (err) {
+        throw err;
+    }
+}
+
+
 const watchlistReducer = (state = {}, action) => {
     switch (action.type) {
         case LOAD_WATCHLISTS:
