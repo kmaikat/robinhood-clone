@@ -76,13 +76,17 @@ function App() {
           <WatchList />
         </Route>
         <Route path='/stocks/:symbol' >
+          <AppMainNavBar />
           <SymbolNews />
         </Route>
       </Switch>
       <ProtectedRoute path="/app" exact>
         <AppMainNavBar />
         <AppHome />
-          <div style={{ height: "10000px" }}>Temporary navbar test</div>
+        <div style={{ height: "10000px" }}>Temporary navbar test</div>
+      </ProtectedRoute>
+      <ProtectedRoute path="/profile" exact>
+        <AppMainNavBar />
       </ProtectedRoute>
     </BrowserRouter>
   );
