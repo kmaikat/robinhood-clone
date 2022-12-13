@@ -4,6 +4,11 @@ import "../../stylesheets/AllNews.css"
 
 const AllNews = () => {
     const [articles, setArticles] = useState([])
+    const [isActive, setActive] = useState("false")
+
+    const handleToggle = () => {
+        setActive(!isActive)
+    }
 
     useEffect(() => {
         fetch("/api/news").then(r => r.json()).then(r => setArticles(r))
@@ -21,6 +26,10 @@ const AllNews = () => {
                                 <div id="all-news-source-container">
                                     <div id="all-news-source">
                                         {article.source}
+                                        <button onClick={handleToggle}>
+                                            <i class="fa-solid fa-heart"></i>
+                                            <i class="fa-regular fa-heart" id="like-heart"></i>
+                                        </button>
                                     </div>
                                 </div>
                                 <div id="all-news-bottom-half">
