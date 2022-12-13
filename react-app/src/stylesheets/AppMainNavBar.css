@@ -1,7 +1,6 @@
 #app-nav-bar {
-    display: flex;
+    display: grid;
     align-items: center;
-    justify-content: space-between;
     height: 6.4rem;
     background-color: white;
     position: sticky;
@@ -9,6 +8,7 @@
     width: 100%;
     z-index: 2;
     padding: 0 2.4rem;
+    grid-template-columns: 1fr minmax(auto, 141.6rem) 1fr;
 }
 
 #app-nav-bar-logo {
@@ -21,6 +21,7 @@
 
 #account-button-container {
     width: min-content;
+    justify-self: flex-end;
 }
 
 #account-button {
@@ -59,7 +60,7 @@
     background-color: white;
     animation: submenu-opacity 200ms ease-in-out forwards;
     font-weight: 600;
-    box-shadow: 0px -12px 24px rgba(0,0,0,0.02), 0px 12px 24px rgba(0,0,0,0.02);
+    box-shadow: 0px -12px 24px rgba(0, 0, 0, 0.02), 0px 12px 24px rgba(0, 0, 0, 0.02);
 }
 
 @keyframes submenu-opacity {
