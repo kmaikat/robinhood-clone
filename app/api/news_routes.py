@@ -49,13 +49,11 @@ def get_news_by_ticker(ticker):
         print("KEY FAILED: Trying Again")
         data = r.json()
 
-    print(data)
     feed = data["feed"]
     article_data = [{"source": article["source"], "title": article["title"],
                      "image": article["banner_image"], "url": article["url"],
                      "tickers": [stock["ticker"] for stock in article["ticker_sentiment"]]} for article in feed]
-    print(article_data[:25])
-    return jsonify(article_data[:25])
+    return jsonify(article_data[:5])
 
 
 @news_routes.route("/liked", methods=["GET"])
