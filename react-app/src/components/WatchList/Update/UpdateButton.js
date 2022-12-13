@@ -1,4 +1,6 @@
 import { useState } from "react";
+import WatchList from "..";
+import UpdateFormModal from "../UpdateFormModal";
 
 const UpdateButton = ({watchlist,i}) => {
     const [open, setOpen] = useState({});
@@ -17,7 +19,9 @@ const UpdateButton = ({watchlist,i}) => {
             </button>
             {open[i] && 
                 <div>
-                    <div>Edit {watchlist.id}</div>
+                    <div>
+                        <UpdateFormModal watchlist={watchlist} />
+                    </div>
                     <div>Delete</div>
                 </div>
             }

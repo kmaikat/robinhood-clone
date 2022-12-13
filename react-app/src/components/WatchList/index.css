@@ -70,14 +70,14 @@ header {
 }
 
 .watchlist-btn-container {
-    width: 300px;
+    width: 200px;
 }
 .update-btn-main {
-    width: 200px;
+    width: 150px;
     display: flex;
     justify-content: flex-end;
 }
-.btn-open, .btn-openstock, .btn-update{
+.btn-open, .btn-openstock, .btn-update, .btn-edit, .btn-close{
     background: none;
     border: transparent;
     min-width: 0;

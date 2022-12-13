@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import NewWatchList from './watchlist_form';
 import './index.css';
-import UpdateButton from './UpdateButton';
+import UpdateButton from './Update/UpdateButton';
 
 const WatchList = () => {
     const dispatch = useDispatch(); 

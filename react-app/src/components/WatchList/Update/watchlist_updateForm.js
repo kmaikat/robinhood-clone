@@ -1,23 +1,34 @@
-import * as watchlistAction from '../../store/watchlist'; 
+import * as watchlistAction from '../../../store/watchlist'; 
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
 
 
-const UpdateWatchlistForm = () => {
-    const [name, setName] = useState(''); 
-    const [validationError, setValidationError] = useState('');
-
+const UpdateWatchlistForm = ({watchlist, onClose}) => {
+    const id = watchlist.id;
+    const [name, setName] = useState(watchlist.name); 
+    const [validationError, setValidationError] = useState([]);
+    const dispatch = useDispatch();
     const handleSubmit = async (e) => {
+        e.preventDefault();
         setValidationError('');
-        if (name.length > 64) setValidationError('Your list name must be less than 64 characters');
-
-        const response = await dispatch(watchlistAction.createWatchlist(name))
+        if (name.length > 64) {
+            return setValidationError('Your list name must be less than 64 characters');
+        }
+        console.log('im line 14 handle submit')
+        const response = await dispatch(watchlistAction.updateWatchlist({name, id}))
         .catch(async (err) => {
             setValidationError(err[0])
             if (err.response) {
                 const data = await err.response.json();
             }
         });
+        if (response) {
+            onClose()
+        }
+    }
+    const handleClose = (e) => {
+        e.preventDefault();
+        onClose();
     }
     
     return (
@@ -25,7 +36,7 @@ const UpdateWatchlistForm = () => {
             <form onSubmit={handleSubmit}>
                 <div>
                     <div>Edit List</div>
-                    <button>Close btn</button>
+                    <button className='btn-close' onClick={handleClose}>X</button>
                 </div>
                 <div>
                     <div>Icon</div>
@@ -39,8 +50,13 @@ const UpdateWatchlistForm = () => {
                         />
                     </label>
                 </div>
+                {validationError && 
+                    <div>
+                        {validationError}
+                    </div>
+                }
                 <div>
-                    <button type='submit'>Save</button>
+                    <button type='submit' className='btn-save'>Save</button>
                 </div>
             </form>
         </div>

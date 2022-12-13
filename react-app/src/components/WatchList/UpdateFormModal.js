@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { Modal } from "../Modals/Modal";
-import UpdateWatchlistForm from "./watchlist_updateForm";
+import UpdateWatchlistForm from "./Update/watchlist_updateForm";
 
-const UpdateFormModal = () => {
+const UpdateFormModal = ({watchlist}) => {
     const [showModal, setShowModal] = useState(false); 
 
     return (
@@ -10,7 +10,7 @@ const UpdateFormModal = () => {
             <button onClick={() => setShowModal(true)} className='btn-edit'>Edit</button>
             {showModal && (
                 <Modal>
-                    <UpdateWatchlistForm onClose={() => setShowModal(false)} />
+                    <UpdateWatchlistForm watchlist={watchlist} onClose={() => setShowModal(false)} />
                 </Modal>
             )}
         </>
