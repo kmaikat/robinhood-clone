@@ -13,7 +13,7 @@ const rootReducer = combineReducers({
   ticker: tickerReducer,
   price: priceReducer,
   watchlists: watchlistReducer,
-  news: newsReducer
+  news: newsReducer,
   watchlistStocks: watchlistStockReducer
 });
 
