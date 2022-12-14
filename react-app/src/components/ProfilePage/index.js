@@ -39,7 +39,7 @@ const ProfilePage = () => {
                 <div className={styles.profileContainer}>
                     <div className={styles.profile}>
                         <div style={{display: 'flex'}}>
-                            <ProfileFrame id={user.id} imageUrl={user.imageUrl} setIsModalMessage={setIsModalMessage} />
+                            <ProfileFrame setIsModalMessage={setIsModalMessage} />
                             <div className={styles.username}>
                                 <div className={styles.name}>
                                     {user.nickname}

@@ -77,7 +77,7 @@ const ModalProfile = ({ setIsModalOn, setIsModalMessage }) => {
                     <div style={{cursor: 'pointer'}} onClick={closeModal}><i className="fa-regular fa-xmark"></i></div>
                 </div>
                 <div className={styles.profilePictureContainer}>
-                    <ProfileFrame />
+                    <ProfileFrame setIsModalMessage={setIsModalMessage} />
                 </div>
                 <div style={{marginBottom: 0}} className={styles.namesContainer}>Nickname</div>
                 <div>You'll see this at the top of your profile.</div>
