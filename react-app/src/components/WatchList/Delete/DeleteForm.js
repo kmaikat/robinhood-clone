@@ -26,16 +26,16 @@ const DeleteWatchlist = ({ watchlist, onClose }) => {
     };
 
     return (
-        <div>
-            <div>
-                <div>
-                    <h2>Are you sure you want to delete {watchlist.name} ?</h2>
-                </div>
-                <div>
-                    <button onClick={handleClosebtn}>Close btn</button>
+        <div className='delete-container'>
+            <div className='delete-head'>
+                <h1>Are you sure you want to delete "{watchlist.name}" ?</h1>
+                <div className='delete-btncontainer'>
+                    <button className='delete-btnclose' onClick={handleClosebtn}>
+                        <i className="fa-solid fa-xmark"></i>
+                    </button>
                 </div>
             </div>
-            <div>
+            <div className='delete-reminder'>
                 <p>If you delete this list, its will be gone forever!</p>
             </div>
             {validationError && 
@@ -43,8 +43,8 @@ const DeleteWatchlist = ({ watchlist, onClose }) => {
                     {validationError}
                 </div>
             }
-            <div>
-                <button onClick={handleDeletebtn}> Delete {watchlist.name}</button>
+            <div className='delete-btndelete-container'>
+                <button className='delete-btndelete' onClick={handleDeletebtn}> Delete {watchlist.name}</button>
             </div>
         </div>
     );
