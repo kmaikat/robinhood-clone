@@ -361,9 +361,6 @@ header {
     font-size: 15px;
     margin-left: 20px;
 }
-.delete-btndelete-container {
-
-}
 
 .delete-btndelete {
     border: 1px solid var(--rockethood-sell-red);

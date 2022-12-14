@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Transactions from "./Transactions";
-
+import AddStock from "./WatchList/WatchlistStock/AddStock";
 function stringToFormat(marketCap) {
     const usDollar = Intl.NumberFormat("en-US");
     marketCap = usDollar.format(marketCap);
@@ -181,6 +181,7 @@ function StockShowcase() {
                     </div>
                     <div className="app-home-right">
                         <Transactions />
+                        <AddStock symbol={symbol} />
                     </div>
                 </div>
             </div>
