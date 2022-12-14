@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react'
 import { getDailyPrices, getMinutelyPrices, getOneDayPrices, labelFormatter } from '../../util/util2'
 import { useSelector, useDispatch } from 'react-redux'
 import { setCurrentPrice, setStartingPrice, setTerm, setIsHovering } from '../../store/price'
+import PlaceHolder from '../PlaceHolder'
 import styles from './chart.module.css'
 
 const DrawChart = () => {
@@ -191,7 +192,7 @@ const DrawChart = () => {
                     }
                 </ul>
             </>
-            : 'Loading...'
+            : <PlaceHolder />
         }
         </div>
     );
