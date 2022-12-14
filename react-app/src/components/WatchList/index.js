@@ -5,9 +5,9 @@ import NewWatchList from './watchlist_form';
 import './index.css';
 import UpdateButton from './Update/UpdateButton';
 import SmallChart from '../SmallChart';
-import StockPrice from './StockPrice';
+// import StockPrice from './StockPrice';
 import { Modal } from "../Modals/Modal";
-import UpdateWatchlistForm from "./Update/watchlist_updateForm";
+// import UpdateWatchlistForm from "./Update/watchlist_updateForm";
 // import UpdateWatchlistForm from "./Update/watchlist_updateForm";
 import { Link } from 'react-router-dom';
 
