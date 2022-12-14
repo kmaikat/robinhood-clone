@@ -120,12 +120,25 @@
     transform: translateX(-50%);
     width: 90%;
     text-align: center;
+    background-color: black;
+    padding: 0;
+    color: white;
+}
+
+.saveChanges:hover {
+    background-color: rgb(38, 38, 38);
 }
 
 .inputContainer {
     border-radius: 4px;
     width: 100%;
-    border: 1px solid black;
+    background-color: #efeeee;
+    border: 1px solid white;
+}
+
+.inputContainer:hover {
+    border-color: #efeeee;
+    background-color: white;
 }
 
 .inputNames {
@@ -189,4 +202,17 @@
 
 .closeBtn {
     cursor: pointer;
+}
+
+.editProfileBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 115px;
+    height: 36px;
+    padding: 0;
+}
+
+.editProfileBtn:hover {
+    background-color: #e4e4e4;
 }

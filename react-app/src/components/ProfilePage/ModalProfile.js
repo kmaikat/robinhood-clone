@@ -40,6 +40,16 @@ const ModalProfile = ({ setIsModalOn, setIsModalMessage }) => {
 
     }, [nickname, username])
 
+    useEffect(() => {
+        if(showNickNameError)
+            inputNickname.current.className=`${styles.inputContainer} ${styles.error}`
+        else inputNickname.current.className=styles.inputContainer
+
+        if(showUserNameError) inputUsername.current.className=`${styles.inputContainer} ${styles.error}`
+        else inputUsername.current.className=styles.inputContainer
+
+    }, [showNickNameError, showUserNameError])
+
     const handleSubmit = () => {
         if(!nickNameError && !userNameError){
             dispatch(updateNicknameUsername(nickname, username))
@@ -81,13 +91,13 @@ const ModalProfile = ({ setIsModalOn, setIsModalMessage }) => {
                 </div>
                 <div style={{marginBottom: 0}} className={styles.namesContainer}>Nickname</div>
                 <div>You'll see this at the top of your profile.</div>
-                <div className={styles.inputContainer}>
-                    <input ref={inputNickname} type='text' className={styles.inputNames} value={nickname} onChange={e => setNickname(e.target.value)} />
+                <div className={styles.inputContainer}  ref={inputNickname}>
+                    <input type='text' className={styles.inputNames} value={nickname} onChange={e => setNickname(e.target.value)} />
                 </div>
                 <div className={styles.errorMessage}>{showNickNameError && nickNameError}</div>
                 <div className={styles.namesContainer}>Username</div>
-                <div className={styles.inputContainer}>
-                    <input ref={inputUsername} type='text' className={styles.inputNames} value={username} onChange={e => setUsername(e.target.value)} />
+                <div className={styles.inputContainer} ref={inputUsername} >
+                    <input type='text' className={styles.inputNames} value={username} onChange={e => setUsername(e.target.value)} />
                 </div>
                 <div className={styles.errorMessage}>{showUserNameError && userNameError}</div>
                 <div className={styles.submitContainer}><button className={styles.saveChanges} onClick={handleSubmit}>Save Changes</button></div>
