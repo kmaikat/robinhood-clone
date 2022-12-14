@@ -126,19 +126,27 @@ export const uploadProfileImage = (file) => async dispatch => {
     body: formData
   }
 
-  fetch(`/api/file/upload`, options)
+  const result = fetch(`/api/file/upload`, options)
     .then(res => res.json())
-    .then(res => dispatch(setProfileImage(res.file)))
-    .catch(e => console.log(e))
+    .then(res => {
+      dispatch(setProfileImage(res.file))
+      return true
+    })
+    .catch(e => {
+      console.log(e)
+      return false
+    })
+
+    return result
 }
 
 export const deleteProfileImage = () => async dispatch => {
   try{
     await fetch(`/api/file/upload`, {method: 'DELETE'})
     dispatch(removeProfileImage())
-    return
+    return true
   }catch(e) {
-    return e
+    return false
   }
 }
 
