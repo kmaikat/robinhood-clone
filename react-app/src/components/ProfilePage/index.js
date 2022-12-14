@@ -50,7 +50,7 @@ const ProfilePage = () => {
                             </div>
                         </div>
                         <div>
-                            <button onClick={() => setIsModalOn(true)}>Edit Profile</button>
+                            <button onClick={() => setIsModalOn(true)} className={styles.editProfileBtn}>Edit Profile</button>
                         </div>
                     </div>
                 </div>
