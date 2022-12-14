@@ -42,8 +42,9 @@ const NewWatchList = ({openForm, setOpenForm}) => {
                 </div>
                 <div className='newform-content'>
                     <div className='newform-content-head'>
-                        <div className='newform-icon'>💡</div>
-                        <div className='newform-info-wrapper'>
+                        <div className='watchlist-icon'>
+                            <img src="https://cdn.robinhood.com/emoji/v0/128/1f4a1.png"/>
+                        </div>
                             <div className='newform-info'>
                                 <label>
                                     <input
@@ -55,7 +56,6 @@ const NewWatchList = ({openForm, setOpenForm}) => {
                                     />
                                 </label>
                             </div>
-                        </div>
                     </div>
                     <div className='newform-button'>
                         <button className='btn-cancel-form'onClick={handleCancelButton}>Cancel</button>

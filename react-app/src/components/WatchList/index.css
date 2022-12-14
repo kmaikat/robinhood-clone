@@ -1,5 +1,4 @@
 .watchlist-container {
-    /* margin: 20px;   */
     height: 500px;
     width: 100%;
     box-sizing: border-box;
@@ -16,31 +15,47 @@ header {
 }
 
 .newform-content {
-    height: 92px;
-    padding-left: 10px;
     display: flex;
     flex-direction: column;
-    
+    width: 100%;
+    margin:10px 10px 10px 0px;
 }
 .newform-content-head {
     display: flex;
     align-items: center;
     flex-direction: row;
-    padding: 4px 10px 0px;
+    width: 100%;
 }
-.newform-icon {
-    box-sizing: border-box;
-    border: 1px solid #cccccc;
-    height: 36px;
-    width: 36px;
-}
-.newform-info-wrapper {
+
+.newform-info {
     flex-grow: 2;
     box-sizing: border-box;
-    border: 1px solid #cccccc;
-    height: 36px;
-    margin: 4px;
+    height: 100%;
 }
+.newform-info input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+.newform-info input:focus  {
+    border: 1px solid var(--rockethood-green)
+}
+.newform-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 28px;
+    width: 28px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    margin-right: 5px;
+    background-color: rgb(30,33,36);
+    margin-left: 15px;
+    
+}
+
 .newform-button {
     display: flex;
     justify-content: flex-end;
@@ -63,7 +78,7 @@ header {
     margin-right: 10px;
 }
 .newform-info {
-    padding: 8px;
+    padding: 8px 8px 8px 0px;
 }
 
 .watchlist-btn-container {
@@ -133,6 +148,8 @@ header {
 
 .watchlist-name {
     text-align: center;
+    font-weight: 700;
+    font-size: 1.4rem;
 }
 
 .watchlist-opening {
@@ -158,8 +175,6 @@ header {
     border-radius: 3px;
     margin-right: 5px;
     background-color: rgb(30,33,36);
-    margin-left: 15px;
-    margin-right: 15px;
 }
 
 .watchlist-icon > img {
@@ -171,4 +186,119 @@ header {
     position: absolute;
     background-color: white;
     z-index: 1000;
+}
+
+.watchlist-stocks-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+
+}
+.watchlist-stocks-content:hover {
+    background-color: var(--rockethood-border-lightgray);
+    cursor: pointer;
+}
+.watchlist-stocksymbol {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-left: 15px;
+    margin-right: 15px;
+    font-weight: 600;
+}
+
+.watchlist-minigraph {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.watchlist-stockprice {
+    padding: 12px;
+}
+
+.watchlist-stocks-container-closed {
+    display: none;
+}
+
+.stock-positive {
+    color: var(--rockethood-green);
+}
+
+.stock-negative {
+    color: var(--rockethood-sell-red);
+}
+
+.updateform-container {
+    width: 468px;
+}
+
+.updateform-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+    font-size: 20px;
+}
+
+.updateform-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    padding: 0px 20px 20px 20px;
+}
+
+.updateform-info {
+    flex-grow: 2;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.updateform-input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.watchlist-wrapper-head .watchlist-icon {
+    margin: 0px 15px;
+}
+
+.updateform-info input.updateform-input:focus {
+    border: 1px solid var(--rockethood-green);
+    border-radius: 5px;
+}
+
+.updateform-btnsave {
+    padding: 0px 20px 20px 20px;
+}
+
+.updateform-content > .watchlist-icon {
+    margin: 0px 15px 0px 0px;
+}
+
+.btn-close {
+    border-radius: 0;
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-save {
+    border: 1px solid var(--rockethood-green);
+    background-color: var(--rockethood-green);
+    width: 100%;
+    text-align: center;
+    color: var(--rockethood-darkest-green);
 }
