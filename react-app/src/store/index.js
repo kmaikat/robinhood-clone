@@ -4,7 +4,9 @@ import session from './session'
 import tickerReducer from './ticker';
 import priceReducer from './price';
 import watchlistReducer from './watchlist';
+
 import newsReducer from './news';
+import watchlistStockReducer from './watchlistStock';
 
 const rootReducer = combineReducers({
   session,
@@ -12,6 +14,7 @@ const rootReducer = combineReducers({
   price: priceReducer,
   watchlists: watchlistReducer,
   news: newsReducer
+  watchlistStocks: watchlistStockReducer
 });
 
 

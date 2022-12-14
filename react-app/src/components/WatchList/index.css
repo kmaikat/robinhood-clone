@@ -1,6 +1,5 @@
 .watchlist-container {
-    /* margin: 20px;   */
-    height: 100%; 
+    height: 500px;
     width: 100%;
     box-sizing: border-box;
     border: 1px solid #cccccc;
@@ -13,39 +12,50 @@ header {
 .watchlist-header {
     display: flex;
     align-items: center;
-    height: 52px;
-}
-.watchlist-header > div {
-    padding: 4px 24px 0px;
-    flex-grow: 2;
 }
 
 .newform-content {
-    height: 92px;
-    padding-left: 10px;
     display: flex;
     flex-direction: column;
-    
+    width: 100%;
+    margin:10px 10px 10px 0px;
 }
 .newform-content-head {
     display: flex;
     align-items: center;
     flex-direction: row;
-    padding: 4px 10px 0px;
+    width: 100%;
 }
-.newform-icon {
-    box-sizing: border-box;
-    border: 1px solid #cccccc;
-    height: 36px;
-    width: 36px;
-}
-.newform-info-wrapper {
+
+.newform-info {
     flex-grow: 2;
     box-sizing: border-box;
-    border: 1px solid #cccccc;
-    height: 36px;
-    margin: 4px;
+    height: 100%;
 }
+.newform-info input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+.newform-info input:focus  {
+    border: 1px solid var(--rockethood-green)
+}
+.newform-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 28px;
+    width: 28px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    margin-right: 5px;
+    background-color: rgb(30,33,36);
+    margin-left: 15px;
+    
+}
+
 .newform-button {
     display: flex;
     justify-content: flex-end;
@@ -56,7 +66,9 @@ header {
     height: 36px;
     /* width: 80px; */
     padding: 4px 15px;
+    color: rgb(255,255,255);
     /* text-align: center; */
+    border:1px solid #00C805; 
 }
 .btn-cancel-form {
     border:1px solid #00C805; 
@@ -66,54 +78,298 @@ header {
     margin-right: 10px;
 }
 .newform-info {
-    padding: 8px;
+    padding: 8px 8px 8px 0px;
 }
 
 .watchlist-btn-container {
-    width: 200px;
+    /* width: 200px; */
+    display: flex;
+    justify-content: space-between;
 }
 .update-btn-main {
-    width: 150px;
-    display: flex;
-    justify-content: flex-end;
+    position: relative;
 }
-.btn-open, .btn-openstock, .btn-update, .btn-edit, .btn-close{
+.btn-open, .btn-openstock, .btn-update, .btn-edit, .btn-close {
     background: none;
     border: transparent;
     min-width: 0;
 }
-.btn-openstock{
+.btn-add {
+    padding: 0;
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-add > i {
+    line-height: 30px;
+}
+
+.btn-openstock {
     padding: 12px;
 }
-.watchlist-lists {
-    margin: 10px;
+
+.watchlist-header-label {
+    font-weight: 600;
+    font-size: 20px;
+    padding-left: 24px;
+    flex-grow: 2;
 }
 
 .watchlist-content-header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 52px;
     width: 100%;
 }
-.watchlist-wrapper-head{ 
-    flex-grow: 2;
+
+.watchlist-wrapper-head { 
     display: flex;
     flex-direction: row;
-    padding: 0px 15px 0px;
-    
+    width: 100%;
+    height: 60px;
+    align-items: center;
+}
+
+.watchlist-content-header:hover {
+    background-color: var(--rockethood-border-lightgray);
+    cursor: pointer;
+}
+
+.watchlist-content-header .btn-update {
+    visibility: hidden;
+}
+
+.watchlist-content-header:hover .btn-update {
+    visibility: visible;
 }
 
 .watchlist-name {
-    width: 100px;
+    text-align: center;
+    font-size: 1.4rem;
 }
 
-.icon {
-    display: block;
+.watchlist-opening {
+    transition: transform 300ms ease 0s;
+}
+
+.watchlist-closing {
+    transition: transform 300ms ease 0s;
+    transform: rotate(180deg);
+}
+
+.watchlist-content-header:hover .watchlist-btn {
+    color: var(--rockethood-green);
+}
+
+.watchlist-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 28px;
     width: 28px;
     box-sizing: border-box;
-    border: 1px solid #cccccc;
     border-radius: 3px;
     margin-right: 5px;
+    background-color: rgb(30,33,36);
+}
+
+.watchlist-icon > img {
+    width: 18px;
+    height: 18px;
+}
+
+.watchlist-dropdown {
+    position: absolute;
+    background-color: white;
+    z-index: 1000;
+}
+
+.watchlist-stocks-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+
+}
+.watchlist-stocks-content:hover {
+    background-color: var(--rockethood-border-lightgray);
+    cursor: pointer;
+}
+.watchlist-stocksymbol {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-left: 15px;
+    margin-right: 15px;
+    font-weight: 600;
+}
+
+.watchlist-minigraph {
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.watchlist-stockprice {
+    padding: 12px;
+}
+
+.watchlist-stocks-container-closed {
+    display: none;
+}
+
+.stock-positive {
+    color: var(--rockethood-green);
+}
+
+.stock-negative {
+    color: var(--rockethood-sell-red);
+}
+
+.updateform-container {
+    width: 468px;
+}
+
+.updateform-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+    font-size: 20px;
+}
+
+.updateform-content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    padding: 0px 20px 20px 20px;
+}
+
+.updateform-info {
+    flex-grow: 2;
+    box-sizing: border-box;
+    height: 100%;
+}
+
+.updateform-input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #cccccc;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.watchlist-wrapper-head .watchlist-icon {
+    margin: 0px 15px;
+}
+
+.updateform-info input.updateform-input:focus {
+    border: 1px solid var(--rockethood-green);
+    border-radius: 5px;
+}
+
+.updateform-btnsave {
+    padding: 0px 20px 20px 20px;
+}
+
+.updateform-content > .watchlist-icon {
+    margin: 0px 15px 0px 0px;
+}
+
+.btn-close {
+    border-radius: 0;
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-save {
+    border: 1px solid var(--rockethood-green);
+    background-color: var(--rockethood-green);
+    width: 100%;
+    text-align: center;
+    color: var(--rockethood-darkest-green);
+}
+
+.watchlistform-icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 28px;
+    width: 28px;
+    box-sizing: border-box;
+    border-radius: 3px;
+    margin-right: 5px;
+    background-color: rgb(30,33,36);
+    margin-left: 15px;
+    margin-right: 15px
+}
+
+.delete-container {
+    width: 468px;
+    display: flex;
+    flex-direction: column;
+}
+
+.delete-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 20px;
+    padding-left: 20px;
+    font-weight: 600;
+}
+.delete-head > h1 {
+    margin: 20px;
+}
+
+.delete-btncontainer {
+    margin-right: 0;
+    margin-top: 20px
+}
+
+.delete-btnclose {
+    border: none;
+    border-radius: 0;
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    padding-left: 20px;
+}
+
+.delete-reminder {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    align-items: center;
+    padding: 0px 20px 20px 20px;
+    font-size: 15px;
+    margin-left: 20px;
+}
+.delete-btndelete-container {
+
+}
+
+.delete-btndelete {
+    border: 1px solid var(--rockethood-sell-red);
+    background-color: var(--rockethood-sell-red);
+    width: 90%;
+    text-align: center;
+    color: rgb(255,255,255);
+    margin: 0px 20px 20px 20px;
 }

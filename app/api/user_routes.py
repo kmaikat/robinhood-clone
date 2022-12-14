@@ -1,8 +1,24 @@
-from flask import Blueprint, jsonify
-from flask_login import login_required
+from flask import Blueprint, jsonify, request
+from flask_login import login_required, current_user
 from app.models import User
 
 user_routes = Blueprint('users', __name__)
+
+
+@user_routes.route('/update', methods=['PUT'])
+@login_required
+def update():
+    update = request.json
+
+    if not update.get('nickname') or not update.get('username'):
+        return {'error': 'nickname and username are required'}, 400
+
+    nickname = update.get('nickname')
+    username = update.get('username')
+
+    current_user.update_un_nn(nickname, username)
+
+    return {'message': 'successfully updated'}
 
 
 @user_routes.route('/')

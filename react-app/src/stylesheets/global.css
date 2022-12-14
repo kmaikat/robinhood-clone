@@ -12,6 +12,8 @@ body {
     --rockethood-form-lightgray: #b1b5b8;
     --rockethood-sell-red: #FF6600;
     --rockethood-border-lightgray: #E3E9ED;
+    --rockethood-hover-green: rgba(0,180,5,1);
+    --rockethood-hover-red: rgba(255,80,0,0.3);
 }
 
 button {
@@ -22,4 +24,15 @@ button {
     font-size: 1.4rem;
     font-weight: 550;
     min-width: 10.2rem
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
