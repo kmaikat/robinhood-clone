@@ -61,7 +61,7 @@ const ProfilePage = () => {
             </div>
             {isModalMessage && <div ref={message} className={styles.modalMessage}>
                 <div>
-                    <i className="fa-solid fa-circle-check" style={{marginRight: '1rem'}}></i>
+                    <i className="fa-solid fa-circle-check" style={{marginRight: '1rem', color: '#5ac53b'}}></i>
                     Change saved successfully
                 </div>
                 <div className={styles.closeBtn} onClick={() => setIsModalMessage(false)}>

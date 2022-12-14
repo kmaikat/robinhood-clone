@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux"
 import { useState, useEffect } from 'react'
+import { diffFormatter } from "../../util/util2"
 import styles from './price.module.css'
 
 const PriceShow = () => {
@@ -17,13 +18,13 @@ const PriceShow = () => {
         '1D': 'Today'
     }
 
-    const diffFormatter = (curr, start, isPositive) => {
-        const valueDiff = Math.abs(curr - start).toFixed(2)
-        const percDiff = Math.abs(((curr - start) / start * 100)).toFixed(2)
-        const sign = isPositive ? '+' : '-'
+    // const diffFormatter = (curr, start, isPositive) => {
+    //     const valueDiff = Math.abs(curr - start).toFixed(2)
+    //     const percDiff = Math.abs(((curr - start) / start * 100)).toFixed(2)
+    //     const sign = isPositive ? '+' : '-'
 
-        return `${sign}$${valueDiff} (${sign}${percDiff}%)`
-    }
+    //     return `${sign}$${valueDiff} (${sign}${percDiff}%)`
+    // }
 
     useEffect(() => {
         setIsPos(currentPrice >= startingPrice)

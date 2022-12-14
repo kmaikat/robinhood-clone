@@ -237,3 +237,11 @@ export const amountFormatter = value => {
 
     return `$${res}.${second}`
 }
+
+export const diffFormatter = (curr, start, isPositive) => {
+    const valueDiff = Math.abs(curr - start).toFixed(2)
+    const percDiff = Math.abs(((curr - start) / start * 100)).toFixed(2)
+    const sign = isPositive ? '+' : '-'
+
+    return `${sign}$${valueDiff} (${sign}${percDiff}%)`
+}
