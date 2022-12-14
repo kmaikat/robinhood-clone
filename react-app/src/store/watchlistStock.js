@@ -15,7 +15,7 @@ export const fetchStockPrice = (symbol) => async dispatch => {
 
     if (response.ok) {
         const data = await response.json();
-        const currPrice = data.chart.result[0].meta.regularMarketPrice;
+        const currPrice = data.chart.result[0].meta.regularMarketPrice.toFixed(2);
         const prePrice = data.chart.result[0].meta.previousClose;
         const diffPercentage = (((currPrice - prePrice) / prePrice) * 100).toFixed(2);
         let info = {symbol, currPrice, prePrice, diffPercentage }
