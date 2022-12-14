@@ -27,7 +27,7 @@ const UpdateWatchlistForm = ({watchlist, onClose}) => {
         }
     }
     const handleClose = (e) => {
-        e.preventDefault();
+        e.stopPropagation()
         onClose();
     }
     
