@@ -7,6 +7,7 @@ import UpdateButton from './Update/UpdateButton';
 import SmallChart from '../SmallChart';
 import StockPrice from './StockPrice';
 import { Modal } from "../Modals/Modal";
+import {Link} from 'react-router-dom'
 import UpdateWatchlistForm from "./Update/watchlist_updateForm";
 
 const WatchList = () => {
@@ -91,19 +92,21 @@ const WatchList = () => {
                                 <div className='watchlist-stocks-container'>
                                     {watchlist.watchlist_stocks.length > 0 &&
                                         watchlist.watchlist_stocks.map(stock => (
-                                            <div className='watchlist-stocks-content'>
-                                                <div className='watchlist-stocksymbol'>
-                                                    {stock.stock_symbol}
-                                                </div>
-                                                <div className='watchlist-minigraph'>
-                                                    <SmallChart symbol={stock.stock_symbol}/>
-                                                </div>
-                                                <div className='watchlist-stockprice'>
-                                                    <div>
-                                                        <StockPrice symbol={stock.stock_symbol} />
+                                            <Link to={`/stocks/${stock.stock_symbol}`}>
+                                                <div className='watchlist-stocks-content'>
+                                                    <div className='watchlist-stocksymbol'>
+                                                        {stock.stock_symbol}
+                                                    </div>
+                                                    <div className='watchlist-minigraph'>
+                                                        <SmallChart symbol={stock.stock_symbol}/>
+                                                    </div>
+                                                    <div className='watchlist-stockprice'>
+                                                        <div>
+                                                            <StockPrice symbol={stock.stock_symbol} />
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </Link>
                                     
                                         ))
                                     }
