@@ -17,6 +17,9 @@ import SymbolNews from './components/News/SymbolNews';
 import AppHome from './components/AppHome';
 import AppMainNavBar from './components/AppMainNavBar/AppMainNavBar';
 import StockShowcase from './components/StockShowcase';
+import ProfilePage from './components/ProfilePage';
+
+
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
@@ -81,7 +84,7 @@ function App() {
         <AppHome />
       </ProtectedRoute>
       <ProtectedRoute path="/profile" exact>
-        <AppMainNavBar />
+        <ProfilePage />
       </ProtectedRoute>
     </BrowserRouter>
   );
