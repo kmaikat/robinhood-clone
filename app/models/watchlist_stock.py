@@ -16,11 +16,11 @@ class WatchList_Stock(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
 
-    watchlist = db.relationship("WatchList", back_populates="watchlist_stocks")
+    watchlist = db.relationship(add_prefix_for_prod("WatchList"), back_populates="watchlist_stocks")
 
-    def to_dict(self): 
+    def to_dict(self):
         return {
-            'id': self.id, 
-            'watchlist_id': self.watchlist_id, 
+            'id': self.id,
+            'watchlist_id': self.watchlist_id,
             'stock_symbol': self.stock_symbol
         }
