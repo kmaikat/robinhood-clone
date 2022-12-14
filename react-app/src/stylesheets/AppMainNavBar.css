@@ -22,8 +22,12 @@
     justify-self: self-start;
 }
 
-#app-nav-bar-logo:hover {
+.navbar-green:hover {
     color: var(--rockethood-green)
+}
+
+.navbar-red:hover{
+    color: var(--rockethood-sell-red)
 }
 
 #account-button-container {

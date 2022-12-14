@@ -176,7 +176,7 @@ function StockShowcase() {
                             </div>
                         </div>
                         <div className="app-stock-news-container">
-                            {/* <SymbolNews /> */}
+                            <SymbolNews />
                         </div>
                     </div>
                     <div className="app-home-right">
