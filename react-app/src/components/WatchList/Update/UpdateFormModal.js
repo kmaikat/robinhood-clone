@@ -1,19 +1,22 @@
-import { useState } from "react";
-import { Modal } from "../../Modals/Modal";
+import { useEffect } from "react";
 import UpdateWatchlistForm from "./watchlist_updateForm";
 
-const UpdateFormModal = ({watchlist}) => {
-    const [showModal, setShowModal] = useState(false); 
+const UpdateFormModal = ({ watchlist, closeDropdown, openModal, closeModal }) => {
+    const onClick = (e) => {
+        e.stopPropagation();
+        openModal(
+            <UpdateWatchlistForm watchlist={watchlist} onClose={() => closeModal()} />
+        );
+        closeDropdown();
+    };
+    useEffect(() => {
+        document.addEventListener('click', e => {
+            closeDropdown();
+        });
+    });
 
     return (
-        <>
-            <button onClick={() => setShowModal(true)} className='btn-edit'>Edit</button>
-            {showModal && (
-                <Modal>
-                    <UpdateWatchlistForm watchlist={watchlist} onClose={() => setShowModal(false)} />
-                </Modal>
-            )}
-        </>
+        <button onClick={onClick} className='btn-edit'>Edit</button>
     );
 }
 
