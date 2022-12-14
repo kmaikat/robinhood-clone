@@ -6,6 +6,8 @@ import ModalProfile from "./ModalProfile"
 import ProfileFrame from "./ProfileFrame"
 import styles from './profile.module.css'
 
+import { amountFormatter } from "../../util/util2"
+
 const ProfilePage = () => {
     const user = useSelector(state => state.session.user)
     const [isModalOn, setIsModalOn] = useState(false)
@@ -32,6 +34,10 @@ const ProfilePage = () => {
                             <button onClick={() => setIsModalOn(true)}>Edit Profile</button>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <div className={styles.amount}>{amountFormatter(user.buyingPower)}</div>
+                    <div>Total in Rockethood</div>
                 </div>
             </div>
         </>
