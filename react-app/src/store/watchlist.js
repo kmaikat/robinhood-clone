@@ -136,13 +136,33 @@ export const deleteWatchlist = (watchlistId) => async dispatch => {
     }
 }
 
-// export const addStockToWatchlist = (stock) => async dispatch => {
-//     try {
+export const addStockToWatchlist = (info) => async dispatch => {
+    const { watchlistId, symbol } = info;
+    try {
+        const response = await fetch(`/api/watchlists/${watchlistId}/stocks`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({symbol})
+        });
 
-//     } catch (err) {
-//         throw err;
-//     }
-// }
+        if (response.ok) {
+            const data = await response.json();
+            dispatch(fetchUserWatchlists());
+            console.log('response is running')
+            return response;
+        } else {
+            console.log('something wrongggggg')
+            const data = await response.json();
+            if (data) {
+                throw data.error.message;
+            }
+        }
+    } catch (err) {
+        throw err;
+    }
+}
 
 export const deleteStockFromWatchlist = (stock) => async dispatch => {
     try {
