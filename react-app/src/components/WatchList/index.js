@@ -1,16 +1,17 @@
-import * as watchlistAction from '../../store/watchlist'; 
+import * as watchlistAction from '../../store/watchlist';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import NewWatchList from './watchlist_form';
 import './index.css';
 import UpdateButton from './Update/UpdateButton';
-import SmallChart from '../SmallChart';
+// import SmallChart from '../SmallChart';
 import StockPrice from './StockPrice';
 import { Modal } from "../Modals/Modal";
 import UpdateWatchlistForm from "./Update/watchlist_updateForm";
+import RenderChart from './RenderChart';
 
 const WatchList = () => {
-    const dispatch = useDispatch(); 
+    const dispatch = useDispatch();
     const data = useSelector(state => state.watchlists);
     const [openForm, setOpenForm] = useState(false);
     const [openings, setOpenings] = useState({});
@@ -40,7 +41,7 @@ const WatchList = () => {
                 </div>
             </div>
         )
-    } 
+    }
 
     const watchlists = Object.values(data.watchlists);
 
@@ -90,22 +91,7 @@ const WatchList = () => {
                             {openings[i] &&
                                 <div className='watchlist-stocks-container'>
                                     {watchlist.watchlist_stocks.length > 0 &&
-                                        watchlist.watchlist_stocks.map(stock => (
-                                            <div className='watchlist-stocks-content'>
-                                                <div className='watchlist-stocksymbol'>
-                                                    {stock.stock_symbol}
-                                                </div>
-                                                <div className='watchlist-minigraph'>
-                                                    <SmallChart symbol={stock.stock_symbol}/>
-                                                </div>
-                                                <div className='watchlist-stockprice'>
-                                                    <div>
-                                                        <StockPrice symbol={stock.stock_symbol} />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                    
-                                        ))
+                                        watchlist.watchlist_stocks.map(stock => (<RenderChart symbol={stock.stock_symbol} />))
                                     }
                                 </div>
                             }
