@@ -6,12 +6,19 @@ import './index.css';
 import UpdateButton from './Update/UpdateButton';
 import SmallChart from '../SmallChart';
 import StockPrice from './StockPrice';
+import { Modal } from "../Modals/Modal";
+import UpdateWatchlistForm from "./Update/watchlist_updateForm";
 
 const WatchList = () => {
     const dispatch = useDispatch(); 
     const data = useSelector(state => state.watchlists);
     const [openForm, setOpenForm] = useState(false);
     const [openings, setOpenings] = useState({});
+    const [showModal, setShowModal] = useState(false);
+    const [modalInfo, setModalInfo] = useState({
+        show: false,
+        content: <></>
+    });
 
     useEffect(() => {
         dispatch(watchlistAction.fetchUserWatchlists())
@@ -45,6 +52,7 @@ const WatchList = () => {
         setOpenings(newOpenings);
     };
 
+
     return (
         <div className='watchlist-container'>
             <header>
@@ -68,7 +76,12 @@ const WatchList = () => {
                                     </div>
                                 </div>
                                 <div className='watchlist-btn-container'>
-                                    <UpdateButton i={i} watchlist={watchlist} />
+                                    {modalInfo.show && (
+                                        <Modal>
+                                            {modalInfo.content}
+                                        </Modal>
+                                    )}
+                                    <UpdateButton i={i} watchlist={watchlist} openModal={(content) => setModalInfo({ show: true, content })} closeModal={() => setModalInfo({ show: false })} />
                                     <button className='btn-openstock watchlist-btn'>
                                         <i className={`fa-solid fa-angle-up ${openings[i] ? "watchlist-opening" : "watchlist-closing"}`}></i>
                                     </button>

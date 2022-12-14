@@ -172,3 +172,11 @@ header {
     background-color: white;
     z-index: 1000;
 }
+
+.watchlist-minigraph {
+    height: 80px;
+}
+
+.watchlist-stocks-container-closed {
+    display: none;
+}

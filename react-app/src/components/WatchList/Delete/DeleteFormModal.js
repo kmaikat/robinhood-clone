@@ -1,19 +1,22 @@
-import { useState } from "react";
-import { Modal } from "../../Modals/Modal";
+import { useEffect } from "react";
 import DeleteWatchlist from "./DeleteForm";
 
-const DeleteModal = ({watchlist}) => {
-    const [showModal, setShowModal] = useState(false); 
+const DeleteModal = ({ watchlist, closeDropdown, openModal, closeModal }) => {
+    const onClick = (e) => {
+        e.stopPropagation();
+        openModal(
+            <DeleteWatchlist watchlist={watchlist} onClose={() => closeModal()} />
+        );
+        closeDropdown();
+    };
+    useEffect(() => {
+        document.addEventListener('click', e => {
+            closeDropdown();
+        });
+    });
 
     return (
-        <>
-            <button onClick={() => setShowModal(true)} className='btn-edit'>Delete</button>
-            {showModal && (
-                <Modal>
-                    <DeleteWatchlist watchlist={watchlist} onClose={() => setShowModal(false)} />
-                </Modal>
-            )}
-        </>
+        <button onClick={onClick} className='btn-edit'>Delete</button>
     );
 }
 
