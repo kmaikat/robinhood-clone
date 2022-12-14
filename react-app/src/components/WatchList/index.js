@@ -2,7 +2,6 @@ import * as watchlistAction from '../../store/watchlist';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import NewWatchList from './watchlist_form';
-import './index.css';
 import UpdateButton from './Update/UpdateButton';
 import SmallChart from '../SmallChart';
 // import StockPrice from './StockPrice';
@@ -10,6 +9,7 @@ import { Modal } from "../Modals/Modal";
 // import UpdateWatchlistForm from "./Update/watchlist_updateForm";
 // import UpdateWatchlistForm from "./Update/watchlist_updateForm";
 import { Link } from 'react-router-dom';
+import './index.css';
 
 const WatchList = () => {
     const dispatch = useDispatch();

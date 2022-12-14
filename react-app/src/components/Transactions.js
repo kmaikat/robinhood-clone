@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import "../stylesheets/Transactions.css";
 import { getOneDayPrices } from "../util/util";
+import "../stylesheets/Transactions.css";
 
 function Transactions() {
     const usDollar = Intl.NumberFormat("en-US");
