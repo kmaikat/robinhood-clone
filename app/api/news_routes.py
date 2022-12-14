@@ -48,7 +48,6 @@ def get_news_by_ticker(ticker):
         r = requests.get(url)
         print("KEY FAILED: Trying Again")
         data = r.json()
-
     feed = data["feed"]
     article_data = [{"source": article["source"], "title": article["title"],
                      "image": article["banner_image"], "url": article["url"],
