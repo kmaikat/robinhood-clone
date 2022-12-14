@@ -1,11 +1,12 @@
 import { useState } from "react";
-import WatchList from "..";
-import UpdateFormModal from "../UpdateFormModal";
+import UpdateFormModal from "./UpdateFormModal";
+import DeleteModal from "../Delete/DeleteFormModal";
 
 const UpdateButton = ({watchlist,i}) => {
     const [open, setOpen] = useState({});
 
-    const handleClickBtn = (i) => () => {
+    const handleClickBtn = (i) => (e) => {
+        e.stopPropagation();
         const newOpens = {
             ...open,
             [i]: !open[i]
@@ -15,14 +16,16 @@ const UpdateButton = ({watchlist,i}) => {
     return (
         <div className="update-btn-main">
             <button className='btn-update' onClick={handleClickBtn(i)}>
-                Edit
+                <i className="fa-solid fa-ellipsis"></i>
             </button>
             {open[i] && 
-                <div>
+                <div className="watchlist-dropdown">
                     <div>
                         <UpdateFormModal watchlist={watchlist} />
                     </div>
-                    <div>Delete</div>
+                    <div>
+                        <DeleteModal watchlist={watchlist}/>
+                    </div>
                 </div>
             }
     </div>

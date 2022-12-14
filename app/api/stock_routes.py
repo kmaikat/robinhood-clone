@@ -47,7 +47,7 @@ def company_information(ticker):
     data = requests.get(url).json()
 
     while ("Note" in data):
-        url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={choice(news_api_keys)}&tickers={ticker}&sort=LATEST'
+        url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={choice(apikey)}&tickers={ticker}&sort=LATEST'
         r = requests.get(url)
         print("KEY FAILED: Trying Again")
         data = r.json()

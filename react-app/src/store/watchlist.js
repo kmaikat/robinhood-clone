@@ -110,30 +110,31 @@ export const updateWatchlist = (watchlist) => async dispatch => {
             }
         }
     } catch (err) {
-        console.log('catched error')
         throw err
     }
 }
 
-// export const deleteWatchlist = (watchlistId) => async dispatch => {
-//     try {
-//         const response = await fetch(`/api/<int:watchlist_id>`, {
-//             method: 'DELETE'
-//         });
+export const deleteWatchlist = (watchlistId) => async dispatch => {
+    try {
+        const response = await fetch(`/api/watchlists/${watchlistId}`, {
+            method: 'DELETE'
+        });
 
-//         if (response.ok) {
-//             dispatch(removeWatchlist(watchlistId));
-//         } else {
-//             const data = await response.json();
-//             if (data) {
-//                 throw data.error.message;
-//             }
-//         }
+        if (response.ok) {
+            dispatch(removeWatchlist(watchlistId));
+            const data = response.json(); 
+            return data;
+        } else {
+            const data = await response.json();
+            if (data) {
+                throw data.error.message;
+            }
+        }
         
-//     } catch (err) {
-//         throw err;
-//     }
-// }
+    } catch (err) {
+        throw err;
+    }
+}
 
 // export const addStockToWatchlist = (stock) => async dispatch => {
 //     try {
@@ -175,6 +176,11 @@ const watchlistReducer = (state = {}, action) => {
             newState = { ...state };
             const watchlist = action.watchlist;
             newState.watchlists[watchlist.id] = watchlist;
+            return newState;
+        
+        case REMOVE_WATCHLIST:
+            newState = { ...state };
+            delete newState.watchlists[action.watchlistId];
             return newState;
         
         default: 

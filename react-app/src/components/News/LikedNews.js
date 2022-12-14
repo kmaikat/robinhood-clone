@@ -1,16 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import "../../stylesheets/AllNews.css";
-import "../../stylesheets/SymbolNews.css";
+import React, { useEffect, useState} from "react";
+import "../../stylesheets/SymbolNews.css"
 
-const SymbolNews = () => {
-    const [articles, setArticles] = useState([]);
-    const { symbol } = useParams();
+const LikedNews = () => {
+    const [articles, setArticles] = useState([])
 
     useEffect(() => {
-        setArticles([])
-        fetch(`/api/news/${symbol}`).then(r => r.json()).then(r => setArticles(r));
-    }, [symbol]);
+        fetch("/api/news/liked").then(r => r.json()).then(r => setArticles(r));
+    }, [])
 
     return (
         <div className="news-container">
@@ -43,7 +39,7 @@ const SymbolNews = () => {
                 );
             })}
         </div>
-    );
-};
+    )
+}
 
-export default SymbolNews;
+export default LikedNews;
