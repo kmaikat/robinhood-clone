@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux"
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 import AppMainNavBar from "../AppMainNavBar/AppMainNavBar"
 import ModalProfile from "./ModalProfile"
@@ -10,17 +10,36 @@ import { amountFormatter } from "../../util/util2"
 
 const ProfilePage = () => {
     const user = useSelector(state => state.session.user)
+    const message = useRef(null)
     const [isModalOn, setIsModalOn] = useState(false)
+    const [isModalMessage, setIsModalMessage] = useState(false)
+    let messageTimer = null
+
+    useEffect(() => {
+        if(isModalMessage){
+            clearTimeout(messageTimer)
+            setTimeout(() => {
+                message.current.className = `${styles.modalMessage} ${styles.modalMessageOn}`
+                messageTimer = setTimeout(closeMessage, 10000)
+            })
+        }
+
+    }, [isModalMessage])
+
+    const closeMessage = () => {
+        clearTimeout(messageTimer)
+        setIsModalMessage(false)
+    }
 
     return (
         <>
-            {isModalOn && <ModalProfile user={user} setIsModalOn={setIsModalOn}/>}
+            {isModalOn && <ModalProfile user={user} setIsModalOn={setIsModalOn} setIsModalMessage={setIsModalMessage} />}
             <AppMainNavBar />
             <div className={styles.mainContainer}>
                 <div className={styles.profileContainer}>
                     <div className={styles.profile}>
                         <div style={{display: 'flex'}}>
-                            <ProfileFrame id={user.id} imageUrl={user.imageUrl} />
+                            <ProfileFrame id={user.id} imageUrl={user.imageUrl} setIsModalMessage={setIsModalMessage} />
                             <div className={styles.username}>
                                 <div className={styles.name}>
                                     {user.nickname}
@@ -40,6 +59,15 @@ const ProfilePage = () => {
                     <div>Total in Rockethood</div>
                 </div>
             </div>
+            {isModalMessage && <div ref={message} className={styles.modalMessage}>
+                <div>
+                    <i className="fa-solid fa-circle-check" style={{marginRight: '1rem'}}></i>
+                    Change saved successfully
+                </div>
+                <div className={styles.closeBtn} onClick={() => setIsModalMessage(false)}>
+                    <i className="fa-regular fa-xmark"></i>
+                </div>
+            </div>}
         </>
     )
 }

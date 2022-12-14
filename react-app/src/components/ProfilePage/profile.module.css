@@ -163,3 +163,28 @@
 .amount {
     font-size: 3rem;
 }
+
+.modalMessage {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid #c8c8c8;
+    width: 726px;
+    padding: 16px;
+    border-radius: 4px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.modalMessageOn {
+    opacity: 100;
+}
+
+.closeBtn {
+    cursor: pointer;
+}

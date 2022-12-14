@@ -4,7 +4,7 @@ import { updateNicknameUsername } from '../../store/session'
 import ProfileFrame from './ProfileFrame'
 import styles from './profile.module.css'
 
-const ModalProfile = ({ setIsModalOn }) => {
+const ModalProfile = ({ setIsModalOn, setIsModalMessage }) => {
     const dispatch = useDispatch()
     const modal = useRef(null)
     const inputUsername = useRef(null)
@@ -47,6 +47,7 @@ const ModalProfile = ({ setIsModalOn }) => {
             inputUsername.current.className = styles.inputNames
             setShowNickNameError(false)
             setShowUserNameError(false)
+            setIsModalMessage(true)
             setIsModalOn(false)
         }
         else{
