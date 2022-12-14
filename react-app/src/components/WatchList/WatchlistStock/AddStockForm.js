@@ -1,11 +1,18 @@
 import { useDispatch } from 'react-redux';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import * as watchlistAction from '../../../store/watchlist';
 
 const AddStockForm = ({ symbol }) => {
+    const dispatch = useDispatch();
     const [createList, setCreateList] = useState(false);
+    const watchlists = Object.values(useSelector(state => state.watchlists));
+    console.log(watchlists);
 
+    useEffect(() => {
+        dispatch(watchlistAction.fetchUserWatchlists());
+    }, [dispatch]);
 
-    
     return (
         <div className='addstock-form-container'>
             <div className='addstock-form-head'>
@@ -25,7 +32,18 @@ const AddStockForm = ({ symbol }) => {
                 </div>
                 <form className='addstock-form-main'>
                     <div className='addstock-form-lists'>
-                        WATCHLIST HERE
+                        {watchlists && watchlists.map((watchlist, i) =>
+                            <div>
+                                <input
+                                    type='radio'
+                                    name='watchlist'
+                                    value={watchlist}
+                                    id={watchlist.id}
+                                />
+                                <label for={watchlist.id}>{watchlist}</label>
+                            </div>
+                        )
+                        }
                     </div>
                     <button className='addstock-form-btnsave'> Save Changes</button>
                 </form>

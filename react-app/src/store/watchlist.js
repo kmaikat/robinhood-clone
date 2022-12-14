@@ -50,7 +50,7 @@ export function deleteStock(stockId) {
 
 export const fetchUserWatchlists = () => async dispatch => {
     const response = await fetch(`api/watchlists/current`); 
-
+    console.log('im runnign line 53')
     if (response.ok) {
         const data = await response.json();
         dispatch(loadWatchlists(data.watchlists)); 
