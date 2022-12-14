@@ -32,30 +32,37 @@ const UpdateWatchlistForm = ({watchlist, onClose}) => {
     }
     
     return (
-        <div>
+        <div className='updateform-container'>
             <form onSubmit={handleSubmit}>
-                <div>
+                <div className='updateform-header'>
                     <div>Edit List</div>
-                    <button className='btn-close' onClick={handleClose}>X</button>
+                    <button className='btn-close' onClick={handleClose}>
+                        <i className="fa-solid fa-xmark"></i>
+                    </button>
                 </div>
-                <div>
-                    <div>Icon</div>
-                    <label>
-                        <input
-                            type='text'
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            placeholder='List Name'
-                            required
-                        />
-                    </label>
+                <div className='updateform-content'>
+                    <div className='watchlist-icon'>
+                        <img src="https://cdn.robinhood.com/emoji/v0/128/1f4a1.png"/>
+                    </div>
+                    <div className='updateform-info'>
+                        <label>
+                            <input className='updateform-input'
+                                type='text'
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                placeholder='List Name'
+                                required
+                                style={{borderRadius:"5px", border:"1px solid var(--rockethood-green)"}}
+                            />
+                        </label>
+                    </div>
                 </div>
                 {validationError && 
                     <div>
                         {validationError}
                     </div>
                 }
-                <div>
+                <div className='updateform-btnsave'>
                     <button type='submit' className='btn-save'>Save</button>
                 </div>
             </form>
