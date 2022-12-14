@@ -42,7 +42,7 @@ const NewWatchList = ({openForm, setOpenForm}) => {
                 </div>
                 <div className='newform-content'>
                     <div className='newform-content-head'>
-                        <div className='watchlist-icon'>
+                        <div className='watchlistform-icon'>
                             <img src="https://cdn.robinhood.com/emoji/v0/128/1f4a1.png"/>
                         </div>
                             <div className='newform-info'>
