@@ -4,11 +4,11 @@ import { useEffect, useState } from 'react';
 import NewWatchList from './watchlist_form';
 import './index.css';
 import UpdateButton from './Update/UpdateButton';
-// import SmallChart from '../SmallChart';
-import StockPrice from './StockPrice';
+import SmallChart from '../SmallChart';
+// import StockPrice from './StockPrice';
 import { Modal } from "../Modals/Modal";
 // import UpdateWatchlistForm from "./Update/watchlist_updateForm";
-import RenderChart from './RenderChart';
+// import UpdateWatchlistForm from "./Update/watchlist_updateForm";
 import { Link } from 'react-router-dom';
 
 const WatchList = () => {
@@ -92,13 +92,11 @@ const WatchList = () => {
                             {openings[i] &&
                                 <div className='watchlist-stocks-container'>
                                     {watchlist.watchlist_stocks.length > 0 &&
-                                        watchlist.watchlist_stocks.map(stock =>
-                                        (
+                                        watchlist.watchlist_stocks.map(stock => (
                                             <Link to={`/stocks/${stock.stock_symbol}`}>
-                                                <RenderChart symbol={stock.stock_symbol} />
+                                                <SmallChart symbol={stock.stock_symbol} />
                                             </Link>
-                                        )
-                                        )
+                                        ))
                                     }
                                 </div>
                             }
