@@ -221,3 +221,19 @@ export const labelFormatter = value => {
 
     return `${res} ${h}:${minute} ${ampm}`
 }
+
+export const amountFormatter = value => {
+    const [first, second] = value.toFixed(2).split('.')
+    let res = ''
+    let cnt = 0
+
+    for(let i = first.length - 1; i >= 0; i--){
+        if(!(cnt % 3) && cnt)
+            res = ',' + res
+
+        res = first[i] + res
+        cnt++
+    }
+
+    return `$${res}.${second}`
+}

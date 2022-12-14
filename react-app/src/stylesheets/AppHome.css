@@ -18,9 +18,8 @@
 }
 
 .app-home-right {
-    width: 30%;
-    scrollbar-width: none;
-    position: relative;
+    width: 25%;
+    height: 100%;
 }
 
 #app-home-chart-container{
