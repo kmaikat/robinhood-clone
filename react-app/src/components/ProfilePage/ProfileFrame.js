@@ -12,13 +12,13 @@ const ProfileFrame = ({ setIsModalMessage }) => {
         if(!e.target.files) return
 
         const file = e.target.files[0]
-        await dispatch(uploadProfileImage(file))
-        setIsModalMessage(true)
+        const res = await dispatch(uploadProfileImage(file))
+        setIsModalMessage(res)
     }
 
     const handleRemove = async () => {
-        await dispatch(deleteProfileImage())
-        setIsModalMessage(true)
+        const res = await dispatch(deleteProfileImage())
+        setIsModalMessage(res)
     }
 
     return (
