@@ -1,6 +1,7 @@
 .app-home-container {
     display: flex;
     justify-content: center;
+    height: 100%;
 }
 
 .app-home {
@@ -13,7 +14,7 @@
 }
 
 .app-home-left {
-    width: 75%;
+    width: 70%;
 }
 
 .app-home-right {
