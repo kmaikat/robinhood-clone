@@ -1,12 +1,20 @@
 import Chart from 'react-apexcharts'
 import { useEffect, useState } from 'react'
 import { getOneDayPrices } from '../../util/util2'
+import PlaceHolder from '../PlaceHolder'
+import styles from './render.module.css'
 
-const SmallChart = ({ symbol, setPrices }) => {
-    const [isLoaded, setIsLoaded] = useState(false)
+const SmallChart = ({ symbol }) => {
     const [allData, setAllData] = useState({})
     const [color, setColor] = useState('#5ac53b')
+    const [isLoaded, setIsLoaded] = useState(false)
+    const [prices, setPrices] = useState({curr: 0, diff: 0})
     const [isRealtime, setIsRealtime] = useState(false)
+
+    const diffFormatter = diff => {
+        const sign = diff >= 0 ? '+' : '-'
+        return `${sign}${Math.abs(diff).toFixed(2)}%`
+    }
 
     const setChart = (data) => {
         setAllData({
@@ -45,38 +53,45 @@ const SmallChart = ({ symbol, setPrices }) => {
 
     return (
         isLoaded ?
-        <Chart
-            series={allData.series}
-            options={{
-                chart: {
-                    animations: { enabled: false },
-                    type: 'line',
-                    zoom: { enabled: false },
-                    toolbar: { show: false },
-                    parentHeightOffset: 0,
-                },
-                colors: [color],
-                xaxis: { labels: { show: false }},
-                yaxis: {
-                    labels: { show: false },
-                    // min: () => Math.min(...allData.series[0].data),
-                    // max: () => Math.max(...allData.series[0].data)
-                },
-                grid: { show: false },
-                stroke: {
-                    width: 1.5,
-                },
-                legend: {
-                    show: false,
-                },
-                tooltip: {
-                    enabled: false,
-                },
-            }}
-            height={80}
-            width={140}
-        /> :
-        'Loading...'
+        <div className={styles.container}>
+            <div className={styles.symbol}>{symbol}</div>
+            <Chart
+                series={allData.series}
+                options={{
+                    chart: {
+                        animations: { enabled: false },
+                        type: 'line',
+                        zoom: { enabled: false },
+                        toolbar: { show: false },
+                        parentHeightOffset: 0,
+                    },
+                    colors: [color],
+                    xaxis: { labels: { show: false }},
+                    yaxis: {
+                        labels: { show: false },
+                        // min: () => Math.min(...allData.series[0].data),
+                        // max: () => Math.max(...allData.series[0].data)
+                    },
+                    grid: { show: false },
+                    stroke: {
+                        width: 1.5,
+                    },
+                    legend: {
+                        show: false,
+                    },
+                    tooltip: {
+                        enabled: false,
+                    },
+                }}
+                height={80}
+                width={140}
+            />
+            <div>
+                    <div>{`$${prices.curr.toFixed(2)}`}</div>
+                    <div style={{color}}>{diffFormatter(prices.diff)}</div>
+            </div>
+        </div> :
+        <PlaceHolder height={60} />
     )
 }
 
