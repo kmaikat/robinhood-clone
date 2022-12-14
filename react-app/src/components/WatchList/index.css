@@ -1,6 +1,6 @@
 .watchlist-container {
     /* margin: 20px;   */
-    height: 100%; 
+    height: 500px;
     width: 100%;
     box-sizing: border-box;
     border: 1px solid #cccccc;
@@ -13,11 +13,6 @@ header {
 .watchlist-header {
     display: flex;
     align-items: center;
-    height: 52px;
-}
-.watchlist-header > div {
-    padding: 4px 24px 0px;
-    flex-grow: 2;
 }
 
 .newform-content {
@@ -56,7 +51,9 @@ header {
     height: 36px;
     /* width: 80px; */
     padding: 4px 15px;
+    color: rgb(255,255,255);
     /* text-align: center; */
+    border:1px solid #00C805; 
 }
 .btn-cancel-form {
     border:1px solid #00C805; 
@@ -70,50 +67,108 @@ header {
 }
 
 .watchlist-btn-container {
-    width: 200px;
+    /* width: 200px; */
+    display: flex;
+    justify-content: space-between;
 }
 .update-btn-main {
-    width: 150px;
-    display: flex;
-    justify-content: flex-end;
+    position: relative;
 }
-.btn-open, .btn-openstock, .btn-update, .btn-edit, .btn-close{
+.btn-open, .btn-openstock, .btn-update, .btn-edit, .btn-close {
     background: none;
     border: transparent;
     min-width: 0;
 }
-.btn-openstock{
+.btn-add {
+    padding: 0;
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn-add > i {
+    line-height: 30px;
+}
+
+.btn-openstock {
     padding: 12px;
 }
-.watchlist-lists {
-    margin: 10px;
+
+.watchlist-header-label {
+    font-weight: 600;
+    font-size: 20px;
+    padding-left: 24px;
+    flex-grow: 2;
 }
 
 .watchlist-content-header {
     display: flex;
     flex-direction: row;
     align-items: center;
-    height: 52px;
     width: 100%;
 }
-.watchlist-wrapper-head{ 
-    flex-grow: 2;
+
+.watchlist-wrapper-head { 
     display: flex;
     flex-direction: row;
-    padding: 0px 15px 0px;
-    
+    width: 100%;
+    height: 60px;
+    align-items: center;
+}
+
+.watchlist-content-header:hover {
+    background-color: var(--rockethood-border-lightgray);
+    cursor: pointer;
+}
+
+.watchlist-content-header .btn-update {
+    visibility: hidden;
+}
+
+.watchlist-content-header:hover .btn-update {
+    visibility: visible;
 }
 
 .watchlist-name {
-    width: 100px;
+    text-align: center;
 }
 
-.icon {
-    display: block;
+.watchlist-opening {
+    transition: transform 300ms ease 0s;
+}
+
+.watchlist-closing {
+    transition: transform 300ms ease 0s;
+    transform: rotate(180deg);
+}
+
+.watchlist-content-header:hover .watchlist-btn {
+    color: var(--rockethood-green);
+}
+
+.watchlist-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 28px;
     width: 28px;
     box-sizing: border-box;
-    border: 1px solid #cccccc;
     border-radius: 3px;
     margin-right: 5px;
+    background-color: rgb(30,33,36);
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.watchlist-icon > img {
+    width: 18px;
+    height: 18px;
+}
+
+.watchlist-dropdown {
+    position: absolute;
+    background-color: white;
+    z-index: 1000;
 }
