@@ -15,10 +15,10 @@ const StockPrice = ({ symbol }) => {
             {data &&
                 <div>
                     <div>
-                        ${data.currPrice}
+                        <span style={{fontWeight:700}}>${data.currPrice}</span>
                     </div>
                     <div>
-                        {data.diffPercentage}%
+                        <span style={{color:"#00c704"}}>{data.diffPercentage}%</span>
                     </div>
                 </div>
             }
