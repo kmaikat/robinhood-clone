@@ -14,6 +14,12 @@ s3 = boto3.client(
     aws_secret_access_key = os.environ.get('S3_SECRET')
 )
 
+def nick_name_default(context):
+    first_name = context.get_current_parameters()['first_name']
+    last_name = context.get_current_parameters()['last_name']
+
+    return first_name + ' ' + last_name[0]
+
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
 
@@ -24,6 +30,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String, unique=True)
     first_name = db.Column(db.String, nullable=False)
     last_name = db.Column(db.String, nullable=False)
+    nick_name = db.Column(db.String, nullable=False, default=nick_name_default)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     buying_power = db.Column(db.Float, default=0.00)
@@ -59,7 +66,12 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            "buyingPower": self.buying_power
+            "buyingPower": self.buying_power,
+            'firstName': self.first_name,
+            'lastName': self.last_name,
+            'nickname': self.nick_name,
+            'joinedAt': self.created_at,
+            'imageUrl': self.image_url
         }
 
     def upload_profile(self, file: FileStorage) -> str:
@@ -77,5 +89,19 @@ class User(db.Model, UserMixin):
         self.image_url = f"{os.environ.get('S3_LOCATION')}/{filename}"
         db.session.commit()
 
-
         return self.image_url
+
+
+    def delete_profile(self):
+        self.image_url = None
+        db.session.commit()
+
+    def update_un_nn(self, nick_name, user_name):
+        self.nick_name = nick_name
+        self.user_name = user_name
+
+        try:
+            db.session.commit()
+            return 'Success'
+        except:
+            return 'Something went wrong'
