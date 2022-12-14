@@ -1,4 +1,3 @@
-import "../stylesheets/StockShowcase.css";
 import AppMainNavBar from "./AppMainNavBar/AppMainNavBar";
 import ChartDrawing from "./ChartDrawing";
 import SymbolNews from "./News/SymbolNews";
@@ -8,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Transactions from "./Transactions";
 import AddStock from "./WatchList/WatchlistStock/AddStock";
+import "../stylesheets/StockShowcase.css";
 function stringToFormat(marketCap) {
     const usDollar = Intl.NumberFormat("en-US");
     marketCap = usDollar.format(marketCap);

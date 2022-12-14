@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import ReactDOM from 'react-dom';
 import { useModalContext } from './Modal';
-import "./AccountModal.css";
 const ModalContext = React.createContext();
+import "./AccountModal.css";
 
 export function AccountModal({ onClose, children }) {
     const modalNode = useModalContext();
