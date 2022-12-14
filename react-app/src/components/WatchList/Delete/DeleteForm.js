@@ -8,7 +8,7 @@ const DeleteWatchlist = ({ watchlist, onClose }) => {
     const [validationError, setValidationError] = useState(''); 
     
     const handleDeletebtn = async (e) => {
-        e.preventDefault();
+        e.stopPropagation();
         setValidationError('');
         const response = await dispatch(watchlistAction.deleteWatchlist(watchlist.id))
             .catch(async (err) => {
@@ -21,7 +21,7 @@ const DeleteWatchlist = ({ watchlist, onClose }) => {
     };
 
     const handleClosebtn = (e) => {
-        e.preventDefault();
+        e.stopPropagation()
         onClose();
     };
 

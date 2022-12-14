@@ -19,8 +19,6 @@
 .app-home-right {
     width: 25%;
     height: 100%;
-    overflow-y: scroll;
-    scrollbar-width: none;
 }
 
 #app-home-chart-container{
