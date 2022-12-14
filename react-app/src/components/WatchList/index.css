@@ -208,7 +208,7 @@ header {
     align-items: center; 
     margin-left: 15px;
     margin-right: 15px;
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .watchlist-minigraph {
@@ -226,4 +226,12 @@ header {
 
 .watchlist-stocks-container-closed {
     display: none;
+}
+
+.stock-positive {
+    color: var(--rockethood-green);
+}
+
+.stock-negative {
+    color: var(--rockethood-sell-red);
 }
