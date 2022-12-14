@@ -7,7 +7,6 @@ import UpdateButton from './Update/UpdateButton';
 // import SmallChart from '../SmallChart';
 import StockPrice from './StockPrice';
 import { Modal } from "../Modals/Modal";
-import {Link} from 'react-router-dom'
 import UpdateWatchlistForm from "./Update/watchlist_updateForm";
 import RenderChart from './RenderChart';
 
@@ -92,11 +91,7 @@ const WatchList = () => {
                             {openings[i] &&
                                 <div className='watchlist-stocks-container'>
                                     {watchlist.watchlist_stocks.length > 0 &&
-                                        watchlist.watchlist_stocks.map(stock => (
-                                            <Link to={`/stocks/${stock.stock_symbol}`}>
-                                                <RenderChart symbol={stock.stock_symbol} />
-                                            </Link>
-                                        ))
+                                        watchlist.watchlist_stocks.map(stock => (<RenderChart symbol={stock.stock_symbol} />))
                                     }
                                 </div>
                             }

@@ -15,7 +15,6 @@ function Transactions() {
     const ownedShares = 20;
     const [buyOrSale, setBuyOrSale] = useState("sell");
     const symbol = useParams().symbol.toUpperCase();
-    // setColor(currentPrice >= startingPrice ? '#5ac53b' : '#ec5e2a')
 
     async function tester() {
         const test = await getOneDayPrices(symbol);

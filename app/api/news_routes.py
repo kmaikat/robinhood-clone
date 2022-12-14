@@ -25,7 +25,8 @@ def get_all_news():
     feed = data["feed"]
     article_data = [{"source": article["source"], "title": article["title"],
                      "image": article["banner_image"], "url": article["url"],
-                     "tickers": [stock["ticker"] for stock in article["ticker_sentiment"]]} for article in feed]
+                     "tickers": [stock["ticker"] for stock in article["ticker_sentiment"]]} for article in feed if "banner_image" in article and article["banner_image"]]
+
     return jsonify(article_data[:25])
 
 # add article to likes
@@ -51,8 +52,8 @@ def get_news_by_ticker(ticker):
 
     feed = data["feed"]
     article_data = [{"source": article["source"], "title": article["title"],
-                     "image": article["banner_image"], "url": article["url"],
-                     "tickers": [stock["ticker"] for stock in article["ticker_sentiment"]]} for article in feed]
+                                                  "image": article["banner_image"], "url": article["url"],
+                                                  "tickers": [stock["ticker"] for stock in article["ticker_sentiment"]]} for article in feed if "banner_image" in article and article["banner_image"]]
     return jsonify(article_data[:5])
 
 
@@ -65,11 +66,12 @@ def get_article_like():
 
 
 @news_routes.route("/liked", methods=["POST"])
-@login_required
 def add_article_like():
     add_article_form = AddArticleForm()
     add_article_form['csrf_token'].data = request.cookies['csrf_token']
     # sending to the database
+
+    print(add_article_form.data)
     if add_article_form.validate_on_submit():
         new_liked_article = News(
             like=True,
@@ -83,4 +85,20 @@ def add_article_like():
         db.session.commit()
         return jsonify(new_liked_article.to_dict())
     else:
-        return jsonify("hello")
+        print(add_article_form.errors)
+        return jsonify(add_article_form.errors), 406
+
+
+@news_routes.route("/liked/<news_id>", methods=["DELETE"])
+def delete_article_like(news_id):
+    # find the liked article where user id is the same as the user_id
+    # delete
+    article = News.query.get(news_id)
+    if current_user.id != article.user_id:
+        return {
+            "message": "This like does not belong to you"
+        }
+
+    db.session.delete(article)
+    db.session.commit()
+    return {"message": "Deleted like"}

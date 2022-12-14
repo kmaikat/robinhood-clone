@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 
-class WatchList(db.Model): 
+class WatchList(db.Model):
     __tablename__ = 'watchlists'
 
     if environment == "production":
@@ -15,7 +15,7 @@ class WatchList(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    user = db.relationship("User", back_populates="watchlists")
+    user = db.relationship(add_prefix_for_prod("User"), back_populates="watchlists")
     watchlist_stocks = db.relationship(add_prefix_for_prod("WatchList_Stock"),
                              back_populates=add_prefix_for_prod("watchlist"),
                              cascade="all, delete-orphan")
@@ -24,6 +24,6 @@ class WatchList(db.Model):
         return {
             'id': self.id,
             'name': self.name,
-            'user_id': self.user_id, 
+            'user_id': self.user_id,
             'watchlist_stocks': [stock.to_dict() for stock in self.watchlist_stocks]
         }

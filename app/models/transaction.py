@@ -17,5 +17,5 @@ class Transaction(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    asset = db.relationship('Asset', back_populates='transactions')
-    user = db.relationship('User', back_populates='transactions')
+    asset = db.relationship(add_prefix_for_prod('Asset'), back_populates='transactions')
+    user = db.relationship(add_prefix_for_prod('User'), back_populates='transactions')
