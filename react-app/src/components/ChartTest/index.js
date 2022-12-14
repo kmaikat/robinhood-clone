@@ -9,6 +9,7 @@ const ChartTest = () => {
 
   const changeHandler = e => {
     setSelectedFile(e.target.files[0])
+    console.log(selectedFile)
     setIsFilePicked(true)
   }
 
