@@ -89,6 +89,11 @@
 #news-not-saved{
     font-size: 1.7rem;
 }
+#news-not-saved:hover{
+    font-size: 1.7rem;
+    color: var(--rockethood-hover-green);
+}
+
 #news-saved{
     font-size: 1.7rem;
 }
