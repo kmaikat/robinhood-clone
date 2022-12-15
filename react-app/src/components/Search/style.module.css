@@ -1,7 +1,7 @@
 .searchBar {
     width: 370px;
     margin-left: 30px;
-    height: 40px;
+    height: 3.4rem;
     /* border: 1px solid #c8c8c8; */
     padding: 1rem;
     border-radius: 4px;
@@ -80,4 +80,17 @@
 .searchKeyword {
     color: #ec5e2a;
     font-weight: 600;
+}
+
+
+@media screen and (max-width: 800px) {
+    .searchBar{
+        max-width: 380px;
+        width: 100%;
+    }
+
+    .searchContainer{
+        width: 85%;
+        margin-left: 0;
+    }
 }

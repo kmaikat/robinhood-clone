@@ -60,6 +60,13 @@
 .transaction-shares-or-dollars-outer-container {
     position: relative;
     width: 50%;
+    border-radius: .4rem;
+    background-color: white;
+    height: 100%;
+}
+
+.transaction-shares-or-dollars-outer-container:hover:focus-within {
+    box-shadow: 0 10px 1px rgba(0, 0, 0, .01), 0 3px 24px rgba(48, 51, 51, .09)
 }
 
 #transaction-shares-or-dollars-display {
@@ -72,16 +79,9 @@
     height: 3.6rem;
     cursor: pointer;
     padding: 0 1.2rem;
+    background-color: white;
 }
 
-#transaction-shares-or-dollars-display.transactions-shares-or-dollars-open {
-    border-radius: .4rem .4rem 0 0;
-    border-bottom: none;
-}
-
-#transaction-shares-or-dollars-display:hover {
-    border-radius: .4rem;
-}
 
 .transaction-shares-or-dollars-container {
     display: flex;
@@ -89,6 +89,7 @@
     justify-content: center;
     align-items: center;
     position: absolute;
+    top: 93%;
     background-color: white;
     width: 100%;
     border: solid 1px var(--rockethood-border-lightgray);
@@ -108,7 +109,22 @@
     height: 3.6rem;
 }
 
-.transaction-green:hover {
+.transaction-shares-or-dollars-container button.transaction-not-active:hover {
+    width: 100%;
+    border-radius: 0;
+    background-color: var(--rockethood-border-lightgray);
+}
+
+.transaction-show-shares-or-dollars-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.transaction-green {
+    color: white;
     font-weight: normal;
     display: flex;
     justify-content: center;
@@ -121,7 +137,8 @@
     background-color: var(--rockethood-green);
 }
 
-.transaction-red:hover {
+.transaction-red {
+    color: white;
     font-weight: normal;
     display: flex;
     justify-content: center;
@@ -134,9 +151,14 @@
 }
 
 
-
 #transaction-form-text-input {
+    text-align: right;
     width: 50%;
+    height: 3.6rem;
+    border: 1px solid var(--rockethood-border-lightgray);
+    border-radius: .4rem;
+    font-size: 1.3rem;
+    padding-right: 1.2rem
 }
 
 #transaction-amount {

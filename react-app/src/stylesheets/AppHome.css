@@ -23,10 +23,66 @@
     min-width: 2.9rem
 }
 
-#app-home-chart-container{
+
+@media screen and (max-width: 1250px) {
+    .app-home-left {
+        width: 60%;
+    }
+
+    .app-home-right {
+        width: 40%;
+    }
+}
+
+
+#app-home-chart-container {
     padding: 0 2.4rem;
 }
 
 .app-home-right::-webkit-scrollbar {
     display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .app-home {
+        padding: 3.6rem 1.2rem;
+    }
+
+    .app-home-left {
+        width: 100%;
+    }
+
+    .app-home-right {
+        display: none;
+    }
+
+    #app-nav-bar-logo {
+        display: none;
+    }
+
+    #apexchartsstock-chart {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .app-home {
+        max-width: 380px;
+    }
+
+    #all-news-inner-container {
+        overflow-y: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+    }
+    .news-image-container{
+        display: none;
+    }
+
+    #all-news-ticker-container{
+        display: none;
+    }
+    #all-news-inner-container::-webkit-scrollbar {
+        display: none;
+    }
 }
