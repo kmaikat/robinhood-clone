@@ -7,7 +7,7 @@ import ProfileFrame from "./ProfileFrame"
 import { amountFormatter } from "../../util/util2"
 import styles from './profile.module.css'
 
-const ProfilePage = () => {
+const ProfileSection = () => {
     const user = useSelector(state => state.session.user)
     const message = useRef(null)
     const [isModalOn, setIsModalOn] = useState(false)
@@ -33,7 +33,6 @@ const ProfilePage = () => {
     return (
         <>
             {isModalOn && <ModalProfile user={user} setIsModalOn={setIsModalOn} setIsModalMessage={setIsModalMessage} />}
-            <AppMainNavBar />
             <div className={styles.mainContainer}>
                 <div className={styles.profileContainer}>
                     <div className={styles.profile}>
@@ -71,4 +70,4 @@ const ProfilePage = () => {
     )
 }
 
-export default ProfilePage
+export default ProfileSection

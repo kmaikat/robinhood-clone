@@ -1,7 +1,8 @@
 .mainContainer {
     max-width: 1024px;
-    margin: 0 auto;
     padding-top: 36px;
+    padding-left: 2.4rem;
+    margin-bottom: 6rem;
 }
 
 .profileContainer {
@@ -67,11 +68,12 @@
 }
 
 .modal {
-    width: 100vw;
-    height: 100vw;
+    width: 1000vw;
+    height: 1000vw;
     background-color: rgba(0, 0, 0, 0.7);
     position: absolute;
     top: 0;
+    left: 0;
     z-index: 98;
 }
 
@@ -145,7 +147,7 @@
     padding: 1rem;
 }
 
-.editProfileContainer > div {
+.editProfileContainer>div {
     margin-bottom: 1rem;
 }
 

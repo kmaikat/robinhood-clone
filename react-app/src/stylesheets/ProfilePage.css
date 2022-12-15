@@ -1,0 +1,40 @@
+.profile-page-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile-page {
+    display: flex;
+    justify-content: center;
+    max-width: 103.6rem;
+    width: 100%;
+}
+
+.profile-page-center-util{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.profile-page-main-container {
+    max-width: 69rem;
+    width: 70%;
+}
+
+.profile-page-profile-info {
+    padding-left: 2.4rem;
+}
+
+
+.profile-page-profile-info-container {
+    margin-bottom: 6rem;
+}
+
+.profile-page-profile-info-title {
+    line-height: 3.24rem;
+    font-size: 2.6rem;
+    font-weight: 500;
+    padding-bottom: 1.2rem;
+    border-bottom: 1px solid var(--rockethood-border-lightgray)
+}
