@@ -10,7 +10,7 @@ const NewWatchList = ({openForm, setOpenForm}) => {
         e.preventDefault();
         setValidationError([]);
         if (name.length > 64) {
-            setValidationError('Your list name must be less than 64 characters')
+            setValidationError('List name must be less than 64 characters')
             return (
                 <div>
                     <div>icon</div>
@@ -37,9 +37,6 @@ const NewWatchList = ({openForm, setOpenForm}) => {
     return (
         <div className='newform-container'>
             <form onSubmit={handleSubmit}>
-                <div>
-                    {validationError && <li>{validationError}</li>}
-                </div>
                 <div className='newform-content'>
                     <div className='newform-content-head'>
                         <div className='watchlistform-icon'>
@@ -57,6 +54,7 @@ const NewWatchList = ({openForm, setOpenForm}) => {
                                 </label>
                             </div>
                     </div>
+                    {validationError && <li className='newform-error'>{validationError}</li>}
                     <div className='newform-button'>
                         <button className='btn-cancel-form'onClick={handleCancelButton}>Cancel</button>
                         <button className='btn-submit'type='submit'>Create List</button>  

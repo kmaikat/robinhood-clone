@@ -4,6 +4,7 @@
     box-sizing: border-box;
     border: 1px solid #cccccc;
     min-width: 28rem;
+    margin: 1rem 1rem 1rem 0rem;
 }
 
 header {
@@ -21,7 +22,7 @@ header {
     display: flex;
     flex-direction: column;
     width: 100%;
-    /* margin: 10px 10px 10px 0px; */
+    /* margin: 1rem 1rem 1rem 0rem; */
 }
 
 .newform-content-head {
@@ -535,4 +536,16 @@ header {
 .removestock-btn:hover {
     color: var(--rockethood-sell-red);
     font-weight: 700;
+}
+
+.newform-error {
+    /* display: flex; */
+    color: var(--rockethood-sell-red);
+    list-style: none;
+    padding-left: 3rem;
+    /* justify-content: flex-end; */
+    margin: 0rem 0rem 1rem 1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    overflow: scroll;
 }
