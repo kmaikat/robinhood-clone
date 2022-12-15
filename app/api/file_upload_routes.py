@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
-from ..models.user import User
 
 file_upload_sample_routes = Blueprint('file_upload', __name__)
 
@@ -14,6 +13,7 @@ def file_upload():
         return {'file': file_url}
 
     except Exception as e:
+        print(str(e))
         return {'error': 'Something went wrong'}, 500
 
 @login_required
@@ -22,5 +22,6 @@ def remove_profile():
     try:
         current_user.delete_profile()
         return {'message': 'Successfully removed'}
-    except:
+    except Exception as e:
+        print(str(e))
         return {'error': 'Something went wrong'}, 500
