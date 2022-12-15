@@ -4,7 +4,7 @@ import os
 # Adds a demo user, you can add other users here if you want
 def seed_stock_symbol():
 
-    with open(f'{os.path.dirname(__file__)}/nasdaq.csv', 'r') as readfile:
+    with open(f'{os.path.dirname(__file__)}/active_stocks.csv', 'r') as readfile:
         for line in readfile.readlines()[1:]:
             stock_symbol, company = line.split(',')[:2]
             db.session.add(StockSymbol(stock_symbol=stock_symbol, company=company))
