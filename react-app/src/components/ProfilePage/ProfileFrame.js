@@ -3,7 +3,7 @@ import { uploadProfileImage, deleteProfileImage } from "../../store/session"
 import { useRef } from 'react'
 import styles from './profile.module.css'
 
-const ProfileFrame = ({ setIsModalMessage }) => {
+const ProfileFrame = ({ setIsModalMessage, setIsErrorOccured }) => {
     const dispatch = useDispatch()
     const uploadBtn = useRef(null)
     const user = useSelector(state => state.session.user)
@@ -13,12 +13,14 @@ const ProfileFrame = ({ setIsModalMessage }) => {
 
         const file = e.target.files[0]
         const res = await dispatch(uploadProfileImage(file))
-        setIsModalMessage(res)
+        setIsErrorOccured(res)
+        setIsModalMessage(true)
     }
 
     const handleRemove = async () => {
         const res = await dispatch(deleteProfileImage())
-        setIsModalMessage(res)
+        setIsErrorOccured(res)
+        setIsModalMessage(true)
     }
 
     return (
