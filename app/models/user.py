@@ -8,13 +8,6 @@ from .assets import Asset
 import os
 import boto3
 
-s3 = boto3.client(
-        's3',
-        region_name = os.environ.get('S3_REGION'),
-        aws_access_key_id = os.environ.get('S3_KEY'),
-        aws_secret_access_key = os.environ.get('S3_SECRET')
-    )
-
 def nick_name_default(context):
     first_name = context.get_current_parameters()['first_name']
     last_name = context.get_current_parameters()['last_name']
@@ -78,6 +71,14 @@ class User(db.Model, UserMixin):
     def upload_profile(self, file: FileStorage) -> str:
         filename = 'profile-image/' + self.email + '.' + file.filename.split('.')[-1]
 
+
+        s3 = boto3.client(
+            's3',
+            region_name = os.environ.get('S3_REGION'),
+            aws_access_key_id = os.environ.get('S3_KEY'),
+            aws_secret_access_key = os.environ.get('S3_SECRET')
+        )
+
         s3.upload_fileobj(
             file,
             os.environ.get('S3_BUCKET'),
@@ -94,6 +95,13 @@ class User(db.Model, UserMixin):
 
 
     def delete_profile(self):
+        s3 = boto3.client(
+            's3',
+            region_name = os.environ.get('S3_REGION'),
+            aws_access_key_id = os.environ.get('S3_KEY'),
+            aws_secret_access_key = os.environ.get('S3_SECRET')
+        )
+
         s3.delete_object(
             Bucket=os.environ.get('S3_BUCKET'),
             Key=self.image_url.split('amazonaws.com/')[1]
