@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteArticleFromDb } from "../../store/news";
+import { deleteArticleFromDb, getArticlesFromDb } from "../../store/news";
 import "../../stylesheets/SymbolNews.css"
 
 const LikedNews = () => {
@@ -12,19 +12,17 @@ const LikedNews = () => {
         e.preventDefault()
         e.stopPropagation()
 
-        const likedArticle = likedArticles[article.url]
+        const likedArticle = likedArticles[article.article_link]
         dispatch(deleteArticleFromDb(likedArticle))
     }
 
     useEffect(() => {
+        dispatch(getArticlesFromDb())
         fetch("/api/news/liked").then(r => r.json()).then(r => setArticles(r));
     }, [])
 
     return (
         <div className="news-container">
-            {/* <div id="news-heading-container">
-                <div className="news-heading">News</div>
-            </div> */}
             {articles.map(article => {
                 return (
                     <a href={article.url} target="_blank" rel="noopener noreferrer" >
