@@ -25,10 +25,10 @@ const UpdateButton = ({watchlist, i, openModal, closeModal}) => {
             </button>
             {open[i] &&
                 <div className="watchlist-dropdown">
-                    <div>
+                    <div className="watchlist-dropdown-update">
                         <UpdateFormModal watchlist={watchlist} closeDropdown={closeDropdown} openModal={openModal} closeModal={closeModal} />
                     </div>
-                    <div>
+                    <div className="watchlist-dropdown-delete">
                         <DeleteModal watchlist={watchlist} closeDropdown={closeDropdown} openModal={openModal} closeModal={closeModal}/>
                     </div>
                 </div>

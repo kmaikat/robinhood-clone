@@ -20,7 +20,7 @@ header {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin: 10px 10px 10px 0px;
+    /* margin: 10px 10px 10px 0px; */
 }
 
 .newform-content-head {
@@ -98,6 +98,7 @@ header {
 
 .update-btn-main {
     position: relative;
+    width: 100%;
 }
 
 .btn-open,
@@ -203,7 +204,15 @@ header {
     background-color: white;
     z-index: 1000;
 }
-
+.watchlist-dropdown-update {
+    width: 100%;
+}
+.watchlist-dropdown-update:hover{
+    color: var(--rockethood-green);
+}
+.watchlist-dropdown-delete:hover {
+    color: var(--rockethood-green);
+}
 .watchlist-stocks-content {
     display: flex;
     flex-direction: row;
