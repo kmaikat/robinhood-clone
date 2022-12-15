@@ -52,7 +52,7 @@ function StockShowcase() {
             <AppMainNavBar />
             <div className="app-home-container">
                 <div className="app-stocks">
-                    <div className="app-home-left">
+                    <div className="stock-showcase-left">
                         <div id="stock-home-chart-container">
                             {!isError && <ChartDrawing />}
                         </div>
@@ -179,9 +179,8 @@ function StockShowcase() {
                             <SymbolNews />
                         </div>
                     </div>
-                    <div className="app-home-right">
+                    <div className="stock-showcase-right">
                         <Transactions />
-                        <AddStock symbol={symbol} />
                     </div>
                 </div>
             </div>

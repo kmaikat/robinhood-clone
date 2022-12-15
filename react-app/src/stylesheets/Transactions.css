@@ -1,13 +1,16 @@
 #transactions-outer-container {
     height: 100%;
-    width: 100%;
     position: relative;
+}
+
+#transactions-and-watchlist-container {
+    position: sticky;
+    top: 9.5rem;
 }
 
 #transaction-container {
     border: 1px solid var(--rockethood-border-lightgray);
     border-radius: 4px;
-    position: sticky;
     top: 9.5rem;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.02) 0px -12px 24px 0px, rgba(0, 0, 0, 0.06) 0px 12px 24px 0px;
@@ -53,13 +56,14 @@
     align-items: center;
 }
 
-#transaction-amount{
+#transaction-amount {
     border-bottom: 1px solid var(--rockethood-border-lightgray)
 }
 
-#transaction-amount:-ms-expand{
+#transaction-amount:-ms-expand {
     display: none;
 }
+
 #transaction-est-quantity {
     font-weight: 600;
 }

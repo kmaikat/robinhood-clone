@@ -48,3 +48,11 @@
     width: 100%;
     padding-bottom: 3.6rem;
 }
+
+.stock-showcase-left {
+    width: 72%;
+}
+
+.stock-showcase-right {
+    width: 28%;
+}
