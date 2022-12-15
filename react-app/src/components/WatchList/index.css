@@ -228,12 +228,17 @@ header {
 }
 
 .watchlist-minigraph {
-    height: 60px;
+    /* height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     margin-left: 15px;
-    margin-right: 15px;
+    margin-right: 15px; */
+    height: 60px;
+}
+.watchlist-minigraph:hover {
+    background-color: var(--rockethood-border-lightgray);
+    cursor: pointer;
 }
 
 .watchlist-stockprice {
