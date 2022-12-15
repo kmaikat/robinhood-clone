@@ -10,11 +10,12 @@ function Transactions() {
     const [color, setColor] = useState("#ec5e2a");
     const [submittingOrder, setSubmittingOrder] = useState(false);
     const [sharesOrDollars, setSharesOrDollars] = useState("dollars");
+    const [showSharesOrDollars, setShowSharesOrDollars] = useState(false);
     const [transactionAmount, setTransactionAmount] = useState("");
     const buyingPower = useSelector(state => state.session.user.buyingPower);
     const sharePrice = useSelector(state => state.price.currentPrice);
     const ownedShares = 20;
-    const [buyOrSale, setBuyOrSale] = useState("sell");
+    const [buyOrSale, setBuyOrSale] = useState("buy");
     const symbol = useParams().symbol.toUpperCase();
 
     async function tester() {
@@ -53,16 +54,39 @@ function Transactions() {
                         </div>
                         <div className="transaction-form-data-container">
                             <label>Buy In</label>
-                            <select>
-                                <option>Dollars</option>
-                                <option>Shares</option>
-                            </select>
+                            <div className="transaction-shares-or-dollars-outer-container">
+                                <button onClick={() => setShowSharesOrDollars(!showSharesOrDollars)} id="transaction-shares-or-dollars-display" className={showSharesOrDollars ? "transactions-shares-or-dollars-open" : ""}>
+                                    {sharesOrDollars === "dollars" ? "Dollars" : "Shares"}
+                                </button>
+                                {showSharesOrDollars &&
+                                    <div className="transaction-shares-or-dollars-container">
+                                        <button
+                                            className={`transactions-show-shares-or-dollars ${buyOrSale === "buy" ? "transaction-green" : "transaction-red"}`} onClick={e => {
+                                                e.preventDefault();
+                                                setSharesOrDollars("dollars");
+                                                setShowSharesOrDollars(false);
+                                            }}
+                                        >
+                                            Dollars
+                                        </button>
+                                        <button
+                                            className={`transactions-show-shares-or-dollars ${buyOrSale === "buy" ? "transaction-green" : "transaction-red"}`} onClick={e => {
+                                                e.preventDefault();
+                                                setSharesOrDollars("shares");
+                                                setShowSharesOrDollars(false);
+                                            }}
+                                        >
+                                            Shares
+                                        </button>
+                                    </div>
+                                }
+                            </div>
                         </div>
                         <div className="transaction-form-data-container" id="transaction-amount">
                             <p>Amount</p>
-                            {/* <input type="text"
+                            <input type="text"
                                 id="transaction-form-text-input"
-                                placeholder="$0.00"
+                                placeholder={sharesOrDollars === "dollars" ? "$0.00" : "0"}
                                 value={transactionAmount}
                                 onChange={(event) => {
                                     if (isNaN(event.target.value) === false) {
@@ -72,7 +96,7 @@ function Transactions() {
                                         //sell conditions
                                         if (sharesOrDollars === "shares" && Number(ownedShares) > Number(event.target.value)) setTransactionAmount(event.target.value);
                                     }
-                                }} /> */}
+                                }} />
                         </div>
                         <div className="transaction-form-data-container" id="transaction-est-quantity">
                             <p>Est. Quantity</p>

@@ -108,7 +108,6 @@ function StockShowcase() {
                                     </h3>
                                     <p className="stock-showcase-grid-info">
                                         {companyInfoLoaded && stringToFormat(stats.MarketCap) || "—"}
-                                        {companyInfoLoaded && console.log(stringToFormat(stats.MarketCap))}
                                     </p>
                                 </div>
                                 <div>
@@ -176,7 +175,7 @@ function StockShowcase() {
                             </div>
                         </div>
                         <div className="app-stock-news-container">
-                            {/* <SymbolNews /> */}
+                            <SymbolNews />
                         </div>
                     </div>
                     <div className="stock-showcase-right">

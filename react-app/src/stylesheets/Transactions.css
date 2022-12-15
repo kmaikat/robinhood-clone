@@ -14,6 +14,7 @@
     top: 9.5rem;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.02) 0px -12px 24px 0px, rgba(0, 0, 0, 0.06) 0px 12px 24px 0px;
+    overflow: hidden;
 }
 
 #transaction-heading-container {
@@ -54,6 +55,86 @@
     justify-content: space-between;
     min-height: 4.8rem;
     align-items: center;
+}
+
+.transaction-shares-or-dollars-outer-container {
+    position: relative;
+    width: 50%;
+}
+
+#transaction-shares-or-dollars-display {
+    font-weight: normal;
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    border: 1px solid var(--rockethood-border-lightgray);
+    border-radius: .4rem;
+    height: 3.6rem;
+    cursor: pointer;
+    padding: 0 1.2rem;
+}
+
+.transactions-shares-or-dollars-open {
+    border-radius: .4rem 0 0 .4rem;
+    border-bottom: none;
+}
+
+#transaction-shares-or-dollars-display:hover {
+    border-radius: .4rem 0 0 .4rem;
+}
+
+.transaction-shares-or-dollars-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: white;
+    width: 100%;
+    border: solid 1px var(--rockethood-border-lightgray);
+    border-radius: 0 .4rem 0 .4rem;
+}
+
+.transaction-shares-or-dollars-container button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-weight: normal;
+    min-width: 100%;
+    padding: 0;
+    border: none;
+    height: 3.6rem;
+}
+
+.transaction-green:hover {
+    font-weight: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%;
+    padding: 0 1.2rem;
+    border-radius: 0;
+    border: 1px solid var(--rockethood-border-lightgray);
+    background-color: var(--rockethood-green);
+}
+
+.transaction-red:hover {
+    font-weight: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%;
+    padding: 0 1.2rem;
+    border-radius: 0;
+    border: 1px solid var(--rockethood-border-lightgray);
+    background-color: var(--rockethood-sell-red);
+}
+
+
+
+#transaction-form-text-input {
+    width: 50%;
 }
 
 #transaction-amount {
@@ -98,11 +179,10 @@
 }
 
 #transaction-submit-button {
-    margin: none;
-    padding: none;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    text-align: center;
     width: 100%;
 }
 
