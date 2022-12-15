@@ -84,7 +84,7 @@ const ModalProfile = ({ setIsModalOn, setIsModalMessage }) => {
             <div ref={modal} className={styles.editProfileContainer} onMouseDown={e => e.stopPropagation()}>
                 <div className={styles.editProfile}>
                     <div>Edit Profile</div>
-                    <div style={{cursor: 'pointer'}} onClick={closeModal}><i className="fa-regular fa-xmark"></i></div>
+                    <div style={{cursor: 'pointer'}} onClick={closeModal}><i className="fa-solid fa-xmark"></i></div>
                 </div>
                 <div className={styles.profilePictureContainer}>
                     <ProfileFrame setIsModalMessage={setIsModalMessage} />
