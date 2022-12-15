@@ -6,7 +6,6 @@
 
 .app-home {
     height: 100%;
-    width: 100%;
     max-width: 141.6rem;
     display: flex;
     padding: 3.6rem 3rem;
@@ -14,16 +13,17 @@
 }
 
 .app-home-left {
-    width: 70%;
+    width: 75%;
 }
 
 .app-home-right {
     width: 25%;
-    height: 100%;
+    padding: 0 2.4rem;
+    padding-bottom: 3.6rem;
 }
 
 #app-home-chart-container{
-    padding: 0 2.4rem
+    padding: 0 2.4rem;
 }
 
 .app-home-right::-webkit-scrollbar {
