@@ -60,8 +60,9 @@ const AddStockForm = ({ symbol, closeModal }) => {
             </div>
             <div className='addstock-form-content'>
                 <div className='addstock-form-createform'>
+                    <div></div>
                     <button className='addstock-form-btnopen' onClick={createWatchlist}><i className="fa-solid fa-plus"></i></button>
-                    <div>Create New List </div>
+                    <div className='addstock-form-createtitle'>Create New List </div>
                 </div>
                 <div className='addstock-form-newlist'>
                     {openForm && 
@@ -73,7 +74,7 @@ const AddStockForm = ({ symbol, closeModal }) => {
                 <div className='addstock-form-main'>
                     <div className='addstock-form-lists'>
                         { watchlists && Object.values(watchlists).map((watchlist, i) =>
-                            <div key={watchlist.id}>
+                            <div key={watchlist.id} className='addstock-form-check'>
                                 <input
                                     type='checkbox'
                                     name='watchlist'
@@ -81,6 +82,9 @@ const AddStockForm = ({ symbol, closeModal }) => {
                                     onChange={handleChange(watchlist)}
                                     id={watchlist.id}
                                 />
+                                <div className='addstock-icon'>
+                                    <img src="https://cdn.robinhood.com/emoji/v0/128/1f4a1.png"/>
+                                </div>
                                 <label for={watchlist.id}>{watchlist.name}</label>
                             </div>
                         )
