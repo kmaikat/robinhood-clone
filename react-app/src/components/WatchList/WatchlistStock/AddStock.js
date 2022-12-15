@@ -12,7 +12,7 @@ const AddStock = ({ symbol }) => {
             {showModal && (
                 <Modal>
                     <div>
-                        <AddStockForm symbol={symbol}/>
+                        <AddStockForm symbol={symbol} closeModal={() => setShowModal(false)} />
                     </div>
                 </Modal>
             )}
