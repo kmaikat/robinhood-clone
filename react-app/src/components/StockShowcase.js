@@ -37,14 +37,14 @@ function StockShowcase() {
             });
     }, [symbol]);
 
-    // useEffect(() => {
-    //     fetch(`/api/stock/company-information/${symbol}`)
-    //         .then(res => res.json())
-    //         .then(res => {
-    //             setCompanyInfo(res);
-    //             setCompanyInfoLoaded(true);
-    //         });
-    // }, [symbol]);
+    useEffect(() => {
+        fetch(`/api/stock/company-information/${symbol}`)
+            .then(res => res.json())
+            .then(res => {
+                setCompanyInfo(res);
+                setCompanyInfoLoaded(true);
+            });
+    }, [symbol]);
 
     console.log(companyInfo);
     return (
@@ -175,7 +175,7 @@ function StockShowcase() {
                             </div>
                         </div>
                         <div className="app-stock-news-container">
-                            {/* <SymbolNews /> */}
+                            <SymbolNews />
                         </div>
                     </div>
                     <div className="stock-showcase-right">
