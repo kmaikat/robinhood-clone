@@ -17,6 +17,8 @@ const ProfileSection = () => {
     let messageTimer = null
 
     useEffect(() => {
+        caches.keys()
+            .then(res => console.log(res))
         if(isModalMessage){
             clearTimeout(messageTimer)
             setTimeout(() => {
