@@ -3,6 +3,7 @@
     width: 100%;
     box-sizing: border-box;
     border: 1px solid #cccccc;
+    min-width: 28rem;
 }
 
 header {
@@ -94,6 +95,7 @@ header {
     /* width: 200px; */
     display: flex;
     justify-content: space-between;
+    padding-right: 0.75rem;
 }
 
 .update-btn-main {
@@ -244,6 +246,10 @@ header {
     margin-left: 15px;
     margin-right: 15px; */
     height: 60px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
 }
 .watchlist-minigraph:hover {
     background-color: var(--rockethood-border-lightgray);
@@ -422,7 +428,10 @@ header {
     flex-direction: column;
 }
 .addstock-form-content{ 
-    height: 500px;
+    height: 300px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 .addstock-form-head {
     display: flex;
@@ -511,4 +520,19 @@ header {
 
 .addstock-btn:hover {
     background-color: rgba(0,200,5,0.1);
+}
+
+
+.removestock-container {
+    padding: 1rem 0rem 0rem 2.5rem;
+}
+.removestock-btn {
+    background: none;
+    border: transparent;
+    min-width: 0;
+}
+
+.removestock-btn:hover {
+    color: var(--rockethood-sell-red);
+    font-weight: 700;
 }
