@@ -38,3 +38,13 @@
     padding-bottom: 1.2rem;
     border-bottom: 1px solid var(--rockethood-border-lightgray)
 }
+
+@media screen and (max-width: 750px){
+    .profile-page-center-util{
+        width: 100vw;
+    }
+
+    .profile-page-center-util .app-home-left{
+        padding: 0 2.4rem;
+    }
+}

@@ -224,6 +224,12 @@
     background-color: #e4e4e4;
 }
 
+@media screen and (max-width: 600px) {
+    .editProfileBtn {
+        display: none;
+    }
+}
+
 .loading {
     aspect-ratio: 1/1;
     animation: loader 1s ease infinite;
