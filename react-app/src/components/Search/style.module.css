@@ -45,7 +45,7 @@
     z-index: 98;
 }
 
-.searchResult > li {
+.searchResult > a > li {
     display: flex;
     width: 100%;
 }
