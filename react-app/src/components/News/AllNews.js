@@ -81,4 +81,5 @@ const AllNews = () => {
     )
 }
 
+//
 export default AllNews
