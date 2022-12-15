@@ -99,9 +99,4 @@ class User(db.Model, UserMixin):
         self.nick_name = nick_name
         self.user_name = user_name
 
-        try:
-            db.session.commit()
-            return 'Success'
-        except Exception as e:
-            print(str(e))
-            return 'Something went wrong'
+        db.session.commit()
