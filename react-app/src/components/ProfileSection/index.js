@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 import { useState, useRef, useEffect } from 'react'
 
-import AppMainNavBar from "../AppMainNavBar/AppMainNavBar"
+// import AppMainNavBar from "../AppMainNavBar/AppMainNavBar"
 import ModalProfile from "./ModalProfile"
 import ProfileFrame from "./ProfileFrame"
 import { amountFormatter } from "../../util/util2"
@@ -12,6 +12,8 @@ const ProfileSection = () => {
     const message = useRef(null)
     const [isModalOn, setIsModalOn] = useState(false)
     const [isModalMessage, setIsModalMessage] = useState(false)
+    const [isErrorOccured, setIsErrorOccured] = useState(false)
+
     let messageTimer = null
 
     useEffect(() => {
@@ -23,7 +25,7 @@ const ProfileSection = () => {
             })
         }
 
-    }, [isModalMessage])
+    }, [isModalMessage, isErrorOccured])
 
     const closeMessage = () => {
         clearTimeout(messageTimer)
@@ -32,12 +34,12 @@ const ProfileSection = () => {
 
     return (
         <>
-            {isModalOn && <ModalProfile user={user} setIsModalOn={setIsModalOn} setIsModalMessage={setIsModalMessage} />}
+            {isModalOn && <ModalProfile user={user} setIsModalOn={setIsModalOn} setIsModalMessage={setIsModalMessage} setIsErrorOccured={setIsErrorOccured} />}
             <div className={styles.mainContainer}>
                 <div className={styles.profileContainer}>
                     <div className={styles.profile}>
                         <div style={{display: 'flex'}}>
-                            <ProfileFrame setIsModalMessage={setIsModalMessage} />
+                            <ProfileFrame setIsModalMessage={setIsModalMessage} setIsErrorOccured={setIsErrorOccured} />
                             <div className={styles.username}>
                                 <div className={styles.name}>
                                     {user.nickname}
@@ -58,10 +60,16 @@ const ProfileSection = () => {
                 </div>
             </div>
             {isModalMessage && <div ref={message} className={styles.modalMessage}>
-                <div>
-                    <i className="fa-solid fa-circle-check" style={{marginRight: '1rem', color: '#5ac53b'}}></i>
-                    Change saved successfully
-                </div>
+                { isErrorOccured ?
+                    <div>
+                        <i className="fa-solid fa-circle-check" style={{marginRight: '1rem', color: '#5ac53b'}}></i>
+                        Change saved successfully
+                    </div>:
+                    <div>
+                    <i className="fa-solid fa-circle-xmark" style={{marginRight: '1rem', color: '#ec5e2a'}}></i>
+                        Something went wrong. Please try again.
+                    </div>
+                }
                 <div className={styles.closeBtn} onClick={() => setIsModalMessage(false)}>
                     <i className="fa-solid fa-xmark"></i>
                 </div>
