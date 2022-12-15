@@ -1,5 +1,6 @@
 import AppMainNavBar from "./AppMainNavBar/AppMainNavBar";
 import ProfileSection from "./ProfileSection";
+import LikedNews from "./News/LikedNews"
 import "../stylesheets/ProfilePage.css";
 
 function ProfilePage() {
@@ -28,7 +29,7 @@ function ProfilePage() {
                             <div className="profile-page-profile-info-container" id="profile-page-bookmarks">
                                 <h2 className="profile-page-profile-info-title">Bookmarks</h2>
                                 <div>
-                                    {/* STUFF GOES HERE */}
+                                    <LikedNews />
                                 </div>
                             </div>
                         </div>
