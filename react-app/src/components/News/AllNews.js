@@ -52,7 +52,7 @@ const AllNews = () => {
                                 <div id="all-news-source-container">
                                     <div id="all-news-source">
                                         {article.source}
-                                        {article.url in likedArticles ? <i className="fa-solid fa-bookmark" id="news-saved" onClick={e => handleDeleteToggle(e, article)} /> : <i className="fa-regular fa-bookmark" id="news-not-saved" onClick={e => handleAddToggle(e, article)} />}
+                                        {article.url in likedArticles ? <i className="fa-solid fa-bookmark" id="news-saved" onClick={e => handleDeleteToggle(e, article)} /> : <i className="fa-solid fa-bookmark" id="news-not-saved" onClick={e => handleAddToggle(e, article)} />}
                                     </div>
                                 </div>
                                 <div id="all-news-bottom-half">

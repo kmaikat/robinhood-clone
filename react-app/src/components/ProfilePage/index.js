@@ -64,7 +64,7 @@ const ProfilePage = () => {
                     Change saved successfully
                 </div>
                 <div className={styles.closeBtn} onClick={() => setIsModalMessage(false)}>
-                    <i className="fa-regular fa-xmark"></i>
+                    <i className="fa-solid fa-xmark"></i>
                 </div>
             </div>}
         </>
