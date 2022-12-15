@@ -1,9 +1,9 @@
 import React from "react";
-import "../stylesheets/AppHome.css";
 import AppMainNavBar from "./AppMainNavBar/AppMainNavBar";
 import AllNews from "./News/AllNews";
 import WatchList from "./WatchList";
 import ChartDrawing from "./ChartDrawing";
+import "../stylesheets/AppHome.css";
 
 const AppHome = () => {
     return (

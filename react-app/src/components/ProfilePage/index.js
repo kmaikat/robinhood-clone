@@ -4,9 +4,8 @@ import { useState, useRef, useEffect } from 'react'
 import AppMainNavBar from "../AppMainNavBar/AppMainNavBar"
 import ModalProfile from "./ModalProfile"
 import ProfileFrame from "./ProfileFrame"
-import styles from './profile.module.css'
-
 import { amountFormatter } from "../../util/util2"
+import styles from './profile.module.css'
 
 const ProfilePage = () => {
     const user = useSelector(state => state.session.user)
@@ -50,7 +49,7 @@ const ProfilePage = () => {
                             </div>
                         </div>
                         <div>
-                            <button onClick={() => setIsModalOn(true)}>Edit Profile</button>
+                            <button onClick={() => setIsModalOn(true)} className={styles.editProfileBtn}>Edit Profile</button>
                         </div>
                     </div>
                 </div>

@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import AppHome from "../AppHome";
 import AccountButton from "./AccountButton";
-import "../../stylesheets/AppMainNavBar.css";
 import Search from "../Search";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import "../../stylesheets/AppMainNavBar.css";
 
 const AppMainNavBar = () => {
     const [color, setColor] = useState('#5ac53b');
