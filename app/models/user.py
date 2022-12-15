@@ -38,17 +38,17 @@ class User(db.Model, UserMixin):
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    assets = db.relationship(add_prefix_for_prod("Asset"),
+    assets = db.relationship("Asset",
                              back_populates=add_prefix_for_prod("user"),
                              cascade="all, delete-orphan")
 
-    watchlists = db.relationship(add_prefix_for_prod("WatchList"),
+    watchlists = db.relationship("WatchList",
                              back_populates=add_prefix_for_prod("user"),
                              cascade="all, delete-orphan")
 
-    transactions = db.relationship(add_prefix_for_prod('Transaction'), back_populates=add_prefix_for_prod('user'), cascade='all, delete-orphan')
+    transactions = db.relationship("Transaction", back_populates=add_prefix_for_prod('user'), cascade='all, delete-orphan')
 
-    news = db.relationship(add_prefix_for_prod('News'), back_populates=add_prefix_for_prod('user'), cascade='all, delete-orphan')
+    news = db.relationship("News", back_populates=add_prefix_for_prod('user'), cascade='all, delete-orphan')
 
     @property
     def password(self):
