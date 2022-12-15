@@ -67,7 +67,7 @@ const WatchList = () => {
             <div>
                 {watchlists && watchlists.map(
                     (watchlist, i) => (
-                        <div className='watchlist-content'>
+                        <div className='watchlist-content' key={watchlist.id}>
                             <div className='watchlist-content-header' onClick={handleClickBtn(i)}>
                                 <div className='watchlist-wrapper-head'>
                                     <div className='watchlist-icon'>
