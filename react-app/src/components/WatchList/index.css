@@ -100,7 +100,8 @@ header {
 .btn-openstock,
 .btn-update,
 .btn-edit,
-.btn-close {
+.btn-close,
+.btn-deleteform {
     background: none;
     border: transparent;
     min-width: 0;
@@ -332,7 +333,7 @@ header {
     background-color: var(--rockethood-green);
     width: 100%;
     text-align: center;
-    color: var(--rockethood-darkest-green);
+    color: rgb(255, 255, 255);
 }
 
 .watchlistform-icon {
@@ -603,4 +604,16 @@ input[type=checkbox] {
     font-size: 1.2rem;
     font-weight: 500;
     overflow: scroll;
+}
+.updateform-error {
+    color: var(--rockethood-sell-red);
+    list-style: none;
+    padding-left: 6rem;
+    /* justify-content: flex-end; */
+    margin: 0rem 0rem 1rem 1rem;
+    font-size: 1.3rem;
+    font-weight: 500;
+}
+.btn-deleteform:hover {
+    color: var(--rockethood-green);
 }

@@ -12,7 +12,7 @@ const UpdateWatchlistForm = ({watchlist, onClose}) => {
         e.preventDefault();
         setValidationError('');
         if (name.length > 64) {
-            return setValidationError('Your list name must be less than 64 characters');
+            return setValidationError('List name must be less than 64 characters.');
         }
         console.log('im line 14 handle submit')
         const response = await dispatch(watchlistAction.updateWatchlist({name, id}))
@@ -52,13 +52,12 @@ const UpdateWatchlistForm = ({watchlist, onClose}) => {
                                 onChange={(e) => setName(e.target.value)}
                                 placeholder='List Name'
                                 required
-                                style={{borderRadius:"5px", border:"1px solid var(--rockethood-green)"}}
                             />
                         </label>
                     </div>
                 </div>
                 {validationError && 
-                    <div>
+                    <div className='updateform-error'>
                         {validationError}
                     </div>
                 }
