@@ -35,7 +35,7 @@
     font-size: 1.3rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    padding: 1.5rem 2.4rem;
+    padding:3rem 2.4rem;
     gap: 1.2rem
 }
 
@@ -55,4 +55,29 @@
 
 .stock-showcase-right {
     width: 28%;
+}
+
+@media screen and (max-width: 750px) {
+
+    .app-stocks {
+        width: 100vw;
+    }
+
+    .stock-showcase-left {
+        width: 100%;
+    }
+
+    .stock-showcase-right {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 450px) {
+    /* .stock-news-image-container {
+        display: none;
+    } */
+
+    #stock-news-source-container{
+        width: 100%;
+    }
 }
