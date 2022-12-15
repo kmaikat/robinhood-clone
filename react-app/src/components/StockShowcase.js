@@ -108,7 +108,6 @@ function StockShowcase() {
                                     </h3>
                                     <p className="stock-showcase-grid-info">
                                         {companyInfoLoaded && stringToFormat(stats.MarketCap) || "—"}
-                                        {companyInfoLoaded && console.log(stringToFormat(stats.MarketCap))}
                                     </p>
                                 </div>
                                 <div>
