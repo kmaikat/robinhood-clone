@@ -39,16 +39,16 @@ class User(db.Model, UserMixin):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     assets = db.relationship("Asset",
-                             back_populates=add_prefix_for_prod("user"),
+                             back_populates="user",
                              cascade="all, delete-orphan")
 
     watchlists = db.relationship("WatchList",
-                             back_populates=add_prefix_for_prod("user"),
+                             back_populates="user",
                              cascade="all, delete-orphan")
 
-    transactions = db.relationship("Transaction", back_populates=add_prefix_for_prod('user'), cascade='all, delete-orphan')
+    transactions = db.relationship("Transaction", back_populates='user', cascade='all, delete-orphan')
 
-    news = db.relationship("News", back_populates=add_prefix_for_prod('user'), cascade='all, delete-orphan')
+    news = db.relationship("News", back_populates='user', cascade='all, delete-orphan')
 
     @property
     def password(self):
