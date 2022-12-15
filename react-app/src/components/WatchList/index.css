@@ -1,14 +1,16 @@
 .watchlist-container {
-    height: 500px;
+    height: 100%;
     width: 100%;
     box-sizing: border-box;
     border: 1px solid #cccccc;
 }
+
 header {
     box-sizing: border-box;
     border-bottom: 1px solid #cccccc;
     width: 100%;
 }
+
 .watchlist-header {
     display: flex;
     align-items: center;
@@ -18,8 +20,9 @@ header {
     display: flex;
     flex-direction: column;
     width: 100%;
-    margin:10px 10px 10px 0px;
+    /* margin: 10px 10px 10px 0px; */
 }
+
 .newform-content-head {
     display: flex;
     align-items: center;
@@ -32,6 +35,7 @@ header {
     box-sizing: border-box;
     height: 100%;
 }
+
 .newform-info input {
     width: 100%;
     height: 40px;
@@ -39,9 +43,11 @@ header {
     padding: 10px;
     border-radius: 5px;
 }
-.newform-info input:focus  {
+
+.newform-info input:focus {
     border: 1px solid var(--rockethood-green)
 }
+
 .newform-icon {
     display: flex;
     justify-content: center;
@@ -51,9 +57,9 @@ header {
     box-sizing: border-box;
     border-radius: 3px;
     margin-right: 5px;
-    background-color: rgb(30,33,36);
+    background-color: rgb(30, 33, 36);
     margin-left: 15px;
-    
+
 }
 
 .newform-button {
@@ -61,22 +67,25 @@ header {
     justify-content: flex-end;
     margin-right: 10px;
 }
+
 .btn-submit {
     background-color: #00C805;
     height: 36px;
     /* width: 80px; */
     padding: 4px 15px;
-    color: rgb(255,255,255);
+    color: rgb(255, 255, 255);
     /* text-align: center; */
-    border:1px solid #00C805; 
+    border: 1px solid #00C805;
 }
+
 .btn-cancel-form {
-    border:1px solid #00C805; 
+    border: 1px solid #00C805;
     color: #00C805;
     height: 36px;
     text-align: center;
     margin-right: 10px;
 }
+
 .newform-info {
     padding: 8px 8px 8px 0px;
 }
@@ -86,14 +95,22 @@ header {
     display: flex;
     justify-content: space-between;
 }
+
 .update-btn-main {
     position: relative;
+    width: 100%;
 }
-.btn-open, .btn-openstock, .btn-update, .btn-edit, .btn-close {
+
+.btn-open,
+.btn-openstock,
+.btn-update,
+.btn-edit,
+.btn-close {
     background: none;
     border: transparent;
     min-width: 0;
 }
+
 .btn-add {
     padding: 0;
     margin: 10px;
@@ -103,7 +120,8 @@ header {
     justify-content: center;
     align-items: center;
 }
-.btn-add > i {
+
+.btn-add>i {
     line-height: 30px;
 }
 
@@ -125,7 +143,7 @@ header {
     width: 100%;
 }
 
-.watchlist-wrapper-head { 
+.watchlist-wrapper-head {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -173,10 +191,10 @@ header {
     box-sizing: border-box;
     border-radius: 3px;
     margin-right: 5px;
-    background-color: rgb(30,33,36);
+    background-color: rgb(30, 33, 36);
 }
 
-.watchlist-icon > img {
+.watchlist-icon>img {
     width: 18px;
     height: 18px;
 }
@@ -186,7 +204,15 @@ header {
     background-color: white;
     z-index: 1000;
 }
-
+.watchlist-dropdown-update {
+    width: 100%;
+}
+.watchlist-dropdown-update:hover{
+    color: var(--rockethood-green);
+}
+.watchlist-dropdown-delete:hover {
+    color: var(--rockethood-green);
+}
 .watchlist-stocks-content {
     display: flex;
     flex-direction: row;
@@ -195,26 +221,33 @@ header {
     justify-content: space-between;
 
 }
+
 .watchlist-stocks-content:hover {
     background-color: var(--rockethood-border-lightgray);
     cursor: pointer;
 }
+
 .watchlist-stocksymbol {
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     margin-left: 15px;
     margin-right: 15px;
     font-weight: 600;
 }
 
 .watchlist-minigraph {
-    height: 60px;
+    /* height: 60px;
     display: flex;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
     margin-left: 15px;
-    margin-right: 15px;
+    margin-right: 15px; */
+    height: 60px;
+}
+.watchlist-minigraph:hover {
+    background-color: var(--rockethood-border-lightgray);
+    cursor: pointer;
 }
 
 .watchlist-stockprice {
@@ -280,7 +313,7 @@ header {
     padding: 0px 20px 20px 20px;
 }
 
-.updateform-content > .watchlist-icon {
+.updateform-content>.watchlist-icon {
     margin: 0px 15px 0px 0px;
 }
 
@@ -302,7 +335,7 @@ header {
     color: var(--rockethood-darkest-green);
 }
 
-.watchlistform-icon{
+.watchlistform-icon {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -311,7 +344,7 @@ header {
     box-sizing: border-box;
     border-radius: 3px;
     margin-right: 5px;
-    background-color: rgb(30,33,36);
+    background-color: rgb(30, 33, 36);
     margin-left: 15px;
     margin-right: 15px
 }
@@ -330,7 +363,8 @@ header {
     padding-left: 20px;
     font-weight: 600;
 }
-.delete-head > h1 {
+
+.delete-head>h1 {
     margin: 20px;
 }
 
@@ -367,6 +401,114 @@ header {
     background-color: var(--rockethood-sell-red);
     width: 90%;
     text-align: center;
-    color: rgb(255,255,255);
+    color: rgb(255, 255, 255);
     margin: 0px 20px 20px 20px;
+}
+.addstock-btn {
+    border: 1px solid var(--rockethood-green);
+    border-radius: 25px;
+    background-color: rgb(255,255,255);
+    color: var(--rockethood-green);
+    width: 90%;
+    text-align: center;
+    margin: 20px;
+}
+.addstock-btn:hover {
+    background-color: rgba(0,200,5,0.1)
+}
+.addstock-form-container {
+    width: 408px;
+    display: flex;
+    flex-direction: column;
+}
+.addstock-form-content{ 
+    height: 500px;
+}
+.addstock-form-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+}
+.addstock-form-title {
+    font-size: 20px;
+}
+.addstock-form-createform {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-left: 20px;
+    height: 100px;
+}
+
+.addstock-form-btnclose {
+    border: none;
+    border-radius: 0;
+    width: 30px;
+    height: 30px;
+    padding: 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    padding-left: 20px;
+
+}
+
+.addstock-form-newlist {
+    width: 90%;
+    margin-left: 20px;
+}
+.addstock-form-main {
+    display: flex;
+    flex-direction: column;
+}
+.addstock-form-lists {
+    margin-left: 20px;
+}
+
+
+.addstock-form-btnsave {
+    border: 1px solid var(--rockethood-green);
+    background-color: var(--rockethood-green);
+    width: 90%;
+    text-align: center;
+    color: rgb(255,255,255);
+    margin: 20px;
+}
+
+.addstock-form-btnsave:disabled {
+    background-color: #cccccc;
+    border: 1px solid #cccccc;
+}
+
+.addstock-form-btnopen {
+    background: none;
+    border: transparent;
+    min-width: 0;
+    padding: 0;
+    margin: 10px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.addstock-container {
+    margin-top: 2.4rem;
+    padding: 0 2.4rem;
+    display: flex;
+    justify-content: center;
+}
+
+.addstock-btn {
+    padding: 0 4.8rem;
+    border-color: var(--rockethood-green);
+    color: var(--rockethood-green);
+    background-color: white;
+}
+
+.addstock-btn:hover {
+    background-color: rgba(0,200,5,0.1);
 }

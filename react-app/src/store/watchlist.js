@@ -49,8 +49,7 @@ export function deleteStock(stockId) {
 }
 
 export const fetchUserWatchlists = () => async dispatch => {
-    const response = await fetch(`api/watchlists/current`); 
-    console.log('im runnign line 53')
+    const response = await fetch(`/api/watchlists/current`); 
     if (response.ok) {
         const data = await response.json();
         dispatch(loadWatchlists(data.watchlists)); 
@@ -138,6 +137,7 @@ export const deleteWatchlist = (watchlistId) => async dispatch => {
 
 export const addStockToWatchlist = (info) => async dispatch => {
     const { watchlistId, symbol } = info;
+    
     try {
         const response = await fetch(`/api/watchlists/${watchlistId}/stocks`, {
             method: 'POST',

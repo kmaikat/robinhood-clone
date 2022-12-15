@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { logout } from "../../../store/session";
 import LogoutButton from "../../auth/LogoutButton";
-import AccountModal from "../../Modals/AccountModal";
 
 function AccountButton() {
     const [showAccount, setShowAccount] = useState(false);

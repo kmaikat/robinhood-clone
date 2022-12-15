@@ -1,4 +1,3 @@
-import "../stylesheets/StockShowcase.css";
 import AppMainNavBar from "./AppMainNavBar/AppMainNavBar";
 import ChartDrawing from "./ChartDrawing";
 import SymbolNews from "./News/SymbolNews";
@@ -8,6 +7,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import Transactions from "./Transactions";
 import AddStock from "./WatchList/WatchlistStock/AddStock";
+import "../stylesheets/StockShowcase.css";
 function stringToFormat(marketCap) {
     const usDollar = Intl.NumberFormat("en-US");
     marketCap = usDollar.format(marketCap);
@@ -37,14 +37,14 @@ function StockShowcase() {
             });
     }, [symbol]);
 
-    useEffect(() => {
-        fetch(`/api/stock/company-information/${symbol}`)
-            .then(res => res.json())
-            .then(res => {
-                setCompanyInfo(res);
-                setCompanyInfoLoaded(true);
-            });
-    }, [symbol]);
+    // useEffect(() => {
+    //     fetch(`/api/stock/company-information/${symbol}`)
+    //         .then(res => res.json())
+    //         .then(res => {
+    //             setCompanyInfo(res);
+    //             setCompanyInfoLoaded(true);
+    //         });
+    // }, [symbol]);
 
     console.log(companyInfo);
     return (
@@ -52,7 +52,7 @@ function StockShowcase() {
             <AppMainNavBar />
             <div className="app-home-container">
                 <div className="app-stocks">
-                    <div className="app-home-left">
+                    <div className="stock-showcase-left">
                         <div id="stock-home-chart-container">
                             {!isError && <ChartDrawing />}
                         </div>
@@ -108,7 +108,6 @@ function StockShowcase() {
                                     </h3>
                                     <p className="stock-showcase-grid-info">
                                         {companyInfoLoaded && stringToFormat(stats.MarketCap) || "—"}
-                                        {companyInfoLoaded && console.log(stringToFormat(stats.MarketCap))}
                                     </p>
                                 </div>
                                 <div>
@@ -179,9 +178,8 @@ function StockShowcase() {
                             <SymbolNews />
                         </div>
                     </div>
-                    <div className="app-home-right">
+                    <div className="stock-showcase-right">
                         <Transactions />
-                        <AddStock symbol={symbol} />
                     </div>
                 </div>
             </div>

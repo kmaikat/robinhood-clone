@@ -2,7 +2,6 @@ import * as watchlistAction from '../../store/watchlist';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import NewWatchList from './watchlist_form';
-import './index.css';
 import UpdateButton from './Update/UpdateButton';
 import SmallChart from '../SmallChart';
 // import StockPrice from './StockPrice';
@@ -10,6 +9,7 @@ import { Modal } from "../Modals/Modal";
 // import UpdateWatchlistForm from "./Update/watchlist_updateForm";
 // import UpdateWatchlistForm from "./Update/watchlist_updateForm";
 import { Link } from 'react-router-dom';
+import './index.css';
 
 const WatchList = () => {
     const dispatch = useDispatch();
@@ -67,7 +67,7 @@ const WatchList = () => {
             <div>
                 {watchlists && watchlists.map(
                     (watchlist, i) => (
-                        <div className='watchlist-content'>
+                        <div className='watchlist-content' key={watchlist.id}>
                             <div className='watchlist-content-header' onClick={handleClickBtn(i)}>
                                 <div className='watchlist-wrapper-head'>
                                     <div className='watchlist-icon'>
@@ -93,9 +93,11 @@ const WatchList = () => {
                                 <div className='watchlist-stocks-container'>
                                     {watchlist.watchlist_stocks.length > 0 &&
                                         watchlist.watchlist_stocks.map(stock => (
-                                            <Link to={`/stocks/${stock.stock_symbol}`}>
-                                                <SmallChart symbol={stock.stock_symbol} />
-                                            </Link>
+                                            <div className='watchlist-minigraph'>
+                                                <Link to={`/stocks/${stock.stock_symbol}`}>
+                                                    <SmallChart symbol={stock.stock_symbol} />
+                                                </Link>
+                                            </div>
                                         ))
                                     }
                                 </div>

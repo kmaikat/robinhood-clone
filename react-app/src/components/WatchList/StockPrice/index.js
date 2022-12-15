@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 const StockPrice = ({ symbol }) => {
     const dispatch = useDispatch();
     const data = useSelector(state => state.watchlistStocks[symbol]);
-    console.log(data)
     useEffect(() => {
         dispatch(stockReducer.fetchStockPrice(symbol));
     }, [dispatch]);

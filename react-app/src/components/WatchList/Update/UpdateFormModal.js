@@ -16,7 +16,10 @@ const UpdateFormModal = ({ watchlist, closeDropdown, openModal, closeModal }) =>
     });
 
     return (
-        <button onClick={onClick} className='btn-edit'>Edit</button>
+        <button onClick={onClick} className='btn-edit'>
+            <i className="fa-solid fa-gear"></i>
+            <span>Edit</span>
+        </button>
     );
 }
 
