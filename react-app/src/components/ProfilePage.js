@@ -1,6 +1,7 @@
 import AppMainNavBar from "./AppMainNavBar/AppMainNavBar";
 import ProfileSection from "./ProfileSection";
 import "../stylesheets/ProfilePage.css";
+import WatchlistTab from "./WatchList/WatchlistTab";
 
 function ProfilePage() {
     return (
@@ -21,7 +22,7 @@ function ProfilePage() {
                             <div className="profile-page-profile-info-container" id="profile-page-watchlists">
                                 <h2 className="profile-page-profile-info-title">Watchlists</h2>
                                 <div>
-                                    {/* STUFF GOES HERE */}
+                                    <WatchlistTab/>
                                 </div>
                             </div>
 
