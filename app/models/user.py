@@ -69,7 +69,7 @@ class User(db.Model, UserMixin):
         }
 
     def upload_profile(self, file: FileStorage) -> str:
-        filename = 'profile-image/' + self.email + '.' + file.filename.split('.')[-1]
+        filename = 'profile-image/' + self.email + str(datetime.now()) + '.' + file.filename.split('.')[-1]
 
 
         s3 = boto3.client(
