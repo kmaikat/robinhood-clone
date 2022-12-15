@@ -56,3 +56,18 @@
 .stock-showcase-right {
     width: 28%;
 }
+
+@media screen and (max-width: 750px) {
+
+    .app-stocks {
+        width: 100vw;
+    }
+
+    .stock-showcase-left {
+        width: 100%;
+    }
+
+    .stock-showcase-right {
+        display: none;
+    }
+}

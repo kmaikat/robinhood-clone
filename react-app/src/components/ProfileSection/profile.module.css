@@ -218,3 +218,9 @@
 .editProfileBtn:hover {
     background-color: #e4e4e4;
 }
+
+@media screen and (max-width: 600px) {
+    .editProfileBtn {
+        display: none;
+    }
+}
