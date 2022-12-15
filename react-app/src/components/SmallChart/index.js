@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import { getOneDayPrices } from '../../util/util2'
 import PlaceHolder from '../PlaceHolder'
 import styles from './render.module.css'
+import { Link } from 'react-router-dom'
 
 const SmallChart = ({ symbol }) => {
     const [allData, setAllData] = useState({})
@@ -54,7 +55,9 @@ const SmallChart = ({ symbol }) => {
     return (
         isLoaded ?
         <div className={styles.container}>
-            <div className={styles.symbol}>{symbol}</div>
+            <Link to={`/stocks/${symbol}`}>
+                <div className={styles.symbol}>{symbol}</div>
+            </Link>
             <Chart
                 series={allData.series}
                 options={{

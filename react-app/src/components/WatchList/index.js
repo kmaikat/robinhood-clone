@@ -9,6 +9,7 @@ import { Modal } from "../Modals/Modal";
 // import UpdateWatchlistForm from "./Update/watchlist_updateForm";
 // import UpdateWatchlistForm from "./Update/watchlist_updateForm";
 import { Link } from 'react-router-dom';
+import RemoveStockBtn from './Delete/RemoveStock.js';
 import './index.css';
 
 const WatchList = () => {
@@ -94,9 +95,10 @@ const WatchList = () => {
                                     {watchlist.watchlist_stocks.length > 0 &&
                                         watchlist.watchlist_stocks.map(stock => (
                                             <div className='watchlist-minigraph'>
-                                                <Link to={`/stocks/${stock.stock_symbol}`}>
+                                                {/* <Link to={`/stocks/${stock.stock_symbol}`}> */}
                                                     <SmallChart symbol={stock.stock_symbol} />
-                                                </Link>
+                                                {/* </Link> */}
+                                                <RemoveStockBtn symbol={stock.stock_symbol} watchlist={watchlist} stockId={stock.id} />
                                             </div>
                                         ))
                                     }

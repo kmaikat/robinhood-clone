@@ -76,7 +76,6 @@ class User(db.Model, UserMixin):
 
     def upload_profile(self, file: FileStorage) -> str:
         filename = 'profile-image/' + self.email + '.' + file.filename.split('.')[-1]
-
         s3.upload_fileobj(
             file,
             os.environ.get('S3_BUCKET'),
@@ -100,8 +99,4 @@ class User(db.Model, UserMixin):
         self.nick_name = nick_name
         self.user_name = user_name
 
-        try:
-            db.session.commit()
-            return 'Success'
-        except:
-            return 'Something went wrong'
+        db.session.commit()

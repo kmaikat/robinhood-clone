@@ -4,7 +4,7 @@ import { updateNicknameUsername } from '../../store/session'
 import ProfileFrame from './ProfileFrame'
 import styles from './profile.module.css'
 
-const ModalProfile = ({ setIsModalOn, setIsModalMessage }) => {
+const ModalProfile = ({ setIsModalOn, setIsModalMessage, setIsErrorOccured }) => {
     const dispatch = useDispatch()
     const modal = useRef(null)
     const inputUsername = useRef(null)
@@ -50,15 +50,20 @@ const ModalProfile = ({ setIsModalOn, setIsModalMessage }) => {
 
     }, [showNickNameError, showUserNameError])
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         if(!nickNameError && !userNameError){
-            dispatch(updateNicknameUsername(nickname, username))
-            inputNickname.current.className = styles.inputNames
-            inputUsername.current.className = styles.inputNames
-            setShowNickNameError(false)
-            setShowUserNameError(false)
+            const res = await dispatch(updateNicknameUsername(nickname, username))
+            setIsErrorOccured(res)
+
+            if(res){
+                inputNickname.current.className = styles.inputNames
+                inputUsername.current.className = styles.inputNames
+                setShowNickNameError(false)
+                setShowUserNameError(false)
+                setIsModalOn(false)
+            }
+
             setIsModalMessage(true)
-            setIsModalOn(false)
         }
         else{
             if(nickNameError){
@@ -87,7 +92,7 @@ const ModalProfile = ({ setIsModalOn, setIsModalMessage }) => {
                     <div style={{cursor: 'pointer'}} onClick={closeModal}><i className="fa-solid fa-xmark"></i></div>
                 </div>
                 <div className={styles.profilePictureContainer}>
-                    <ProfileFrame setIsModalMessage={setIsModalMessage} />
+                    <ProfileFrame setIsModalMessage={setIsModalMessage} setIsErrorOccured={setIsErrorOccured} />
                 </div>
                 <div style={{marginBottom: 0}} className={styles.namesContainer}>Nickname</div>
                 <div>You'll see this at the top of your profile.</div>
