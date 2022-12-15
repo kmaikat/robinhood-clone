@@ -41,10 +41,10 @@ export function addStock(stock) {
     }
 }
 
-export function deleteStock(stockId) {
+export function deleteStock(info) {
     return {
         type: REMOVE_STOCK,
-        stockId
+        info
     }
 }
 
@@ -150,10 +150,8 @@ export const addStockToWatchlist = (info) => async dispatch => {
         if (response.ok) {
             const data = await response.json();
             dispatch(fetchUserWatchlists());
-            console.log('response is running')
             return response;
         } else {
-            console.log('something wrongggggg')
             const data = await response.json();
             if (data) {
                 throw data.error.message;
@@ -165,8 +163,26 @@ export const addStockToWatchlist = (info) => async dispatch => {
 }
 
 export const deleteStockFromWatchlist = (stock) => async dispatch => {
+    const { watchlistId, stockId } = stock;
     try {
+        const response = await fetch(`/api/watchlists/stocks/${stockId}`, {
+            method: 'DELETE', 
+            headers: {
+                'Content-Type': 'application/json'
+            }, 
+            body: JSON.stringify({stockId})
+        });
 
+        if (response.ok) {
+            const data = response.json();
+            dispatch(deleteStock({watchlistId, stockId }));
+            return response;
+        } else {
+            const data = await response.json();
+            if (data) {
+                throw data.error.message;
+            }
+        }
     } catch (err) {
         throw err;
     }
@@ -203,9 +219,24 @@ const watchlistReducer = (state = {}, action) => {
             delete newState.watchlists[action.watchlistId];
             return newState;
         
+        case REMOVE_STOCK:
+            newState = { ...state };
+            let { watchlistId, stockId } = action.info;
+            let stocklists = newState.watchlists[watchlistId].watchlist_stocks.filter(stock => stock.id !== stockId);
+            newState.watchlists[watchlistId].watchlist_stocks = stocklists;
+            return newState;
         default: 
             return state
     }
 }
 
 export default watchlistReducer;
+
+
+// checkedLists.forEach(element => {
+//     if (!element.watchlist_stocks.some(stock => stock.stock_symbol === symbol)) {
+//         const watchlistId = element.id;
+//         dispatch(watchlistAction.addStockToWatchlist({ watchlistId, symbol }));
+//         closeModal();
+//     }
+// });

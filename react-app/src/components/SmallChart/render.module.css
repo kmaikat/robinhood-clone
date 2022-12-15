@@ -4,8 +4,13 @@
     justify-content: space-between;
     padding: 0 2rem;
     height: 60px;
+    min-width: 20rem;
 }
 
 .symbol {
     font-weight: 700;
+}
+
+.symbol:hover {
+    color: var(--rockethood-green);
 }
