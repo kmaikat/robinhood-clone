@@ -74,13 +74,13 @@
     padding: 0 1.2rem;
 }
 
-.transactions-shares-or-dollars-open {
-    border-radius: .4rem 0 0 .4rem;
+#transaction-shares-or-dollars-display.transactions-shares-or-dollars-open {
+    border-radius: .4rem .4rem 0 0;
     border-bottom: none;
 }
 
 #transaction-shares-or-dollars-display:hover {
-    border-radius: .4rem 0 0 .4rem;
+    border-radius: .4rem;
 }
 
 .transaction-shares-or-dollars-container {
@@ -92,7 +92,8 @@
     background-color: white;
     width: 100%;
     border: solid 1px var(--rockethood-border-lightgray);
-    border-radius: 0 .4rem 0 .4rem;
+    border-radius: 0 0 .4rem .4rem;
+    overflow: hidden;
 }
 
 .transaction-shares-or-dollars-container button {
@@ -103,7 +104,7 @@
     font-weight: normal;
     min-width: 100%;
     padding: 0;
-    border: none;
+    border: 0;
     height: 3.6rem;
 }
 
@@ -116,6 +117,7 @@
     padding: 0 1.2rem;
     border-radius: 0;
     border: 1px solid var(--rockethood-border-lightgray);
+    border: none;
     background-color: var(--rockethood-green);
 }
 
