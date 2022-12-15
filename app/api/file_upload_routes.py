@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify
 from flask_login import login_required, current_user
-from ..models.user import User
 
 file_upload_sample_routes = Blueprint('file_upload', __name__)
 

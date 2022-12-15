@@ -76,7 +76,7 @@ class User(db.Model, UserMixin):
 
     def upload_profile(self, file: FileStorage) -> str:
         filename = 'profile-image/' + self.email + '.' + file.filename.split('.')[-1]
-
+        print(4)
         s3.upload_fileobj(
             file,
             os.environ.get('S3_BUCKET'),
@@ -85,9 +85,11 @@ class User(db.Model, UserMixin):
                 "ContentType": file.content_type
             }
         )
+        print(5)
 
         self.image_url = f"{os.environ.get('S3_LOCATION')}/{filename}"
         db.session.commit()
+        print(6)
 
         return self.image_url
 
