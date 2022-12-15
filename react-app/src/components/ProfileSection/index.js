@@ -7,12 +7,11 @@ import ProfileFrame from "./ProfileFrame"
 import { amountFormatter } from "../../util/util2"
 import styles from './profile.module.css'
 
-const ProfilePage = () => {
+const ProfileSection = () => {
     const user = useSelector(state => state.session.user)
     const message = useRef(null)
     const [isModalOn, setIsModalOn] = useState(false)
     const [isModalMessage, setIsModalMessage] = useState(false)
-    const [isErrorOccured, setIsErrorOccured] = useState(false)
     let messageTimer = null
 
     useEffect(() => {
@@ -33,13 +32,12 @@ const ProfilePage = () => {
 
     return (
         <>
-            {isModalOn && <ModalProfile user={user} setIsModalOn={setIsModalOn} setIsModalMessage={setIsModalMessage} setIsErrorOccured={setIsErrorOccured} />}
-            <AppMainNavBar />
+            {isModalOn && <ModalProfile user={user} setIsModalOn={setIsModalOn} setIsModalMessage={setIsModalMessage} />}
             <div className={styles.mainContainer}>
                 <div className={styles.profileContainer}>
                     <div className={styles.profile}>
                         <div style={{display: 'flex'}}>
-                            <ProfileFrame setIsModalMessage={setIsModalMessage} setIsErrorOccured={setIsErrorOccured} />
+                            <ProfileFrame setIsModalMessage={setIsModalMessage} />
                             <div className={styles.username}>
                                 <div className={styles.name}>
                                     {user.nickname}
@@ -60,25 +58,16 @@ const ProfilePage = () => {
                 </div>
             </div>
             {isModalMessage && <div ref={message} className={styles.modalMessage}>
-                { isErrorOccured ?
-                    <div>
-                        <i className="fa-solid fa-circle-check" style={{marginRight: '1rem', color: '#5ac53b'}}></i>
-                        Change saved successfully
-                    </div>:
-                    <div>
-                    <i className="fa-solid fa-circle-xmark" style={{marginRight: '1rem', color: '#ec5e2a'}}></i>
-                        Something went wrong. Please try again.
-                    </div>
-                }
+                <div>
+                    <i className="fa-solid fa-circle-check" style={{marginRight: '1rem', color: '#5ac53b'}}></i>
+                    Change saved successfully
+                </div>
                 <div className={styles.closeBtn} onClick={() => setIsModalMessage(false)}>
-                        <i className="fa-regular fa-xmark"></i>
                     <i className="fa-solid fa-xmark"></i>
                 </div>
-
-
             </div>}
         </>
     )
 }
 
-export default ProfilePage
+export default ProfileSection

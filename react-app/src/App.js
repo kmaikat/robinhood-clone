@@ -13,11 +13,9 @@ import ChartTest from './components/ChartTest';
 import "./stylesheets/reset.css";
 import "./stylesheets/global.css";
 import WatchList from './components/WatchList';
-import SymbolNews from './components/News/SymbolNews';
 import AppHome from './components/AppHome';
-import AppMainNavBar from './components/AppMainNavBar/AppMainNavBar';
 import StockShowcase from './components/StockShowcase';
-import ProfilePage from './components/ProfilePage';
+import ProfilePage from './components/ProfilePage.js';
 
 
 function App() {
