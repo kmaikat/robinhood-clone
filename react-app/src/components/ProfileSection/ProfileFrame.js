@@ -47,7 +47,7 @@ const ProfileFrame = ({ setIsModalMessage, setIsErrorOccured }) => {
             {
                 user.imageUrl ?
                 <>
-                    <div className={styles.profileImage}><img src={`${user.imageUrl}?${performance.now()}`} alt='profile' /></div>
+                    <div className={styles.profileImage}><img src={user.imageUrl} alt='profile' /></div>
                     {
                         isLoading ? loading() :
                         <div className={styles.addProfile} onClick={handleRemove}>

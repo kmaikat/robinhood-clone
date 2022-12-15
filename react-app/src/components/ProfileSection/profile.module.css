@@ -161,9 +161,12 @@
     align-items: center;
     border-radius: 50%;
     overflow: hidden;
-    object-fit: cover;
     height: 72px;
     width: 72px;
+}
+
+.profileImage img {
+    object-fit: cover;
 }
 
 .error {
