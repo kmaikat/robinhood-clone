@@ -14,8 +14,8 @@ def seed_assets():
         user_id=1,
         symbol="TSLA",
         name="Tesla",
-        quantity=100000,
-        avg_price=(130 * 100000) / 100000
+        quantity=100,
+        avg_price=(130 * 100) / 100
     )
     asset3 = Asset(
         user_id=1,

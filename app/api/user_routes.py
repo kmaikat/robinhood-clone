@@ -82,9 +82,9 @@ def update_buying_power():
             Asset.symbol.ilike(data["symbol"])).one()
 
         if stock:
-            stock_avg = (stock.quantity * stock.avg_price) / stock.quantity
-            data_avg = (data["quantity"] * data["price"]) / data["quantity"]
-            data["price"] = (data_avg + stock_avg) / 2
+            final_quant = stock.quantity + data["quantity"]
+            final_price = (stock.quantity * stock.avg_price) + (data["price"] * data["quantity"])
+            data["price"] = final_price / final_quant
             data["quantity"] = data["quantity"] + stock.quantity
 
             return data

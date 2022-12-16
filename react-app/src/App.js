@@ -72,12 +72,12 @@ function App() {
           <LandingPageNavbar />
           <h1>My Home Page</h1>
         </Route>
-        <Route path='/watchlists' exact={true} >
+        <ProtectedRoute path='/watchlists' exact={true} >
           <WatchList />
-        </Route>
-        <Route path='/stocks/:symbol' >
+        </ProtectedRoute>
+        <ProtectedRoute path='/stocks/:symbol' >
           <StockShowcase />
-        </Route>
+        </ProtectedRoute>
       </Switch>
       <ProtectedRoute path="/app" exact>
         <AppHome />
