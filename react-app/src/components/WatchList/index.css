@@ -671,7 +671,7 @@ input[type=checkbox] {
 }
 .tab-table-label {
     font-size: 1.5rem;
-    font-weight: 500;
+    color: rgb(106,114,120);
 }
 .profile-page-watchlists-stocks-content {
     display: flex;
@@ -704,4 +704,12 @@ input[type=checkbox] {
 
 .profile-page-watchlists-nostock > p {
     text-align: center;
+}
+
+.pricediff-color-change {
+    color: #ec5e2a; 
+}
+
+.pricediff-color{
+    color: #5ac53b;
 }

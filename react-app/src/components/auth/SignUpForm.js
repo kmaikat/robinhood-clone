@@ -66,6 +66,10 @@ const SignUpForm = () => {
     if (firstName.length > 0 === false) errors.firstName = "Please enter your first name.";
     if (lastName.length > 0 === false) errors.lastName = "Please enter your last name.";
     if (email.length > 0 === false) errors.email = "Please enter your email.";
+    else if(!email.trim().match(/^(?!\.)[\w+\-.]+(?<!\.)@[\w-]+(\.[a-z\d-]+)*\.[a-z]+$/i)) {
+      errors.email='Please provide a valid Email';
+    }
+
     if (password.length > 0 === false) errors.password = "Please enter your password.";
     if (repeatPassword.length > 0 === false) errors.repeatPassword = "Please retype your password.";
     else if (repeatPassword !== password) errors.repeatPassword = "Passwords must match!";
