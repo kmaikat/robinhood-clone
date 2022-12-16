@@ -37,6 +37,7 @@ function Transactions() {
                 setShowSharesOrDollars(false);
             }
         };
+        
 
         document.addEventListener("click", onClick);
         return () => document.removeEventListener("click", onClick);
