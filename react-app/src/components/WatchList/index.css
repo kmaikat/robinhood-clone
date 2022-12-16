@@ -200,8 +200,8 @@ header {
     position: absolute;
     background-color: white;
     z-index: 1000;
-    width:15rem;
-    left: -5rem;
+    width:12rem;
+    left: -2rem;
     border: 1px solid #cccccc;
     border-radius: 5px;
     box-shadow: rgba(0,0,0,0.06);
@@ -321,6 +321,10 @@ header {
 
 .updateform-content>.watchlist-icon {
     margin: 0px 15px 0px 0px;
+}
+
+.updateform-spanedit, .deleteform-spandelete {
+    margin-left: 0.8rem;
 }
 
 .btn-close {
@@ -622,6 +626,7 @@ input[type=checkbox] {
 .btn-deleteform:hover {
     color: var(--rockethood-green);
 }
+
 /* watchlist in profile page */
 .profile-page-watchlists-container {
     display: flex;
