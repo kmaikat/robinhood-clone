@@ -3,11 +3,17 @@
     background-color: #C3F53C;
     color: rgb(0, 44, 21);
     border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    width: 23rem;
 }
 
 #button-container {
     display: flex;
     justify-content: center;
+    margin-top: 2.5rem;
 }
 
 
@@ -43,4 +49,8 @@
     justify-content: center;
     object-fit: contain;
     overflow-clip-margin: content-box;
+}
+
+#under-video-container{
+    padding: 2.5rem 2.5rem 7.5rem;
 }
