@@ -24,7 +24,12 @@ def authenticate():
     Authenticates a user.
     """
     if current_user.is_authenticated:
-        return current_user.to_dict()
+        response = current_user.to_dict()
+        response["assets"] = {asset.symbol: asset.to_dict()
+                              for asset in current_user.assets}
+
+        response["totalStock"] = 300000
+        return jsonify(response)
     return {'errors': ['Unauthorized']}
 
 
@@ -45,6 +50,7 @@ def login():
         response = user.to_dict()
         response["assets"] = {asset.symbol: asset.to_dict()
                               for asset in user.assets}
+        response["totalStock"] = 300000
 
         return jsonify(response)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
