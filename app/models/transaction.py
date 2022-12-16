@@ -14,7 +14,6 @@ class Transaction(db.Model):
     price = db.Column(db.Float, nullable=False)
     quantity = db.Column(db.Float, nullable=False)
     transaction_time = db.Column(db.DateTime)
-    open = db.Column(db.Boolean, default=True)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
