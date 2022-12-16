@@ -15,7 +15,6 @@ const DeleteWatchlist = ({ watchlist, onClose }) => {
                 return setValidationError(err[0])
             });
         if (response) {
-            console.log('running')
             onClose();
         }
     };

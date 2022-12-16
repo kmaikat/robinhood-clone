@@ -22,7 +22,7 @@ function ProfilePage() {
 
                             <div className="profile-page-profile-info-container" id="profile-page-watchlists">
                                 <h2 className="profile-page-profile-info-title">Watchlists</h2>
-                                <div>
+                                <div className="profile-page-profile-info-watchlist-main ">
                                     <WatchlistTab/>
                                 </div>
                             </div>
