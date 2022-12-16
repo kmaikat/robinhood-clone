@@ -73,6 +73,7 @@
     font-weight: normal;
     min-width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     border: 1px solid var(--rockethood-border-lightgray);
     border-radius: .4rem;
@@ -82,6 +83,9 @@
     background-color: white;
 }
 
+#transaction-shares-or-dollars-display.fa-up-down {
+    color: var(--rockethood-border-lightgrayf)
+}
 
 .transaction-shares-or-dollars-container {
     display: flex;

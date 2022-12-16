@@ -45,8 +45,12 @@
     padding: .6rem 0;
 }
 
-#account-button:hover {
+.account-color-green:hover {
     color: var(--rockethood-green);
+}
+
+.account-color-red:hover {
+    color: var(--rockethood-sell-red);
 }
 
 /* #account-button:focus-within {

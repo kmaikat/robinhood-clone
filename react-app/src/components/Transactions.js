@@ -10,9 +10,18 @@ async function grabLatestPrice(symbol) {
     return data;
 }
 
+function formatTransactionAmount(event, dollar) {
+    const transactionDollar = Intl.NumberFormat("en-US", { maximumFractionDigits: 2, roundingMode: "trunc" });
+    if (event.target.value.split(".")[1]?.length > 2) dollar = transactionDollar.format(event.target.value.slice(0, -1));
+    else if (event.target.value[event.target.value.length - 1] === ".") dollar = transactionDollar.format(event.target.value) + ".";
+    else if (event.target.value[event.target.value.length - 1] === "0" && event.target.value[event.target.value.length - 2] === ".") dollar = transactionDollar.format(event.target.value) + ".0";
+    else dollar = transactionDollar.format(event.target.value);
+
+    return dollar;
+}
+
 function Transactions() {
     const usDollar = Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    const transactionDollar = Intl.NumberFormat("en-US", { maximumFractionDigits: 2, roundingMode: "trunc" });
     const optionContainer = useRef(null);
     const [color, setColor] = useState("#ec5e2a");
     const [submittingOrder, setSubmittingOrder] = useState(false);
@@ -23,7 +32,7 @@ function Transactions() {
     const [buyOrSale, setBuyOrSale] = useState("buy");
     const [estQuantity, setEstQuantity] = useState(0);
     const buyingPower = useSelector(state => state.session.user.buyingPower);
-    const ownedShares = 20;
+    const ownedShares = 2;
     const symbol = useParams().symbol.toUpperCase();
 
     useEffect(async () => {
@@ -60,20 +69,22 @@ function Transactions() {
                                 setTransactionAmount("");
                                 setEstQuantity(0);
                             }}
+                            style={buyOrSale === "buy" ? { userSelect: "none", cursor: "default" } : {}}
                             id={buyOrSale === "buy" ? "transaction-tab-buy" : ""}
                             className="transaction-tab">
                             {`Buy ${symbol}`}
                         </p>
-                        <p
+                        {ownedShares > 0 && <p
                             onClick={() => {
                                 setBuyOrSale("sell");
                                 setTransactionAmount("");
                                 setEstQuantity(0);
                             }}
                             id={buyOrSale === "sell" ? "transaction-tab-sell" : ""}
+                            style={buyOrSale === "sell" ? { userSelect: "none", cursor: "default" } : {}}
                             className="transaction-tab">
                             {`Sell ${symbol}`}
-                        </p>
+                        </p>}
                     </div>
 
                     <form id="transaction-form" onSubmit={submitOrder}>
@@ -89,6 +100,7 @@ function Transactions() {
                                 }}
                                     id="transaction-shares-or-dollars-display">
                                     {sharesOrDollars === "dollars" ? "Dollars" : "Shares"}
+                                    <i className="fa-solid fa-up-down" />
                                 </button>
                                 {showSharesOrDollars &&
                                     <div className={`transaction-shares-or-dollars-container ${showSharesOrDollars ? "transactions-shares-or-dollars-open" : ""}`}>
@@ -144,31 +156,33 @@ function Transactions() {
                                         // buy conditions
                                         if (buyOrSale === "buy" && sharesOrDollars === "dollars" && Number(buyingPower) >= Number(event.target.value)) {
                                             let dollar;
-                                            if (event.target.value.split(".")[1]?.length > 2) dollar = transactionDollar.format(event.target.value.slice(0, -1));
-                                            else if (event.target.value[event.target.value.length - 1] === ".") dollar = transactionDollar.format(event.target.value) + ".";
-                                            else if (event.target.value[event.target.value.length - 1] === "0" && event.target.value[event.target.value.length - 2] === ".") dollar = transactionDollar.format(event.target.value) + ".0";
-                                            else dollar = transactionDollar.format(event.target.value);
+                                            dollar = formatTransactionAmount(event, dollar);
                                             setTransactionAmount("$" + dollar);
                                             setEstQuantity(Number(event.target.value) / sharePrice);
+                                        } else {
+
                                         }
                                         if (buyOrSale === "buy" && sharesOrDollars === "shares" && Number(buyingPower / sharePrice) >= Number(event.target.value)) {
                                             setTransactionAmount(event.target.value);
                                             setEstQuantity(`$${usDollar.format(Number(event.target.value) * sharePrice)}`);
+                                        } else {
+
                                         }
                                         //sell conditions
                                         if (buyOrSale === "sell" && sharesOrDollars === "dollars" && Number(ownedShares) * Number(sharePrice) >= Number(event.target.value)) {
                                             console.log(event.target.value);
                                             let dollar;
-                                            if (event.target.value.split(".")[1]?.length > 2) dollar = transactionDollar.format(event.target.value.slice(0, -1));
-                                            else if (event.target.value[event.target.value.length - 1] === ".") dollar = transactionDollar.format(event.target.value) + ".";
-                                            else if (event.target.value[event.target.value.length - 1] === "0" && event.target.value[event.target.value.length - 2] === ".") dollar = transactionDollar.format(event.target.value) + ".0";
-                                            else dollar = transactionDollar.format(event.target.value);
+                                            dollar = formatTransactionAmount(event, dollar);
                                             setTransactionAmount("$" + dollar);
                                             setEstQuantity(Number(event.target.value) / sharePrice);
+                                        } else {
+
                                         }
                                         if (buyOrSale === "sell" && sharesOrDollars === "shares" && Number(ownedShares) >= Number(event.target.value)) {
                                             setTransactionAmount(event.target.value);
                                             setEstQuantity(usDollar.format(Number(event.target.value) * sharePrice));
+                                        } else {
+
                                         }
                                     }
                                 }} />
@@ -184,18 +198,18 @@ function Transactions() {
                         </div>
                     </form>
                     {buyOrSale === "buy" && <div id="transaction-buying-power-container" style={{ userSelect: "none" }}>
-                        <p>{`$${usDollar.format(buyingPower)} buying power available`}</p>
+                        <p>{`$${usDollar.format(buyingPower)} of buying power available`}</p>
                     </div>}
                     {buyOrSale === "sell" &&
                         sharesOrDollars === "shares" &&
                         <div id="transaction-buying-power-container" style={{ userSelect: "none" }}>
-                            <p>{`${ownedShares} ${symbol} shares remaining`}</p>
+                            <p>{`${ownedShares} ${symbol} share${ownedShares > 1 ? "s" : ""} remaining`}</p>
                         </div>
                     }
                     {buyOrSale === "sell" &&
                         sharesOrDollars === "dollars" &&
                         <div id="transaction-buying-power-container" style={{ userSelect: "none" }}>
-                            <p>{`Roughly $${(Number(ownedShares) * Number(sharePrice)).toString().split(".")[0]}.${(Number(ownedShares) * Number(sharePrice)).toString().split(".")[1]?.slice(0,2)} of ${symbol} remaining`}</p>
+                            <p>{`Roughly $${(Number(ownedShares) * Number(sharePrice)).toString().split(".")[0]}${(Number(ownedShares) * Number(sharePrice)).toString().split(".")[1]?.slice(0, 2) ? "." + (Number(ownedShares) * Number(sharePrice)).toString().split(".")[1]?.slice(0, 2) : ""} of ${symbol} remaining`}</p>
                         </div>}
                 </div>
                 <AddStock symbol={symbol} />
