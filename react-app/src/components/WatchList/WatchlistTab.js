@@ -12,7 +12,7 @@ const WatchlistTab = () => {
 
     useEffect(() => {
         dispatch(watchlistAction.fetchUserWatchlists());
-    }, [])
+    }, [dispatch])
 
     const handleClick = (i) => (e) => {
         e.stopPropagation();
@@ -21,6 +21,8 @@ const WatchlistTab = () => {
             [i]: !isOpen[i]
         })
     }
+    console.log('rerendering');
+
     return (
         <div className="profile-page-watchlists-container">
             {watchlists && Object.values(watchlists).map(
@@ -32,27 +34,27 @@ const WatchlistTab = () => {
                         {isOpen[i] &&
                             <div className="profile-page-watchlists-stocks">
                                 <div className="profile-page-watchlists-stocks-table">
-                                    <div className="profile-page-watchlists-stocks-table-head">
-            
-                                        <div>Symbol</div>
-                                        <div>Price</div>
-                                        <div>Delete</div>
-                                    </div>
                                     {watchlist.watchlist_stocks.length > 0 &&
                                         watchlist.watchlist_stocks.map(
                                             stock => (
-                                                <div className="profile-page-watchlists-stocks-content">
+                                                <div>
+                                                    <div className="profile-page-watchlists-stocks-table-head">
+                                                        <div>Symbol</div>
+                                                        <div>Price</div>
+                                                        <div>Delete</div>
+                                                    </div>
+                                                    <div className="profile-page-watchlists-stocks-content">
                                                     
-                                                    <Link to={`/stocks/${stock.stock_symbol}`}>
-                                                        <div>{stock.stock_symbol}</div>
-                                                    </Link>
-                                                    <div>
-                                                        <StockPrice symbol={stock.stock_symbol}/>
+                                                        <Link to={`/stocks/${stock.stock_symbol}`}>
+                                                            <div>{stock.stock_symbol}</div>
+                                                        </Link>
+                                                        <div>
+                                                            <StockPrice symbol={stock.stock_symbol}/>
+                                                        </div>
+                                                        <div>
+                                                            <RemoveStockBtn watchlist={watchlist} stockId={stock.id} />
+                                                        </div>
                                                     </div>
-                                                    <div>
-                                                        <RemoveStockBtn watchlist={watchlist} stockId={stock.id} />
-                                                    </div>
-
                                                 </div>
                                             )
                                         )
