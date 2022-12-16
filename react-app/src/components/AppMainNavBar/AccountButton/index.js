@@ -1,7 +1,8 @@
 import React, { useEffect, useReducer, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { logout } from "../../../store/session";
+import { getOneDayPrices } from "../../../util/util";
 import LogoutButton from "../../auth/LogoutButton";
 
 function AccountButton() {
@@ -9,6 +10,10 @@ function AccountButton() {
     const ref = useRef(null);
     const dispatch = useDispatch();
     const user = useSelector(state => state.session.user);
+    const startingPrice = useSelector(state => state.price.startingPrice);
+    const currentPrice = useSelector(state => state.price.currentPrice);
+
+    const color = startingPrice > currentPrice ? "red" : "green"
     useEffect(() => {
         if (!showAccount) return;
 
@@ -33,10 +38,9 @@ function AccountButton() {
         return () => document.removeEventListener("click", onClick);
     }, [showAccount]);
 
-
     return (
         <div id="account-button-container">
-            <button onClick={() => setShowAccount(true)} id="account-button" className={showAccount ? "account-button-hold" : ""}>Account</button>
+            <button onClick={() => setShowAccount(true)} id="account-button" className={`account-color-${color} ${showAccount ? "account-button-hold" : ""}`}>Account</button>
             {showAccount &&
                 <div ref={ref} id="app-nav-bar-account-submenu">
                     <div id="submenu-account-information">
@@ -56,4 +60,4 @@ function AccountButton() {
     );
 }
 
-export default AccountButton;;;
+export default AccountButton;;;;;;
