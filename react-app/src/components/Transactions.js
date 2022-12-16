@@ -1,7 +1,7 @@
 import { useEffect, useReducer, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import { getOneDayPrices } from "../util/util";
+import { getOneDayPrices } from "../util/util2";
 import "../stylesheets/Transactions.css";
 import AddStock from "./WatchList/WatchlistStock/AddStock";
 
@@ -63,7 +63,7 @@ function Transactions() {
         setLoading(true);
         const randomIndex = Math.floor(Math.random() * (loadTimes.length + 1));
         const latestPrice = await grabLatestPrice(symbol);
-        
+
         setTimeout(() => {
             setLoading(false);
             setSharePrice(latestPrice.data[latestPrice.data.length - 1]);

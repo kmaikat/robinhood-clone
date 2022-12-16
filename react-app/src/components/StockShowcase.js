@@ -46,8 +46,6 @@ function StockShowcase() {
                 setCompanyInfoLoaded(true);
             });
     }, [symbol]);
-
-    console.log(companyInfo);
     return (
         <>
             <AppMainNavBar />
