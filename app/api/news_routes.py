@@ -60,7 +60,7 @@ def get_news_by_ticker(ticker):
 @news_routes.route("/liked", methods=["GET"])
 @login_required
 def get_article_like():
-    liked = News.query.filter(News.like == 1).filter(
+    liked = News.query.filter(News.like == '1').filter(
         News.user_id == current_user.id).all()
     return jsonify([news.to_dict() for news in liked]), 200
 
