@@ -17,7 +17,6 @@ function formatTransactionAmount(event) {
     else if (event.target.value[event.target.value.length - 1] === ".") dollar = transactionDollar.format(event.target.value) + ".";
     else if (event.target.value[event.target.value.length - 1] === "0" && event.target.value[event.target.value.length - 2] === ".") dollar = transactionDollar.format(event.target.value) + ".0";
     else dollar = transactionDollar.format(event.target.value);
-
     return dollar;
 }
 
