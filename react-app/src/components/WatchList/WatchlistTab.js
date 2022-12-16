@@ -21,7 +21,6 @@ const WatchlistTab = () => {
             [i]: !isOpen[i]
         })
     }
-    console.log('rerendering');
 
     return (
         <div className="profile-page-watchlists-container">
@@ -38,6 +37,7 @@ const WatchlistTab = () => {
                                         <div className="profile-page-watchlists-stocks-table-head">
                                             <div className="tab-table-label">Symbol</div>
                                             <div className="tab-table-label">Price</div>
+                                            <div className='tab-table-label'>Today</div>
                                             <div className="tab-table-label"></div>
                                         </div>
                                     }
@@ -45,17 +45,15 @@ const WatchlistTab = () => {
                                         watchlist.watchlist_stocks.map(
                                             stock => (
                                                 <div className="profile-page-watchlists-stocks-content">
-                                                    
                                                     <Link to={`/stocks/${stock.stock_symbol}`} className="tab-table-content tab-link">
                                                         <div>{stock.stock_symbol}</div>
                                                     </Link>
-                                                    <div className="tab-table-content">
+                                                    <>
                                                         <StockPrice symbol={stock.stock_symbol}/>
-                                                    </div>
+                                                    </>
                                                     <div className="tab-remove">
                                                         <RemoveStockBtn watchlist={watchlist} stockId={stock.id} />
                                                     </div>
-
                                                 </div>
                                             )
                                         )

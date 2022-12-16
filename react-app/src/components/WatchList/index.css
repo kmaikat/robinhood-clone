@@ -204,7 +204,7 @@ header {
     left: -2rem;
     border: 1px solid #cccccc;
     border-radius: 5px;
-    box-shadow: rgba(0,0,0,0.06);
+    box-shadow: 0px 12px 24px rgba(0,0,0,0.6), 0px 12px 24px rgba(0,0,0,0.02);
 }
 .watchlist-dropdown-update {
     width: 100%;
@@ -646,7 +646,7 @@ input[type=checkbox] {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    border-bottom: 1px solid #cccccc;
+    /* border-bottom: 1px solid #cccccc; */
     width: 100%;
 }
 .profile-page-watchlists-stocks-table {
@@ -659,6 +659,8 @@ input[type=checkbox] {
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #cccccc;
 }
 
 .tab-table-label, .tab-table-content { 
@@ -669,13 +671,15 @@ input[type=checkbox] {
 }
 .tab-table-label {
     font-size: 1.5rem;
-    font-weight: 500;
+    color: rgb(106,114,120);
 }
 .profile-page-watchlists-stocks-content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
+    box-sizing: border-box;
+    border-bottom: 1px solid #cccccc;
 }
 .profile-page-watchlists-stocks-content:hover {
     background-color: var(--rockethood-border-lightgray);
@@ -700,4 +704,12 @@ input[type=checkbox] {
 
 .profile-page-watchlists-nostock > p {
     text-align: center;
+}
+
+.pricediff-color-change {
+    color: #ec5e2a; 
+}
+
+.pricediff-color{
+    color: #5ac53b;
 }

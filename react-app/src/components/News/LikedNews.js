@@ -7,7 +7,9 @@ const LikedNews = () => {
     const likedArticles = useSelector(state => state.news)
     const dispatch = useDispatch()
 
-    const handleDeleteToggle = article => {
+    const handleDeleteToggle = (e, article) => {
+        e.preventDefault()
+        e.stopPropagation()
         dispatch(deleteArticleFromDb(article))
     }
 
@@ -26,7 +28,7 @@ const LikedNews = () => {
                                     <div id="all-news-source">
                                         {likedArticles[key].source}
                                         <div id="profile-liked-news-remove-button-container" style={{cursor: 'pointer'}}>
-                                            <i className="fa-solid fa-x" id="profile-liked-news-remove-button" onClick={e => handleDeleteToggle(likedArticles[key])} />
+                                            <i className="fa-solid fa-x" id="profile-liked-news-remove-button" onClick={e => handleDeleteToggle(e, likedArticles[key])} />
                                         </div>
                                     </div>
                                 </div>

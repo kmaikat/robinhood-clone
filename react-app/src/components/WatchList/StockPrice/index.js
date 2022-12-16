@@ -1,24 +1,28 @@
-import { useEffect } from "react";
-import * as stockReducer from '../../../store/watchlistStock';
-import { useDispatch, useSelector } from "react-redux";
-
+import { useEffect, useState } from "react";
+import { getOneDayPrices } from "../../../util/util2";
 const StockPrice = ({ symbol }) => {
-    const dispatch = useDispatch();
-    const data = useSelector(state => state.watchlistStocks[symbol]);
+    const [prices, setPrices] = useState({ curr: 0, diff: 0 })
     useEffect(() => {
-        dispatch(stockReducer.fetchStockPrice(symbol));
-    }, [dispatch]);
+        getData();
+    }, []);
+
+    const diffFormatter = diff => {
+        const sign = diff >= 0 ? '+' : '-'
+        return `${sign}${Math.abs(diff).toFixed(2)}%`
+    }
+
+    const getData = async () => {
+        const { data } = await getOneDayPrices(symbol, true);
+        const curr = data.reduce((p, c) => c || p)
+
+        setPrices({curr, diff: curr - data[0]})
+    }
 
     return (
-        <div>
-            {data &&
-                <div>
-                    <div>
-                        <span style={{fontWeight:600}}>${data.currPrice}</span>
-                    </div>
-                </div>
-            }
-        </div>
+        <>
+            <div className="tab-table-content">{`$${prices.curr.toFixed(2)}`}</div>
+            <div className={prices.diff < 0 ? 'pricediff-color-change tab-table-content' : 'pricediff-color tab-table-content'}>{diffFormatter(prices.diff)}</div>
+        </>
     );
 }
 

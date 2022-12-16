@@ -16,6 +16,7 @@ import WatchList from './components/WatchList';
 import AppHome from './components/AppHome';
 import StockShowcase from './components/StockShowcase';
 import ProfilePage from './components/ProfilePage.js';
+import LearnPage from './components/LandingPages/Learn';
 
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
         </Route>
         <Route path="/learn">
           <LandingPageNavbar />
-          learn
+          <LearnPage />
         </Route>
         <Route path="/snacks">
           <LandingPageNavbar />

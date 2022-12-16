@@ -1,0 +1,60 @@
+
+#inventing-basics-image-block {
+    display: flex;
+    margin: 0 5rem;
+    align-items: center;
+
+}
+
+#inventing-basics-title-text{
+    font-size: 5.8rem;
+    font-weight: 500;
+}
+
+#inventing-basics-body-text{
+    font-size: 3rem;
+}
+
+.hero-journey-img{
+    height: 100%;
+    width: 100%;
+}
+#inventing-basics-text{
+    width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#learn-page-inventing-body-container{
+    display: flex;
+    justify-content: center;
+    background-color: #e1ebdc;
+    height: 42.1rem;
+    border-bottom: 1px solid black;
+}
+
+#learn-page-inventing-basics-heading-container{
+    height: 8rem;
+    background-color: #e1ebdc;
+    border-bottom: 1px solid black;
+}
+
+#learn-page-inventing-basic-title{
+    font-weight: 300;
+    font-size: 3.5rem;
+    padding: 1.5rem;
+}
+
+#learn-page-inventing-basics-text-image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 -4rem;
+    padding: 0 1.5rem;
+    position: absolute;
+    top: 12.5rem;
+}
+
+#learn-page-body{
+    background-color: #e1ebdc;
+}
