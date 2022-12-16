@@ -89,11 +89,14 @@ def add_article_like():
         return jsonify(add_article_form.errors), 406
 
 
-@news_routes.route("/liked/<news_id>", methods=["DELETE"])
+@login_required
+@news_routes.route("/liked/<int:news_id>", methods=["DELETE"])
 def delete_article_like(news_id):
+    print(news_id)
     # find the liked article where user id is the same as the user_id
     # delete
     article = News.query.get(news_id)
+    print(article)
     if current_user.id != article.user_id:
         return {
             "message": "This like does not belong to you"
