@@ -21,7 +21,7 @@ const LandingHome = () => {
                         </div>
                     </div>
                     <div id="button-container">
-                        container
+                        <button id="home-page-learn-more">Learn More</button>
                     </div>
                 </div>
             </div>

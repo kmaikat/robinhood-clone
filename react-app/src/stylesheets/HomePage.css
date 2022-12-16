@@ -1,20 +1,22 @@
+#home-page-learn-more {
 
-#video-container{
+    background-color: #C3F53C;
+    color: rgb(0, 44, 21);
+    border: none;
+}
+
+#button-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    object-fit: contain;
-    overflow-clip-margin: content-box;
 }
 
 
-
-#home-video-section{
+#home-video-section {
     background-color: rgb(0, 44, 21);
     width: 100%;
 }
 
-#under-video-text{
+#under-video-text {
     color: #C3F53C;
     font-weight: 500;
     font-size: 7.7rem;
@@ -24,12 +26,21 @@
 
 }
 
-#top-line{
+#top-line {
     width: fit-content;
     height: 8rem;
 
 }
-#bottom-line{
+
+#bottom-line {
     width: fit-content;
     height: fit-content;
+}
+
+#video-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    object-fit: contain;
+    overflow-clip-margin: content-box;
 }
