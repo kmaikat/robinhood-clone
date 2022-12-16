@@ -16,6 +16,7 @@ import WatchList from './components/WatchList';
 import AppHome from './components/AppHome';
 import StockShowcase from './components/StockShowcase';
 import ProfilePage from './components/ProfilePage.js';
+import LearnPage from './components/LandingPages/Learn';
 
 
 function App() {
@@ -46,7 +47,7 @@ function App() {
         </Route>
         <Route path="/learn">
           <LandingPageNavbar />
-          learn
+          <LearnPage />
         </Route>
         <Route path="/snacks">
           <LandingPageNavbar />
@@ -71,12 +72,12 @@ function App() {
           <LandingPageNavbar />
           <h1>My Home Page</h1>
         </Route>
-        <Route path='/watchlists' exact={true} >
+        <ProtectedRoute path='/watchlists' exact={true} >
           <WatchList />
-        </Route>
-        <Route path='/stocks/:symbol' >
+        </ProtectedRoute>
+        <ProtectedRoute path='/stocks/:symbol' >
           <StockShowcase />
-        </Route>
+        </ProtectedRoute>
       </Switch>
       <ProtectedRoute path="/app" exact>
         <AppHome />

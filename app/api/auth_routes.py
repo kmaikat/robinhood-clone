@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, db, Transaction
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -41,7 +41,12 @@ def login():
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
-        return user.to_dict()
+
+        response = user.to_dict()
+        response["assets"] = {asset.symbol: asset.to_dict()
+                              for asset in user.assets}
+
+        return jsonify(response)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

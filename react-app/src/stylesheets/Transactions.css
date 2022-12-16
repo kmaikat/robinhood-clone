@@ -6,15 +6,18 @@
 #transactions-and-watchlist-container {
     position: sticky;
     top: 9.5rem;
+    padding-bottom: 6rem;
 }
 
 #transaction-container {
     border: 1px solid var(--rockethood-border-lightgray);
     border-radius: 4px;
-    top: 9.5rem;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.02) 0px -12px 24px 0px, rgba(0, 0, 0, 0.06) 0px 12px 24px 0px;
     overflow: hidden;
+    height: 393px;
+    background-color: white;
+    position: relative;
 }
 
 #transaction-heading-container {
@@ -73,6 +76,7 @@
     font-weight: normal;
     min-width: 100%;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     border: 1px solid var(--rockethood-border-lightgray);
     border-radius: .4rem;
@@ -82,6 +86,9 @@
     background-color: white;
 }
 
+#transaction-shares-or-dollars-display.fa-up-down {
+    color: var(--rockethood-border-lightgrayf)
+}
 
 .transaction-shares-or-dollars-container {
     display: flex;
@@ -158,7 +165,8 @@
     border: 1px solid var(--rockethood-border-lightgray);
     border-radius: .4rem;
     font-size: 1.3rem;
-    padding-right: 1.2rem
+    padding-right: 1.2rem;
+    transition: border-color 200ms ease-in-out;
 }
 
 #transaction-amount {
@@ -217,4 +225,40 @@
     height: 4.8rem;
     padding: 0 1.5rem;
     border-top: 1px solid var(--rockethood-border-lightgray);
+}
+
+#transaction-form-text-input.transaction-form-error {
+    border-color: var(--rockethood-sell-red)
+}
+
+.transactions-error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2.4rem;
+    gap: .6rem;
+    color: var(--rockethood-sell-red);
+    animation: shake-error-text .075s 3;
+}
+
+@keyframes shake-error-text {
+    0% {
+        transform: translate(.75rem);
+    }
+
+    100% {
+        transform: translate(-.75rem);
+    }
+}
+
+#transaction-submitting-order {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(246, 244, 244, 0.95);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
 }

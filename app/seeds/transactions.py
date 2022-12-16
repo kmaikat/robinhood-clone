@@ -7,7 +7,7 @@ def seed_transaction():
     seed_data = [
         {
             'user_id': 1,
-            'stock_symbol': 'AAPL',
+            'symbol': 'AAPL',
             'transaction_type': 'buying',
             'price': 2.2,
             'quantity': 10000,
@@ -15,15 +15,15 @@ def seed_transaction():
         },
         {
             'user_id': 1,
-            'stock_symbol': 'GOOGL',
+            'symbol': 'GOOGL',
             'transaction_type': 'buying',
             'price': 3.2,
             'quantity': 20000,
             'transaction_time': datetime.utcnow(),
         },
         {
-            'user_id': 2,
-            'stock_symbol': 'COTY',
+            'user_id': 1,
+            'symbol': 'TSLA',
             'transaction_type': 'buying',
             'price': 1.2,
             'quantity': 100000,
