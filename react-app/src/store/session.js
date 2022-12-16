@@ -178,11 +178,11 @@ export const updateNicknameUsername = (nickname, username) => async dispatch => 
   }
 };
 
-export const updateBuyingPowerWithDb = (purchaseType, purchaseAmount, purchasePrice) => async dispatch => {
-  const response = await fetch('/api/users/update-buying-power', {
+export const updateBuyingPowerWithDb = (symbol, name, transaction_type, quantity, price) => async dispatch => {
+  const response = await fetch("/api/users/transaction", {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ purchase_type: purchaseType, purchase_amount: purchaseAmount, purchase_price: purchasePrice })
+    body: JSON.stringify({ symbol, name, transaction_type, quantity, price })
   });
 
   if (response.ok) {

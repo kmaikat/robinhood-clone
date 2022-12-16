@@ -1,5 +1,5 @@
 import { useEffect, useReducer, useRef, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getOneDayPrices } from "../util/util2";
 import "../stylesheets/Transactions.css";
@@ -22,6 +22,8 @@ function formatTransactionAmount(event) {
 
 const loadTimes = [1000, 900, 200, 700, 3000, 2000, 1800, 400, 6000, 4200, 300, 3000, 2100, 1100];
 
+const safeBet = [.95, .99, 1, .98, .9526, .98412, .98418, .912349, .99919, .95, 1, 1];
+
 function Transactions() {
     const usDollar = Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     const optionContainer = useRef(null);
@@ -37,6 +39,7 @@ function Transactions() {
     const buyingPower = useSelector(state => state.session.user.buyingPower);
     const ownedShares = 2;
     const symbol = useParams().symbol.toUpperCase();
+    const dispatch = useDispatch();
 
     useEffect(async () => {
         const price = await grabLatestPrice(symbol);
@@ -61,7 +64,27 @@ function Transactions() {
         e.preventDefault();
         setLoading(true);
         const randomIndex = Math.floor(Math.random() * (loadTimes.length + 1));
-        const latestPrice = await grabLatestPrice(symbol);
+        const randomBet = Math.floor(Math.random() * (safeBet.length + 1));
+
+        let latestPrice;
+        if (sharesOrDollars === "dollars") {
+            const purchaseAmount = transactionAmount.slice(1).split(",").join("");
+            if (purchaseAmount > buyingPower - sharePrice * 2) {
+                latestPrice = safeBet[randomBet] * sharePrice;
+            } else {
+                latestPrice = await grabLatestPrice(symbol);
+            }
+        }
+
+        if (sharesOrDollars === "shares") {
+            if (estQuantity > .9 * buyingPower) {
+                latestPrice = safeBet[randomBet] * sharePrice;
+            } else {
+                latestPrice = await grabLatestPrice(symbol);
+            }
+        }
+
+        dispatch()
 
         setTimeout(() => {
             setLoading(false);

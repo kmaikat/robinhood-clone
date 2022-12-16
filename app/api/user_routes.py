@@ -66,7 +66,7 @@ def find_username(username):
         return jsonify(user), 200
 
 
-@user_routes.route("/update-buying-power", methods=["PUT"])
+@user_routes.route("/transaction", methods=["PUT"])
 def update_buying_power():
     data = request.get_json()
     data["csrf_token"] = request.cookies['csrf_token']
@@ -138,16 +138,23 @@ def update_buying_power():
                 db.session.delete(stock)
                 db.session.add(transction)
                 db.session.commit()
-                return jsonify({
-                    "avgPrice": 0,
-                    "name": "Google",
-                    "quantity": 0,
-                    "symbol": "GOOG"
-                })
+                response = user.to_dict()
+                response["assets"] = {asset.symbol: asset.to_dict()
+                                      for asset in user.assets}
+
+                totalStock = sum([asset.quantity for asset in user.assets])
+                response["totalStock"] = totalStock
+                return jsonify(response)
 
             db.session.add(transction)
             db.session.commit()
-            return stock.to_dict(), 201
+            response = user.to_dict()
+            response["assets"] = {asset.symbol: asset.to_dict()
+                                  for asset in user.assets}
+
+            totalStock = sum([asset.quantity for asset in user.assets])
+            response["totalStock"] = totalStock
+            return jsonify(response)
 
         else:
             return jsonify({"errors": assetForm.errors}), 401
