@@ -1,10 +1,11 @@
 import { useDispatch } from "react-redux"
 import * as watchlistAction from '../../../store/watchlist';
 
-const RemoveStockBtn = ({ watchlist, symbol,stockId }) => {
+const RemoveStockBtn = ({ watchlist,stockId }) => {
     const dispatch = useDispatch();
     const handleDeletebtn = () => {
         const watchlistId = watchlist.id;
+        console.log(watchlist);
         dispatch(watchlistAction.deleteStockFromWatchlist({ watchlistId, stockId }));
     }
     

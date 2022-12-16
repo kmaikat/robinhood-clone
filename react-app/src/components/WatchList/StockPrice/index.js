@@ -16,9 +16,6 @@ const StockPrice = ({ symbol }) => {
                     <div>
                         <span style={{fontWeight:600}}>${data.currPrice}</span>
                     </div>
-                    <div>
-                        <span className={data.diffPercentage > 0 ? 'stock-positive':'stock-negative'}>{data.diffPercentage}%</span>
-                    </div>
                 </div>
             }
         </div>

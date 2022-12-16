@@ -623,10 +623,9 @@ input[type=checkbox] {
     color: var(--rockethood-green);
 }
 /* watchlist in profile page */
-/* .profile-page-watchlists-container {
+.profile-page-watchlists-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .profile-page-watchlists-btnname {
@@ -641,7 +640,19 @@ input[type=checkbox] {
     border-bottom: 1px solid #cccccc;
     width: 100%;
 }
-.profile-page-watchlists-havestocks {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-} */
+.profile-page-watchlists-stocks-table {
+    margin: 5rem;
+}
+
+.profile-page-watchlists-stocks-table-head {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
+.profile-page-watchlists-stocks-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+}
