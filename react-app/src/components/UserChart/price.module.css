@@ -1,0 +1,13 @@
+.nameAndPrice {
+    font-size: 3rem;
+    font-weight: 500;
+}
+
+.diff {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.term {
+    margin-left: 0.5rem;
+}

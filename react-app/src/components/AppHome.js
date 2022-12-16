@@ -2,7 +2,7 @@ import React from "react";
 import AppMainNavBar from "./AppMainNavBar/AppMainNavBar";
 import AllNews from "./News/AllNews";
 import WatchList from "./WatchList";
-import ChartDrawing from "./ChartDrawing";
+import UserChart from "./UserChart";
 import "../stylesheets/AppHome.css";
 
 const AppHome = () => {
@@ -14,7 +14,7 @@ const AppHome = () => {
                     <div className="app-home-left">
                         {/* <AllNews /> */}
                         <div id="app-home-chart-container">
-                            <ChartDrawing />
+                            <UserChart />
                         </div>
                         <div className="app-home-news-container">
                             <AllNews />
