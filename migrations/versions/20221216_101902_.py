@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: d20fdf496f16
+Revision ID: 863e60b455f3
 Revises: 
-Create Date: 2022-12-16 09:27:05.558774
+Create Date: 2022-12-16 10:19:02.605386
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'd20fdf496f16'
+revision = '863e60b455f3'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -51,7 +51,8 @@ def upgrade():
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('symbol')
     )
     op.create_table('news',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -70,7 +71,7 @@ def upgrade():
     op.create_table('transactions',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
-    sa.Column('stock_symbol', sa.String(length=10), nullable=False),
+    sa.Column('symbol', sa.String(length=10), nullable=False),
     sa.Column('transaction_type', sa.String(length=20), nullable=False),
     sa.Column('price', sa.Float(), nullable=False),
     sa.Column('quantity', sa.Float(), nullable=False),

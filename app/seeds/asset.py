@@ -8,21 +8,21 @@ def seed_assets():
         symbol="AAPL",
         name="Apple",
         quantity=10000,
-        avg_price=(112 * 1000) / 112
+        avg_price=(112 * 1000) / 1000
     )
     asset2 = Asset(
         user_id=1,
         symbol="TSLA",
         name="Tesla",
         quantity=100000,
-        avg_price=(130 * 100000) / 130
+        avg_price=(130 * 100000) / 100000
     )
     asset3 = Asset(
         user_id=1,
         symbol="GOOGL",
         name="Google",
         quantity=20000,
-        avg_price=(130 * 20000) / 130
+        avg_price=(130 * 20000) / 20000
     )
 
     db.session.add(asset1)
