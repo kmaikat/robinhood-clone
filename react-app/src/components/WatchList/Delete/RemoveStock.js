@@ -5,7 +5,6 @@ const RemoveStockBtn = ({ watchlist,stockId }) => {
     const dispatch = useDispatch();
     const handleDeletebtn = () => {
         const watchlistId = watchlist.id;
-        console.log(watchlist);
         dispatch(watchlistAction.deleteStockFromWatchlist({ watchlistId, stockId }));
     }
     

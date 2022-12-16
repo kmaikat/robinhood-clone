@@ -628,6 +628,9 @@ input[type=checkbox] {
 }
 
 /* watchlist in profile page */
+.profile-page-profile-info-watchlist-main {
+    margin: 2rem 1rem 0rem 0rem ;
+}
 .profile-page-watchlists-container {
     display: flex;
     flex-direction: column;
@@ -638,8 +641,16 @@ input[type=checkbox] {
     border:none;
 }
 
+.profile-page-watchlists-btnname:hover {
+    color: var(--rockethood-green);
+}
+
 .profile-page-watchlists-btnname > span {
     font-size: 1.6rem;
+}
+
+.profile-page-watchlists-btnname > span:hover {
+    border-bottom: 2px solid var(--rockethood-green);
 }
 
 .profile-page-watchlists-stocks {
