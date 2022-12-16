@@ -12,10 +12,12 @@
 #transaction-container {
     border: 1px solid var(--rockethood-border-lightgray);
     border-radius: 4px;
-    top: 9.5rem;
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.02) 0px -12px 24px 0px, rgba(0, 0, 0, 0.06) 0px 12px 24px 0px;
     overflow: hidden;
+    height: 393px;
+    background-color: white;
+    position: relative;
 }
 
 #transaction-heading-container {
@@ -227,4 +229,36 @@
 
 #transaction-form-text-input.transaction-form-error {
     border-color: var(--rockethood-sell-red)
+}
+
+.transactions-error-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 2.4rem;
+    gap: .6rem;
+    color: var(--rockethood-sell-red);
+    animation: shake-error-text .075s 3;
+}
+
+@keyframes shake-error-text {
+    0% {
+        transform: translate(.75rem);
+    }
+
+    100% {
+        transform: translate(-.75rem);
+    }
+}
+
+#transaction-submitting-order {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(246, 244, 244, 0.95);
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 10;
 }

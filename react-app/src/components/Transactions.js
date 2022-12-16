@@ -21,6 +21,8 @@ function formatTransactionAmount(event) {
     return dollar;
 }
 
+const loadTimes = [1000, 900, 200, 700, 3000, 2000, 1800, 400, 6000, 4200, 300, 3000, 2100, 1100];
+
 function Transactions() {
     const usDollar = Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     const optionContainer = useRef(null);
@@ -32,6 +34,7 @@ function Transactions() {
     const [sharePrice, setSharePrice] = useState(0);
     const [buyOrSale, setBuyOrSale] = useState("buy");
     const [estQuantity, setEstQuantity] = useState(0);
+    const [loading, setLoading] = useState(true);
     const buyingPower = useSelector(state => state.session.user.buyingPower);
     const ownedShares = 2;
     const symbol = useParams().symbol.toUpperCase();
@@ -55,8 +58,19 @@ function Transactions() {
         return () => document.removeEventListener("click", onClick);
     }, [showSharesOrDollars]);
 
-    function submitOrder(e) {
+    async function submitOrder(e) {
         e.preventDefault();
+        setLoading(true);
+        const randomIndex = Math.floor(Math.random() * (loadTimes.length + 1));
+        const latestPrice = await grabLatestPrice(symbol);
+        
+        setTimeout(() => {
+            setLoading(false);
+            setSharePrice(latestPrice.data[latestPrice.data.length - 1]);
+            setTimeout(() => {
+                setSubmittingOrder(false);
+            }, 2500);
+        }, loadTimes[randomIndex]);
     }
 
     return (
@@ -210,7 +224,12 @@ function Transactions() {
                             </button>
                         </div>
                         {errors.amount &&
-                            <div>{errors.amount}</div>
+                            <div className="transactions-error-container">
+                                <i className="fa-solid fa-circle-exclamation"></i>
+                                <p>
+                                    {errors.amount}
+                                </p>
+                            </div>
                         }
                     </form>
                     {buyOrSale === "buy" && <div id="transaction-buying-power-container" style={{ userSelect: "none" }}>
@@ -227,6 +246,22 @@ function Transactions() {
                         <div id="transaction-buying-power-container" style={{ userSelect: "none" }}>
                             <p>{`Roughly $${(Number(ownedShares) * Number(sharePrice)).toString().split(".")[0]}${(Number(ownedShares) * Number(sharePrice)).toString().split(".")[1]?.slice(0, 2) ? "." + (Number(ownedShares) * Number(sharePrice)).toString().split(".")[1]?.slice(0, 2) : ""} of ${symbol} remaining`}</p>
                         </div>}
+                    {submittingOrder &&
+                        <div id="transaction-submitting-order">
+                            {
+                                loading &&
+                                <div id="signup-spinner" />
+                            }
+                            {
+                                !loading &&
+                                <div className="transaction-submitted">
+                                    <i className="fa-solid fa-check-to-slot" />
+                                    <p>Order Successfully Submitted!</p>
+                                    <p>Filled at {`${sharePrice.toString().split(".")[0]}.${sharePrice.toString().split(".")[1] ? sharePrice.toString().split(".")[1]?.slice(0, 2) : ""}`} a share</p>
+                                </div>
+                            }
+                        </div>
+                    }
                 </div>
                 <AddStock symbol={symbol} />
             </div >

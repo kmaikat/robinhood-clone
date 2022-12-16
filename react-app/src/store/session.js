@@ -1,9 +1,10 @@
 // constants
 const SET_USER = 'session/SET_USER';
 const REMOVE_USER = 'session/REMOVE_USER';
-const SET_PROFILE_IMAGE = 'session/SET_PROFILE_IMAGE'
-const REMOVE_PROFILE_IMAGE = 'session/REMOVE_PROFILE_IMAGE'
-const UPDATE_NICKNAME_AND_USERNAME = 'session/UPDATE_NICKNAME_ANDUSERNAME'
+const SET_PROFILE_IMAGE = 'session/SET_PROFILE_IMAGE';
+const REMOVE_PROFILE_IMAGE = 'session/REMOVE_PROFILE_IMAGE';
+const UPDATE_NICKNAME_AND_USERNAME = 'session/UPDATE_NICKNAME_ANDUSERNAME';
+const UPDATE_BUYING_POWER = "session/update_buying_power";
 
 const setUser = (user) => ({
   type: SET_USER,
@@ -17,17 +18,19 @@ const removeUser = () => ({
 const setProfileImage = imageUrl => ({
   type: SET_PROFILE_IMAGE,
   imageUrl
-})
+});
 
 const removeProfileImage = () => ({
   type: REMOVE_PROFILE_IMAGE
-})
+});
 
 const updateNames = (nickname, username) => ({
   type: UPDATE_NICKNAME_AND_USERNAME,
   nickname,
   username
-})
+});
+
+const updateBuyingPower = (buyingPower) => ({ type: UPDATE_BUYING_POWER, buyingPower });
 
 const initialState = { user: null };
 
@@ -118,61 +121,78 @@ export const signUp = (firstName, lastName, email, password, buyingPower) => asy
 };
 
 export const uploadProfileImage = (file) => async dispatch => {
-  const formData = new FormData()
-  formData.append('file', file)
+  const formData = new FormData();
+  formData.append('file', file);
 
   const options = {
     method: 'POST',
     body: formData
-  }
+  };
 
   const result = fetch(`/api/file/upload`, options)
     .then(res => {
-      if(res.ok)
-        return res.json()
-      else throw Error('couldn\'t upload profile image')
+      if (res.ok)
+        return res.json();
+      else throw Error('couldn\'t upload profile image');
     })
     .then(res => {
-      dispatch(setProfileImage(res.file))
-      return true
+      dispatch(setProfileImage(res.file));
+      return true;
     })
     .catch(e => {
-      console.log(e)
-      return false
-    })
+      console.log(e);
+      return false;
+    });
 
-    return result
-}
+  return result;
+};
 
 export const deleteProfileImage = () => async dispatch => {
-  try{
-    await fetch(`/api/file/upload`, {method: 'DELETE'})
-    dispatch(removeProfileImage())
-    return true
-  }catch(e) {
-    return false
+  try {
+    await fetch(`/api/file/upload`, { method: 'DELETE' });
+    dispatch(removeProfileImage());
+    return true;
+  } catch (e) {
+    return false;
   }
-}
+};
 
 export const updateNicknameUsername = (nickname, username) => async dispatch => {
   try {
-    const headers = {'Content-Type': 'application/json'}
+    const headers = { 'Content-Type': 'application/json' };
     const options = {
       method: 'PUT',
       headers,
-      body: JSON.stringify({nickname, username})
-    }
+      body: JSON.stringify({ nickname, username })
+    };
 
-    const response = await fetch('/api/users/update', options)
-    if(response.ok){
-      dispatch(updateNames(nickname, username))
-      return true
-    }else
-      throw Error('Something went wrong')
-  }catch(e){
-    return false
+    const response = await fetch('/api/users/update', options);
+    if (response.ok) {
+      dispatch(updateNames(nickname, username));
+      return true;
+    } else
+      throw Error('Something went wrong');
+  } catch (e) {
+    return false;
   }
-}
+};
+
+export const updateBuyingPowerWithDb = (purchaseType, purchaseAmount) => async dispatch => {
+  const response = await fetch('/api/users/update', {
+    method: "PUT",
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ purchase_type: purchaseType, purchase_amount: purchaseAmount })
+  });
+
+  if (response.ok) {
+    const data = response.json();
+    dispatch(updateBuyingPower(data.buyingPower));
+    return data.buyingPower;
+  } else {
+    const data = response.json();
+    return data.error;
+  }
+};
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
@@ -181,21 +201,33 @@ export default function reducer(state = initialState, action) {
     case REMOVE_USER:
       return { user: null };
     case SET_PROFILE_IMAGE:
-      return { user: {
-        ...state.user,
-        imageUrl: action.imageUrl
-      }}
+      return {
+        user: {
+          ...state.user,
+          imageUrl: action.imageUrl
+        }
+      };
     case REMOVE_PROFILE_IMAGE:
-      return { user: {
-        ...state.user,
-        imageUrl: null
-      }}
+      return {
+        user: {
+          ...state.user,
+          imageUrl: null
+        }
+      };
     case UPDATE_NICKNAME_AND_USERNAME:
-      return { user: {
-        ...state.user,
-        nickname: action.nickname,
-        username: action.username
-      }}
+      return {
+        user: {
+          ...state.user,
+          nickname: action.nickname,
+          username: action.username
+        }
+      };
+    case UPDATE_BUYING_POWER: {
+      const newState = { ...state };
+      newState.user.buyingPower = action.buyingPower;
+      return newState;
+    }
+    
     default:
       return state;
   }
