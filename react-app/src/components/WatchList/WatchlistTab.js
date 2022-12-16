@@ -37,7 +37,7 @@ const WatchlistTab = () => {
                                         <div className="profile-page-watchlists-stocks-table-head">
                                             <div className="tab-table-label">Symbol</div>
                                             <div className="tab-table-label">Price</div>
-                                            <div className='tab-table-label'>Price Changes</div>
+                                            <div className='tab-table-label'>Today</div>
                                             <div className="tab-table-label"></div>
                                         </div>
                                     }

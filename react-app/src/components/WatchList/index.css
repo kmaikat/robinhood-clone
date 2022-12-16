@@ -671,7 +671,7 @@ input[type=checkbox] {
 }
 .tab-table-label {
     font-size: 1.5rem;
-    font-weight: 500;
+    color: rgb(106,114,120);
 }
 .profile-page-watchlists-stocks-content {
     display: flex;
