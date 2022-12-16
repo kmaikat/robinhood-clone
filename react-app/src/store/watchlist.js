@@ -99,10 +99,8 @@ export const updateWatchlist = (watchlist) => async dispatch => {
         if (response.ok) {
             const data = await response.json();
             dispatch(editWatchlist(data));
-            console.log('response is running')
             return response;
         } else {
-            console.log('something wrongggggg')
             const data = await response.json();
             if (data) {
                 throw data.error.message;
