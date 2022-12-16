@@ -53,4 +53,10 @@
 
 #under-video-container{
     padding: 2.5rem 2.5rem 7.5rem;
+    border-bottom: 1px solid #C3F53C;
+}
+
+#checkout-section-container{
+    background-color: rgb(0, 44, 21);
+    color: #C3F53C;
 }

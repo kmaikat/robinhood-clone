@@ -21,9 +21,15 @@ const LandingHome = () => {
                         </div>
                     </div>
                     <div id="button-container">
-                        <button id="home-page-learn-more">Learn More</button>
+                        <a href="https://github.com/kmaikat/robinhood-clone">
+
+                            <button id="home-page-learn-more">Learn More</button>
+                        </a>
                     </div>
                 </div>
+            </div>
+            <div id="checkout-section-container">
+                Check out our latest
             </div>
         </div>
     )
