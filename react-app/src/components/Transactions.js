@@ -12,7 +12,7 @@ async function grabLatestPrice(symbol) {
 
 function Transactions() {
     const usDollar = Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-    const transactionDollar = Intl.NumberFormat("en-US", { maximumFractionDigits: 2, currency: "USD" });
+    const transactionDollar = Intl.NumberFormat("en-US", { maximumFractionDigits: 2, roundingMode: "trunc" });
     const optionContainer = useRef(null);
     const [color, setColor] = useState("#ec5e2a");
     const [submittingOrder, setSubmittingOrder] = useState(false);
@@ -144,7 +144,8 @@ function Transactions() {
                                         // buy conditions
                                         if (buyOrSale === "buy" && sharesOrDollars === "dollars" && Number(buyingPower) >= Number(event.target.value)) {
                                             let dollar;
-                                            if (event.target.value[event.target.value.length - 1] === ".") dollar = transactionDollar.format(event.target.value) + ".";
+                                            if (event.target.value.split(".")[1]?.length > 2) dollar = transactionDollar.format(event.target.value.slice(0, -1));
+                                            else if (event.target.value[event.target.value.length - 1] === ".") dollar = transactionDollar.format(event.target.value) + ".";
                                             else if (event.target.value[event.target.value.length - 1] === "0" && event.target.value[event.target.value.length - 2] === ".") dollar = transactionDollar.format(event.target.value) + ".0";
                                             else dollar = transactionDollar.format(event.target.value);
                                             setTransactionAmount("$" + dollar);
@@ -158,7 +159,8 @@ function Transactions() {
                                         if (buyOrSale === "sell" && sharesOrDollars === "dollars" && Number(ownedShares) * Number(sharePrice) >= Number(event.target.value)) {
                                             console.log(event.target.value);
                                             let dollar;
-                                            if (event.target.value[event.target.value.length - 1] === ".") dollar = transactionDollar.format(event.target.value) + ".";
+                                            if (event.target.value.split(".")[1]?.length > 2) dollar = transactionDollar.format(event.target.value.slice(0, -1));
+                                            else if (event.target.value[event.target.value.length - 1] === ".") dollar = transactionDollar.format(event.target.value) + ".";
                                             else if (event.target.value[event.target.value.length - 1] === "0" && event.target.value[event.target.value.length - 2] === ".") dollar = transactionDollar.format(event.target.value) + ".0";
                                             else dollar = transactionDollar.format(event.target.value);
                                             setTransactionAmount("$" + dollar);
@@ -173,7 +175,7 @@ function Transactions() {
                         </div>
                         <div className="transaction-form-data-container" id="transaction-est-quantity" style={{ userSelect: "none" }}>
                             <p>Est. {sharesOrDollars === "shares" ? "Dollars" : "Shares"} </p>
-                            <p>{estQuantity}</p>
+                            <p>{sharesOrDollars === "dollars" ? null : "$"}{estQuantity}</p>
                         </div>
                         <div id="transaction-submit-container">
                             <button id="transaction-submit-button" type="submit" onClick={() => setSubmittingOrder(true)} className={`transaction-submit-${buyOrSale}`}>
@@ -193,7 +195,7 @@ function Transactions() {
                     {buyOrSale === "sell" &&
                         sharesOrDollars === "dollars" &&
                         <div id="transaction-buying-power-container" style={{ userSelect: "none" }}>
-                            <p>{`Roughly $${usDollar.format(Number(ownedShares) * Number(sharePrice))} of ${symbol} remaining`}</p>
+                            <p>{`Roughly $${(Number(ownedShares) * Number(sharePrice)).toString().split(".")[0]}.${(Number(ownedShares) * Number(sharePrice)).toString().split(".")[1]?.slice(0,2)} of ${symbol} remaining`}</p>
                         </div>}
                 </div>
                 <AddStock symbol={symbol} />
