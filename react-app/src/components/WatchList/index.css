@@ -705,3 +705,11 @@ input[type=checkbox] {
 .profile-page-watchlists-nostock > p {
     text-align: center;
 }
+
+.pricediff-color-change {
+    color: #ec5e2a; 
+}
+
+.pricediff-color{
+    color: #5ac53b;
+}
