@@ -71,21 +71,43 @@ def update_buying_power():
     data = request.get_json()
     data["csrf_token"] = request.cookies['csrf_token']
     transactionForm = TransactionForm(**data)
+    total_cost = data["price"] * data["quantity"]
+
+    if not data["quantity"] > 0:
+        return jsonify({"errors": {"amount": "Amount cannot be 0 "}})
 
     if transactionForm.validate_on_submit():
         user = User.query.get(1)
-
-        if data["quantity"] * data["price"] > user.buying_power:
-            return jsonify({"errors": {"amount": "not enough funds."}}), 401
-        stock = Asset.query.filter(Asset.user_id == user.id).filter(
-            Asset.symbol.ilike(data["symbol"])).one()
-        if data["quantity"] > stock.quantity:
-            return jsonify({"errors": {"amount": "not enough stock"}}), 401
-
         data["user_id"] = user.id
         transactionData = {**data}
         del transactionData["name"]
         del transactionData["csrf_token"]
+
+        if total_cost > user.buying_power and data["transaction_type"] == "buy":
+            return jsonify({"errors": {"amount": "not enough funds."}}), 401
+
+        stock = Asset.query.filter(Asset.user_id == user.id).filter(
+            Asset.symbol.ilike(data["symbol"])).one_or_none()
+
+        if not stock and data["transaction_type"] == "buy":
+            data["avg_price"] = data["price"]
+            assetForm = AssetForm(**data)
+
+            if assetForm.validate_on_submit():
+                del data['csrf_token']
+                del data["transaction_type"]
+                del data["price"]
+                transction = Transaction(**transactionData)
+                stock = Asset(**data)
+                stock.quantity = data["quantity"]
+                stock.avg_price = data["avg_price"]
+                user.buying_power = user.buying_power - total_cost
+                db.session.add_all([transction, stock])
+                db.session.commit()
+                return stock.to_dict(), 201
+
+        if data["quantity"] > stock.quantity and data["transaction_type"] == "sell":
+            return jsonify({"errors": {"amount": "not enough stock"}}), 401
 
         if stock and data["transaction_type"] == "buy":
             final_quant = stock.quantity + data["quantity"]
@@ -93,24 +115,40 @@ def update_buying_power():
                 (data["price"] * data["quantity"])
             data["avg_price"] = final_price / final_quant
             data["quantity"] = data["quantity"] + stock.quantity
-        else:
+        elif stock and data["transaction_type"] == "sell":
             data["avg_price"] = stock.avg_price
-            data["quantity"] = data["quantity"] - stock.quantity
+            data["quantity"] = stock.quantity - data["quantity"]
+
         assetForm = AssetForm(**data)
 
         if assetForm.validate_on_submit():
-            del data['csrf_token']
-            del data["transaction_type"]
-            del data["price"]
-
             transction = Transaction(**transactionData)
-            asset = Asset.query.filter(Asset.symbol == data["symbol"]).one()
-            asset.quantity = data["quantity"]
-            asset.avg_price = data["avg_price"]
+
+            stock.quantity = data["quantity"]
+            stock.avg_price = data["avg_price"]
+
+            if data["transaction_type"] == "buy":
+                user.buying_power = user.buying_power - total_cost
+            else:
+                user.buying_power = user.buying_power + total_cost
+
+            company = stock.name
+
+            if stock.quantity == 0:
+                db.session.delete(stock)
+                db.session.add(transction)
+                db.session.commit()
+                return jsonify({
+                    "avgPrice": 0,
+                    "name": "Google",
+                    "quantity": 0,
+                    "symbol": "GOOG"
+                })
 
             db.session.add(transction)
             db.session.commit()
-            return asset.to_dict(), 201
+            return stock.to_dict(), 201
+
         else:
             return jsonify({"errors": assetForm.errors}), 401
     else:
