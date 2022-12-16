@@ -178,6 +178,9 @@ header {
     color: var(--rockethood-green);
 }
 
+.watchlist-btn:hover{
+    color: var(--rockethood-green);
+}
 .watchlist-icon {
     display: flex;
     justify-content: center;
@@ -337,6 +340,9 @@ header {
     align-items: center;
 }
 
+.btn-close:hover{
+    color: var(--rockethood-green)
+}
 .btn-save {
     border: 1px solid var(--rockethood-green);
     background-color: var(--rockethood-green);
@@ -399,6 +405,10 @@ header {
     align-items: center;
     font-size: 20px;
     padding-left: 20px;
+}
+
+.delete-btnclose:hover {
+    color: var(--rockethood-sell-red);
 }
 
 .delete-reminder {
