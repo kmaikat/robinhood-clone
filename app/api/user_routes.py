@@ -72,7 +72,7 @@ def update_buying_power():
     data["csrf_token"] = request.cookies['csrf_token']
     transactionForm = TransactionForm(**data)
     if transactionForm.validate_on_submit():
-        user = User.query.get(1)
+        user = User.query.get(current_user.id)
         if data["quantity"] * data["price"] > user.buying_power:
             return jsonify({"errors": {"amount": "not enough funds."}})
 
