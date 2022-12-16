@@ -1,3 +1,8 @@
+.landing-page-container {
+    width: 100%;
+    background-color: red;
+}
+
 .landing-page {
     display: flex;
     padding: 0 2.4rem;
@@ -15,7 +20,7 @@
     --landing-page-navlink-color: black;
     --landing-page-navlink-hover-color: #00C805;
     border-bottom: .18rem var(--landing-page-accent-color) solid;
-    background-color: var(--landing-page-background-color)
+    background-color: var(--landing-page-background-color);
 }
 
 .landing-page-green {
@@ -98,4 +103,30 @@
     border-color: var(--landing-page-accent-color);
     background-color: var(--landing-page-accent-color);
     color: var(--landing-page-background-color)
+}
+
+@media screen and (max-width: 750px) {
+
+    .landing-page-logo-text {
+        display: none;
+    }
+
+    .landing-page-navlinks {
+        display: none;
+    }
+
+    .landing-page-navlink-actions-container {
+        width: 100%;
+        justify-content: flex-end;
+    }
+
+    .landing-page-logo{
+        padding-left: 0;
+        margin-left: 0;
+    }
+
+    .landing-page-logo>.fa-rocket{
+        margin-right: 2.4rem;
+        padding: 0;
+    }
 }
