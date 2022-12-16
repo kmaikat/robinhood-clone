@@ -488,6 +488,9 @@ header {
     padding-left: 20px;
 
 }
+.addstock-form-btnclose:hover {
+    color: var(--rockethood-green);
+}
 
 .addstock-form-newlist {
     width: 90%;
