@@ -30,7 +30,10 @@ const updateNames = (nickname, username) => ({
   username
 });
 
-const updateBuyingPower = (buyingPower) => ({ type: UPDATE_BUYING_POWER, buyingPower });
+const updateAccount = (updatedAccount) => ({
+  type: UPDATE_BUYING_POWER,
+  updatedAccount
+});
 
 const initialState = { user: null };
 
@@ -178,20 +181,21 @@ export const updateNicknameUsername = (nickname, username) => async dispatch => 
   }
 };
 
-export const updateBuyingPowerWithDb = (purchaseType, purchaseAmount, purchasePrice) => async dispatch => {
-  const response = await fetch('/api/users/update-buying-power', {
+export const updateBuyingPowerWithDb = (symbol, name, transaction_type, quantity, price) => async dispatch => {
+  console.log(symbol, name, transaction_type, quantity, price)
+  const response = await fetch("/api/users/transaction", {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ purchase_type: purchaseType, purchase_amount: purchaseAmount, purchase_price: purchasePrice })
+    body: JSON.stringify({ symbol, name, transaction_type, quantity, price })
   });
 
   if (response.ok) {
-    const data = response.json();
-    dispatch(updateBuyingPower(data.buyingPower));
+    const data = await response.json();
+    dispatch(updateAccount(data));
     return data.buyingPower;
   } else {
-    const data = response.json();
-    return data.error;
+    const data = await response.json();
+    console.log(data);
   }
 };
 
@@ -225,7 +229,9 @@ export default function reducer(state = initialState, action) {
       };
     case UPDATE_BUYING_POWER: {
       const newState = { ...state };
-      newState.user.buyingPower = action.buyingPower;
+      newState.user.assets = action.updatedAccount.assets;
+      newState.user.buyingPower = action.updatedAccount.buyingPower;
+      newState.user.totalStock = action.updatedAccount.totalStock;
       return newState;
     }
 
