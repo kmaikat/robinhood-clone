@@ -3,6 +3,7 @@ import * as watchlistAction from '../../store/watchlist';
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import StockPrice from "./StockPrice";
+import RemoveStockBtn from "./Delete/RemoveStock";
 
 const WatchlistTab = () => {
     const dispatch = useDispatch();
@@ -30,28 +31,39 @@ const WatchlistTab = () => {
                         </button>
                         {isOpen[i] &&
                             <div className="profile-page-watchlists-stocks">
-                                {watchlist.watchlist_stocks.length > 0 &&
-                                    watchlist.watchlist_stocks.map(
-                                        stock => (
-                                            <div className="profile-page-watchlists-havestocks">
-                                                <div>
-                                                    <Link to={`/stocks/${stock.stock_symbol}`}>
-                                                        <span>{stock.stock_symbol}</span>
-                                                    </Link>
-                                                </div>
-                                                <div>
-                                                    <StockPrice symbol={stock.stock_symbol}/>
-                                                </div>
-                                            </div>
-                                        )
-                                    )
-                                }
-                                {watchlist.watchlist_stocks.length === 0 &&
-                                    <div className="profile-page-watchlists-nostock">
-                                        <h1> Feels a little empty here...</h1>
-                                        <p> Search for companies to add and stay up to date</p>
+                                <div className="profile-page-watchlists-stocks-table">
+                                    <div className="profile-page-watchlists-stocks-table-head">
+            
+                                        <div>Symbol</div>
+                                        <div>Price</div>
+                                        <div>Delete</div>
                                     </div>
-                                }
+                                    {watchlist.watchlist_stocks.length > 0 &&
+                                        watchlist.watchlist_stocks.map(
+                                            stock => (
+                                                <div className="profile-page-watchlists-stocks-content">
+                                                    
+                                                    <Link to={`/stocks/${stock.stock_symbol}`}>
+                                                        <div>{stock.stock_symbol}</div>
+                                                    </Link>
+                                                    <div>
+                                                        <StockPrice symbol={stock.stock_symbol}/>
+                                                    </div>
+                                                    <div>
+                                                        <RemoveStockBtn watchlist={watchlist} stockId={stock.id} />
+                                                    </div>
+
+                                                </div>
+                                            )
+                                        )
+                                    }
+                                    {watchlist.watchlist_stocks.length === 0 &&
+                                        <div className="profile-page-watchlists-nostock">
+                                            <h1> Feels a little empty here...</h1>
+                                            <p> Search for companies to add and stay up to date</p>
+                                        </div>
+                                    }
+                                </div>
                             </div>
                         }
                     </div>
