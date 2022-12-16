@@ -77,12 +77,11 @@ def update_buying_power():
         return jsonify({"errors": {"amount": "Amount cannot be 0 "}})
 
     if transactionForm.validate_on_submit():
-        user = User.query.get(1)
+        user = User.query.get(current_user.id)
         data["user_id"] = user.id
         transactionData = {**data}
         del transactionData["name"]
         del transactionData["csrf_token"]
-
         if total_cost > user.buying_power and data["transaction_type"] == "buy":
             return jsonify({"errors": {"amount": "not enough funds."}}), 401
 
@@ -132,8 +131,6 @@ def update_buying_power():
             else:
                 user.buying_power = user.buying_power + total_cost
 
-            company = stock.name
-
             if stock.quantity == 0:
                 db.session.delete(stock)
                 db.session.add(transction)
@@ -157,6 +154,6 @@ def update_buying_power():
             return jsonify(response)
 
         else:
-            return jsonify({"errors": assetForm.errors}), 401
+            return jsonify({"errors": assetForm.errors}), 400
     else:
-        return {"errors": transactionForm.errors}, 401
+        return {"errors": transactionForm.errors}, 400

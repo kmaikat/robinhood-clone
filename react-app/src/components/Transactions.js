@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import { getOneDayPrices } from "../util/util2";
 import "../stylesheets/Transactions.css";
 import AddStock from "./WatchList/WatchlistStock/AddStock";
+import { updateBuyingPowerWithDb } from "../store/session";
 
 async function grabLatestPrice(symbol) {
     const data = await getOneDayPrices(symbol);
@@ -36,14 +37,21 @@ function Transactions() {
     const [buyOrSale, setBuyOrSale] = useState("buy");
     const [estQuantity, setEstQuantity] = useState(0);
     const [loading, setLoading] = useState(true);
-    const buyingPower = useSelector(state => state.session.user.buyingPower);
-    const ownedShares = 2;
+    const [comanyName, setCompanyName] = useState("");
     const symbol = useParams().symbol.toUpperCase();
+    const buyingPower = useSelector(state => state.session.user.buyingPower);
+    const ownedShares = useSelector(state => state.session.user.assets[symbol]?.quantity);
     const dispatch = useDispatch();
 
-    useEffect(async () => {
-        const price = await grabLatestPrice(symbol);
-        setSharePrice(price.data[price.data.length - 1]);
+    useEffect(() => {
+        (async function () {
+            const price = await grabLatestPrice(symbol);
+            const response = await fetch('/api/stock/search/' + symbol);
+            const data = await response.json();
+            const comany = data[0];
+            setCompanyName(comany.name);
+            setSharePrice(price.data[price.data.length - 1]);
+        })();
     }, [symbol]);
 
     useEffect(() => {
@@ -55,40 +63,53 @@ function Transactions() {
             }
         };
 
-
         document.addEventListener("click", onClick);
         return () => document.removeEventListener("click", onClick);
     }, [showSharesOrDollars]);
 
     async function submitOrder(e) {
         e.preventDefault();
-        setLoading(true);
+        let purchaseAmount;
+
+        if (sharesOrDollars === "dollars") purchaseAmount = Number(transactionAmount.slice(1).split(",").join(""));
+        if (sharesOrDollars === "shares") purchaseAmount = transactionAmount;
+
+        if (!purchaseAmount || !purchaseAmount > 0) {
+            setSubmittingOrder(false);
+            setErrors({ amount: "Amount cannot be equal to or less than 0" });
+            return;
+        }
+
         const randomIndex = Math.floor(Math.random() * (loadTimes.length + 1));
         const randomBet = Math.floor(Math.random() * (safeBet.length + 1));
-
+        let finalQuant;
         let latestPrice;
         if (sharesOrDollars === "dollars") {
-            const purchaseAmount = transactionAmount.slice(1).split(",").join("");
             if (purchaseAmount > buyingPower - sharePrice * 2) {
                 latestPrice = safeBet[randomBet] * sharePrice;
             } else {
                 latestPrice = await grabLatestPrice(symbol);
+                latestPrice = latestPrice.data[latestPrice.data.length - 1];
             }
+
+            finalQuant = Number(purchaseAmount) / Number(latestPrice);
         }
 
         if (sharesOrDollars === "shares") {
-            if (estQuantity > .9 * buyingPower) {
+            if (estQuantity > .75 * buyingPower) {
                 latestPrice = safeBet[randomBet] * sharePrice;
             } else {
                 latestPrice = await grabLatestPrice(symbol);
+                latestPrice = latestPrice.data[latestPrice.data.length - 1];
             }
+
+            finalQuant = Number(purchaseAmount);
         }
 
-        dispatch()
-
-        setTimeout(() => {
+        setTimeout(async () => {
+            const response = await dispatch(updateBuyingPowerWithDb(symbol, comanyName, buyOrSale, finalQuant, latestPrice));
             setLoading(false);
-            setSharePrice(latestPrice.data[latestPrice.data.length - 1]);
+            setSharePrice(latestPrice);
             setTimeout(() => {
                 setSubmittingOrder(false);
             }, 2500);
@@ -260,7 +281,7 @@ function Transactions() {
                     {buyOrSale === "sell" &&
                         sharesOrDollars === "shares" &&
                         <div id="transaction-buying-power-container" style={{ userSelect: "none" }}>
-                            <p>{`${ownedShares} ${symbol} share${ownedShares > 1 ? "s" : ""} remaining`}</p>
+                            <p>{`${ownedShares || 0} ${symbol} share${ownedShares > 1 && ownedShares !== 0 ? "s" : ""} remaining`}</p>
                         </div>
                     }
                     {buyOrSale === "sell" &&
