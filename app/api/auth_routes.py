@@ -3,6 +3,7 @@ from app.models import User, db, Transaction
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
+from functools import reduce
 
 auth_routes = Blueprint('auth', __name__)
 
@@ -24,11 +25,13 @@ def authenticate():
     Authenticates a user.
     """
     if current_user.is_authenticated:
-        response = current_user.to_dict()
+        user = User.query.get(current_user.id)
+        response = user.to_dict()
         response["assets"] = {asset.symbol: asset.to_dict()
-                              for asset in current_user.assets}
+                              for asset in user.assets}
 
-        response["totalStock"] = 300000
+        totalStock = sum([asset.quantity for asset in user.assets])
+        response["totalStock"] = totalStock
         return jsonify(response)
     return {'errors': ['Unauthorized']}
 
@@ -50,7 +53,9 @@ def login():
         response = user.to_dict()
         response["assets"] = {asset.symbol: asset.to_dict()
                               for asset in user.assets}
-        response["totalStock"] = 300000
+
+        totalStock = sum([asset.quantity for asset in user.assets])
+        response["totalStock"] = totalStock
 
         return jsonify(response)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
@@ -84,7 +89,14 @@ def sign_up():
         db.session.add(user)
         db.session.commit()
         login_user(user)
-        return user.to_dict()
+
+        response = user.to_dict()
+        response["assets"] = {asset.symbol: asset.to_dict()
+                              for asset in user.assets}
+
+        totalStock = sum([asset.quantity for asset in user.assets])
+        response["totalStock"] = totalStock
+        return response
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 

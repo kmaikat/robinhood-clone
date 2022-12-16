@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User, Asset
+from app.models import User, Asset, Transaction, db
 from app.forms import TransactionForm, AssetForm
 
 user_routes = Blueprint('users', __name__)
@@ -69,25 +69,44 @@ def find_username(username):
 @user_routes.route("/update-buying-power", methods=["PUT"])
 def update_buying_power():
     data = request.get_json()
-    transactionForm = TransactionForm()
-    assetForm = AssetForm()
-
-    transactionForm['csrf_token'].data = request.cookies['csrf_token']
+    data["csrf_token"] = request.cookies['csrf_token']
+    transactionForm = TransactionForm(**data)
     if transactionForm.validate_on_submit():
-        user = User.query.get(1)
+        user = User.query.get(current_user.id)
         if data["quantity"] * data["price"] > user.buying_power:
             return jsonify({"errors": {"amount": "not enough funds."}})
 
-        stock = Asset.query.filter(Asset.user_id == 1).filter(
+        stock = Asset.query.filter(Asset.user_id == user.id).filter(
             Asset.symbol.ilike(data["symbol"])).one()
+
+        data["user_id"] = user.id
+        transactionData = {**data}
+        del transactionData["name"]
+        del transactionData["csrf_token"]
 
         if stock:
             final_quant = stock.quantity + data["quantity"]
-            final_price = (stock.quantity * stock.avg_price) + (data["price"] * data["quantity"])
-            data["price"] = final_price / final_quant
+            final_price = (stock.quantity * stock.avg_price) + \
+                (data["price"] * data["quantity"])
+            data["avg_price"] = final_price / final_quant
             data["quantity"] = data["quantity"] + stock.quantity
 
-            return data
-        return jsonify(user.to_dict())
+        assetForm = AssetForm(**data)
+
+        if assetForm.validate_on_submit():
+            del data['csrf_token']
+            del data["transaction_type"]
+            del data["price"]
+
+            transction = Transaction(**transactionData)
+            asset = Asset.query.filter(Asset.symbol == data["symbol"]).one()
+            asset.quantity = data["quantity"]
+            asset.avg_price = data["avg_price"]
+
+            db.session.add(transction)
+            db.session.commit()
+            return asset.to_dict()
+        else:
+            return jsonify({"errors": assetForm.errors})
     else:
         return {"errors": transactionForm.errors}

@@ -7,3 +7,4 @@ class AssetForm(FlaskForm):
     symbol = StringField("Symbol", [DataRequired()])
     name = StringField("Name", [DataRequired()])
     quantity = FloatField("Quantity", [DataRequired()])
+    avg_price = FloatField("Average Price", [DataRequired()])

@@ -17,7 +17,7 @@ import AppHome from './components/AppHome';
 import StockShowcase from './components/StockShowcase';
 import ProfilePage from './components/ProfilePage.js';
 import LearnPage from './components/LandingPages/Learn';
-
+import LandingHome from './components/LandingPages/LandingHome';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -70,7 +70,7 @@ function App() {
         </Route>
         <Route path='/' exact={true} >
           <LandingPageNavbar />
-          <h1>My Home Page</h1>
+          <LandingHome/>
         </Route>
         <ProtectedRoute path='/watchlists' exact={true} >
           <WatchList />
