@@ -11,6 +11,7 @@ const AppMainNavBar = () => {
     const { currentPrice, startingPrice } = useSelector(state => state.price);
 
     const className = startingPrice > currentPrice ? "navbar-red" : "navbar-green";
+    document.querySelector('meta[name="theme-color"]').setAttribute('content', `${startingPrice > currentPrice ? "#FF6600" : "#00C805"}`);
     return (
         <div id="app-nav-bar">
             <Link to="/app"> <i className={`fa-solid fa-rocket ${className}`} id="app-nav-bar-logo" /></Link>
