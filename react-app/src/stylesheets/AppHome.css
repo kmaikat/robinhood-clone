@@ -24,19 +24,6 @@
 }
 
 
-@media screen and (max-width: 1250px) {
-    .app-home{
-        width: 100vw;
-    }
-    .app-home-left {
-        width: calc(100vw - 35rem);
-    }
-
-    .app-home-right {
-        width: 35rem;
-    }
-}
-
 
 #app-home-chart-container {
     padding: 0 2.4rem;
@@ -45,6 +32,25 @@
 .app-home-right::-webkit-scrollbar {
     display: none;
 }
+
+
+@media screen and (max-width: 1250px) {
+    .app-home{
+        width: 100vw;
+    }
+    .app-home-left {
+        width: calc(100vw - 35rem);
+    }
+
+    #app-nav-bar-logo {
+        margin-right: 2.4rem;
+    }
+
+    .app-home-right {
+        width: 35rem;
+    }
+}
+
 
 @media screen and (max-width: 750px) {
     .app-home {

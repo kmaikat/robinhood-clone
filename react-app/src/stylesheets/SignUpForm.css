@@ -257,3 +257,37 @@
     }
 
 }
+
+@media screen and (max-width: 750px) {
+    .signup-page {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .signup-page-left {
+        height: 10%;
+        width: 100%;
+        padding: 0 2.4rem;
+    }
+
+    .signup-page-right {
+        width: 100%;
+    }
+
+    #signup-form{
+        padding-top: 2.4rem;
+    }
+
+    .signup-page-left-top {
+        padding: 0;
+    }
+
+    .signup-page-left-bottom {
+        display: none;
+    }
+
+    #signup-logo {
+        margin-top: 1.6rem;
+        justify-content: center;
+    }
+}
