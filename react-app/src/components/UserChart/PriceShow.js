@@ -5,7 +5,7 @@ import styles from './price.module.css'
 
 const PriceShow = () => {
     const { currentPrice, startingPrice, term, isHovering } = useSelector(state => state.price)
-    const companyName = useSelector(state => state.ticker.name)
+    // const companyName = 'User'
     const [isPos, setIsPos] = useState(currentPrice - startingPrice)
     const [color, setColor] = useState('#5ac53b')
     const terms = {
@@ -33,7 +33,7 @@ const PriceShow = () => {
 
     return (
         <div>
-            <div className={styles.nameAndPrice}>{companyName}</div>
+            {/* <div className={styles.nameAndPrice}>{companyName}</div> */}
             <div className={styles.nameAndPrice}>{currentPrice >= 0 ? amountFormatter(currentPrice) : '--.--'}</div>
             <div className={styles.diff}>
                 <span style={{color}}>{diffFormatter(currentPrice, startingPrice, isPos)}</span>
