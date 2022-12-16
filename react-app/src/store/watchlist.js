@@ -204,39 +204,46 @@ const watchlistReducer = (state = {}, action) => {
                     ),
             };
         case ADD_WATCHLIST:
-            newState = { ...state };
+            newState = deepCopy(state);
             newState.watchlists[action.watchlist.id] = action.watchlist;
             return newState;
         
         case EDIT_WATCHLIST:
-            newState = { ...state };
+            newState = deepCopy(state);
             const watchlist = action.watchlist;
             newState.watchlists[watchlist.id] = watchlist;
             return newState;
         
         case REMOVE_WATCHLIST:
-            newState = { ...state };
+            newState = deepCopy(state);
             delete newState.watchlists[action.watchlistId];
             return newState;
         
         case REMOVE_STOCK:
-            newState = { ...state };
+            newState = deepCopy(state);
             let { watchlistId, stockId } = action.info;
             let stocklists = newState.watchlists[watchlistId].watchlist_stocks.filter(stock => stock.id !== stockId);
             newState.watchlists[watchlistId].watchlist_stocks = stocklists;
             return newState;
-        default: 
+        default:
             return state
     }
 }
 
+function deepCopy(value) {
+    if (typeof value === 'object') {
+        if (Array.isArray(value)) {
+            return value.map(element => deepCopy(element));
+        } else {
+            const result = {};
+            Object.entries(value).forEach(entry => {
+                result[entry[0]] = deepCopy(entry[1]);
+            });
+            return result;
+        }
+    } else {
+        return value;
+    }
+}
+
 export default watchlistReducer;
-
-
-// checkedLists.forEach(element => {
-//     if (!element.watchlist_stocks.some(stock => stock.stock_symbol === symbol)) {
-//         const watchlistId = element.id;
-//         dispatch(watchlistAction.addStockToWatchlist({ watchlistId, symbol }));
-//         closeModal();
-//     }
-// });
