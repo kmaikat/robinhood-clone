@@ -12,7 +12,7 @@ class Asset(db.Model):
     user_id = db.Column(db.Integer,
                         db.ForeignKey(add_prefix_for_prod("users.id")),
                         nullable=False)
-    symbol = db.Column(db.String, nullable=False)
+    symbol = db.Column(db.String, nullable=False, unique=True)
     name = db.Column(db.String, nullable=False)
     quantity = db.Column(db.Float, nullable=False)
     avg_price = db.Column(db.Float, nullable=False)

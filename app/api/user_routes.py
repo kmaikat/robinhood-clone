@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required, current_user
-from app.models import User
+from app.models import User, Asset
+from app.forms import TransactionForm, AssetForm
 
 user_routes = Blueprint('users', __name__)
 
@@ -68,5 +69,25 @@ def find_username(username):
 @user_routes.route("/update-buying-power", methods=["PUT"])
 def update_buying_power():
     data = request.get_json()
-    print(data)
-    return "HELLO"
+    transactionForm = TransactionForm()
+    assetForm = AssetForm()
+
+    transactionForm['csrf_token'].data = request.cookies['csrf_token']
+    if transactionForm.validate_on_submit():
+        user = User.query.get(1)
+        if data["quantity"] * data["price"] > user.buying_power:
+            return jsonify({"errors": {"amount": "not enough funds."}})
+
+        stock = Asset.query.filter(Asset.user_id == 1).filter(
+            Asset.symbol.ilike(data["symbol"])).one()
+
+        if stock:
+            stock_avg = (stock.quantity * stock.avg_price) / stock.quantity
+            data_avg = (data["quantity"] * data["price"]) / data["quantity"]
+            data["price"] = (data_avg + stock_avg) / 2
+            data["quantity"] = data["quantity"] + stock.quantity
+
+            return data
+        return jsonify(user.to_dict())
+    else:
+        return {"errors": transactionForm.errors}
