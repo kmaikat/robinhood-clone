@@ -617,3 +617,26 @@ input[type=checkbox] {
 .btn-deleteform:hover {
     color: var(--rockethood-green);
 }
+/* watchlist in profile page */
+/* .profile-page-watchlists-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.profile-page-watchlists-btnname {
+    background: transparent;
+    border:none;
+}
+
+.profile-page-watchlists-stocks {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border-bottom: 1px solid #cccccc;
+    width: 100%;
+}
+.profile-page-watchlists-havestocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+} */
