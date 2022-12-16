@@ -77,11 +77,11 @@
 
 @media screen and (max-width: 450px) {
     .app-home {
-        max-width: 390px;
+        max-width: 389px;
     }
 
-    #app-nav-bar{
-        max-width: 350px;
+    #app-nav-bar {
+        padding: 0 2.4rem;
     }
 
     #all-news-inner-container {
@@ -102,7 +102,8 @@
         display: none;
     }
 
-    #app-nav-bar-account-submenu{
-        right: -2.2rem
+    #navbar-container {
+        width: 100%;
+        padding: 0 2.4rem;
     }
 }
