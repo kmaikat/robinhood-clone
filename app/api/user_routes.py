@@ -71,26 +71,31 @@ def update_buying_power():
     data = request.get_json()
     data["csrf_token"] = request.cookies['csrf_token']
     transactionForm = TransactionForm(**data)
-    if transactionForm.validate_on_submit():
-        user = User.query.get(current_user.id)
-        if data["quantity"] * data["price"] > user.buying_power:
-            return jsonify({"errors": {"amount": "not enough funds."}})
 
+    if transactionForm.validate_on_submit():
+        user = User.query.get(1)
+
+        if data["quantity"] * data["price"] > user.buying_power:
+            return jsonify({"errors": {"amount": "not enough funds."}}), 401
         stock = Asset.query.filter(Asset.user_id == user.id).filter(
             Asset.symbol.ilike(data["symbol"])).one()
+        if data["quantity"] > stock.quantity:
+            return jsonify({"errors": {"amount": "not enough stock"}}), 401
 
         data["user_id"] = user.id
         transactionData = {**data}
         del transactionData["name"]
         del transactionData["csrf_token"]
 
-        if stock:
+        if stock and data["transaction_type"] == "buy":
             final_quant = stock.quantity + data["quantity"]
             final_price = (stock.quantity * stock.avg_price) + \
                 (data["price"] * data["quantity"])
             data["avg_price"] = final_price / final_quant
             data["quantity"] = data["quantity"] + stock.quantity
-
+        else:
+            data["avg_price"] = stock.avg_price
+            data["quantity"] = data["quantity"] - stock.quantity
         assetForm = AssetForm(**data)
 
         if assetForm.validate_on_submit():
@@ -105,8 +110,8 @@ def update_buying_power():
 
             db.session.add(transction)
             db.session.commit()
-            return asset.to_dict()
+            return asset.to_dict(), 201
         else:
-            return jsonify({"errors": assetForm.errors})
+            return jsonify({"errors": assetForm.errors}), 401
     else:
-        return {"errors": transactionForm.errors}
+        return {"errors": transactionForm.errors}, 401
