@@ -724,3 +724,143 @@ input[type=checkbox] {
 .pricediff-color{
     color: #5ac53b;
 }
+/* Cashcard  */
+.cashcard-container {
+    width: 100%;
+}
+.cashcard-section-one {
+    background: url(https://v.fastcdn.co/u/62ba1c13/61275071-0-header-RHY-CashCard-.jpg) no-repeat;
+    height: 60rem;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.ele1 {
+    font-size: 6rem;
+    word-wrap: break-word;
+}
+.cashcard-section-one-headline {
+    box-sizing: border-box;
+    width: 50%;
+    margin: 5rem 5rem 0rem 0rem;
+}
+
+.cashcard-section-one-headline-h2 {
+    box-sizing: border-box;
+    font-size: 2.2rem;
+    text-align: left;
+}
+
+.ele3 > button {
+    background: #C3F53C;
+    border: 1px solid #C3F53C;
+    color: #000000;
+    font-size: 1.4861rem;
+    font-family: CapsuleSansText;
+    font-weight: 400;
+    height: 4.3125rem;
+    width: 13.6875rem;
+    border-radius: 41px;
+}
+
+.cashcard-section-two {
+    background: url(https://v.fastcdn.co/u/62ba1c13/61246691-0-Comp-3.gif) no-repeat var(--rockethood-green) ;
+    background-size: contain;
+    background-position: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60rem;
+}
+
+.cashcard-section-two-headline {
+    box-sizing: border-box;
+    font-size: 3.5rem;
+    width: 60%;
+    text-align: center;
+}
+
+.cashcard-section-three {
+    background: url(https://v.fastcdn.co/u/62ba1c13/61275240-0-Rewards-small.jpg) no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.cashcard-section-three-content-1, .cashcard-section-three-content-2 {
+    display: flex;
+    flex-direction: row;
+    margin-top: 5rem;
+    /* justify-content: center; */
+}
+
+.cashcard-section-three-itemblock {
+    top: 3.4375rem;
+    left: -2rem;
+    /* height: 42rem; */
+    width: 31.3125rem;
+    z-index: 13;
+}
+
+.cashcard-section-three-headline, .cashcard-section-three-content-2-headline {
+    width: 31.3125rem;;
+    /* height: 42rem; */
+    padding: 4rem;
+}
+.cashcard-section-three-itemblock-title {
+    font-size: 4.5rem;
+}
+
+.cashcard-section-three-itemblock-label1, .cashcard-section-three-content-2-label {
+    font-size: 1.5rem;
+}
+
+.cashcard-section-three-itemblock-label2 {
+    font-size: 1.2rem;
+    padding-top: 2rem;
+}
+
+.cashcard-section-three-item {
+    box-sizing: content-box;
+}
+
+.cashcard-section-three-content-2-title {
+    font-size: 3.8rem;
+}
+
+.cashcard-section-four {
+    background: url(https://v.fastcdn.co/u/62ba1c13/61243667-0-NoFees.png ) no-repeat ;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 60rem;
+}
+
+.cashcard-section-three-content{
+    box-sizing: border-box;
+    background-color: rgb(195,245,60);
+    width: 40%;
+    border-radius: 3rem;
+    padding: 3rem;
+    
+}
+
+.cashcard-section-three-content > h1 {
+    font-size: 4rem;
+    text-align: center;
+}
+.cashcard-section-three-content > p {
+    font-size: 2rem;
+    padding: 1rem;
+    text-align: center;
+}

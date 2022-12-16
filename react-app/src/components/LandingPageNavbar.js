@@ -34,6 +34,9 @@ const LandingPageNavbar = () => {
                         <NavLink to="/snacks">
                             <li className="landing-page-navlink" id="landing-page-Snacks-button">Snacks</li>
                         </NavLink>
+                        <NavLink to="/cashcard">
+                            <li className="landing-page-navlink" id="landing-page-CashCard-button">CashCard</li>
+                        </NavLink>
                     </ul>
                     <div className="landing-page-actions">
                         <NavLink to="/login" exact>
