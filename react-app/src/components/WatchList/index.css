@@ -200,6 +200,11 @@ header {
     position: absolute;
     background-color: white;
     z-index: 1000;
+    width:15rem;
+    left: -5rem;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    box-shadow: rgba(0,0,0,0.06);
 }
 .watchlist-dropdown-update {
     width: 100%;
