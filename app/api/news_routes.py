@@ -60,7 +60,7 @@ def get_news_by_ticker(ticker):
 @news_routes.route("/liked", methods=["GET"])
 @login_required
 def get_article_like():
-    liked = News.query.filter(News.like == 1).filter(
+    liked = News.query.filter(News.like == '1').filter(
         News.user_id == current_user.id).all()
     return jsonify([news.to_dict() for news in liked]), 200
 
@@ -89,11 +89,14 @@ def add_article_like():
         return jsonify(add_article_form.errors), 406
 
 
-@news_routes.route("/liked/<news_id>", methods=["DELETE"])
+@login_required
+@news_routes.route("/liked/<int:news_id>", methods=["DELETE"])
 def delete_article_like(news_id):
+    print(news_id)
     # find the liked article where user id is the same as the user_id
     # delete
     article = News.query.get(news_id)
+    print(article)
     if current_user.id != article.user_id:
         return {
             "message": "This like does not belong to you"
