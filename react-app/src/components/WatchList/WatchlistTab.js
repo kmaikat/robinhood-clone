@@ -26,7 +26,7 @@ const WatchlistTab = () => {
         <div className="profile-page-watchlists-container">
             {watchlists && Object.values(watchlists).map(
                 (watchlist,i) => (
-                    <div className="profile-page-watchlists-label">
+                    <div className="profile-page-watchlists-label" key={watchlist.id}>
                         <button onClick={handleClick(i)} className="profile-page-watchlists-btnname">
                             <span>{watchlist.name}</span>
                         </button>
@@ -44,7 +44,7 @@ const WatchlistTab = () => {
                                     {watchlist.watchlist_stocks.length > 0 &&
                                         watchlist.watchlist_stocks.map(
                                             stock => (
-                                                <div className="profile-page-watchlists-stocks-content">
+                                                <div className="profile-page-watchlists-stocks-content" key={stock.id}>
                                                     <Link to={`/stocks/${stock.stock_symbol}`} className="tab-table-content tab-link">
                                                         <div>{stock.stock_symbol}</div>
                                                     </Link>
