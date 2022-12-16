@@ -1,15 +1,9 @@
-// import ChartDrawing from '../ChartDrawing'
-// import Search from '../Search'
-// import { useState } from 'react'
-import PlaceHolder from '../PlaceHolder'
-import '../../stylesheets/chart.css'
+import UserChart from "../UserChart"
 
 const ChartTest = () => {
-  const samples = ['AAPL', 'GOOGL', 'COTY']
-
   return (
     <>
-    <PlaceHolder />
+      <UserChart />
     </>
   )
 }
