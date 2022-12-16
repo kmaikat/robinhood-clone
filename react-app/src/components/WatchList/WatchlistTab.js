@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import * as watchlistAction from '../../store/watchlist';
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import StockPrice from "./StockPrice";
 
 const WatchlistTab = () => {
     const dispatch = useDispatch();
@@ -32,9 +33,16 @@ const WatchlistTab = () => {
                                 {watchlist.watchlist_stocks.length > 0 && 
                                     watchlist.watchlist_stocks.map(
                                         stock => (
-                                            <Link to={`/stocks/${stock.stock_symbolß}`}>
-                                                <span>{stock.stock_symbol}</span>
-                                            </Link>
+                                            <div className="profile-page-watchlists-havestocks">
+                                                <div>
+                                                    <Link to={`/stocks/${stock.stock_symbol}`}>
+                                                        <span>{stock.stock_symbol}</span>
+                                                    </Link>
+                                                </div>
+                                                <div>
+                                                    <StockPrice symbol={stock.stock_symbol}/>
+                                                </div>
+                                            </div>
                                         )
                                     )
                                 }
