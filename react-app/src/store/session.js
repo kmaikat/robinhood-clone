@@ -178,11 +178,11 @@ export const updateNicknameUsername = (nickname, username) => async dispatch => 
   }
 };
 
-export const updateBuyingPowerWithDb = (purchaseType, purchaseAmount) => async dispatch => {
-  const response = await fetch('/api/users/update', {
+export const updateBuyingPowerWithDb = (purchaseType, purchaseAmount, purchasePrice) => async dispatch => {
+  const response = await fetch('/api/users/update-buying-power', {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ purchase_type: purchaseType, purchase_amount: purchaseAmount })
+    body: JSON.stringify({ purchase_type: purchaseType, purchase_amount: purchaseAmount, purchase_price: purchasePrice })
   });
 
   if (response.ok) {
@@ -228,7 +228,7 @@ export default function reducer(state = initialState, action) {
       newState.user.buyingPower = action.buyingPower;
       return newState;
     }
-    
+
     default:
       return state;
   }

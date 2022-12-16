@@ -7,19 +7,19 @@ def seed_assets():
         user_id=1,
         symbol="AAPL",
         name="Apple",
-        quantity=2.1,
+        quantity=10000,
     )
     asset2 = Asset(
         user_id=1,
         symbol="TSLA",
         name="Tesla",
-        quantity=10.1,
+        quantity=100000,
     )
     asset3 = Asset(
         user_id=1,
-        symbol="GOOG",
+        symbol="GOOGL",
         name="Google",
-        quantity=1000.5,
+        quantity=20000,
     )
 
     db.session.add(asset1)

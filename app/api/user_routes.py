@@ -63,3 +63,10 @@ def find_username(username):
         return jsonify(user), 409
     else:
         return jsonify(user), 200
+
+
+@user_routes.route("/update-buying-power", methods=["PUT"])
+def update_buying_power():
+    data = request.get_json()
+    print(data)
+    return "HELLO"

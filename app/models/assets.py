@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
+
 class Asset(db.Model):
     __tablename__ = "assets"
 
@@ -18,3 +19,10 @@ class Asset(db.Model):
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
 
     user = db.relationship("User", back_populates="assets")
+
+    def to_dict(self):
+        return {
+            "symbol": self.symbol,
+            "name": self.name,
+            "quantity": self.quantity
+        }
