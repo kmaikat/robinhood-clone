@@ -19,7 +19,7 @@ const LikedNews = () => {
         <div className="news-container">
             {Object.keys(likedArticles).map(key => {
                 return (
-                    <a href={likedArticles[key].url} target="_blank" rel="noopener noreferrer" >
+                    <a href={likedArticles[key].article_link} target="_blank" rel="noopener noreferrer" >
                         <div id="all-news-container">
                             <div id="all-news-inner-container">
                                 <div id="all-news-source-container">
