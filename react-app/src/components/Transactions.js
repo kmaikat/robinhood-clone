@@ -10,7 +10,8 @@ async function grabLatestPrice(symbol) {
     return data;
 }
 
-function formatTransactionAmount(event, dollar) {
+function formatTransactionAmount(event) {
+    let dollar;
     const transactionDollar = Intl.NumberFormat("en-US", { maximumFractionDigits: 2, roundingMode: "trunc" });
     if (event.target.value.split(".")[1]?.length > 2) dollar = transactionDollar.format(event.target.value.slice(0, -1));
     else if (event.target.value[event.target.value.length - 1] === ".") dollar = transactionDollar.format(event.target.value) + ".";
@@ -23,7 +24,7 @@ function formatTransactionAmount(event, dollar) {
 function Transactions() {
     const usDollar = Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     const optionContainer = useRef(null);
-    const [color, setColor] = useState("#ec5e2a");
+    const [errors, setErrors] = useState({});
     const [submittingOrder, setSubmittingOrder] = useState(false);
     const [sharesOrDollars, setSharesOrDollars] = useState("dollars");
     const [showSharesOrDollars, setShowSharesOrDollars] = useState(false);
@@ -68,6 +69,7 @@ function Transactions() {
                                 setBuyOrSale("buy");
                                 setTransactionAmount("");
                                 setEstQuantity(0);
+                                setErrors({});
                             }}
                             style={buyOrSale === "buy" ? { userSelect: "none", cursor: "default" } : {}}
                             id={buyOrSale === "buy" ? "transaction-tab-buy" : ""}
@@ -79,6 +81,7 @@ function Transactions() {
                                 setBuyOrSale("sell");
                                 setTransactionAmount("");
                                 setEstQuantity(0);
+                                setErrors({});
                             }}
                             id={buyOrSale === "sell" ? "transaction-tab-sell" : ""}
                             style={buyOrSale === "sell" ? { userSelect: "none", cursor: "default" } : {}}
@@ -116,6 +119,7 @@ function Transactions() {
                                                 setShowSharesOrDollars(false);
                                                 setTransactionAmount("");
                                                 setEstQuantity(0);
+                                                setErrors({});
                                             }}
                                         >
                                             Dollars
@@ -132,6 +136,7 @@ function Transactions() {
                                                 setShowSharesOrDollars(false);
                                                 setTransactionAmount("");
                                                 setEstQuantity(0);
+                                                setErrors({});
                                             }}
                                         >
                                             Shares
@@ -144,58 +149,69 @@ function Transactions() {
                             <p style={{ userSelect: "none" }}>Amount</p>
                             <input type="text"
                                 id="transaction-form-text-input"
+                                className={errors.amount ? "transaction-form-error" : ""}
                                 placeholder={sharesOrDollars === "dollars" ? "$0.00" : "0"}
                                 value={transactionAmount}
                                 onChange={(event) => {
+                                    setErrors({});
                                     if (event.target.value[0] === "$") {
                                         event.target.value = event.target.value.slice(1);
-                                        event.target.value = event.target.value.replace(",", "");
+                                        event.target.value = event.target.value.split(",").join("");
                                     }
-
                                     if (isNaN(event.target.value) === false) {
                                         // buy conditions
-                                        if (buyOrSale === "buy" && sharesOrDollars === "dollars" && Number(buyingPower) >= Number(event.target.value)) {
-                                            let dollar;
-                                            dollar = formatTransactionAmount(event, dollar);
-                                            setTransactionAmount("$" + dollar);
-                                            setEstQuantity(Number(event.target.value) / sharePrice);
-                                        } else {
-
+                                        if (buyOrSale === "buy" && sharesOrDollars === "dollars") {
+                                            if (Number(buyingPower) >= Number(event.target.value)) {
+                                                const dollar = formatTransactionAmount(event);
+                                                setTransactionAmount("$" + dollar);
+                                                setEstQuantity(Number(event.target.value) / sharePrice);
+                                            } else {
+                                                setErrors({ amount: "Not enough funds." });
+                                            }
                                         }
-                                        if (buyOrSale === "buy" && sharesOrDollars === "shares" && Number(buyingPower / sharePrice) >= Number(event.target.value)) {
-                                            setTransactionAmount(event.target.value);
-                                            setEstQuantity(`$${usDollar.format(Number(event.target.value) * sharePrice)}`);
-                                        } else {
 
+                                        if (buyOrSale === "buy" && sharesOrDollars === "shares") {
+                                            if (Number(buyingPower / sharePrice) >= Number(event.target.value)) {
+                                                setTransactionAmount(event.target.value);
+                                                setEstQuantity(`$${usDollar.format(Number(event.target.value) * sharePrice)}`);
+                                            } else {
+                                                setErrors({ amount: "Not enough funds." });
+                                            }
                                         }
                                         //sell conditions
-                                        if (buyOrSale === "sell" && sharesOrDollars === "dollars" && Number(ownedShares) * Number(sharePrice) >= Number(event.target.value)) {
-                                            console.log(event.target.value);
-                                            let dollar;
-                                            dollar = formatTransactionAmount(event, dollar);
-                                            setTransactionAmount("$" + dollar);
-                                            setEstQuantity(Number(event.target.value) / sharePrice);
-                                        } else {
-
+                                        if (buyOrSale === "sell" && sharesOrDollars === "dollars") {
+                                            if (Number(ownedShares) * Number(sharePrice) >= Number(event.target.value)) {
+                                                const dollar = formatTransactionAmount(event);
+                                                setTransactionAmount("$" + dollar);
+                                                setEstQuantity(Number(event.target.value) / sharePrice);
+                                            } else {
+                                                setErrors({ amount: "Not enough stock." });
+                                            }
                                         }
-                                        if (buyOrSale === "sell" && sharesOrDollars === "shares" && Number(ownedShares) >= Number(event.target.value)) {
-                                            setTransactionAmount(event.target.value);
-                                            setEstQuantity(usDollar.format(Number(event.target.value) * sharePrice));
-                                        } else {
 
+                                        if (buyOrSale === "sell" && sharesOrDollars === "shares") {
+                                            if (Number(ownedShares) >= Number(event.target.value)) {
+                                                setTransactionAmount(event.target.value);
+                                                setEstQuantity(usDollar.format(Number(event.target.value) * sharePrice));
+                                            } else {
+                                                setErrors({ amount: "Not enough stock." });
+                                            }
                                         }
                                     }
                                 }} />
                         </div>
                         <div className="transaction-form-data-container" id="transaction-est-quantity" style={{ userSelect: "none" }}>
                             <p>Est. {sharesOrDollars === "shares" ? "Dollars" : "Shares"} </p>
-                            <p>{sharesOrDollars === "dollars" ? null : "$"}{estQuantity}</p>
+                            <p>{estQuantity}</p>
                         </div>
                         <div id="transaction-submit-container">
                             <button id="transaction-submit-button" type="submit" onClick={() => setSubmittingOrder(true)} className={`transaction-submit-${buyOrSale}`}>
                                 Submit Order
                             </button>
                         </div>
+                        {errors.amount &&
+                            <div>{errors.amount}</div>
+                        }
                     </form>
                     {buyOrSale === "buy" && <div id="transaction-buying-power-container" style={{ userSelect: "none" }}>
                         <p>{`$${usDollar.format(buyingPower)} of buying power available`}</p>

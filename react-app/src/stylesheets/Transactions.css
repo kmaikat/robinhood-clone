@@ -6,6 +6,7 @@
 #transactions-and-watchlist-container {
     position: sticky;
     top: 9.5rem;
+    padding-bottom: 6rem;
 }
 
 #transaction-container {
@@ -162,7 +163,8 @@
     border: 1px solid var(--rockethood-border-lightgray);
     border-radius: .4rem;
     font-size: 1.3rem;
-    padding-right: 1.2rem
+    padding-right: 1.2rem;
+    transition: border-color 200ms ease-in-out;
 }
 
 #transaction-amount {
@@ -221,4 +223,8 @@
     height: 4.8rem;
     padding: 0 1.5rem;
     border-top: 1px solid var(--rockethood-border-lightgray);
+}
+
+#transaction-form-text-input.transaction-form-error {
+    border-color: var(--rockethood-sell-red)
 }
