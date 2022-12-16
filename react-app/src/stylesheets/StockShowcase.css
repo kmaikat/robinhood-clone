@@ -60,7 +60,7 @@
 @media screen and (max-width: 750px) {
 
     .app-stocks {
-        width: 100vw;
+        max-width: 390px;
     }
 
     .stock-showcase-left {

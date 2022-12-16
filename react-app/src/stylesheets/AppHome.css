@@ -35,9 +35,10 @@
 
 
 @media screen and (max-width: 1250px) {
-    .app-home{
+    .app-home {
         width: 100vw;
     }
+
     .app-home-left {
         width: calc(100vw - 35rem);
     }
@@ -76,7 +77,11 @@
 
 @media screen and (max-width: 450px) {
     .app-home {
-        max-width: 380px;
+        max-width: 389px;
+    }
+
+    #app-nav-bar {
+        padding: 0 2.4rem;
     }
 
     #all-news-inner-container {
@@ -84,15 +89,21 @@
         -ms-overflow-style: none;
         scrollbar-width: none;
     }
-    .news-image-container{
+
+    .news-image-container {
         display: none;
     }
 
-    #all-news-ticker-container{
+    #all-news-ticker-container {
         display: none;
     }
 
     #all-news-inner-container::-webkit-scrollbar {
         display: none;
+    }
+
+    #navbar-container {
+        width: 100%;
+        padding: 0 2.4rem;
     }
 }
