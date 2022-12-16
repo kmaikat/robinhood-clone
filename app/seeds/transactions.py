@@ -22,8 +22,8 @@ def seed_transaction():
             'transaction_time': datetime.utcnow(),
         },
         {
-            'user_id': 2,
-            'stock_symbol': 'COTY',
+            'user_id': 1,
+            'stock_symbol': 'TSLA',
             'transaction_type': 'buying',
             'price': 1.2,
             'quantity': 100000,

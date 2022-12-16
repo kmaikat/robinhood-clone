@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, session, request
-from app.models import User, db
+from app.models import User, db, Transaction
 from app.forms import LoginForm
 from app.forms import SignUpForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -41,7 +41,37 @@ def login():
         # Add the user to the session, we are logged in!
         user = User.query.filter(User.email == form.data['email']).first()
         login_user(user)
-        return user.to_dict()
+
+        response = user.to_dict()
+
+        # Rating.query(func.avg(Rating.field2)).filter(Rating.url==url_string.netloc)
+
+        def format_response(stock):
+            asset = {}
+            asset[stock.to_dict()["symbol"].upper()] = stock.to_dict()
+
+            transactions = Transaction.query.filter(Transaction.user_id == 1).filter(
+                Transaction.stock_symbol.ilike(stock.to_dict()["symbol"])).filter(Transaction.open == 1).all()
+
+            if transactions:
+                sum_price = 0
+                sum_quantity = 0
+                for transaction in transactions:
+                    sum_price = sum_price + \
+                        (transaction.price * transaction.quantity)
+                    sum_quantity = sum_quantity + transaction.quantity
+
+                avg_price = sum_price / sum_quantity
+
+                asset[stock.to_dict()["symbol"].upper()
+                      ]["avgPrice"] = avg_price
+
+            print(asset)
+            return asset
+
+        response["assets"] = {asset.to_dict()["symbol"]: format_response(asset)[asset.to_dict()["symbol"]]
+                              for asset in user.assets}
+        return jsonify(response)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
