@@ -22,6 +22,44 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  const [usernameError, setUsernameError] = useState('')
+  const [showUsernameError, setShowUsernameError] = useState(false)
+
+  useEffect(() => {
+    setShowUsernameError(false)
+
+    if(username.length < 3 || username.length > 20)
+      setUsernameError('Your username must be between 3 and 20 characters long.')
+    else if(/[^a-zA-Z\d\_]+/.test(username))
+      setUsernameError('Your username can only have letters, numbers, and underscores.')
+    else setUsernameError('')
+
+  }, [username])
+
+  const usernameCheck = () => {
+    if(usernameError){
+      setShowUsernameError(true)
+      return
+    }
+
+    setLoading(true)
+    const success = fetch(`/api/users/check-username/${username}`)
+      .then(res => {
+        setLoading(false)
+        return res.ok
+      })
+      .catch(e => {
+        setLoading(false)
+        console.log(e)
+      })
+
+    if(success) setSignupStage(signupStage + 1)
+    else {
+      setUsernameError('Username duplicated. Please try again')
+      setShowUsernameError(true)
+    }
+  }
+
   const phase1Check = async (e) => {
     const errors = {};
     e.preventDefault();
@@ -67,7 +105,7 @@ const SignUpForm = () => {
     }
 
     setLoading(true);
-    const data = await dispatch(signUp(firstName, lastName, email, password, buyingPower));
+    const data = await dispatch(signUp(firstName, lastName, email, password, buyingPower, username));
     setLoading(false);
     setErrors(errors);
     setSignupStage(3);
@@ -223,7 +261,25 @@ const SignUpForm = () => {
               <Link to="/login"><p id="signup-login">Log in instead</p></Link>
             </div>
           </form>}
+        {/* step 2 */}
         {signupStage === 2 &&
+          <form id="signup-form">
+            <p className='signup-form-heading'>Enter your username.</p>
+            <div>
+              <input
+                type='text'
+                className={showUsernameError ? 'error-input' : null}
+                value={username}
+                onChange={updateUsername}
+                placeholder='Username'
+              />
+            </div>
+            <p className='error-label'>
+              {showUsernameError && usernameError}
+            </p>
+          </form>
+        }
+        {signupStage === 3 &&
           <form id="signup-form">
             <p className='signup-form-heading'>Let's get your account funded!</p>
             <div>
@@ -284,8 +340,8 @@ const SignUpForm = () => {
           <div className='signup-button-container'>
             <div className="signup-button">
               {signupStage === 1 && <button className='signup-button-bottom' onClick={phase1Check}>{loading ? spinner : "Next"}</button>}
-              {signupStage === 2 && <button className='signup-button-bottom' onClick={phase2Check}>{loading ? spinner : "Complete Sign up"}</button>}
-              {signupStage === 3 && <button className='signup-button-bottom'>{spinner}</button>}
+              {signupStage === 2 && <button className='signup-button-bottom' onClick={usernameCheck}>{loading ? spinner : "Next"}</button>}
+              {signupStage === 3 && <button className='signup-button-bottom' onClick={phase2Check}>{loading ? spinner : "Complete Sign up"}</button>}
             </div>
           </div>
         </div>

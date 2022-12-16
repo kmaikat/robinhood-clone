@@ -51,3 +51,15 @@ def findEmail(email):
         return jsonify(user), 409
     else:
         return jsonify(user), 200
+
+
+@user_routes.route("/check-username/<username>")
+def find_username(username):
+    """
+    Query for an username from the db to see if it is being used already
+    """
+    user = bool(User.query.filter(User.username.ilike(username)).all())
+    if user:
+        return jsonify(user), 409
+    else:
+        return jsonify(user), 200
