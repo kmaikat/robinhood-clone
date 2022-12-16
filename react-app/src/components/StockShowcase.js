@@ -38,6 +38,7 @@ function StockShowcase() {
     }, [symbol]);
 
     useEffect(() => {
+        setCompanyInfo({ "about": {}, "statistics": {} });
         fetch(`/api/stock/company-information/${symbol}`)
             .then(res => res.json())
             .then(res => {
