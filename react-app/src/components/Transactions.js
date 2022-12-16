@@ -5,6 +5,11 @@ import { getOneDayPrices } from "../util/util";
 import "../stylesheets/Transactions.css";
 import AddStock from "./WatchList/WatchlistStock/AddStock";
 
+async function grabLatestPrice(symbol) {
+    const test = await getOneDayPrices(symbol);
+    return test;
+}
+
 function Transactions() {
     const usDollar = Intl.NumberFormat("en-US");
     const optionContainer = useRef(null);
@@ -14,29 +19,29 @@ function Transactions() {
     const [showSharesOrDollars, setShowSharesOrDollars] = useState(false);
     const [transactionAmount, setTransactionAmount] = useState("");
     const buyingPower = useSelector(state => state.session.user.buyingPower);
-    const sharePrice = useSelector(state => state.price.currentPrice);
+    const [sharePrice, setSharePrice] = useState(0);
     const ownedShares = 20;
     const [buyOrSale, setBuyOrSale] = useState("buy");
     const symbol = useParams().symbol.toUpperCase();
 
+    useEffect(async () => {
+        const price = await grabLatestPrice(symbol);
+        setSharePrice(price.data[price.data.length - 1]);
+    }, [symbol]);
 
     useEffect(() => {
         if (!showSharesOrDollars) return;
 
         const onClick = (e) => {
             if (optionContainer.current && optionContainer.current.contains(e.target) === false) {
-                setShowSharesOrDollars(false)
+                setShowSharesOrDollars(false);
             }
         };
+        
 
         document.addEventListener("click", onClick);
         return () => document.removeEventListener("click", onClick);
     }, [showSharesOrDollars]);
-
-    async function tester() {
-        const test = await getOneDayPrices(symbol);
-        console.log(test);
-    }
 
     function submitOrder(e) {
         e.preventDefault();
@@ -62,12 +67,12 @@ function Transactions() {
                     </div>
 
                     <form id="transaction-form" onSubmit={submitOrder}>
-                        <div className="transaction-form-data-container" style={{userSelect: "none"}}>
+                        <div className="transaction-form-data-container" style={{ userSelect: "none" }}>
                             <p>Order Type</p>
                             <p>Market Order</p>
                         </div>
                         <div className="transaction-form-data-container">
-                            <label style={{userSelect: "none"}}>Buy In</label>
+                            <label style={{ userSelect: "none" }}>Buy In</label>
                             <div ref={optionContainer} className={`transaction-shares-or-dollars-outer-container `} id={showSharesOrDollars ? "transaction-shares-or-dollars-outer-container" : ""}>
                                 <button onClick={() => setShowSharesOrDollars(!showSharesOrDollars)} id="transaction-shares-or-dollars-display">
                                     {sharesOrDollars === "dollars" ? "Dollars" : "Shares"}
@@ -107,7 +112,7 @@ function Transactions() {
                             </div>
                         </div>
                         <div className="transaction-form-data-container" id="transaction-amount">
-                            <p style={{userSelect: "none"}}>Amount</p>
+                            <p style={{ userSelect: "none" }}>Amount</p>
                             <input type="text"
                                 id="transaction-form-text-input"
                                 placeholder={sharesOrDollars === "dollars" ? "$0.00" : "0"}
@@ -122,7 +127,7 @@ function Transactions() {
                                     }
                                 }} />
                         </div>
-                        <div className="transaction-form-data-container" id="transaction-est-quantity" style={{userSelect: "none"}}>
+                        <div className="transaction-form-data-container" id="transaction-est-quantity" style={{ userSelect: "none" }}>
                             <p>Est. Quantity</p>
                             <p>0</p>
                         </div>
@@ -132,18 +137,18 @@ function Transactions() {
                             </button>
                         </div>
                     </form>
-                    {buyOrSale === "buy" && <div id="transaction-buying-power-container" style={{userSelect: "none"}}>
+                    {buyOrSale === "buy" && <div id="transaction-buying-power-container" style={{ userSelect: "none" }}>
                         <p>{`$${usDollar.format(buyingPower)} buying power available`}</p>
                     </div>}
                     {buyOrSale === "sell" &&
                         sharesOrDollars === "shares" &&
-                        <div id="transaction-buying-power-container" style={{userSelect: "none"}}>
+                        <div id="transaction-buying-power-container" style={{ userSelect: "none" }}>
                             <p>{`${ownedShares} ${symbol} shares remaining`}</p>
                         </div>
                     }
                     {buyOrSale === "sell" &&
                         sharesOrDollars === "dollars" &&
-                        <div id="transaction-buying-power-container" style={{userSelect: "none"}}>
+                        <div id="transaction-buying-power-container" style={{ userSelect: "none" }}>
                             <p>{`Roughly $${usDollar.format(Number(ownedShares) * Number(sharePrice))} of ${symbol} remaining`}</p>
                         </div>}
                 </div>
