@@ -22,43 +22,45 @@ const SignUpForm = () => {
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
-  const [usernameError, setUsernameError] = useState('')
-  const [showUsernameError, setShowUsernameError] = useState(false)
-
+  const [usernameError, setUsernameError] = useState('');
+  const [showUsernameError, setShowUsernameError] = useState(false);
+  const regex = RegExp(
+    /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/g
+  );
   useEffect(() => {
-    setShowUsernameError(false)
+    setShowUsernameError(false);
 
-    if(username.length < 3 || username.length > 20)
-      setUsernameError('Your username must be between 3 and 20 characters long.')
-    else if(/[^a-zA-Z\d\_]+/.test(username))
-      setUsernameError('Your username can only have letters, numbers, and underscores.')
-    else setUsernameError('')
+    if (username.length < 3 || username.length > 20)
+      setUsernameError('Your username must be between 3 and 20 characters long.');
+    else if (/[^a-zA-Z\d\_]+/.test(username))
+      setUsernameError('Your username can only have letters, numbers, and underscores.');
+    else setUsernameError('');
 
-  }, [username])
+  }, [username]);
 
   const usernameCheck = () => {
-    if(usernameError){
-      setShowUsernameError(true)
-      return
+    if (usernameError) {
+      setShowUsernameError(true);
+      return;
     }
 
-    setLoading(true)
+    setLoading(true);
     const success = fetch(`/api/users/check-username/${username}`)
       .then(res => {
-        setLoading(false)
-        return res.ok
+        setLoading(false);
+        return res.ok;
       })
       .catch(e => {
-        setLoading(false)
-        console.log(e)
-      })
+        setLoading(false);
+        console.log(e);
+      });
 
-    if(success) setSignupStage(signupStage + 1)
+    if (success) setSignupStage(signupStage + 1);
     else {
-      setUsernameError('Username duplicated. Please try again')
-      setShowUsernameError(true)
+      setUsernameError('Username duplicated. Please try again');
+      setShowUsernameError(true);
     }
-  }
+  };
 
   const phase1Check = async (e) => {
     const errors = {};
@@ -66,8 +68,8 @@ const SignUpForm = () => {
     if (firstName.length > 0 === false) errors.firstName = "Please enter your first name.";
     if (lastName.length > 0 === false) errors.lastName = "Please enter your last name.";
     if (email.length > 0 === false) errors.email = "Please enter your email.";
-    else if(!email.trim().match(/^(?!\.)[\w+\-.]+(?<!\.)@[\w-]+(\.[a-z\d-]+)*\.[a-z]+$/i)) {
-      errors.email='Please provide a valid Email';
+    else if (!email.trim().match(regex)) {
+      errors.email = 'Please provide a valid Email';
     }
 
     if (password.length > 0 === false) errors.password = "Please enter your password.";
