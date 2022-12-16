@@ -18,6 +18,7 @@ import StockShowcase from './components/StockShowcase';
 import ProfilePage from './components/ProfilePage.js';
 import LearnPage from './components/LandingPages/Learn';
 import LandingHome from './components/LandingPages/LandingHome';
+import CashCard from './components/CashCard';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -85,6 +86,10 @@ function App() {
       <ProtectedRoute path="/profile" exact>
         <ProfilePage />
       </ProtectedRoute>
+      <Route path="/cashcard">
+        <LandingPageNavbar />
+        <CashCard/>
+      </Route>
     </BrowserRouter>
   );
 }
