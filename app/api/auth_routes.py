@@ -43,34 +43,9 @@ def login():
         login_user(user)
 
         response = user.to_dict()
-
-        # Rating.query(func.avg(Rating.field2)).filter(Rating.url==url_string.netloc)
-
-        def format_response(stock):
-            asset = {}
-            asset[stock.to_dict()["symbol"].upper()] = stock.to_dict()
-
-            transactions = Transaction.query.filter(Transaction.user_id == 1).filter(
-                Transaction.stock_symbol.ilike(stock.to_dict()["symbol"])).filter(Transaction.open == 1).all()
-
-            if transactions:
-                sum_price = 0
-                sum_quantity = 0
-                for transaction in transactions:
-                    sum_price = sum_price + \
-                        (transaction.price * transaction.quantity)
-                    sum_quantity = sum_quantity + transaction.quantity
-
-                avg_price = sum_price / sum_quantity
-
-                asset[stock.to_dict()["symbol"].upper()
-                      ]["avgPrice"] = avg_price
-
-            print(asset)
-            return asset
-
-        response["assets"] = {asset.to_dict()["symbol"]: format_response(asset)[asset.to_dict()["symbol"]]
+        response["assets"] = {asset.symbol: asset.to_dict()
                               for asset in user.assets}
+
         return jsonify(response)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 

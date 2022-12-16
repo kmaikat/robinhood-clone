@@ -15,14 +15,15 @@ class Asset(db.Model):
     symbol = db.Column(db.String, nullable=False)
     name = db.Column(db.String, nullable=False)
     quantity = db.Column(db.Float, nullable=False)
+    avg_price = db.Column(db.Float, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
     updated_at = db.Column(db.DateTime, default=datetime.utcnow)
-
     user = db.relationship("User", back_populates="assets")
 
     def to_dict(self):
         return {
             "symbol": self.symbol,
             "name": self.name,
-            "quantity": self.quantity
+            "quantity": self.quantity,
+            "avgPrice": self.avg_price
         }
