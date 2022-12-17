@@ -243,5 +243,5 @@ export const diffFormatter = (curr, start, isPositive) => {
     const percDiff = Math.abs(((curr - start) / start * 100)).toFixed(2)
     const sign = isPositive ? '+' : '-'
 
-    return `${sign}${amountFormatter(valueDiff)} (${sign}${percDiff}%)`
+    return `${sign}${amountFormatter(valueDiff)} (${sign}${start ? percDiff : '0.00'}%)`
 }

@@ -85,7 +85,7 @@ const Search = () => {
                     <div className={styles.companyContainer}>{searchResStyling(res.name, keyword)}</div>
                   </li>
                 </Link>) :
-                <li>no search result</li>
+                <li style={{padding: '4px 1rem'}}>No search result</li>
             }
           { !isSearchLoaded && <li>Loading...</li> }
         </ul>
