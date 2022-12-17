@@ -56,7 +56,7 @@ const NewWatchList = ({openForm, setOpenForm}) => {
                     </div>
                     {validationError && <li className='newform-error'>{validationError}</li>}
                     <div className='newform-button'>
-                        <button className='btn-cancel-form'onClick={handleCancelButton}>Cancel</button>
+                        <button type='button' className='btn-cancel-form'onClick={handleCancelButton}>Cancel</button>
                         <button className='btn-submit'type='submit'>Create List</button>  
                     </div>
                 </div>
