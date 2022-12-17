@@ -10,13 +10,11 @@ const NewWatchList = ({openForm, setOpenForm}) => {
         e.preventDefault();
         setValidationError([]);
         if (name.length > 64) {
-            setValidationError('List name must be less than 64 characters')
-            return (
-                <div>
-                    <div>icon</div>
-                    <div>{validationError }</div>
-                </div>
-            )
+            return setValidationError('List name must be less than 64 characters')   
+        }
+        
+        if (name.trim() === "") {
+            return setValidationError('List name can not be blank!!!') 
         }
     
         const response = await dispatch(watchlistAction.createWatchlist(name))
