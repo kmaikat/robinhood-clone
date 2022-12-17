@@ -52,7 +52,6 @@ const SignUpForm = () => {
       })
       .catch(e => {
         setLoading(false);
-        console.log(e);
       });
 
     if (success) setSignupStage(signupStage + 1);
@@ -78,7 +77,6 @@ const SignUpForm = () => {
 
     if (Object.keys(errors).length > 0) {
       setErrors(errors);
-      console.log(errors);
       return;
     }
 
@@ -106,7 +104,6 @@ const SignUpForm = () => {
 
     if (Object.keys(errors).length > 0) {
       setErrors(errors);
-      console.log(errors);
       return;
     }
 

@@ -74,7 +74,7 @@ def update_buying_power():
     total_cost = data["price"] * data["quantity"]
 
     if not data["quantity"] > 0:
-        return jsonify({"errors": {"amount": "Amount cannot be 0 "}})
+        return jsonify({"errors": {"amount": "Amount cannot be 0 "}}), 400
 
     if transactionForm.validate_on_submit():
         user = User.query.get(current_user.id)
@@ -83,7 +83,7 @@ def update_buying_power():
         del transactionData["name"]
         del transactionData["csrf_token"]
         if total_cost > user.buying_power and data["transaction_type"] == "buy":
-            return jsonify({"errors": {"amount": "not enough funds."}}), 401
+            return jsonify({"errors": {"amount": "not enough funds."}}), 400
 
         stock = Asset.query.filter(Asset.user_id == user.id).filter(
             Asset.symbol.ilike(data["symbol"])).one_or_none()
@@ -103,10 +103,16 @@ def update_buying_power():
                 user.buying_power = user.buying_power - total_cost
                 db.session.add_all([transction, stock])
                 db.session.commit()
-                return stock.to_dict(), 201
+                response = user.to_dict()
+                response["assets"] = {asset.symbol: asset.to_dict()
+                                      for asset in user.assets}
+
+                totalStock = sum([asset.quantity for asset in user.assets])
+                response["totalStock"] = totalStock
+                return jsonify(response), 201
 
         if data["quantity"] > stock.quantity and data["transaction_type"] == "sell":
-            return jsonify({"errors": {"amount": "not enough stock"}}), 401
+            return jsonify({"errors": {"amount": "not enough stock"}}), 400
 
         if stock and data["transaction_type"] == "buy":
             final_quant = stock.quantity + data["quantity"]
