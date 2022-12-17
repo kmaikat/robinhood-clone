@@ -31,18 +31,7 @@ const WatchList = () => {
         setOpenForm(true);
     }
     if (!data.watchlists) {
-        return (
-            <div className='watchlist-container'>
-                <div className='watchlist-header'>
-                    <div>
-                        <div>Lists</div>
-                    </div>
-                    <div>
-                        <button>+</button>
-                    </div>
-                </div>
-            </div>
-        )
+        return null;
     }
 
     const watchlists = Object.values(data.watchlists);
