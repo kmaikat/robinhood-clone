@@ -9,7 +9,7 @@ def seed_watchlist_stocks():
     )
     stock2 = WatchList_Stock(
         watchlist_id=1,
-        stock_symbol = "AAPL"
+        stock_symbol = "TSLA"
     )
     stock3 = WatchList_Stock(
         watchlist_id=2,
