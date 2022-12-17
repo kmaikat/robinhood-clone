@@ -14,7 +14,8 @@ import './index.css';
 
 const WatchList = () => {
     const dispatch = useDispatch();
-    const data = useSelector(state => state.watchlists);
+    // const data = useSelector(state => state.watchlists);
+    const watchlists = useSelector(state => state.watchlists.watchlists);
     const [openForm, setOpenForm] = useState(false);
     const [openings, setOpenings] = useState({});
     const [showModal, setShowModal] = useState(false);
@@ -30,11 +31,11 @@ const WatchList = () => {
     const createWatchlist = () => {
         setOpenForm(true);
     }
-    if (!data.watchlists) {
-        return null;
-    }
+    // if (!data.watchlists) {
+    //     return null;
+    // }
 
-    const watchlists = Object.values(data.watchlists);
+    // const watchlists = Object.values(data.watchlists);
 
     const handleClickBtn = (i) => () => {
         const newOpenings = {
@@ -55,7 +56,7 @@ const WatchList = () => {
             </header>
             {openForm && <NewWatchList openForm={openForm} setOpenForm={setOpenForm} />}
             <div>
-                {watchlists && watchlists.map(
+                {watchlists && Object.values(watchlists).map(
                     (watchlist, i) => (
                         <div className='watchlist-content' key={watchlist.id}>
                             <div className='watchlist-content-header' onClick={handleClickBtn(i)}>

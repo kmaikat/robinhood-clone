@@ -14,6 +14,9 @@ const UpdateWatchlistForm = ({watchlist, onClose}) => {
         if (name.length > 64) {
             return setValidationError('List name must be less than 64 characters.');
         }
+        if (name.trim() === "") {
+            return setValidationError('List name can not be blank.') 
+        }
         const response = await dispatch(watchlistAction.updateWatchlist({name, id}))
         .catch(async (err) => {
             setValidationError(err[0])
