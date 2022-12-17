@@ -24,7 +24,6 @@ export const removeArticleFromStore = article => {
 }
 
 export const getArticlesFromDb = () => async dispatch => {
-    console.log("***********************")
     const response = await fetch(`/api/news/liked`)
     if (response.ok) {
         const articles = await response.json()
@@ -33,7 +32,6 @@ export const getArticlesFromDb = () => async dispatch => {
 }
 
 export const addArticleToDb = article => async dispatch => {
-    console.log(article)
     const repsonse = await fetch("/api/news/liked", {
         method: "POST",
         headers: {

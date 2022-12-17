@@ -35,7 +35,14 @@ const updateAccount = (updatedAccount) => ({
   updatedAccount
 });
 
-const initialState = { user: null };
+const initialState = {
+  user:
+  {
+    assets: {
+
+    }
+  }
+};
 
 export const authenticate = () => async (dispatch) => {
   const response = await fetch('/api/auth/', {
@@ -144,7 +151,6 @@ export const uploadProfileImage = (file) => async dispatch => {
       return true;
     })
     .catch(e => {
-      console.log(e);
       return false;
     });
 
@@ -182,7 +188,6 @@ export const updateNicknameUsername = (nickname, username) => async dispatch => 
 };
 
 export const updateBuyingPowerWithDb = (symbol, name, transaction_type, quantity, price) => async dispatch => {
-  console.log(symbol, name, transaction_type, quantity, price)
   const response = await fetch("/api/users/transaction", {
     method: "PUT",
     headers: { 'Content-Type': 'application/json' },
@@ -195,12 +200,18 @@ export const updateBuyingPowerWithDb = (symbol, name, transaction_type, quantity
     return data.buyingPower;
   } else {
     const data = await response.json();
-    console.log(data);
   }
 };
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
+    case UPDATE_BUYING_POWER: {
+      const newState = { ...state };
+      newState.user.assets = action.updatedAccount.assets;
+      newState.user.buyingPower = action.updatedAccount.buyingPower;
+      newState.user.totalStock = action.updatedAccount.totalStock;
+      return newState;
+    }
     case SET_USER:
       return { user: action.payload };
     case REMOVE_USER:
@@ -227,15 +238,23 @@ export default function reducer(state = initialState, action) {
           username: action.username
         }
       };
-    case UPDATE_BUYING_POWER: {
-      const newState = { ...state };
-      newState.user.assets = action.updatedAccount.assets;
-      newState.user.buyingPower = action.updatedAccount.buyingPower;
-      newState.user.totalStock = action.updatedAccount.totalStock;
-      return newState;
-    }
-
     default:
       return state;
+  }
+}
+
+function deepCopy(value) {
+  if (typeof value === 'object') {
+    if (Array.isArray(value)) {
+      return value.map(element => deepCopy(element));
+    } else {
+      const result = {};
+      Object.entries(value).forEach(entry => {
+        result[entry[0]] = deepCopy(entry[1]);
+      });
+      return result;
+    }
+  } else {
+    return value;
   }
 }

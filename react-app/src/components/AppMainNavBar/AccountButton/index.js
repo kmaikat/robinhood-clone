@@ -18,7 +18,6 @@ function AccountButton() {
         if (!showAccount) return;
 
         const onClick = (e) => {
-            console.log(ref.current, e.target);
             if (ref.current && ref.current.contains(e.target) === false) {
                 const menu = document.querySelector("#app-nav-bar-account-submenu");
                 menu.animate(

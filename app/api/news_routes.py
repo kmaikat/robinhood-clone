@@ -71,7 +71,6 @@ def add_article_like():
     add_article_form['csrf_token'].data = request.cookies['csrf_token']
     # sending to the database
 
-    print(add_article_form.data)
     if add_article_form.validate_on_submit():
         new_liked_article = News(
             like=True,
@@ -92,11 +91,9 @@ def add_article_like():
 @login_required
 @news_routes.route("/liked/<int:news_id>", methods=["DELETE"])
 def delete_article_like(news_id):
-    print(news_id)
     # find the liked article where user id is the same as the user_id
     # delete
     article = News.query.get(news_id)
-    print(article)
     if current_user.id != article.user_id:
         return {
             "message": "This like does not belong to you"
