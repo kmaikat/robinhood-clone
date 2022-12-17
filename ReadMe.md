@@ -1,6 +1,6 @@
 # Welcome to Rockethood
 
-Robinhood is a website clone inspired by Robinhood. This project was created by Efrain, Ha, Joonil, and Kat from App Academy as a part of our coursework.
+[Rockethood](https://rockethood.onrender.com/) is a website clone inspired by Robinhood. This project was created by Efrain, Ha, Joonil, and Kat from App Academy as a part of our coursework.
 Our project is a fully-functional web application that allows users to buy and sell stocks, track stocks performance,and bookmark the finance news using real-time market data. We built the application using Python and JavaScript, with the Flask framework for the backend and React/Redux for the frontend. We also used SQLAlchemy to handle our database interactions and Boto3 for AWS integration.
 
 
@@ -35,10 +35,29 @@ Our project is a fully-functional web application that allows users to buy and s
 
 ### Basic Features: 
 
-- HomePage 
-
+- HomePage for logged in user
+![HomePage](https://live.staticflickr.com/65535/52568597624_9f62bd19e2_h.jpg)
 - Login Page
 
 - Signup Page
+![SignUp](https://live.staticflickr.com/65535/52567867002_d076dd8c51_h.jpg)
 
-- HomePage for logged in user
+- Stock Detail Page 
+![Stock](https://live.staticflickr.com/65535/52568772890_d01a530d32_k.jpg)
+
+## Connect with the devs
+ 1. Efrain Saldana
+ 
+ <a href="https://github.com/epsldn"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /> </a> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+ 
+ 2. Ha Nguyen
+ 
+ <a href="https://github.com/vietha3110"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /> </a> <a href="https://www.linkedin.com/in/havietng/"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /> </a>
+ 
+ 3. Joonil Kim
+ 
+ <a  href="https://github.com/hydralisk1"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /> </a> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
+ 
+ 4. Katherine Mai
+ 
+ <a  href="https://github.com/kmaikat"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /> </a> <a href="https://www.linkedin.com/in/kpmai20"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /> </a>
