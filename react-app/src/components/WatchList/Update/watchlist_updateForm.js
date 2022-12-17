@@ -35,7 +35,7 @@ const UpdateWatchlistForm = ({watchlist, onClose}) => {
             <form onSubmit={handleSubmit}>
                 <div className='updateform-header'>
                     <div>Edit List</div>
-                    <button className='btn-close' onClick={handleClose}>
+                    <button type='button'className='btn-close' onClick={handleClose}>
                         <i className="fa-solid fa-xmark"></i>
                     </button>
                 </div>
