@@ -155,12 +155,13 @@ function Transactions() {
                         <div className="transaction-form-data-container">
                             <label style={{ userSelect: "none" }}>Buy In</label>
                             <div ref={optionContainer} className={`transaction-shares-or-dollars-outer-container `} id={showSharesOrDollars ? "transaction-shares-or-dollars-outer-container" : ""}>
-                                <button onClick={() => {
+                                <button onClick={(e) => {
+                                    e.preventDefault();
                                     setShowSharesOrDollars(!showSharesOrDollars);
                                 }}
                                     id="transaction-shares-or-dollars-display">
                                     {sharesOrDollars === "dollars" ? "Dollars" : "Shares"}
-                                    <i className="fa-solid fa-up-down" />
+                                    <i className="fa-solid fa-sort"></i>
                                 </button>
                                 {showSharesOrDollars &&
                                     <div className={`transaction-shares-or-dollars-container ${showSharesOrDollars ? "transactions-shares-or-dollars-open" : ""}`}>
@@ -249,7 +250,7 @@ function Transactions() {
                                         if (buyOrSale === "sell" && sharesOrDollars === "shares") {
                                             if (Number(ownedShares) >= Number(event.target.value)) {
                                                 setTransactionAmount(event.target.value);
-                                                setEstQuantity(usDollar.format(Number(event.target.value) * sharePrice));
+                                                setEstQuantity("$" + usDollar.format(Number(event.target.value) * sharePrice));
                                             } else {
                                                 setErrors({ amount: "Not enough stock." });
                                             }
@@ -289,14 +290,14 @@ function Transactions() {
                         <div id="transaction-buying-power-container" style={{ userSelect: "none" }}>
                             <p>{`Roughly $${(Number(ownedShares) * Number(sharePrice)).toString().split(".")[0]}${(Number(ownedShares) * Number(sharePrice)).toString().split(".")[1]?.slice(0, 2) ? "." + (Number(ownedShares) * Number(sharePrice)).toString().split(".")[1]?.slice(0, 2) : ""} of ${symbol} remaining`}</p>
                         </div>}
-                    {submittingOrder &&
+                    {/* {submittingOrder && */}
                         <div id="transaction-submitting-order">
-                            {
+                            {/* {
                                 loading &&
                                 <div id="signup-spinner" />
-                            }
+                            } */}
                             {
-                                !loading &&
+                                loading &&
                                 <div className="transaction-submitted">
                                     <i className="fa-solid fa-check-to-slot" />
                                     <p>Order Successfully Submitted!</p>

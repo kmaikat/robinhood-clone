@@ -15,7 +15,7 @@
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.02) 0px -12px 24px 0px, rgba(0, 0, 0, 0.06) 0px 12px 24px 0px;
     overflow: hidden;
-    height: 393px;
+    min-height: 393px;
     background-color: white;
     position: relative;
 }
