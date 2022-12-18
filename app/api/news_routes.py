@@ -13,7 +13,7 @@ news_routes = Blueprint('news', __name__)
 
 @news_routes.route("/")
 def get_all_news():
-    key_choice = os.getenv("NEWS_API_KEYS")
+    key_choice = os.getenv("STOCK_API_KEYS")
     url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice}&sort=LATEST'
     r = requests.get(url)
     data = r.json()
@@ -41,7 +41,7 @@ def get_all_news():
 @news_routes.route("/<string:ticker>")
 def get_news_by_ticker(ticker):
     # return a an enumarated list of keys
-    news_api_keys = os.getenv("NEWS_API_KEYS")
+    news_api_keys = os.getenv("STOCK_API_KEYS")
 
     url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={news_api_keys}&tickers={ticker}&sort=LATEST'
     r = requests.get(url)

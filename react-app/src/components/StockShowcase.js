@@ -8,6 +8,8 @@ import { useDispatch } from "react-redux";
 import Transactions from "./Transactions";
 import AddStock from "./WatchList/WatchlistStock/AddStock";
 import "../stylesheets/StockShowcase.css";
+import PlaceHolder from "./PlaceHolder";
+
 function stringToFormat(marketCap) {
     const usDollar = Intl.NumberFormat("en-US");
     marketCap = usDollar.format(marketCap);
@@ -40,13 +42,22 @@ function StockShowcase() {
     useEffect(() => {
         setCompanyInfo({ "about": {}, "statistics": {} });
         fetch(`/api/stock/company-information/${symbol}`)
-            .then(res => res.json())
             .then(res => {
-                if (res.error) return ({ company: "" });
+                if(res.ok)
+                    return res.json()
+                throw new Error()
+            })
+            .then(res => {
                 setCompanyInfo(res);
-                setCompanyInfoLoaded(true);
-            });
+            })
+            .catch(() => {
+                setCompanyInfo({})
+            })
+            .finally(() => {
+                setCompanyInfoLoaded(true)
+            })
     }, [symbol]);
+
     return (
         <>
             <AppMainNavBar />
@@ -56,8 +67,10 @@ function StockShowcase() {
                         <div id="stock-home-chart-container">
                             {!isError && <ChartDrawing />}
                         </div>
+                        <h2 className="stock-showcase-heading-title">About</h2>
+                        {companyInfoLoaded && (
+                        companyInfo.about ? <>
                         <div className="stock-showcase-info">
-                            <h2 className="stock-showcase-heading-title">About</h2>
                             <p id="stock-showcase-about-description">
                                 {companyInfoLoaded && company.Description}
                             </p>
@@ -173,7 +186,8 @@ function StockShowcase() {
                                     </p>
                                 </div>
                             </div>
-                        </div>
+                        </div></> : <div style={{padding: '1rem'}}><PlaceHolder isNoData={true} /></div>
+                        )}
                         <div className="app-stock-news-container">
                             <SymbolNews />
                         </div>

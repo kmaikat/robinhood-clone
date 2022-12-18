@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { addArticleToDb, deleteArticleFromDb, getArticlesFromDb } from "../../store/news";
+import PlaceHolder from "../PlaceHolder";
 import "../../stylesheets/AllNews.css";
 import "../../stylesheets/SymbolNews.css";
 
@@ -10,6 +11,7 @@ const SymbolNews = () => {
     const [isLiked, setIsLiked] = useState(false)
     const currentUser = useSelector(state => state.session.user)
     const likedArticles = useSelector(state => state.news)
+    const [isLoaded, setIsLoaded] = useState(false)
     const dispatch = useDispatch()
     const { symbol } = useParams();
 
@@ -38,8 +40,14 @@ const SymbolNews = () => {
 
     useEffect(() => {
         dispatch(getArticlesFromDb())
-        setArticles([])
-        fetch(`/api/news/${symbol}`).then(r => r.json()).then(r => setArticles(r));
+        // setArticles([])
+        fetch(`/api/news/${symbol}`)
+            .then(r => r.json())
+            .then(r => {
+                setArticles(r)
+                setIsLoaded(true)
+            })
+
     }, [symbol]);
 
     return (
@@ -47,7 +55,8 @@ const SymbolNews = () => {
             <div id="news-heading-container">
                 <div className="news-heading">News</div>
             </div>
-            {articles.map(article => {
+            {isLoaded ? (
+                articles.length ? articles.map(article => {
                 return (
                     <a href={article.url} target="_blank" rel="noopener noreferrer" >
                         <div id="stock-news-container">
@@ -74,7 +83,9 @@ const SymbolNews = () => {
                         </div>
                     </a>
                 );
-            })}
+            }): <div style={{padding: '1rem'}}><PlaceHolder isNoData={true} /></div>
+            ) : <PlaceHolder />
+        }
         </div>
     );
 };
