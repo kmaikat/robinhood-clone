@@ -18,6 +18,7 @@ Our project is a fully-functional web application that allows users to buy and s
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E)
 ![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![SQLAlchemy](https://camo.githubusercontent.com/e18458350ba6d97944dab16d2e1ab671737257f45dd4ebae220093c72a660a4b/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f73716c616c6368656d792545322541302538302545322541302538302545322541302538302545322541302538302d3432343234323f7374796c653d666f722d7468652d6261646765266c6f676f3d61636164656d6961266c6f676f436f6c6f723d643731663030)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
 ![AWS](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
@@ -36,13 +37,19 @@ Our project is a fully-functional web application that allows users to buy and s
 ### Basic Features: 
 
 - HomePage for logged in user
+
 ![HomePage](https://live.staticflickr.com/65535/52568597624_9f62bd19e2_h.jpg)
+
 - Login Page
 
+![Login Page](https://live.staticflickr.com/65535/52567867032_ce185fc4a7_h.jpg)
+
 - Signup Page
-![SignUp](https://live.staticflickr.com/65535/52567867002_d076dd8c51_h.jpg)
+
+![Signup Page](https://live.staticflickr.com/65535/52567867002_d076dd8c51_h.jpg)
 
 - Stock Detail Page 
+
 ![Stock](https://live.staticflickr.com/65535/52568772890_d01a530d32_k.jpg)
 
 ## Connect with the devs
