@@ -1,0 +1,51 @@
+.profile-asset-header {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    align-items: center;
+    height: 3.6rem;
+    margin-bottom: 1.6rem;
+    gap: 1.2rem;
+}
+
+.profile-asset-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    text-align: center;
+    justify-items: center;
+    gap: 1.2rem;
+}
+
+.profile-asset-header-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    height: 100%;
+    border-bottom: 2px solid black;
+    font-weight: 500;
+}
+
+.profile-asset-list-content {
+    font-size: 1.6rem;
+    height: fit-content;
+    width: fit-content;
+    border-bottom: 2px solid transparent;
+}
+
+.asset-list-symbol {
+    font-weight: 500;
+}
+
+.asset-list-symbol:hover {
+    cursor: pointer;
+    border-bottom: 2px solid black;
+}
+
+.profile-no-assets {
+    font-size: 2.4rem;
+    padding: 2.4rem;
+    padding-top: 1.2rem;
+    color: var(--rockethood-form-lightgray);
+    user-select: none;
+}

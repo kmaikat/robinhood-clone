@@ -1,8 +1,9 @@
 import AppMainNavBar from "./AppMainNavBar/AppMainNavBar";
 import ProfileSection from "./ProfileSection";
-import LikedNews from "./News/LikedNews"
+import LikedNews from "./News/LikedNews";
 import "../stylesheets/ProfilePage.css";
 import WatchlistTab from "./WatchList/WatchlistTab";
+import UserAssets from "./UserAssets";
 
 function ProfilePage() {
     return (
@@ -16,14 +17,14 @@ function ProfilePage() {
                             <div className="profile-page-profile-info-container" id="profile-page-assets">
                                 <h2 className="profile-page-profile-info-title">Assets</h2>
                                 <div>
-                                    {/* STUFF GOES HERE */}
+                                    <UserAssets />
                                 </div>
                             </div>
 
                             <div className="profile-page-profile-info-container" id="profile-page-watchlists">
                                 <h2 className="profile-page-profile-info-title">Watchlists</h2>
                                 <div className="profile-page-profile-info-watchlist-main ">
-                                    <WatchlistTab/>
+                                    <WatchlistTab />
                                 </div>
                             </div>
 
