@@ -11,6 +11,7 @@ const LandingPageNavbar = () => {
         return <Redirect to='/app' />;
     }
 
+    if (current_url === "/")   document.querySelector('meta[name="theme-color"]').setAttribute('content', `#002615`);
     return (
         <div className="landing-page-container">
             <div className={`landing-page ${current_url === "/" ? "landing-page-green" : "landing-page-white"}`}>

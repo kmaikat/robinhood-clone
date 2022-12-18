@@ -1,13 +1,11 @@
 #home-page-learn-more {
-
-    background-color: #C3F53C;
+    background-color: var(--rockethood-darkest-green);
     color: rgb(0, 44, 21);
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 5rem;
-    width: 23rem;
 }
 
 #button-container {
@@ -18,7 +16,7 @@
 
 
 #home-video-section {
-    background-color: rgb(0, 44, 21);
+    background-color: var(--rockethood-darkest-green);
     width: 100%;
 }
 
@@ -45,18 +43,36 @@
 
 #video-container {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     object-fit: contain;
     overflow-clip-margin: content-box;
 }
 
-#under-video-container{
+#video-container .video{
+    max-height: 77.5vh;
+    width: 100%;
+
+}
+
+#under-video-container {
     padding: 2.5rem 2.5rem 7.5rem;
     border-bottom: 1px solid #C3F53C;
 }
 
-#checkout-section-container{
-    background-color: rgb(0, 44, 21);
+#checkout-section-container {
+    background-color: var(--rockethood-darkest-green);
     color: #C3F53C;
+}
+
+
+@media screen and (max-width: 768px) {
+    #video-container .video {
+        max-height: 62.5vh;
+    }
+}
+
+@media screen and (max-width: 425px) {
+    #video-container .video {
+        max-height: 44.5vh;
+    }
 }
