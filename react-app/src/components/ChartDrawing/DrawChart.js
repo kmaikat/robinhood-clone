@@ -9,6 +9,7 @@ import styles from './chart.module.css'
 
 const DrawChart = () => {
     const [isLoaded, setIsLoaded] = useState(false)
+    const [isNoData, setIsNoData] = useState(false)
     const [allData, setAllData] = useState({})
     const [color, setColor] = useState('#5ac53b')
     const [isRealtime, setIsRealtime] = useState(false)
@@ -50,6 +51,7 @@ const DrawChart = () => {
 
     const getData = async () => {
         const { data, categories } = ['3M', 'YTD', '1Y', '5Y'].includes(term) ? await getDailyPrices(symbol, term) : await getMinutelyPrices(symbol, term)
+        // setIsNoData(true)
         setChart(data, categories)
         setIsLoaded(true)
     }
@@ -88,17 +90,26 @@ const DrawChart = () => {
     }
 
     const setChart = (data, categories) => {
-        setAllData({
-            series: [{
-                name,
-                data
-            }],
-            categories
-        })
-        setRange(categories.length)
-        dispatch(setCurrentPrice(data.reduce((p, c) => c || p)))
-        dispatch(setStartingPrice(data[0]))
-        setColor(data[0] <= data.reduce((p, c) => c || p) ? '#5ac53b' : '#ec5e2a')
+        if(!data.length) {
+            dispatch(setStartingPrice(0))
+            dispatch(setCurrentPrice(0))
+            setIsNoData(true)
+        }
+        else {
+            setIsNoData(false)
+            setAllData({
+                series: [{
+                    name,
+                    data
+                }],
+                categories
+            })
+            setRange(categories.length)
+
+            dispatch(setCurrentPrice(data.reduce((p, c) => c || p, 0)))
+            dispatch(setStartingPrice(data[0]))
+            setColor(data[0] <= data.reduce((p, c) => c || p, 0) ? '#5ac53b' : '#ec5e2a')
+        }
     }
 
     useEffect(() => {
@@ -125,6 +136,7 @@ const DrawChart = () => {
             isLoaded ?
             <>
                 <div>
+                    {isNoData ? <PlaceHolder isNoData={true} /> :
                     <Chart
                         series={allData.series}
                         options={{
@@ -144,7 +156,7 @@ const DrawChart = () => {
                                         dispatch(setIsHovering(true))
                                     },
                                     mouseLeave: () => {
-                                        dispatch(setCurrentPrice(allData.series[0].data.reduce((p, c) => c || p)))
+                                        dispatch(setCurrentPrice(allData.series[0].data.reduce((p, c) => c || p, 0)))
                                         dispatch(setIsHovering(false))
                                         // setIsTooltip(true)
                                     }
@@ -184,7 +196,7 @@ const DrawChart = () => {
                             },
                         }}
                         height={300}
-                    />
+                    />}
                 </div>
                 <ul className={styles.termList}>
                     {
