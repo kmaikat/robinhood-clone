@@ -71,6 +71,7 @@ export const getMinutelyPrices = async (ticker, t) => {
     }
 
     if(t === '1W'){
+        if(!series.data.length) return res
         const latestDate = new Date(series.categories[series.categories.length - 1].split(' ')[0])
 
         let idx = -1
@@ -103,6 +104,7 @@ export const getMinutelyPrices = async (ticker, t) => {
 
 export const getDailyPrices = async (ticker, t) => {
     const series = await getData(ticker, 'daily')
+
     const res = {
         data: [],
         categories: []
