@@ -83,7 +83,7 @@ const SymbolNews = () => {
                         </div>
                     </a>
                 );
-            }): <PlaceHolder isNoData={true} />
+            }): <div style={{padding: '1rem'}}><PlaceHolder isNoData={true} /></div>
             ) : <PlaceHolder />
         }
         </div>

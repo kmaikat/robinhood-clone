@@ -186,7 +186,7 @@ function StockShowcase() {
                                     </p>
                                 </div>
                             </div>
-                        </div></> : <PlaceHolder isNoData={true} />
+                        </div></> : <div style={{padding: '1rem'}}><PlaceHolder isNoData={true} /></div>
                         )}
                         <div className="app-stock-news-container">
                             <SymbolNews />
