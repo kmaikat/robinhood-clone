@@ -88,7 +88,14 @@ const DrawChart = () => {
         }else {
             if(data.length === 1)
                 setChart(Array(rtCategories.length).fill(data[0]), rtCategories)
-            else setChart(data, rtCategories)
+            else {
+                if(data.length < rtCategories.length){
+                    while(data.length < rtCategories.length){
+                        data.push(data[data.length - 1])
+                    }
+                }
+                setChart(data, rtCategories)
+            }
         }
         setIsRealtime(realtime)
         setIsLoaded(true)
