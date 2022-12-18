@@ -36,12 +36,7 @@ const updateAccount = (updatedAccount) => ({
 });
 
 const initialState = {
-  user:
-  {
-    assets: {
-
-    }
-  }
+  user: null
 };
 
 export const authenticate = () => async (dispatch) => {

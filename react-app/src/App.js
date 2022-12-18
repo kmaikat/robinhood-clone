@@ -24,7 +24,6 @@ function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
   const user = useSelector(state => state.session);
-  console.log('waht is this',user);
 
   useEffect(() => {
     (async () => {
@@ -33,7 +32,7 @@ function App() {
     })();
   }, [dispatch]);
 
-  
+
   if (!loaded) {
     return null;
   }

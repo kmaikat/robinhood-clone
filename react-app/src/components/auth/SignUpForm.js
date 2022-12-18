@@ -38,15 +38,11 @@ const SignUpForm = () => {
 
   }, [username]);
 
-  const usernameCheck = (e) => {
+  const usernameCheck = async (e) => {
     e.preventDefault();
-    if (usernameError) {
-      setShowUsernameError(true);
-      return;
-    }
 
     setLoading(true);
-    const success = fetch(`/api/users/check-username/${username}`)
+    const success = await fetch(`/api/users/check-username/${username}`)
       .then(res => {
         setLoading(false);
         return res.ok;
@@ -56,6 +52,7 @@ const SignUpForm = () => {
       });
 
     if (success) setSignupStage(signupStage + 1);
+
     else {
       setUsernameError('Username duplicated. Please try again');
       setShowUsernameError(true);
@@ -266,7 +263,7 @@ const SignUpForm = () => {
             </div>
             <div className="signup-button">
               {signupStage === 1 && <button className='signup-button-bottom' type='submit'>{loading ? spinner : "Next"}</button>}
-              </div>
+            </div>
           </form>}
         {/* step 2 */}
         {signupStage === 2 &&
@@ -286,7 +283,7 @@ const SignUpForm = () => {
             </p>
             <div className="signup-button">
               {signupStage === 2 && <button className='signup-button-bottom' type='submit'>{loading ? spinner : "Next"}</button>}
-              </div>
+            </div>
           </form>
         }
         {signupStage === 3 &&
@@ -342,7 +339,7 @@ const SignUpForm = () => {
               </p>
             </div>
             <div className="signup-button">
-            {signupStage === 3 && <button className='signup-button-bottom'  type='submit'>{loading ? spinner : "Complete Sign up"}</button>}
+              {signupStage === 3 && <button className='signup-button-bottom' type='submit'>{loading ? spinner : "Complete Sign up"}</button>}
             </div>
           </form>}
         <div className='signup-bottom'>
@@ -352,7 +349,7 @@ const SignUpForm = () => {
           </div>
           <div className='signup-button-container'>
             <div className="signup-button">
-             
+
             </div>
           </div>
         </div>
