@@ -63,6 +63,12 @@
     width: 100%;
 }
 
+@media screen and (max-width: 425px){
+    .landing-page-navlink-actions-container {
+        border-left: none;
+    }
+}
+
 .landing-page-navlinks {
     display: flex;
     align-items: center;
