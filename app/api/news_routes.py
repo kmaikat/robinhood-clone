@@ -13,23 +13,12 @@ news_routes = Blueprint('news', __name__)
 
 @news_routes.route("/")
 def get_all_news():
-    news_api_keys = os.getenv("NEWS_API_KEYS").split(",")
-    key_choice = choice(news_api_keys)
-    url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice[1]}&sort=LATEST'
+    key_choice = os.getenv("NEWS_API_KEYS")
+    url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice}&sort=LATEST'
     r = requests.get(url)
     data = r.json()
-    while ("Note" in data):
-        choice_index = news_api_keys.index(key_choice)
-        news_api_keys.pop(choice_index)
 
-        if not news_api_keys:
-            return jsonify([{"error": "No news found at the moment"}]), 500
-
-        key_choice = choice(news_api_keys)
-        url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice[1]}&sort=LATEST'
-        r = requests.get(url)
-        data = r.json()
-
+    print(data)
     if "feed" in data:
         feed = data["feed"]
         article_data = [{"source": article["source"], "title": article["title"],
@@ -52,23 +41,12 @@ def get_all_news():
 @news_routes.route("/<string:ticker>")
 def get_news_by_ticker(ticker):
     # return a an enumarated list of keys
-    news_api_keys = os.getenv("NEWS_API_KEYS").split(",")
-    key_choice = choice(news_api_keys)
+    news_api_keys = os.getenv("NEWS_API_KEYS")
 
-    url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice[1]}&tickers={ticker}&sort=LATEST'
+    url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={news_api_keys}&tickers={ticker}&sort=LATEST'
     r = requests.get(url)
     data = r.json()
-
-    while ("Note" in data):
-        choice_index = news_api_keys.index(key_choice)
-        news_api_keys.pop(choice_index)
-        if not news_api_keys:
-            return jsonify([{"error": "No news found at the moment"}]), 500
-
-        key_choice = choice(news_api_keys)
-        url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice[1]}&tickers={ticker}&sort=LATEST'
-        r = requests.get(url)
-        data = r.json()
+    print(data)
 
     if "feed" in data:
         feed = data["feed"]
