@@ -172,8 +172,15 @@ export const getDailyPrices = async (ticker, t) => {
 }
 
 export const getOneDayPrices = async (ticker, miniSize = false) => {
-    const res = await fetch('https://yahoo-finance-api.vercel.app/' + ticker)
-    const jsonData = await res.json()
+    let res
+    let jsonData
+    try{
+        res = await fetch('https://yahoo-finance-api.vercel.app/' + ticker)
+        if(!res.ok) throw new Error()
+        jsonData = await res.json()
+    }catch{
+        return {data: [], categories: []}
+    }
     const data = jsonData.chart.result[0].indicators.quote[0].close
     const categories = jsonData.chart.result[0].timestamp
 
