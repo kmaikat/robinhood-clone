@@ -6,7 +6,7 @@ const LandingHome = () => {
         <div id='home-whole-container'>
             <div id="home-video-section">
                 <div id="video-container">
-                    <video className="video" controlsList="nodownload nofullscreen noremoteplayback" muted autoPlay playsInline src="https://rockethood.s3.us-west-2.amazonaws.com/assets/retirement-hero-hq__67df1aeb147a73f52166e1f391f37f0e.mp4"/>
+                    <video className="video" controlsList="nodownload nofullscreen noremoteplayback" muted autoPlay playsInline src="https://rockethood.s3.us-west-2.amazonaws.com/assets/retirement-hero-hq__67df1aeb147a73f52166e1f391f37f0e.mp4" />
                 </div>
                 <div id="under-video-container">
                     <div id="under-video-text">
@@ -26,7 +26,20 @@ const LandingHome = () => {
                 </div>
             </div>
             <div id="checkout-section-container">
-                Check out our latest
+                <div id="checkout-section-header-container">
+                    <div id="checkout-section-header-left">
+                        Check out our latest
+                    </div>
+                    <div id="checkout-section-header-right">
+                        <div>
+                            1/5
+                        </div>
+                        <div>
+                            arrows
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div >
     );

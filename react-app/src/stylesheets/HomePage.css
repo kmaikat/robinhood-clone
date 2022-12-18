@@ -1,5 +1,23 @@
+#checkout-section-container{
+    padding-top: 5rem;
+    padding-bottom: 7rem;
+}
+#checkout-section-header-container{
+    padding-left: 4rem;
+    padding-bottom: 2rem;
+    display: flex;
+    justify-content: space-between;
+
+}
+#checkout-section-header-left{
+    font-size: 4rem;
+    font-weight: 500;
+    color: #C3F53C;
+    height: min-content;
+}
+
 #home-page-learn-more {
-    background-color: var(--rockethood-darkest-green);
+    background-color: #C3F53C;
     color: rgb(0, 44, 21);
     border: none;
     display: flex;
@@ -26,19 +44,20 @@
     font-size: 7.7rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items:center;
+    /* justify-content: center; */
 
 }
 
 #top-line {
     width: fit-content;
-    height: 8rem;
+    /* height: 8rem; */
 
 }
 
 #bottom-line {
     width: fit-content;
-    height: fit-content;
+    /* height: fit-content; */
 }
 
 #video-container {
