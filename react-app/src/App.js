@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar';
@@ -23,6 +23,8 @@ import CashCard from './components/CashCard';
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const user = useSelector(state => state.session);
+  console.log('waht is this',user);
 
   useEffect(() => {
     (async () => {
@@ -31,6 +33,7 @@ function App() {
     })();
   }, [dispatch]);
 
+  
   if (!loaded) {
     return null;
   }

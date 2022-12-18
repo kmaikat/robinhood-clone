@@ -33,7 +33,7 @@ def authenticate():
         totalStock = sum([asset.quantity for asset in user.assets])
         response["totalStock"] = totalStock
         return jsonify(response)
-    return {'errors': ['Unauthorized']}, 401
+    return {'errors': ['Unauthorized']}
 
 
 @auth_routes.route('/login', methods=['POST'])

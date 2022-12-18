@@ -7,6 +7,7 @@ const LandingPageNavbar = () => {
     const current_url = location.pathname;
     const user = useSelector(state => state.session.user);
 
+    console.log('user =', user);
     if (user) {
         return <Redirect to='/app' />;
     }
