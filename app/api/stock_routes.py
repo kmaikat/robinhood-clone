@@ -42,9 +42,22 @@ def get_key():
 @stock_routes.route("/company-information/<string:ticker>")
 # @login_required
 def company_information(ticker):
-    apikey = os.environ.get('COMPANY_API_KEYS')
+    apikey = os.environ.get('COMPANY_API_KEYS').split(',')
+    key_choice = choice(apikey)
     url = f"https://www.alphavantage.co/query?function=OVERVIEW&symbol={ticker}&apikey={apikey}"
     data = requests.get(url).json()
+
+    while ("Note" in data):
+        choice_index = apikey.index(key_choice)
+        apikey.pop(choice_index)
+
+        if not apikey:
+            return jsonify({"error": "Data not available at the moment"}), 500
+
+        key_choice = choice(apikey)
+        url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice[1]}&sort=LATEST'
+        r = requests.get(url)
+        data = r.json()
 
     if "Address" in data:
         company_info = {
