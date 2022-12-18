@@ -42,7 +42,7 @@ def get_key():
 @stock_routes.route("/company-information/<string:ticker>")
 # @login_required
 def company_information(ticker):
-    apikey = os.environ.get('COMPANY_API_KEYS')
+    apikey = os.environ.get('STOCK_API_KEYS')
     url = f"https://www.alphavantage.co/query?function=OVERVIEW&symbol={ticker}&apikey={apikey}"
     data = requests.get(url).json()
 
