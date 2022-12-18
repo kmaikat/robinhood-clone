@@ -1,4 +1,4 @@
-# Welcome to Rockethood
+# Welcome to Rockethood 🚀
 
 [Rockethood](https://rockethood.onrender.com/) is a website clone inspired by Robinhood. This project was created by Efrain, Ha, Joonil, and Kat from App Academy as a part of our coursework.
 Our project is a fully-functional web application that allows users to buy and sell stocks, track stocks performance,and bookmark the finance news using real-time market data. We built the application using Python and JavaScript, with the Flask framework for the backend and React/Redux for the frontend. We also used SQLAlchemy to handle our database interactions and Boto3 for AWS integration.
