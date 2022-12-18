@@ -38,14 +38,11 @@ const SignUpForm = () => {
 
   }, [username]);
 
-  const usernameCheck = () => {
-    if (usernameError) {
-      setShowUsernameError(true);
-      return;
-    }
+  const usernameCheck = async (e) => {
+    e.preventDefault();
 
     setLoading(true);
-    const success = fetch(`/api/users/check-username/${username}`)
+    const success = await fetch(`/api/users/check-username/${username}`)
       .then(res => {
         setLoading(false);
         return res.ok;
@@ -55,6 +52,7 @@ const SignUpForm = () => {
       });
 
     if (success) setSignupStage(signupStage + 1);
+
     else {
       setUsernameError('Username duplicated. Please try again');
       setShowUsernameError(true);
@@ -100,7 +98,7 @@ const SignUpForm = () => {
     if (bank.length > 0 === false) errors.bank = "Please enter your bank information.";
     if (!lastFour || lastFour < 0) errors.lastFour = "Please enter the last four of your bank account.";
     if (accountNickname.length > 0 === false) errors.accountNickname = "Please enter a nickname for your account.";
-    if (!buyingPower || buyingPower < 0) errors.buyingPower = "Please enter a number in USD";
+    if (!buyingPower || buyingPower <= 0) errors.buyingPower = "Please enter a number greater than 0";
 
     if (Object.keys(errors).length > 0) {
       setErrors(errors);
@@ -163,7 +161,7 @@ const SignUpForm = () => {
   };
 
   const updateBuyingPower = (e) => {
-    setBuyingPower(Number(e.target.value));
+    setBuyingPower((e.target.value));
   };
 
   if (user) {
@@ -189,7 +187,7 @@ const SignUpForm = () => {
       </div>
       <div className='signup-page-right'>
         {signupStage === 1 &&
-          <form id="signup-form">
+          <form id="signup-form" onSubmit={phase1Check}>
             <p id="signup-id-warning" className='signup-form-heading'>Enter your first and last name as they appear on your government ID.</p>
             <div className='signup-names'>
               <div className='signup-names-inner'>
@@ -263,10 +261,13 @@ const SignUpForm = () => {
               <p id="signup-already">Already have an account?</p>
               <Link to="/login"><p id="signup-login">Log in instead</p></Link>
             </div>
+            <div className="signup-button">
+              {signupStage === 1 && <button className='signup-button-bottom' type='submit'>{loading ? spinner : "Next"}</button>}
+            </div>
           </form>}
         {/* step 2 */}
         {signupStage === 2 &&
-          <form id="signup-form">
+          <form id="signup-form" onSubmit={usernameCheck}>
             <p className='signup-form-heading'>Enter your username.</p>
             <div>
               <input
@@ -280,10 +281,13 @@ const SignUpForm = () => {
             <p className='error-label'>
               {showUsernameError && usernameError}
             </p>
+            <div className="signup-button">
+              {signupStage === 2 && <button className='signup-button-bottom' type='submit'>{loading ? spinner : "Next"}</button>}
+            </div>
           </form>
         }
         {signupStage === 3 &&
-          <form id="signup-form">
+          <form id="signup-form" onSubmit={phase2Check}>
             <p className='signup-form-heading'>Let's get your account funded!</p>
             <div>
               <input
@@ -334,6 +338,9 @@ const SignUpForm = () => {
                 {errors.buyingPower}
               </p>
             </div>
+            <div className="signup-button">
+              {signupStage === 3 && <button className='signup-button-bottom' type='submit'>{loading ? spinner : "Complete Sign up"}</button>}
+            </div>
           </form>}
         <div className='signup-bottom'>
           <div id="signup-progress-bar-container">
@@ -342,9 +349,7 @@ const SignUpForm = () => {
           </div>
           <div className='signup-button-container'>
             <div className="signup-button">
-              {signupStage === 1 && <button className='signup-button-bottom' onClick={phase1Check}>{loading ? spinner : "Next"}</button>}
-              {signupStage === 2 && <button className='signup-button-bottom' onClick={usernameCheck}>{loading ? spinner : "Next"}</button>}
-              {signupStage === 3 && <button className='signup-button-bottom' onClick={phase2Check}>{loading ? spinner : "Complete Sign up"}</button>}
+
             </div>
           </div>
         </div>
