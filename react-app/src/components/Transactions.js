@@ -155,12 +155,13 @@ function Transactions() {
                         <div className="transaction-form-data-container">
                             <label style={{ userSelect: "none" }}>Buy In</label>
                             <div ref={optionContainer} className={`transaction-shares-or-dollars-outer-container `} id={showSharesOrDollars ? "transaction-shares-or-dollars-outer-container" : ""}>
-                                <button onClick={() => {
+                                <button onClick={(e) => {
+                                    e.preventDefault();
                                     setShowSharesOrDollars(!showSharesOrDollars);
                                 }}
                                     id="transaction-shares-or-dollars-display">
                                     {sharesOrDollars === "dollars" ? "Dollars" : "Shares"}
-                                    <i className="fa-solid fa-up-down" />
+                                    <i className="fa-solid fa-sort"></i>
                                 </button>
                                 {showSharesOrDollars &&
                                     <div className={`transaction-shares-or-dollars-container ${showSharesOrDollars ? "transactions-shares-or-dollars-open" : ""}`}>
@@ -249,7 +250,7 @@ function Transactions() {
                                         if (buyOrSale === "sell" && sharesOrDollars === "shares") {
                                             if (Number(ownedShares) >= Number(event.target.value)) {
                                                 setTransactionAmount(event.target.value);
-                                                setEstQuantity(usDollar.format(Number(event.target.value) * sharePrice));
+                                                setEstQuantity("$" + usDollar.format(Number(event.target.value) * sharePrice));
                                             } else {
                                                 setErrors({ amount: "Not enough stock." });
                                             }
@@ -296,11 +297,13 @@ function Transactions() {
                                 <div id="signup-spinner" />
                             }
                             {
-                                !loading &&
+                                loading &&
                                 <div className="transaction-submitted">
-                                    <i className="fa-solid fa-check-to-slot" />
-                                    <p>Order Successfully Submitted!</p>
-                                    <p>Filled at {`${sharePrice.toString().split(".")[0]}.${sharePrice.toString().split(".")[1] ? sharePrice.toString().split(".")[1]?.slice(0, 2) : ""}`} a share</p>
+                                    <i className="fa-regular fa-circle-check" style={buyOrSale === "buy" ? { color: " #00C805", fontWeight: 500 } : { color: "#FF6600", fontWeight: 500 }} />
+                                    <div className="transaction-submitted-text">
+                                        <p>Order Successfully Submitted!</p>
+                                        <p>Filled at <span style={buyOrSale === "buy" ? { color: " #00C805", fontWeight: 500 } : { color: "#FF6600", fontWeight: 500 }}>{`$${sharePrice.toString().split(".")[0]}.${sharePrice.toString().split(".")[1] ? sharePrice.toString().split(".")[1]?.slice(0, 2) : ""}`} </span>a share</p>
+                                    </div>
                                 </div>
                             }
                         </div>

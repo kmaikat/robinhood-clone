@@ -15,7 +15,7 @@
     background-color: white;
     box-shadow: rgba(0, 0, 0, 0.02) 0px -12px 24px 0px, rgba(0, 0, 0, 0.06) 0px 12px 24px 0px;
     overflow: hidden;
-    height: 393px;
+    min-height: 393px;
     background-color: white;
     position: relative;
 }
@@ -261,4 +261,20 @@
     top: 0;
     width: 100%;
     z-index: 10;
+}
+
+.transaction-submitted{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.transaction-submitted .fa-regular{
+    align-self: center;
+    font-size: 6rem;
+}
+
+.transaction-submitted-text{
+    font-size: 1.6rem;
+    text-align: center;
 }
