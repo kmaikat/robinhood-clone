@@ -174,6 +174,7 @@ export const getDailyPrices = async (ticker, t) => {
 export const getOneDayPrices = async (ticker, miniSize = false) => {
     const res = await fetch('https://yahoo-finance-api.vercel.app/' + ticker)
     const jsonData = await res.json()
+
     const data = jsonData.chart.result[0].indicators.quote[0].close
     const categories = jsonData.chart.result[0].timestamp
 
@@ -192,7 +193,10 @@ export const getOneDayPrices = async (ticker, miniSize = false) => {
                 result.categories.push(new Date((t + offset) * 1000).toISOString().replace('T', ' '))
             }
         })
-    else result.data.push(jsonData.chart.result[0].meta.regularMarketPrice)
+    else {
+        result.data.push(jsonData.chart.result[0].meta.regularMarketPrice)
+        result.categories = []
+    }
 
     return result
 }

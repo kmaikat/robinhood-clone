@@ -25,7 +25,7 @@ def search_symbols(keyword):
 @stock_routes.route('/get-data/<string:symbol>')
 def get_data(symbol):
     func = request.args.get('func') or 'daily'
-    apikey = choice(os.environ.get('STOCK_API_KEYS').split(','))
+    apikey = os.environ.get('STOCK_API_KEYS')
     url = f'https://www.alphavantage.co/query?function={"TIME_SERIES_DAILY_ADJUSTED" if func == "daily" else "TIME_SERIES_INTRADAY"}&symbol={symbol}&apikey={apikey}&outputsize=full{"&interval=5min" if func == "minutely" else ""}'
 
     res = requests.get(url).json()
@@ -34,7 +34,7 @@ def get_data(symbol):
 
 @stock_routes.route('/get-key')
 def get_key():
-    apikey = choice(os.environ.get('STOCK_API_KEYS').split(','))
+    apikey = os.environ.get('STOCK_API_KEYS')
 
     return {'apikey': apikey}
 
@@ -42,22 +42,22 @@ def get_key():
 @stock_routes.route("/company-information/<string:ticker>")
 # @login_required
 def company_information(ticker):
-    apikey = os.environ.get('COMPANY_API_KEYS').split(',')
-    key_choice = choice(apikey)
+    apikey = os.environ.get('STOCK_API_KEYS')
+    # key_choice = choice(apikey)
     url = f"https://www.alphavantage.co/query?function=OVERVIEW&symbol={ticker}&apikey={apikey}"
     data = requests.get(url).json()
 
-    while ("Note" in data):
-        choice_index = apikey.index(key_choice)
-        apikey.pop(choice_index)
+    # while ("Note" in data):
+    #     choice_index = apikey.index(key_choice)
+    #     apikey.pop(choice_index)
 
-        if not apikey:
-            return jsonify({"error": "Data not available at the moment"}), 500
+    #     if not apikey:
+    #         return jsonify({"error": "Data not available at the moment"}), 500
 
-        key_choice = choice(apikey)
-        url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice[1]}&sort=LATEST'
-        r = requests.get(url)
-        data = r.json()
+    #     key_choice = choice(apikey)
+    #     url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice[1]}&sort=LATEST'
+    #     r = requests.get(url)
+    #     data = r.json()
 
     if "Address" in data:
         company_info = {

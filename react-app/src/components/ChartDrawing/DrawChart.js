@@ -72,8 +72,9 @@ const DrawChart = () => {
 
     const getOneDayData = async () => {
         const { data, categories, realtime } = await getOneDayPrices(symbol)
+        const rtCategories = setCategories()
+
         if(realtime){
-            const rtCategories = setCategories()
             if(categories.length)
                 rtCategories[categories.length - 1] = categories[categories.length - 1]
             else {
@@ -84,7 +85,11 @@ const DrawChart = () => {
             }
 
             setChart([...data, ...Array(rtCategories.length - data.length).fill(null)], rtCategories)
-        }else setChart(data, categories)
+        }else {
+            if(data.length === 1)
+                setChart(Array(rtCategories.length).fill(data[0]), rtCategories)
+            else setChart(data, rtCategories)
+        }
         setIsRealtime(realtime)
         setIsLoaded(true)
     }

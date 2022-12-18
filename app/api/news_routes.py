@@ -13,22 +13,21 @@ news_routes = Blueprint('news', __name__)
 
 @news_routes.route("/")
 def get_all_news():
-    news_api_keys = os.getenv("NEWS_API_KEYS").split(",")
-    key_choice = choice(news_api_keys)
-    url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice[1]}&sort=LATEST'
+    news_api_keys = os.getenv("STOCK_API_KEYS")
+    url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={news_api_keys}&sort=LATEST'
     r = requests.get(url)
     data = r.json()
-    while ("Note" in data):
-        choice_index = news_api_keys.index(key_choice)
-        news_api_keys.pop(choice_index)
+    # while ("Note" in data):
+    #     choice_index = news_api_keys.index(key_choice)
+    #     news_api_keys.pop(choice_index)
 
-        if not news_api_keys:
-            return jsonify([{"error": "No news found at the moment"}]), 500
+    #     if not news_api_keys:
+    #         return jsonify([{"error": "No news found at the moment"}]), 500
 
-        key_choice = choice(news_api_keys)
-        url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice[1]}&sort=LATEST'
-        r = requests.get(url)
-        data = r.json()
+    #     key_choice = choice(news_api_keys)
+    #     url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice[1]}&sort=LATEST'
+    #     r = requests.get(url)
+    #     data = r.json()
 
     if "feed" in data:
         feed = data["feed"]
@@ -52,23 +51,23 @@ def get_all_news():
 @news_routes.route("/<string:ticker>")
 def get_news_by_ticker(ticker):
     # return a an enumarated list of keys
-    news_api_keys = os.getenv("NEWS_API_KEYS").split(",")
-    key_choice = choice(news_api_keys)
+    news_api_keys = os.getenv("STOCK_API_KEYS")
+    # key_choice = choice(news_api_keys)
 
-    url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice[1]}&tickers={ticker}&sort=LATEST'
+    url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={news_api_keys}&tickers={ticker}&sort=LATEST'
     r = requests.get(url)
     data = r.json()
 
-    while ("Note" in data):
-        choice_index = news_api_keys.index(key_choice)
-        news_api_keys.pop(choice_index)
-        if not news_api_keys:
-            return jsonify([{"error": "No news found at the moment"}]), 500
+    # while ("Note" in data):
+    #     choice_index = news_api_keys.index(key_choice)
+    #     news_api_keys.pop(choice_index)
+    #     if not news_api_keys:
+    #         return jsonify([{"error": "No news found at the moment"}]), 500
 
-        key_choice = choice(news_api_keys)
-        url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice[1]}&tickers={ticker}&sort=LATEST'
-        r = requests.get(url)
-        data = r.json()
+    #     key_choice = choice(news_api_keys)
+    #     url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice[1]}&tickers={ticker}&sort=LATEST'
+    #     r = requests.get(url)
+    #     data = r.json()
 
     if "feed" in data:
         feed = data["feed"]
