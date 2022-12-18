@@ -27,7 +27,7 @@ function UserAssets() {
                         })}
                     </ul>
                 </div > :
-                <div className="profile-no-assets">
+                <div className="profile-no-content">
                     <h3>Any stocks you buy will show up here! <i className="fa-solid fa-money-bill-trend-up"></i></h3>
                 </div>
             }
