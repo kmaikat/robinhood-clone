@@ -290,21 +290,23 @@ function Transactions() {
                         <div id="transaction-buying-power-container" style={{ userSelect: "none" }}>
                             <p>{`Roughly $${(Number(ownedShares) * Number(sharePrice)).toString().split(".")[0]}${(Number(ownedShares) * Number(sharePrice)).toString().split(".")[1]?.slice(0, 2) ? "." + (Number(ownedShares) * Number(sharePrice)).toString().split(".")[1]?.slice(0, 2) : ""} of ${symbol} remaining`}</p>
                         </div>}
-                    {/* {submittingOrder && */}
-                    <div id="transaction-submitting-order">
-                        {/* {
+                    {submittingOrder &&
+                        <div id="transaction-submitting-order">
+                            {
                                 loading &&
                                 <div id="signup-spinner" />
-                            } */}
-                        {
-                            loading &&
-                            <div className="transaction-submitted">
-                                <i className="fa-regular fa-circle-check"></i>
-                                <p>Order Successfully Submitted!</p>
-                                <p>Filled at {`${sharePrice.toString().split(".")[0]}.${sharePrice.toString().split(".")[1] ? sharePrice.toString().split(".")[1]?.slice(0, 2) : ""}`} a share</p>
-                            </div>
-                        }
-                    </div>
+                            }
+                            {
+                                loading &&
+                                <div className="transaction-submitted">
+                                    <i className="fa-regular fa-circle-check" style={buyOrSale === "buy" ? { color: " #00C805", fontWeight: 500 } : { color: "#FF6600", fontWeight: 500 }} />
+                                    <div className="transaction-submitted-text">
+                                        <p>Order Successfully Submitted!</p>
+                                        <p>Filled at <span style={buyOrSale === "buy" ? { color: " #00C805", fontWeight: 500 } : { color: "#FF6600", fontWeight: 500 }}>{`$${sharePrice.toString().split(".")[0]}.${sharePrice.toString().split(".")[1] ? sharePrice.toString().split(".")[1]?.slice(0, 2) : ""}`} </span>a share</p>
+                                    </div>
+                                </div>
+                            }
+                        </div>
                     }
                 </div>
                 <AddStock symbol={symbol} />

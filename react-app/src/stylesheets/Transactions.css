@@ -262,3 +262,19 @@
     width: 100%;
     z-index: 10;
 }
+
+.transaction-submitted{
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+}
+
+.transaction-submitted .fa-regular{
+    align-self: center;
+    font-size: 6rem;
+}
+
+.transaction-submitted-text{
+    font-size: 1.6rem;
+    text-align: center;
+}
