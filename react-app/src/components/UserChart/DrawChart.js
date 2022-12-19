@@ -171,52 +171,45 @@ const DrawChart = () => {
                                         toolbar: { show: false },
                                         // sparkline: { enabled: true }
                                     },
-                                    mouseLeave: () => {
-                                        dispatch(setCurrentPrice(allData.series[0].data.reduce((p, c) => c || p)))
-                                        dispatch(setIsHovering(false))
-                                        // setIsTooltip(true)
-                                    }
+                                
                                 },
-                                toolbar: { show: false },
-                                // sparkline: { enabled: true }
-                            },
-                            colors: [color],
-                            width: '100%',
-                            xaxis: {
-                                categories: allData.categories,
-                                position: 'top',
-                                labels: {
+                                colors: [color],
+                                width: '100%',
+                                xaxis: {
+                                    categories: allData.categories,
+                                    position: 'top',
+                                    labels: {
+                                        show: false,
+                                        formatter: (value) => labelFormatter(value)
+                                    },
+                                    tooltip: {
+                                        offsetY: 20,
+                                    },
+                                    range,
+                                },
+                                yaxis: {
+                                    labels: { show: false },
+                                },
+                                grid: { show: false },
+                                stroke: {
+                                    width: 1.5,
+                                },
+                                legend: {
                                     show: false,
-                                    formatter: (value) => labelFormatter(value)
                                 },
                                 tooltip: {
-                                    offsetY: 20,
+                                    // enabled: isTooltip,
+                                    enabled: true,
+                                    items: { display: 'none' },
+                                    x: { show: false },
                                 },
-                                range,
-                            },
-                            yaxis: {
-                                labels: { show: false },
-                            },
-                            grid: { show: false },
-                            stroke: {
-                                width: 1.5,
-                            },
-                            legend: {
-                                show: false,
-                            },
-                            tooltip: {
-                                // enabled: isTooltip,
-                                enabled: true,
-                                items: { display: 'none' },
-                                x: { show: false },
-                            },
-                        }}
-                        height={300}
-                    />
-                </div>
-            </>
-            : <PlaceHolder />
-        }
+                            }}
+                            height={300}
+                        />
+                    </div>
+                </>
+                : <PlaceHolder />
+            }
         </div>
     );
 };
