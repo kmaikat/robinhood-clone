@@ -41,7 +41,7 @@ const SignUpForm = () => {
   const usernameCheck = async (e) => {
     e.preventDefault();
 
-    if (username.length < 3) {
+    if (username.length < 3 || username.length > 20) {
       setUsernameError('Your username must be between 3 and 20 characters long.');
       setShowUsernameError(true);
       return;
