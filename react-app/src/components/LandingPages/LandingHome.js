@@ -1,5 +1,6 @@
 import React from "react";
 import "../../stylesheets/HomePage.css";
+import LandingHomeFooter from "./LandingHomeFooter";
 
 const LandingHome = () => {
     return (
@@ -25,6 +26,7 @@ const LandingHome = () => {
                     </div>
                 </div>
             </div>
+            <LandingHomeFooter />
         </div >
     );
 };
