@@ -63,12 +63,21 @@ Our project is a fully-functional web application that allows users to buy and s
 - Sign-up page
 <img width="1512" alt="Screen Shot 2022-12-19 at 9 27 55 AM" src="https://user-images.githubusercontent.com/44792993/208463580-382c90d3-691a-4f5e-928c-83e6eedb99bc.png">
 
+- Dashboard page
+<img width="1512" alt="Screen Shot 2022-12-19 at 9 42 02 AM" src="https://user-images.githubusercontent.com/44792993/208464080-f795cce6-b1b8-4550-9401-84bea9da6c79.png">
+
+<img width="1512" alt="Screen Shot 2022-12-19 at 9 43 35 AM" src="https://user-images.githubusercontent.com/44792993/208464353-c89a984a-aa69-4d7e-b1c3-cb052c426ab9.png">
+
+- Individual tickers' pages
+<img width="1512" alt="Screen Shot 2022-12-19 at 9 44 17 AM" src="https://user-images.githubusercontent.com/44792993/208464452-503deda5-98c6-4316-910e-b46edbe6ce53.png">
+
 
 ## Connect with the devs
  1. Efrain Saldana
  
  <a href="https://github.com/epsldn"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /> </a> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" />
  
+
  2. Ha Nguyen
  
  <a href="https://github.com/vietha3110"> <img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" /> </a> <a href="https://www.linkedin.com/in/havietng/"> <img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /> </a>
