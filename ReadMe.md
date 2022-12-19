@@ -57,6 +57,12 @@ Our project is a fully-functional web application that allows users to buy and s
 - Home page
 <img width="1512" alt="Screen Shot 2022-12-19 at 9 27 00 AM" src="https://user-images.githubusercontent.com/44792993/208463247-63ec6dbc-60b3-4671-b1be-ed4733573853.png">
 
+- Login page
+<img width="1512" alt="Screen Shot 2022-12-19 at 9 27 47 AM" src="https://user-images.githubusercontent.com/44792993/208463602-5cb862da-c1ea-431d-8bcc-f3914ad3190a.png">
+
+- Sign-up page
+<img width="1512" alt="Screen Shot 2022-12-19 at 9 27 55 AM" src="https://user-images.githubusercontent.com/44792993/208463580-382c90d3-691a-4f5e-928c-83e6eedb99bc.png">
+
 
 ## Connect with the devs
  1. Efrain Saldana
