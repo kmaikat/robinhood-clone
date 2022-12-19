@@ -65,29 +65,29 @@ const LandingHomeFooter = () => {
                         </div>
                         <div className="names" id="name-container">
                             Ha Nguyen
-                            <a href="https://github.com/epsldn">
+                            <a href="https://github.com/vietha3110">
                                 Github
                             </a>
-                            <a href="https://www.linkedin.com/in/efrainpsaldana">
+                            <a href="https://www.linkedin.com/in/havietng/">
                                 LinkedIn
                             </a>
 
                         </div>
                         <div className="names" id="name-container">
                             Joonil Kim
-                            <a href="https://github.com/epsldn">
+                            <a href="https://github.com/hydralisk1">
                                 Github
                             </a>
-                            <a href="https://www.linkedin.com/in/efrainpsaldana">
+                            <a href="https://www.linkedin.com">
                                 LinkedIn
                             </a>
                         </div>
                         <div className="names" id="name-container">
                             Katherine Mai
-                            <a href="https://github.com/epsldn">
+                            <a href="https://github.com/kmaikat">
                                 Github
                             </a>
-                            <a href="https://www.linkedin.com/in/efrainpsaldana">
+                            <a href="https://www.linkedin.com/in/kpmai20">
                                 LinkedIn
                             </a>
                         </div>
