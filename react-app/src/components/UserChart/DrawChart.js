@@ -2,10 +2,10 @@ import Chart from 'react-apexcharts';
 import { useEffect, useState } from 'react';
 // import { getDailyPrices, getMinutelyPrices, getOneDayPrices, labelFormatter } from '../../util/util'
 
-import { getDailyPrices, getMinutelyPrices, getOneDayPrices, labelFormatter } from '../../util/util2'
-import { useSelector, useDispatch } from 'react-redux'
-import { setCurrentPrice, setStartingPrice, setIsHovering } from '../../store/price'
-import PlaceHolder from '../PlaceHolder'
+import { getDailyPrices, getMinutelyPrices, getOneDayPrices, labelFormatter } from '../../util/util2';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCurrentPrice, setStartingPrice, setIsHovering } from '../../store/price';
+import PlaceHolder from '../PlaceHolder';
 
 
 const DrawChart = () => {
@@ -19,8 +19,8 @@ const DrawChart = () => {
     const name = 'User';
     // const [isTooltip, setIsTooltip] = useState(true)
 
-    const [range, setRange] = useState(0)
-    const term = '1D'
+    const [range, setRange] = useState(0);
+    const term = '1D';
     // const terms = ['1D', '1W', '1M', '3M', 'YTD', '1Y', '5Y']
 
     const selected = {
@@ -95,17 +95,23 @@ const DrawChart = () => {
 
     const setChart = (data, categories) => {
         let assetCost = assets.map(asset => asset.quantity * asset.avgPrice).reduce((sum, cost) => sum + cost, 0);
-        const reverseData = data.reverse();
-
+        const reverseData = data;
         let newData = [1];
         for (let index = 1; index < reverseData.length; index++) {
+            if (reverseData[index] === null) {
+                break;
+            }
             newData.push(reverseData[index] / reverseData[index - 1]);
         };
+
         newData = newData.map(v => {
             assetCost = v * assetCost;
             return v * assetCost;
-        }).reverse();
+        });
 
+        const oldLength = newData.length;
+        newData.length = 79;
+        newData.fill(null, oldLength);
 
         setAllData({
             series: [{
@@ -156,15 +162,15 @@ const DrawChart = () => {
                                         zoom: { enabled: false },
                                         events: {
                                             mouseMove: (e, chartContext, config) => {
-                                                if(config.dataPointIndex >= 0){
+                                                if (config.dataPointIndex >= 0) {
                                                     // setIsTooltip(!!allData.series[0].data[config.dataPointIndex])
-                                                    dispatch(setCurrentPrice(allData.series[0].data.slice(0, config.dataPointIndex + 1).reduce((p, c) => c || p) || allData.series[0].data[allData.series[0].data.length - 1]))
+                                                    dispatch(setCurrentPrice(allData.series[0].data.slice(0, config.dataPointIndex + 1).reduce((p, c) => c || p) || allData.series[0].data[allData.series[0].data.length - 1]));
                                                 }
-                                                dispatch(setIsHovering(true))
+                                                dispatch(setIsHovering(true));
                                             },
                                             mouseLeave: () => {
-                                                dispatch(setCurrentPrice(allData.series[0].data.reduce((p, c) => c || p, 0)))
-                                                dispatch(setIsHovering(false))
+                                                dispatch(setCurrentPrice(allData.series[0].data.reduce((p, c) => c || p, 0)));
+                                                dispatch(setIsHovering(false));
                                                 // setIsTooltip(true)
                                             }
                                         },
@@ -204,10 +210,10 @@ const DrawChart = () => {
                                 }}
                                 height={300}
                             />
-                </div>
-            </>
-            : <PlaceHolder />
-        }
+                        </div>
+                    </>
+                    : <PlaceHolder />
+            }
         </div>
     );
 };
