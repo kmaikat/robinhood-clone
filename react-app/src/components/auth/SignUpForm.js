@@ -45,6 +45,10 @@ const SignUpForm = () => {
       setUsernameError('Your username must be between 3 and 20 characters long.');
       setShowUsernameError(true);
       return;
+    } else if (/[^a-zA-Z\d\_]+/.test(username)) {
+      setUsernameError('Your username can only have letters, numbers, and underscores.');
+      setShowUsernameError(true);
+      return;
     }
 
     setLoading(true);

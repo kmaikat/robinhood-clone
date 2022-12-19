@@ -1,7 +1,9 @@
 import React from "react";
 import "../../stylesheets/LearnPage.css";
 import heroJourney from "../../assets/hero-journey.svg";
-
+import whatIsInvestment from "../../assets/whatisinvestment.svg";
+import whatIsStock from "../../assets/whatisstock.svg";
+import whatIsStockMarket from "../../assets/whatisstockmarket.svg";
 
 const LearnPage = () => {
     return (
@@ -27,6 +29,11 @@ const LearnPage = () => {
                     <h2>Investing 101</h2>
                     <p>A good place to start. Get the
                         low-down before you dive in.</p>
+                    <div>
+                        <img src={whatIsInvestment} />
+                        <img src={whatIsStock} />
+                        <img src={whatIsStockMarket} />
+                    </div>
                 </div>
             </div>
         </div>
