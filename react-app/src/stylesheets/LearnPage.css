@@ -5,6 +5,7 @@
     min-height: 500px;
     position: relative;
     width: 100%;
+    border-bottom: .18rem black solid;
 }
 
 .learn-page-top-green-section-top {
@@ -67,9 +68,11 @@
         flex-direction: column;
         align-items: center;
     }
+
     .learn-page-top-green-section-bottom-content {
         width: 100%;
     }
+
     .learn-page-top-green-section-bottom-image {
         position: relative;
         right: 0;
@@ -77,8 +80,12 @@
         width: 55%;
         max-width: 594px;
         max-height: 497;
-        padding: 8rem 0 ;
+        padding: 8rem 0;
     }
+}
+
+.learn-page-bottom {
+    width: 1280px;
 }
 
 /* e1ebdc */

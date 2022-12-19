@@ -22,7 +22,13 @@ const LearnPage = () => {
                     </div>
                 </div>
             </div>
-
+            <div className="learn-page-bottom">
+                <div className="learn-page-bottom-title">
+                    <h2>Investing 101</h2>
+                    <p>A good place to start. Get the
+                        low-down before you dive in.</p>
+                </div>
+            </div>
         </div>
     );
 
