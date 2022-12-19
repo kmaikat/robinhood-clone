@@ -1,11 +1,12 @@
 import Chart from 'react-apexcharts';
 import { useEffect, useState } from 'react';
 // import { getDailyPrices, getMinutelyPrices, getOneDayPrices, labelFormatter } from '../../util/util'
-import { getDailyPrices, getMinutelyPrices, getOneDayPrices, labelFormatter } from '../../util/util2';
-import { useSelector, useDispatch } from 'react-redux';
-import { setCurrentPrice, setStartingPrice, setTerm, setIsHovering } from '../../store/price';
-import PlaceHolder from '../PlaceHolder';
-import styles from './chart.module.css';
+
+import { getDailyPrices, getMinutelyPrices, getOneDayPrices, labelFormatter } from '../../util/util2'
+import { useSelector, useDispatch } from 'react-redux'
+import { setCurrentPrice, setStartingPrice, setIsHovering } from '../../store/price'
+import PlaceHolder from '../PlaceHolder'
+
 
 const DrawChart = () => {
     const [isLoaded, setIsLoaded] = useState(false);
@@ -17,9 +18,11 @@ const DrawChart = () => {
     const symbol = 'AAPL';
     const name = 'User';
     // const [isTooltip, setIsTooltip] = useState(true)
-    const [range, setRange] = useState(0);
-    const term = useSelector(state => state.price.term);
-    const terms = ['1D', '1W', '1M', '3M', 'YTD', '1Y', '5Y'];
+
+    const [range, setRange] = useState(0)
+    const term = '1D'
+    // const terms = ['1D', '1W', '1M', '3M', 'YTD', '1Y', '5Y']
+
     const selected = {
         borderBottom: `2px solid ${color}`,
         color: color,
@@ -168,48 +171,52 @@ const DrawChart = () => {
                                         toolbar: { show: false },
                                         // sparkline: { enabled: true }
                                     },
-                                    colors: [color],
-                                    width: '100%',
-                                    xaxis: {
-                                        categories: allData.categories,
-                                        position: 'top',
-                                        labels: {
-                                            show: false,
-                                            formatter: (value) => labelFormatter(value)
-                                        },
-                                        tooltip: {
-                                            offsetY: 20,
-                                        },
-                                        range,
-                                    },
-                                    yaxis: {
-                                        labels: { show: false },
-                                    },
-                                    grid: { show: false },
-                                    stroke: {
-                                        width: 1.5,
-                                    },
-                                    legend: {
-                                        show: false,
-                                    },
-                                    tooltip: {
-                                        // enabled: isTooltip,
-                                        enabled: true,
-                                        items: { display: 'none' },
-                                        x: { show: false },
-                                    },
-                                }}
-                                height={300}
-                            />
-                        </div>
-                        <ul className={styles.termList}>
-                            {
-                                terms.map(t => <li style={t === term ? selected : {}} key={t} onClick={() => dispatch(setTerm(t))}>{t}</li>)
-                            }
-                        </ul>
-                    </>
-                    : <PlaceHolder />
-            }
+                                    mouseLeave: () => {
+                                        dispatch(setCurrentPrice(allData.series[0].data.reduce((p, c) => c || p)))
+                                        dispatch(setIsHovering(false))
+                                        // setIsTooltip(true)
+                                    }
+                                },
+                                toolbar: { show: false },
+                                // sparkline: { enabled: true }
+                            },
+                            colors: [color],
+                            width: '100%',
+                            xaxis: {
+                                categories: allData.categories,
+                                position: 'top',
+                                labels: {
+                                    show: false,
+                                    formatter: (value) => labelFormatter(value)
+                                },
+                                tooltip: {
+                                    offsetY: 20,
+                                },
+                                range,
+                            },
+                            yaxis: {
+                                labels: { show: false },
+                            },
+                            grid: { show: false },
+                            stroke: {
+                                width: 1.5,
+                            },
+                            legend: {
+                                show: false,
+                            },
+                            tooltip: {
+                                // enabled: isTooltip,
+                                enabled: true,
+                                items: { display: 'none' },
+                                x: { show: false },
+                            },
+                        }}
+                        height={300}
+                    />
+                </div>
+            </>
+            : <PlaceHolder />
+        }
         </div>
     );
 };
