@@ -34,7 +34,7 @@ Our project is a fully-functional web application that allows users to buy and s
 
 ![RENDER](https://img.shields.io/badge/Render-informational?style=for-the-badge&logo=render&logoColor=%5bdec3)
 
-### Basic Features: 
+## Basic Features: 
 
 - HomePage for logged in user
 
