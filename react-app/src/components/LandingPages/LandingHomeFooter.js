@@ -54,17 +54,42 @@ const LandingHomeFooter = () => {
             <div id="footer-bottom-container">
                 <div id="footer-bottom-left">
                     <div id="footer-bottom-left-content">
-                        <div className="names">
+                        <div className="names" id="name-container">
                             Efrain Saldana
+                            <a href="https://github.com/epsldn">
+                                Github
+                            </a>
+                            <a href="https://www.linkedin.com/in/efrainpsaldana">
+                                LinkedIn
+                            </a>
                         </div>
-                        <div className="names">
+                        <div className="names" id="name-container">
                             Ha Nguyen
+                            <a href="https://github.com/vietha3110">
+                                Github
+                            </a>
+                            <a href="https://www.linkedin.com/in/havietng/">
+                                LinkedIn
+                            </a>
+
                         </div>
-                        <div className="names">
+                        <div className="names" id="name-container">
                             Joonil Kim
+                            <a href="https://github.com/hydralisk1">
+                                Github
+                            </a>
+                            <a href="https://www.linkedin.com">
+                                LinkedIn
+                            </a>
                         </div>
-                        <div className="names">
+                        <div className="names" id="name-container">
                             Katherine Mai
+                            <a href="https://github.com/kmaikat">
+                                Github
+                            </a>
+                            <a href="https://www.linkedin.com/in/kpmai20">
+                                LinkedIn
+                            </a>
                         </div>
                     </div>
                 </div>

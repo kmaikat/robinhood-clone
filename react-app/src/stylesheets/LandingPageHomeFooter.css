@@ -70,9 +70,6 @@
     display: flex;
 }
 
-#footer-container {
-    position: absolute;
-}
 
 #text-disclaimer {
     display: flex;
@@ -91,4 +88,14 @@
 
 .names {
     font-weight: 600;
+}
+
+#name-container{
+    display: grid;
+    grid-column: auto;
+}
+
+#name-container>a{
+    font-weight: 400;
+    margin-top: 2rem;
 }
