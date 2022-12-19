@@ -32,11 +32,8 @@ const LandingPageNavbar = () => {
                         <NavLink to="/learn">
                             <li className="landing-page-navlink" id="landing-page-learn-button">Learn</li>
                         </NavLink>
-                        <NavLink to="/snacks">
-                            <li className="landing-page-navlink" id="landing-page-Snacks-button">Snacks</li>
-                        </NavLink>
                         <NavLink to="/cashcard">
-                            <li className="landing-page-navlink" id="landing-page-CashCard-button">CashCard</li>
+                            <li className="landing-page-navlink" id="landing-page-CashCard-button">Cash Card</li>
                         </NavLink>
                     </ul>
                     <div className="landing-page-actions">
