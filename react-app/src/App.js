@@ -19,6 +19,7 @@ import ProfilePage from './components/ProfilePage.js';
 import LearnPage from './components/LandingPages/Learn';
 import LandingHome from './components/LandingPages/LandingHome';
 import CashCard from './components/CashCard';
+import InvestLandingPage from './components/LandingPages/InvestLandingPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -42,11 +43,7 @@ function App() {
       <Switch>
         <Route path="/invest">
           <LandingPageNavbar />
-          Invest
-        </Route>
-        <Route path="/crypto">
-          <LandingPageNavbar />
-          crypto
+          <InvestLandingPage />
         </Route>
         <Route path="/learn">
           <LandingPageNavbar />
