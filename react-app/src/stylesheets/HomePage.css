@@ -22,6 +22,7 @@
 #home-video-section {
     background-color: var(--rockethood-darkest-green);
     width: 100%;
+    min-height: 75vh;
 }
 
 #under-video-text {
@@ -34,6 +35,7 @@
     text-align: center;
     height: fit-content;
     line-height: 8rem;
+    margin-top: 8rem;
 
 }
 
@@ -64,7 +66,7 @@
 
 #under-video-container {
     padding: 2.5rem 2.5rem 7.5rem;
-   
+
 }
 
 #checkout-section-container {
