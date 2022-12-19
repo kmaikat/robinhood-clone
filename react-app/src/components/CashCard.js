@@ -1,4 +1,7 @@
+import { useHistory } from "react-router-dom";
+
 const CashCard = () => {
+    const history = useHistory();
     return (
         <div className="cashcard-container">
             <div className="cashcard-section-one">
@@ -14,7 +17,7 @@ const CashCard = () => {
                     </div>
                 </div>
                 <div className="cashcard-section-one-headline ele3">
-                    <button>Sign up now</button>
+                    <button onClick={() => history.push("/sign-up")}>Sign up now</button>
                 </div>
             </div>
             <div className="cashcard-section-two">
@@ -25,7 +28,7 @@ const CashCard = () => {
             <div className="cashcard-section-three">
                 <div className="cashcard-section-three-content-1">
                     <div className="cashcard-section-three-itemblock">
-                        <img className="cashcard-section-three-item" src="https://v.fastcdn.co/u/62ba1c13/61243602-0-rhyui-1.png"/>
+                        <img className="cashcard-section-three-item" src="https://v.fastcdn.co/u/62ba1c13/61243602-0-rhyui-1.png" />
                     </div>
                     <div className='cashcard-section-three-headline'>
                         <div className="cashcard-section-three-itemblock-title">
@@ -36,7 +39,7 @@ const CashCard = () => {
                         </div>
                         <div className="cashcard-section-three-itemblock-label2">
                             <span style={{ color: "#c3f53c" }}>
-                            Round-ups are capped at $100 per week and bonuses are capped at $10 per week.
+                                Round-ups are capped at $100 per week and bonuses are capped at $10 per week.
                             </span>
                         </div>
                     </div>
@@ -49,16 +52,16 @@ const CashCard = () => {
                         <div className="cashcard-section-three-content-2-label">
                             <span style={{ color: "#c3f53c" }}>Earn cash back when you spend on offers from participating brands. No activation required.</span>
                         </div>
-                        
+
                     </div>
                     <div className="cashcard-section-three-itemblock">
-                        <img className="cashcard-section-three-item" src="https://v.fastcdn.co/u/62ba1c13/61243633-0-RHYillo1.png"/>
+                        <img className="cashcard-section-three-item" src="https://v.fastcdn.co/u/62ba1c13/61243633-0-RHYillo1.png" />
                     </div>
 
                 </div>
                 <div className="cashcard-section-three-content-1">
                     <div className="cashcard-section-three-itemblock">
-                        <img className="cashcard-section-three-item" src="https://v.fastcdn.co/u/62ba1c13/61243648-0-RHYillo2.png"/>
+                        <img className="cashcard-section-three-item" src="https://v.fastcdn.co/u/62ba1c13/61243648-0-RHYillo2.png" />
                     </div>
                     <div className='cashcard-section-three-headline'>
                         <div className="cashcard-section-three-itemblock-title">
@@ -67,7 +70,7 @@ const CashCard = () => {
                         <div className="cashcard-section-three-itemblock-label1">
                             <span style={{ color: "#c3f53c" }}>Automatically invest part of every paycheck in your choice of stocks and crypto.Plus, get paid up to two days early with direct deposit.</span>
                         </div>
-                       
+
                     </div>
                 </div>
             </div>
@@ -78,7 +81,7 @@ const CashCard = () => {
                 </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
-export default CashCard
+export default CashCard;
