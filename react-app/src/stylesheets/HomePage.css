@@ -1,17 +1,21 @@
+
+
 #home-page-learn-more {
-    background-color: var(--rockethood-darkest-green);
+    background-color: #C3F53C;
     color: rgb(0, 44, 21);
     border: none;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 5rem;
+    width: 23rem;
 }
 
 #button-container {
     display: flex;
+    justify-content: space-between;
     justify-content: center;
-    margin-top: 2.5rem;
+    margin-top: 4.8rem;
 }
 
 
@@ -26,19 +30,23 @@
     font-size: 7.7rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items:center;
+    text-align: center;
+    height: fit-content;
+    line-height: 8rem;
 
 }
 
 #top-line {
     width: fit-content;
-    height: 8rem;
+    display: inline-block;
 
 }
 
 #bottom-line {
     width: fit-content;
-    height: fit-content;
+    /* height: fit-content; */
+    display: inline-block;
 }
 
 #video-container {
@@ -56,7 +64,7 @@
 
 #under-video-container {
     padding: 2.5rem 2.5rem 7.5rem;
-    border-bottom: 1px solid #C3F53C;
+   
 }
 
 #checkout-section-container {
