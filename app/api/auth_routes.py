@@ -30,13 +30,14 @@ def authenticate():
         response["assets"] = {asset.symbol: asset.to_dict()
                               for asset in user.assets}
 
-        totalStock = sum([asset.quantity for asset in user.assets])
+        totalStock = sum(
+            [asset.quantity * asset.avg_price for asset in user.assets])
         response["totalStock"] = totalStock
         return jsonify(response)
     return {'errors': ['Unauthorized']}
 
 
-@auth_routes.route('/login', methods=['POST'])
+@ auth_routes.route('/login', methods=['POST'])
 def login():
     """
     Logs a user in
@@ -54,14 +55,16 @@ def login():
         response["assets"] = {asset.symbol: asset.to_dict()
                               for asset in user.assets}
 
-        totalStock = sum([asset.quantity for asset in user.assets])
+        totalStock = sum(
+            [asset.quantity * asset.avg_price for asset in user.assets])
+
         response["totalStock"] = totalStock
 
         return jsonify(response)
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route('/logout')
+@ auth_routes.route('/logout')
 def logout():
     """
     Logs a user out
@@ -70,7 +73,7 @@ def logout():
     return {'message': 'User logged out'}
 
 
-@auth_routes.route('/signup', methods=['POST'])
+@ auth_routes.route('/signup', methods=['POST'])
 def sign_up():
     """
     Creates a new user and logs them in
@@ -94,13 +97,15 @@ def sign_up():
         response["assets"] = {asset.symbol: asset.to_dict()
                               for asset in user.assets}
 
-        totalStock = sum([asset.quantity for asset in user.assets])
+        totalStock = sum(
+            [asset.quantity * asset.avg_price for asset in user.assets])
+
         response["totalStock"] = totalStock
         return response
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
-@auth_routes.route('/unauthorized')
+@ auth_routes.route('/unauthorized')
 def unauthorized():
     """
     Returns unauthorized JSON when flask-login authentication fails
