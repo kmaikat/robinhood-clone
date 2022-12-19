@@ -120,8 +120,11 @@ function Transactions() {
                     duration: 700,
                     timingFunction: "ease-out",
                     fill: "forwards"
-                }
-                );
+                });
+                setTransactionAmount("");
+                setErrors({});
+                setSubmittingOrder(false);
+                setLoading(true);
             }, 700);
         }, loadTimes[randomIndex]);
     }
