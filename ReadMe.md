@@ -5,12 +5,12 @@ Our project is a fully-functional web application that allows users to buy and s
 
 
 
-## Table of Contents
+<!-- ## Table of Contents
 * [MVP Feature List]()
 * [Database Schema]()
 * [Backend Routes]()
 * [FrontEnd Routes]()
-* [Redux Store Shape]()
+* [Redux Store Shape]() -->
 
 ## Tech Stack
 - Languages, Frameworks, Platforms and Libraries: 
@@ -34,7 +34,7 @@ Our project is a fully-functional web application that allows users to buy and s
 
 ![RENDER](https://img.shields.io/badge/Render-informational?style=for-the-badge&logo=render&logoColor=%5bdec3)
 
-## Basic Features: 
+## Features of Rockethood: 
 
 - HomePage for logged in user
 
@@ -51,6 +51,12 @@ Our project is a fully-functional web application that allows users to buy and s
 - Stock Detail Page 
 
 ![Stock](https://live.staticflickr.com/65535/52568772890_d01a530d32_k.jpg)
+
+## Oiginal Robinhood
+
+- Home page
+<img width="1512" alt="Screen Shot 2022-12-19 at 9 27 00 AM" src="https://user-images.githubusercontent.com/44792993/208463247-63ec6dbc-60b3-4671-b1be-ed4733573853.png">
+
 
 ## Connect with the devs
  1. Efrain Saldana
