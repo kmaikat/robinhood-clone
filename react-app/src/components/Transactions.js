@@ -228,15 +228,17 @@ function Transactions() {
                                     if (event.target.value[0] === "$") {
                                         event.target.value = event.target.value.slice(1);
                                         event.target.value = event.target.value.split(",").join("");
-                                        event.target.value = Math.abs(event.target.value);
                                     }
+
+                                    console.log(event.target.value)
+                                    if (event.target.value[0] === "-") event.target.value = event.target.value.slice(1);
                                     if (isNaN(event.target.value) === false) {
                                         // buy conditions
                                         if (buyOrSale === "buy" && sharesOrDollars === "dollars") {
                                             if (Number(buyingPower) >= Number(event.target.value)) {
                                                 const dollar = formatTransactionAmount(event);
                                                 setTransactionAmount("$" + dollar);
-                                                setEstQuantity(Number(event.target.value) / sharePrice);
+                                                setEstQuantity(Math.abs(Number(event.target.value)) / sharePrice);
                                             } else {
                                                 setErrors({ amount: "Not enough funds." });
                                             }
@@ -244,7 +246,7 @@ function Transactions() {
 
                                         if (buyOrSale === "buy" && sharesOrDollars === "shares") {
                                             if (Number(buyingPower / sharePrice) >= Number(event.target.value)) {
-                                                setTransactionAmount(Math.abs(event.target.value));
+                                                setTransactionAmount(event.target.value);
                                                 setEstQuantity(`$${usDollar.format(Math.abs(Number(event.target.value) * sharePrice))}`);
                                             } else {
                                                 setErrors({ amount: "Not enough funds." });
@@ -263,7 +265,7 @@ function Transactions() {
 
                                         if (buyOrSale === "sell" && sharesOrDollars === "shares") {
                                             if (Number(ownedShares) >= Number(event.target.value)) {
-                                                setTransactionAmount(Math.abs(event.target.value));
+                                                setTransactionAmount(event.target.value);
                                                 setEstQuantity("$" + usDollar.format(Math.abs(Number(event.target.value) * sharePrice)));
                                             } else {
                                                 setErrors({ amount: "Not enough stock." });
