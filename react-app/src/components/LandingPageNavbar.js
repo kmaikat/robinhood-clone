@@ -30,9 +30,9 @@ const LandingPageNavbar = () => {
                             <li className="landing-page-navlink" id="landing-page-learn-button">Learn</li>
                         </NavLink>
                         <NavLink to="/cashcard">
-                            <li className="landing-page-navlink" id="landing-page-CashCard-button">Cash Card</li>
+                            <li className="landing-page-navlink" id="landing-page-CashCard-button">RocketCard</li>
                         </NavLink>
-                        <a className="landing-page-navlink" href="https://github.com/kmaikat/robinhood-clone" target="_blank" rel="noopener noreferrer">Check The Repo!</a>
+                        <a className="landing-page-navlink" href="https://github.com/kmaikat/robinhood-clone" target="_blank" rel="noopener noreferrer">Repository</a>
                     </ul>
                     <div className="landing-page-actions">
                         <NavLink to="/login" exact>
