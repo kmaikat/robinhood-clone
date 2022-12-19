@@ -253,7 +253,7 @@ export const amountFormatter = value => {
         cnt++
     }
 
-    return `$${isNaN(res) ? 0 : res}.${second || '00'}`
+    return `$${isNaN(res.replaceAll(',', '')) ? 0 : res}.${second || '00'}`
 }
 
 export const diffFormatter = (curr, start, isPositive) => {
