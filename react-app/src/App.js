@@ -52,10 +52,6 @@ function App() {
           <LandingPageNavbar />
           <LearnPage />
         </Route>
-        <Route path="/snacks">
-          <LandingPageNavbar />
-          snacks
-        </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
         </Route>
@@ -73,7 +69,7 @@ function App() {
         </Route> */}
         <Route path='/' exact={true} >
           <LandingPageNavbar />
-          <LandingHome/>
+          <LandingHome />
         </Route>
         <ProtectedRoute path='/stocks/:symbol' >
           <StockShowcase />
@@ -87,7 +83,7 @@ function App() {
       </ProtectedRoute>
       <Route path="/cashcard">
         <LandingPageNavbar />
-        <CashCard/>
+        <CashCard />
       </Route>
     </BrowserRouter>
   );

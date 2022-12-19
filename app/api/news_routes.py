@@ -17,8 +17,6 @@ def get_all_news():
     url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={key_choice}&sort=LATEST'
     r = requests.get(url)
     data = r.json()
-
-    print(data)
     if "feed" in data:
         feed = data["feed"]
         article_data = [{"source": article["source"], "title": article["title"],
@@ -46,7 +44,6 @@ def get_news_by_ticker(ticker):
     url = f'https://www.alphavantage.co/query?function=NEWS_SENTIMENT&apikey={news_api_keys}&tickers={ticker}&sort=LATEST'
     r = requests.get(url)
     data = r.json()
-    print(data)
 
     if "feed" in data:
         feed = data["feed"]
@@ -85,7 +82,6 @@ def add_article_like():
         db.session.commit()
         return jsonify(new_liked_article.to_dict())
     else:
-        print(add_article_form.errors)
         return jsonify(add_article_form.errors), 406
 
 
