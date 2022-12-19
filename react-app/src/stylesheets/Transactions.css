@@ -261,20 +261,33 @@
     top: 0;
     width: 100%;
     z-index: 10;
+    animation: ordersubmission 500ms ease-in 1 forwards;
 }
 
-.transaction-submitted{
+@keyframes ordersubmission {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+
+
+.transaction-submitted {
     display: flex;
     flex-direction: column;
     gap: 3rem;
 }
 
-.transaction-submitted .fa-regular{
+.transaction-submitted .fa-regular {
     align-self: center;
     font-size: 6rem;
 }
 
-.transaction-submitted-text{
+.transaction-submitted-text {
     font-size: 1.6rem;
     text-align: center;
 }

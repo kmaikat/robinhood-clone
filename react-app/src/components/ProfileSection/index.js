@@ -55,7 +55,7 @@ const ProfileSection = () => {
                     </div>
                 </div>
                 <div>
-                    <div className={styles.amount}>{amountFormatter(user.buyingPower)}</div>
+                    <div className={styles.amount}>{amountFormatter(user.totalStock + user.buyingPower)}</div>
                     <div>Total in Rockethood</div>
                 </div>
             </div>

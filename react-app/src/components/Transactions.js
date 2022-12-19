@@ -111,8 +111,18 @@ function Transactions() {
             setLoading(false);
             setSharePrice(latestPrice);
             setTimeout(() => {
-                setSubmittingOrder(false);
-            }, 2500);
+                const submission = document.querySelector("#transaction-submitting-order");
+                const animation = submission.animate(
+                    [
+                        { opacity: "100%" },
+                        { opacity: "0%" }
+                    ], {
+                    duration: 700,
+                    timingFunction: "ease-out",
+                    fill: "forwards"
+                }
+                );
+            }, 700);
         }, loadTimes[randomIndex]);
     }
 
@@ -291,13 +301,13 @@ function Transactions() {
                             <p>{`Roughly $${(Number(ownedShares) * Number(sharePrice)).toString().split(".")[0]}${(Number(ownedShares) * Number(sharePrice)).toString().split(".")[1]?.slice(0, 2) ? "." + (Number(ownedShares) * Number(sharePrice)).toString().split(".")[1]?.slice(0, 2) : ""} of ${symbol} remaining`}</p>
                         </div>}
                     {submittingOrder &&
-                        <div id="transaction-submitting-order">
+                        <div id="transaction-submitting-order" >
                             {
                                 loading &&
                                 <div id="signup-spinner" />
                             }
                             {
-                                loading &&
+                                !loading &&
                                 <div className="transaction-submitted">
                                     <i className="fa-regular fa-circle-check" style={buyOrSale === "buy" ? { color: " #00C805", fontWeight: 500 } : { color: "#FF6600", fontWeight: 500 }} />
                                     <div className="transaction-submitted-text">
