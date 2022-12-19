@@ -54,7 +54,6 @@ const LandingHomeFooter = () => {
             <div id="footer-bottom-container">
                 <div id="footer-bottom-left">
                     <div id="footer-bottom-left-content">
-
                         <div className="names">Efrain Saldana</div>
                         <div className="names">Ha Nguyen</div>
                         <div className="names">Joonil Kim</div>
