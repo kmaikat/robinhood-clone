@@ -156,63 +156,54 @@ const DrawChart = () => {
                                         zoom: { enabled: false },
                                         events: {
                                             mouseMove: (e, chartContext, config) => {
-                                                if (config.dataPointIndex >= 0) {
+                                                if(config.dataPointIndex >= 0){
                                                     // setIsTooltip(!!allData.series[0].data[config.dataPointIndex])
-                                                    dispatch(setCurrentPrice(allData.series[0].data.slice(0, config.dataPointIndex + 1).reduce((p, c) => c || p) || allData.series[0].data[allData.series[0].data.length - 1]));
+                                                    dispatch(setCurrentPrice(allData.series[0].data.slice(0, config.dataPointIndex + 1).reduce((p, c) => c || p) || allData.series[0].data[allData.series[0].data.length - 1]))
                                                 }
-                                                dispatch(setIsHovering(true));
+                                                dispatch(setIsHovering(true))
                                             },
                                             mouseLeave: () => {
-                                                dispatch(setCurrentPrice(allData.series[0].data.reduce((p, c) => c || p)));
-                                                dispatch(setIsHovering(false));
+                                                dispatch(setCurrentPrice(allData.series[0].data.reduce((p, c) => c || p, 0)))
+                                                dispatch(setIsHovering(false))
                                                 // setIsTooltip(true)
                                             }
                                         },
                                         toolbar: { show: false },
                                         // sparkline: { enabled: true }
                                     },
-                                    mouseLeave: () => {
-                                        dispatch(setCurrentPrice(allData.series[0].data.reduce((p, c) => c || p)))
-                                        dispatch(setIsHovering(false))
-                                        // setIsTooltip(true)
-                                    }
-                                },
-                                toolbar: { show: false },
-                                // sparkline: { enabled: true }
-                            },
-                            colors: [color],
-                            width: '100%',
-                            xaxis: {
-                                categories: allData.categories,
-                                position: 'top',
-                                labels: {
-                                    show: false,
-                                    formatter: (value) => labelFormatter(value)
-                                },
-                                tooltip: {
-                                    offsetY: 20,
-                                },
-                                range,
-                            },
-                            yaxis: {
-                                labels: { show: false },
-                            },
-                            grid: { show: false },
-                            stroke: {
-                                width: 1.5,
-                            },
-                            legend: {
-                                show: false,
-                            },
-                            tooltip: {
-                                // enabled: isTooltip,
-                                enabled: true,
-                                items: { display: 'none' },
-                                x: { show: false },
-                            },
-                        }}
-                        height={300}
-                    />
+                                    colors: [color],
+                                    width: '100%',
+                                    xaxis: {
+                                        categories: allData.categories,
+                                        position: 'top',
+                                        labels: {
+                                            show: false,
+                                            formatter: (value) => labelFormatter(value)
+                                        },
+                                        tooltip: {
+                                            offsetY: 20,
+                                        },
+                                        range,
+                                    },
+                                    yaxis: {
+                                        labels: { show: false },
+                                    },
+                                    grid: { show: false },
+                                    stroke: {
+                                        width: 1.5,
+                                    },
+                                    legend: {
+                                        show: false,
+                                    },
+                                    tooltip: {
+                                        // enabled: isTooltip,
+                                        enabled: true,
+                                        items: { display: 'none' },
+                                        x: { show: false },
+                                    },
+                                }}
+                                height={300}
+                            />
                 </div>
             </>
             : <PlaceHolder />
