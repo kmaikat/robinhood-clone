@@ -24,11 +24,15 @@
     display: flex;
 }
 
+.made-with-icons{
+    display: flex;
+}
+
 #icons{
     width: 2rem;
     height: 2rem;
     display: flex;
-    justify-content: space-between;
+    gap: 1.5rem;
 }
 
 #top-footer-text{
