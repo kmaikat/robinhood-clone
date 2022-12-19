@@ -64,13 +64,19 @@ const LandingHomeFooter = () => {
                 <div id="footer-bottom-right">
                     <div id="footer-bottom-right-content">
                         <div id="text-disclaimer">
-                            All investing involves risk. No deposit needed. Any money in Rockethood is virtual money.
+                            <div id="disclaimer">
+                                All investing involves risk, except for Rockethood. No deposit needed. Any money in Rockethood is virtual money.
+                            </div>
+                            <div id="disclaimer">
+                                This site is not Robinhood. Please do not provide your personal information. Rockethood will not be responsible for any trades made based off of this cloned site.
+                            </div>
+                            <div id="disclaimer">
+                                © 2022 Rockethood. All rights reserved.
 
-                            This site is not Robinhood. Please do not provide your personal information. Rockethood will not be responsible for any trades made based off of this cloned site.
+                            </div>
 
 
 
-                            © 2022 Rockethood. All rights reserved.
                         </div>
                     </div>
                 </div>

@@ -63,10 +63,19 @@
     display: flex;
 }
 #footer-bottom-right-content{
-    margin: 1rem 2rem;
+    padding: 2.5rem;
     display: flex;
 }
 
 #footer-container{
     position: absolute;
+}
+
+#text-disclaimer{
+    display: flex;
+    flex-direction: column;
+}
+
+#disclaimer{
+    margin-bottom: 2.4rem;
 }
