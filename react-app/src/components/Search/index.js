@@ -13,6 +13,7 @@ const Search = () => {
   const dispatch = useDispatch()
 
   const searchInput = e => {
+    if(/^[A-Za-z]*$/.test(e.target.value))
       setKeyword(e.target.value)
   }
 
