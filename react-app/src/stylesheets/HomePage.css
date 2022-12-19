@@ -16,6 +16,10 @@
     height: min-content;
 }
 
+#checkout-section-header-right{
+    display: flex;
+}
+
 #home-page-learn-more {
     background-color: #C3F53C;
     color: rgb(0, 44, 21);
@@ -28,6 +32,7 @@
 
 #button-container {
     display: flex;
+    justify-content: space-between;
     justify-content: center;
     margin-top: 2.5rem;
 }
