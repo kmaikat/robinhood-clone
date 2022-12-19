@@ -90,12 +90,12 @@
     font-weight: 600;
 }
 
-#efrain{
+#name-container{
     display: grid;
     grid-column: auto;
 }
 
-#efrain>a{
+#name-container>a{
     font-weight: 400;
     margin-top: 2rem;
 }

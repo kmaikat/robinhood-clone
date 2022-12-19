@@ -54,7 +54,7 @@ const LandingHomeFooter = () => {
             <div id="footer-bottom-container">
                 <div id="footer-bottom-left">
                     <div id="footer-bottom-left-content">
-                        <div className="names" id="efrain">
+                        <div className="names" id="name-container">
                             Efrain Saldana
                             <a href="https://github.com/epsldn">
                                 Github
@@ -63,14 +63,33 @@ const LandingHomeFooter = () => {
                                 LinkedIn
                             </a>
                         </div>
-                        <div className="names">
+                        <div className="names" id="name-container">
                             Ha Nguyen
+                            <a href="https://github.com/epsldn">
+                                Github
+                            </a>
+                            <a href="https://www.linkedin.com/in/efrainpsaldana">
+                                LinkedIn
+                            </a>
+
                         </div>
-                        <div className="names">
+                        <div className="names" id="name-container">
                             Joonil Kim
+                            <a href="https://github.com/epsldn">
+                                Github
+                            </a>
+                            <a href="https://www.linkedin.com/in/efrainpsaldana">
+                                LinkedIn
+                            </a>
                         </div>
-                        <div className="names">
+                        <div className="names" id="name-container">
                             Katherine Mai
+                            <a href="https://github.com/epsldn">
+                                Github
+                            </a>
+                            <a href="https://www.linkedin.com/in/efrainpsaldana">
+                                LinkedIn
+                            </a>
                         </div>
                     </div>
                 </div>
