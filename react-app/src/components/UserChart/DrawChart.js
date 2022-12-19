@@ -3,9 +3,8 @@ import { useEffect, useState } from 'react'
 // import { getDailyPrices, getMinutelyPrices, getOneDayPrices, labelFormatter } from '../../util/util'
 import { getDailyPrices, getMinutelyPrices, getOneDayPrices, labelFormatter } from '../../util/util2'
 import { useSelector, useDispatch } from 'react-redux'
-import { setCurrentPrice, setStartingPrice, setTerm, setIsHovering } from '../../store/price'
+import { setCurrentPrice, setStartingPrice, setIsHovering } from '../../store/price'
 import PlaceHolder from '../PlaceHolder'
-import styles from './chart.module.css'
 
 const DrawChart = () => {
     const [isLoaded, setIsLoaded] = useState(false)
@@ -18,8 +17,8 @@ const DrawChart = () => {
     const name = 'User'
     // const [isTooltip, setIsTooltip] = useState(true)
     const [range, setRange] = useState(0)
-    const term = useSelector(state => state.price.term)
-    const terms = ['1D', '1W', '1M', '3M', 'YTD', '1Y', '5Y']
+    const term = '1D'
+    // const terms = ['1D', '1W', '1M', '3M', 'YTD', '1Y', '5Y']
     const selected = {
         borderBottom: `2px solid ${color}`,
         color: color,
@@ -194,11 +193,6 @@ const DrawChart = () => {
                         height={300}
                     />
                 </div>
-                <ul className={styles.termList}>
-                    {
-                        terms.map(t => <li style={t === term ? selected : {}} key={t} onClick={() => dispatch(setTerm(t))}>{t}</li>)
-                    }
-                </ul>
             </>
             : <PlaceHolder />
         }
