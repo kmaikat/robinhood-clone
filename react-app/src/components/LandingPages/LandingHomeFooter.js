@@ -54,8 +54,14 @@ const LandingHomeFooter = () => {
             <div id="footer-bottom-container">
                 <div id="footer-bottom-left">
                     <div id="footer-bottom-left-content">
-                        <div className="names">
+                        <div className="names" id="efrain">
                             Efrain Saldana
+                            <a href="https://github.com/epsldn">
+                                Github
+                            </a>
+                            <a href="https://www.linkedin.com/in/efrainpsaldana">
+                                LinkedIn
+                            </a>
                         </div>
                         <div className="names">
                             Ha Nguyen
