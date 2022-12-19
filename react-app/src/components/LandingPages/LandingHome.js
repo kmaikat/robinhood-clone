@@ -25,29 +25,6 @@ const LandingHome = () => {
                     </div>
                 </div>
             </div>
-            <div id="checkout-section-container">
-                <div id="checkout-section-header-container">
-                    <div id="checkout-section-header-left">
-                        Check out our latest
-                    </div>
-                    <div id="checkout-section-header-right">
-                        <div id="checkout-section-scroll-number">
-                            1/5
-                        </div>
-                        <div id="checkout-section-scroll-arrow-container">
-                            <div id="checkout-section-scroll-left-button-container">
-                                <div id="checkout-section-scroll-left-button">
-                                    <i class="fa-solid fa-arrow-left"></i>
-                                </div>
-                            </div>
-                            <div id="checkout-section-scroll-right-button">
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div >
     );
 };
