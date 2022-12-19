@@ -80,6 +80,73 @@
     max-width: 800px;
 }
 
+.learn-page-bottom {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-bottom: 11.2rem;
+    border-bottom: 1.75px solid black;
+}
+
+.learn-page-bottom-investing {
+    margin: 11.2rem;
+    text-align: center;
+}
+
+.learn-page-bottom-investing>h2 {
+    font-size: 5.5rem;
+    line-height: 6rem;
+    margin-bottom: 2.4rem
+}
+
+.learn-page-bottom-investing>p {
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+}
+
+.learn-page-bottom-container {
+    max-width: 1002px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.what-is-section-container {
+    display: grid;
+    justify-content: center;
+    gap: 1.8rem;
+    grid-template-columns: repeat(auto-fill, minmax(auto, 322px));
+}
+
+.what-is-section {
+    width: 322px;
+    height: 540px;
+    position: relative;
+}
+
+.what-is-section-content {
+    left: 2.4rem;
+    top: 2.4rem;
+    width: 240px;
+    position: absolute;
+}
+
+.what-is-section-content h3 {
+    font-weight: 500;
+    line-height: 3.5rem;
+    font-size: 3.2rem;
+}
+
+.what-is-section-content p {
+    margin-top: 2.4rem;
+    font-size: 1.7rem;
+    line-height: 1.9rem;
+}
+
+.what-is-section:hover {
+    color: white
+}
+
 @media screen and (max-width: 768px) {
     .invest-landing-page-promo2-inner-container {
         flex-direction: column;
