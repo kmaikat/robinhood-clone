@@ -1,60 +1,91 @@
-
-#inventing-basics-image-block {
+.learn-page-top-green-section {
     display: flex;
-    margin: 0 5rem;
-    align-items: center;
-
+    flex-direction: column;
+    background-color: #e1ebdc;
+    min-height: 500px;
+    position: relative;
+    width: 100%;
+    border-bottom: .18rem black solid;
 }
 
-#inventing-basics-title-text{
-    font-size: 5.8rem;
+.learn-page-top-green-section-top {
+    font-size: 3.2rem;
+    line-height: 3.5rem;
+    height: 80px;
+    display: flex;
+    padding: 0 2.4rem;
+    border-bottom: .18rem black solid;
+    align-items: center;
+}
+
+.learn-page-top-green-section-bottom {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+}
+
+.learn-page-top-green-section-bottom-container {
+    max-width: 1224px;
+    width: 80%;
+    display: flex;
+    margin: 0 2.4rem;
+    position: relative;
+    height: 100%;
+}
+
+.learn-page-top-green-section-bottom-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: 5rem;
+    width: 35%;
+    height: 100%;
     font-weight: 500;
 }
 
-#inventing-basics-body-text{
-    font-size: 3rem;
+.learn-page-top-green-section-bottom-content h2 {
+    font-size: 5.2rem;
+    line-height: 5.5rem;
 }
 
-.hero-journey-img{
-    height: 100%;
-    width: 100%;
-}
-#inventing-basics-text{
-    width: 450px;
-    display: flex;
-    flex-wrap: wrap;
+.learn-page-top-green-section-bottom-content p {
+    font-size: 2.4rem;
+    line-height: 2.8rem;
+    margin-top: 2.4rem;
 }
 
-#learn-page-inventing-body-container{
-    display: flex;
-    justify-content: center;
-    background-color: #e1ebdc;
-    height: 42.1rem;
-    border-bottom: 1px solid black;
-}
-
-#learn-page-inventing-basics-heading-container{
-    height: 8rem;
-    background-color: #e1ebdc;
-    border-bottom: 1px solid black;
-}
-
-#learn-page-inventing-basic-title{
-    font-weight: 300;
-    font-size: 3.5rem;
-    padding: 1.5rem;
-}
-
-#learn-page-inventing-basics-text-image-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 -4rem;
-    padding: 0 1.5rem;
+.learn-page-top-green-section-bottom-image {
     position: absolute;
-    top: 12.5rem;
+    right: 0;
+    top: -60px;
+    width: 60%;
+    max-width: 594px;
+    max-height: 497;
 }
 
-#learn-page-body{
-    background-color: #e1ebdc;
+@media screen and (max-width: 768px) {
+    .learn-page-top-green-section-bottom-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .learn-page-top-green-section-bottom-content {
+        width: 100%;
+    }
+
+    .learn-page-top-green-section-bottom-image {
+        position: relative;
+        right: 0;
+        top: 0;
+        width: 55%;
+        max-width: 594px;
+        max-height: 497;
+        padding: 8rem 0;
+    }
 }
+
+.learn-page-bottom {
+    width: 1280px;
+}
+
+/* e1ebdc */

@@ -1,44 +1,37 @@
 import React from "react";
-import "../../stylesheets/LearnPage.css"
-import heroJourney from "../../assets/hero-journey.svg"
+import "../../stylesheets/LearnPage.css";
+import heroJourney from "../../assets/hero-journey.svg";
 
 
 const LearnPage = () => {
     return (
         <div id="learn-page-body">
-            {/* <div id="learn-page-inventing-basics-container"> */}
-            <div id="learn-page-inventing-basics-heading-container">
-                <div id="learn-page-inventing-basic-title">
-                    Inventing basics
+            <div className="learn-page-top-green-section">
+                <div className="learn-page-top-green-section-top">
+                    <h1>Investing basics</h1>
                 </div>
-            </div>
-            <div id="learn-page-inventing-body-container">
-
-                <div id="learn-page-inventing-basics-text-image-container">
-                    <div id="inventing-basics-text-block">
-                        <div id="inventing-basics-text">
-                            <div id="inventing-basics-title-text">
-                                The building blocks of your financial journey
-                            </div>
-                            <div id="inventing-basics-body-text">
-                                What you need to know about investing from the get-go.
-                            </div>
-
+                <div className="learn-page-top-green-section-bottom">
+                    <div className="learn-page-top-green-section-bottom-container">
+                        <div className="learn-page-top-green-section-bottom-content">
+                            <h2>The building blocks of your financial journey </h2>
+                            <p>What you need to know about investing from the get-go.</p>
+                        </div>
+                        <div className="learn-page-top-green-section-bottom-image">
+                            <img src={heroJourney} />
                         </div>
                     </div>
-                    <div id="inventing-basics-image-block">
-                        <img className="hero-journey-img" src={heroJourney} alt="hero-journey-pic" />
-                    </div>
-
                 </div>
             </div>
-
-            {/* investing 101 */}
-
-
+            <div className="learn-page-bottom">
+                <div className="learn-page-bottom-title">
+                    <h2>Investing 101</h2>
+                    <p>A good place to start. Get the
+                        low-down before you dive in.</p>
+                </div>
+            </div>
         </div>
-    )
+    );
 
-}
+};
 
-export default LearnPage
+export default LearnPage;

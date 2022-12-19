@@ -48,8 +48,8 @@ function Transactions() {
             const price = await grabLatestPrice(symbol);
             const response = await fetch('/api/stock/search/' + symbol);
             const data = await response.json();
-            const comany = data[0];
-            setCompanyName(comany.name);
+            const company = data[0];
+            setCompanyName(company.name);
             setSharePrice(price.data[price.data.length - 1]);
         })();
     }, [symbol]);

@@ -41,6 +41,12 @@ const SignUpForm = () => {
   const usernameCheck = async (e) => {
     e.preventDefault();
 
+    if (username.length < 3) {
+      setUsernameError('Your username must be between 3 and 20 characters long.');
+      setShowUsernameError(true);
+      return;
+    }
+
     setLoading(true);
     const success = await fetch(`/api/users/check-username/${username}`)
       .then(res => {
@@ -69,7 +75,7 @@ const SignUpForm = () => {
       errors.email = 'Please provide a valid Email';
     }
 
-    if (password.length > 10 === false) errors.password = "Password must be at least 10 characters long";
+    if (password.length >= 10 === false) errors.password = "Password must be at least 10 characters long";
     if (repeatPassword.length > 0 === false) errors.repeatPassword = "Please retype your password.";
     else if (repeatPassword !== password) errors.repeatPassword = "Passwords must match!";
 
@@ -100,7 +106,7 @@ const SignUpForm = () => {
     else if (lastFour.toString().length < 4) errors.lastFour = "Please enter the last four of your bank account.";
     if (accountNickname.length > 0 === false) errors.accountNickname = "Please enter a nickname for your account.";
     if (!buyingPower || buyingPower <= 0) errors.buyingPower = "Please enter a number greater than 0";
-    else if (buyingPower > 10000000) errors.buyingPower = "Rockethood's current max limit is $10,000,000.00. Please deposit less money."
+    else if (buyingPower > 10000000) errors.buyingPower = "Rockethood's current max limit is $10,000,000.00. Please deposit less money.";
     if (Object.keys(errors).length > 0) {
       setErrors(errors);
       return;
