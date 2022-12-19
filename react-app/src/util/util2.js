@@ -241,7 +241,7 @@ export const labelFormatter = value => {
 }
 
 export const amountFormatter = value => {
-    const [first, second] = value.toFixed(2).split('.')
+    const [first, second] = value?.toFixed(2).split('.')
     let res = ''
     let cnt = 0
 
