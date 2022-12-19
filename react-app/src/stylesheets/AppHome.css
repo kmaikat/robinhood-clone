@@ -23,6 +23,16 @@
     min-width: 2.9rem
 }
 
+.buying-power-section {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding-top: 3.6rem;
+    padding-bottom: 2.4rem;
+    border-bottom: 1px solid var(--rockethood-form-lightgray)
+}
+
 
 
 #app-home-chart-container {

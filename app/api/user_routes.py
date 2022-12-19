@@ -107,7 +107,9 @@ def update_buying_power():
                 response["assets"] = {asset.symbol: asset.to_dict()
                                       for asset in user.assets}
 
-                totalStock = sum([asset.quantity for asset in user.assets])
+                totalStock = sum(
+                    [asset.quantity * asset.avg_price for asset in user.assets])
+
                 response["totalStock"] = totalStock
                 return jsonify(response), 201
 
@@ -145,7 +147,9 @@ def update_buying_power():
                 response["assets"] = {asset.symbol: asset.to_dict()
                                       for asset in user.assets}
 
-                totalStock = sum([asset.quantity for asset in user.assets])
+                totalStock = sum(
+                    [asset.quantity * asset.avg_price for asset in user.assets])
+
                 response["totalStock"] = totalStock
                 return jsonify(response)
 
@@ -155,7 +159,9 @@ def update_buying_power():
             response["assets"] = {asset.symbol: asset.to_dict()
                                   for asset in user.assets}
 
-            totalStock = sum([asset.quantity for asset in user.assets])
+            totalStock = sum(
+                [asset.quantity * asset.avg_price for asset in user.assets])
+
             response["totalStock"] = totalStock
             return jsonify(response)
 
