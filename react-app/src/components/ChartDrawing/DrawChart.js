@@ -24,7 +24,7 @@ const DrawChart = () => {
         fontWeight: 500
     }
     const dispatch = useDispatch()
-    let realtimeId
+    const [realtimeId, setRealtimeId] = useState(null)
 
     const setCategories = () => {
         const offsetEST = 18000000
@@ -125,9 +125,11 @@ const DrawChart = () => {
     }
 
     useEffect(() => {
-        if(isRealtime && term === '1D') realtimeId = setTimeout(async () => {
+        if(isRealtime && term === '1D') setRealtimeId(setTimeout(async () => {
             await getOneDayData()
-        }, 5000)
+        }, 5000))
+        
+        return () => {clearTimeout(realtimeId)}
     }, [isRealtime, allData])
 
     useEffect(() => {
@@ -138,8 +140,6 @@ const DrawChart = () => {
             clearTimeout(realtimeId)
             getData()
         }
-
-
     }, [term, symbol])
 
     return (
