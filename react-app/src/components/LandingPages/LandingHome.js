@@ -34,11 +34,11 @@ const LandingHome = () => {
                         <div>
                             1/5
                         </div>
-                        <div id="scroll-arrow-container">
-                            <div id="scroll-left-button">
-                            <i class="fa-solid fa-arrow-left"></i>
+                        <div id="checkout-section-scroll-arrow-container">
+                            <div id="checkout-section-scroll-left-button">
+                                <i class="fa-solid fa-arrow-left"></i>
                             </div>
-                            <div id="scroll-right-button">
+                            <div id="checkout-section-scroll-right-button">
                                 <i class="fa-solid fa-arrow-right"></i>
                             </div>
                         </div>

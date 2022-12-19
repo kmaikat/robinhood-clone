@@ -20,6 +20,31 @@
     display: flex;
 }
 
+#checkout-section-scroll-arrow-container{
+    display: flex;
+    font-size: 2rem;
+}
+
+#checkout-section-scroll-left-button{
+    padding: 1rem;
+    border: 1px solid #C3F53C;
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    display: flex;
+    align-items: center;
+}
+
+#checkout-section-scroll-right-button{
+    padding: 1rem;
+    border: 1px solid #C3F53C;
+    border-radius: 50%;
+    height: 4rem;
+    width: 4rem;
+    display: flex;
+    align-items: center;
+}
+
 #home-page-learn-more {
     background-color: #C3F53C;
     color: rgb(0, 44, 21);
