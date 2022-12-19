@@ -26,9 +26,6 @@ const LandingPageNavbar = () => {
                         <NavLink to="/invest">
                             <li className="landing-page-navlink" id="landing-page-Invest-button">Invest</li>
                         </NavLink>
-                        <NavLink to="/crypto">
-                            <li className="landing-page-navlink" id="landing-page-Crypto-button">Crypto</li>
-                        </NavLink>
                         <NavLink to="/learn">
                             <li className="landing-page-navlink" id="landing-page-learn-button">Learn</li>
                         </NavLink>

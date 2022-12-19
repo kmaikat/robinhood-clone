@@ -1,0 +1,87 @@
+.investing-landing-page-promo1 {
+    display: flex;
+    justify-content: center;
+    background: radial-gradient(123.96% 176% at 0% 205.5%, rgba(0, 95, 50, 0.85) 0%, rgba(0, 200, 5, 0.95) 53.87%, rgba(195, 245, 60, 0.95) 100%), url(https://cdn.robinhood.com/assets/generated_assets/brand/_next/static/images/noise__d63eaf58eecf93a9e61385dd154fba64.svg);
+    min-height: 1024px;
+    border-bottom: 1.75px solid black;
+}
+
+.investing-landing-page-promo1-inner-container {
+    max-width: 700px;
+}
+
+.investing-promo-1-content {
+    margin-top: 3rem;
+    padding: 4.4rem;
+    text-align: center;
+}
+
+.investing-promo-1-content h2 {
+    font-weight: 500;
+    font-size: 5.2rem;
+    line-height: 5.5rem;
+    margin-bottom: 3.6rem;
+}
+
+.investing-promo-1-content p {
+    font-size: 2rem;
+}
+
+.investing-landing-page-promo2 {
+    background-color: #00c805;
+    display: flex;
+    justify-content: center;
+}
+
+.invest-landing-page-promo2-inner-container {
+    display: flex;
+    max-width: 1440px;
+}
+
+.investing-landing-page-promo2-text {
+    display: flex;
+    flex-direction: column;
+    padding: 52px;
+}
+
+.investing-landing-page-promo2-text h2 {
+    font-size: 5.2rem;
+    height: fit-content;
+    line-height: 5.2rem;
+    font-weight: 500;
+}
+
+.investing-promo-1-content button {
+    margin-top: 8rem;
+    min-width: 162px;
+    background-color: black;
+    font-weight: 600;
+    color: white;
+    font-size: 1.8rem;
+    height: 48px;
+}
+
+.investing-promo-1-content button:hover {
+    background-color: rgb(42, 49, 55);
+}
+
+.investing-landing-page-promo2-text p {
+    padding-top: 2.4rem;
+    font-size: 2rem;
+}
+
+#investing-page-disclaimer {
+    margin-top: 8rem;
+    margin-bottom: 4.6rem;
+    font-size: 1.4rem;
+}
+
+#phone-svg {
+    max-width: 800px;
+}
+
+@media screen and (max-width: 768px) {
+    .invest-landing-page-promo2-inner-container {
+        flex-direction: column;
+    }
+}
