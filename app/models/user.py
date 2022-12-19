@@ -112,6 +112,6 @@ class User(db.Model, UserMixin):
 
     def update_un_nn(self, nick_name, user_name):
         self.nick_name = nick_name
-        self.user_name = user_name
+        self.username = user_name
 
         db.session.commit()
