@@ -15,7 +15,6 @@ const AppHome = () => {
             <div className="app-home-container">
                 <div className="app-home">
                     <div className="app-home-left">
-                        {/* <AllNews /> */}
                         <div id="app-home-chart-container">
                             <UserChart />
                             <div className="buying-power-section">
