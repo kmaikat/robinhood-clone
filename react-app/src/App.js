@@ -20,6 +20,7 @@ import LearnPage from './components/LandingPages/Learn';
 import LandingHome from './components/LandingPages/LandingHome';
 import CashCard from './components/CashCard';
 import InvestLandingPage from './components/LandingPages/InvestLandingPage';
+import LandingHomeFooter from './components/LandingPages/LandingHomeFooter';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -44,10 +45,12 @@ function App() {
         <Route path="/invest">
           <LandingPageNavbar />
           <InvestLandingPage />
+          <LandingHomeFooter/>
         </Route>
         <Route path="/learn">
           <LandingPageNavbar />
           <LearnPage />
+          <LandingHomeFooter/>
         </Route>
         <Route path='/login' exact={true}>
           <LoginForm />
@@ -55,9 +58,6 @@ function App() {
         <Route path='/sign-up' exact={true}>
           <SignUpForm />
         </Route>
-        <ProtectedRoute path='/users' exact={true} >
-          <UsersList />
-        </ProtectedRoute>
         <ProtectedRoute path='/users/:userId' exact={true} >
           <User />
         </ProtectedRoute>
@@ -81,6 +81,7 @@ function App() {
       <Route path="/cashcard">
         <LandingPageNavbar />
         <CashCard />
+        <LandingHomeFooter/>
       </Route>
     </BrowserRouter>
   );
