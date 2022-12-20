@@ -19,7 +19,7 @@ const AppHome = () => {
                             <UserChart />
                             <div className="buying-power-section">
                                 <p className="buying-power-section-label">Buying Power</p>
-                                <p className="buying-power-section-content">{usDollar.format(buyingPower)}</p>
+                                <p className="buying-power-section-content">${usDollar.format(buyingPower)}</p>
                             </div>
                         </div>
                         <div className="app-home-news-container">
