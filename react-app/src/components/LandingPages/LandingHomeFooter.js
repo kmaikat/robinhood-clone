@@ -24,7 +24,7 @@ const LandingHomeFooter = () => {
                         <div id="top-footer-text">Hosted by</div>
                         <div id="render-info">
                             <div id="icons" className="render-icon">
-                                <img classname="backend-icons" src={render} alt="render-icon" />
+                                <img className="backend-icons" src={render} alt="render-icon" />
                                 Render
                             </div>
                         </div>
@@ -34,18 +34,18 @@ const LandingHomeFooter = () => {
                     <div id="footer-top-right-content">
                         <div id="top-footer-text">Made with</div>
                         <div id="icons">
-                            <img classname="made-with-icons" src={npm} alt="npm-icon" />
-                            <img classname="made-with-icons" src={python} alt="python-icon" />
-                            <img classname="made-with-icons" src={sqla} alt="sqla-icon" />
-                            <img classname="made-with-icons" src={flaskIcon} alt="flask-icon" />
-                            <img classname="made-with-icons" src={amazonAWS} alt="aws-icon" />
-                            <img classname="made-with-icons" src={css} alt="css-icon" />
-                            <img classname="made-with-icons" src={html} alt="html-icon" />
-                            <img classname="made-with-icons" src={javascript} alt="javascript-icon" />
-                            <img classname="made-with-icons" src={redux} alt="redux-icon" />
-                            <img classname="made-with-icons" src={react} alt="react-icon" />
-                            <img classname="made-with-icons" src={postgres} alt="postgresql-icon" />
-                            <img classname="made-with-icons" src={reactRouter} alt="react-icon" />
+                            <img className="made-with-icons" src={npm} alt="npm-icon" />
+                            <img className="made-with-icons" src={python} alt="python-icon" />
+                            <img className="made-with-icons" src={sqla} alt="sqla-icon" />
+                            <img className="made-with-icons" src={flaskIcon} alt="flask-icon" />
+                            <img className="made-with-icons" src={amazonAWS} alt="aws-icon" />
+                            <img className="made-with-icons" src={css} alt="css-icon" />
+                            <img className="made-with-icons" src={html} alt="html-icon" />
+                            <img className="made-with-icons" src={javascript} alt="javascript-icon" />
+                            <img className="made-with-icons" src={redux} alt="redux-icon" />
+                            <img className="made-with-icons" src={react} alt="react-icon" />
+                            <img className="made-with-icons" src={postgres} alt="postgresql-icon" />
+                            <img className="made-with-icons" src={reactRouter} alt="react-icon" />
                         </div>
                     </div>
                 </div>

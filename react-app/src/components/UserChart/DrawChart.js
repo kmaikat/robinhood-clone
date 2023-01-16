@@ -110,7 +110,7 @@ const DrawChart = () => {
         });
 
         const oldLength = newData.length;
-        newData.length = 79;
+        newData.length = 78;
         newData.fill(null, oldLength);
 
         setAllData({
