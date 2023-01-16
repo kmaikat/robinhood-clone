@@ -109,9 +109,9 @@ const DrawChart = () => {
             return v * assetCost;
         });
 
-        const oldLength = newData.length;
-        newData.length = 79;
-        newData.fill(null, oldLength);
+        // const oldLength = newData.length;
+        // newData.length = categories.length;
+        // newData.fill(null, oldLength);
 
         setAllData({
             series: [{
